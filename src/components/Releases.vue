@@ -144,7 +144,7 @@
                 Plan an efficient route inside Efficiver and open it in Apple or Google Maps for
                 turn-by-turn directions. Efficiver quietly logs the drive for you and saves it when
                 you arrive — no need to keep the app open. Turn it on in
-                <em>Settings → Driving → Auto Track Drive</em>.
+                <em>Settings → Driving → Auto-Track Drive</em>.
               </p>
             </div>
           </div>
