@@ -346,7 +346,12 @@
             devices via your private iCloud database. Off by default.
           </li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Wallet Watch</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Savings</h3>
+        <p class="mb-2">
+          Umbrella for savings-related sub-features. Currently contains Wallet Watch (fuel / energy
+          cost tracking); more sub-features will land in future releases.
+        </p>
+        <h4 class="font-semibold mt-3 mb-1">Wallet Watch</h4>
         <ul class="list-disc pl-6">
           <li><strong>Fuel Price:</strong> Set per litre / gallon in your local currency</li>
           <li><strong>Baseline Consumption:</strong> Your vehicle's typical fuel economy</li>
