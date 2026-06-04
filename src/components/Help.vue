@@ -17,7 +17,7 @@
           <li><strong>Welcome:</strong> Introduction to Efficiver's features</li>
           <li>
             <strong>Permissions:</strong> <em>Required:</em> Grant location access for GPS tracking
-            and Motion &amp; Fitness access for auto start/stop and engine detection
+            and Motion &amp; Fitness access for auto-start/stop and engine detection
           </li>
           <li>
             <strong>Vehicle Setup:</strong> Configure your fuel type (petrol, diesel, electric),
@@ -99,7 +99,7 @@
             better.
           </li>
           <li>
-            <strong>Auto Start/Stop:</strong> Automatically begins and ends drives when you
+            <strong>Auto-Start/Stop:</strong> Automatically begins and ends drives when you
             start/stop moving.
           </li>
           <li>
@@ -223,7 +223,7 @@
         <dl class="space-y-4">
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
-            Ensure <em>Auto Start Drive</em> and <em>Auto Stop Drive</em> are enabled in
+            Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
             <em>Settings → Driving</em>. Grant Motion &amp; Fitness permission in
             <em>iOS Settings → Privacy &amp; Security</em>.
           </dd>
@@ -318,11 +318,11 @@
             sensitivity
           </li>
           <li>
-            <strong>Auto Start Drive:</strong> Automatically begin tracking when vehicle moves
+            <strong>Auto-Start Drive:</strong> Automatically begin tracking when vehicle moves
           </li>
-          <li><strong>Auto Stop Drive:</strong> Automatically end tracking when vehicle stops</li>
+          <li><strong>Auto-Stop Drive:</strong> Automatically end tracking when vehicle stops</li>
           <li>
-            <strong>Auto Track Drive:</strong> Background-log a drive when you start it from
+            <strong>Auto-Track Drive:</strong> Background-log a drive when you start it from
             Efficient Route in Apple/Google Maps
           </li>
         </ul>

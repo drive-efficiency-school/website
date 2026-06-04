@@ -51,7 +51,7 @@
         'Idle detection',
         'Gamified badges',
         'Advanced offline analytics',
-        'Auto start mode'
+        'Auto-Start Mode'
       ]
     },
     {
