@@ -29,6 +29,10 @@
     "type-check": "vue-tsc --noEmit",
     "lint-staged": "lint-staged",
     "ci": "npm run lint:check && npm run type-check && npm run format:check",
+    "test:e2e": "SKIP_VERSION_BUMP=1 npm run build && playwright test",
+    "test:e2e:dev": "playwright test",
+    "test:e2e:prod": "PLAYWRIGHT_BASE_URL=https://www.efficiver.com playwright test",
+    "test:e2e:report": "playwright show-report",
     "prepare": "husky"
   },
   "dependencies": {
@@ -51,6 +55,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1",
     "@vitejs/plugin-vue": "^6.0.7",
     "eslint": "^10.4.0",
