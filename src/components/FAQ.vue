@@ -58,7 +58,7 @@
     {
       question: 'Which devices are compatible with Efficiver?',
       answer:
-        'Efficiver runs on iPhones with iOS 18 or later, and on iPad. An Apple Watch companion is on the roadmap for a future release. We are currently iOS-only; there is no Android timeline.',
+        "Efficiver runs on iPhones with iOS 18 or later, and on iPad, with CarPlay support in v1.3. An Apple Watch companion is on the roadmap for a future release. An Android port is in active development — we don't have a public release date yet, and we'll announce beta sign-up here when one is open.",
       value: 'item-7'
     },
     {

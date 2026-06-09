@@ -6,7 +6,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.0 (26060903)'
+  const version = 'v1.3.0 (26060906)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -62,6 +62,23 @@
             <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
               CarPlay
             </a>
+          </div>
+          <div>
+            <a
+              v-if="config.app.android"
+              :href="config.app.android"
+              target="_blank"
+              class="opacity-60 hover:opacity-100"
+            >
+              Android
+            </a>
+            <span
+              v-else
+              class="text-muted-foreground flex items-center cursor-not-allowed opacity-60"
+            >
+              Android
+              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">In development</Badge>
+            </span>
           </div>
           <div>
             <a

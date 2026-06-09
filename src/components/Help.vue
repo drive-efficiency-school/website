@@ -535,11 +535,15 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">On the Roadmap</h3>
         <ul class="list-disc pl-6">
+          <li>Android port — in active development</li>
           <li>Apple Watch companion app — a future release</li>
           <li>Foundation Models-powered session summarisation</li>
-          <li>CarPlay integration</li>
         </ul>
-        <p class="mt-4 text-sm">Efficiver is currently iOS-only; we have no Android timeline.</p>
+        <p class="mt-4 text-sm">
+          Efficiver ships today on iOS (iPhone, iPad, CarPlay). An Android port is in active
+          development — we don't have a public release date yet, and we'll announce beta sign-up
+          when one is open.
+        </p>
       </div>
     </section>
   </div>

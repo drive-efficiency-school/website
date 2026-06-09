@@ -49,6 +49,26 @@ test.describe('FAQ (C3, M3, M4, I11)', () => {
     expect(faq).not.toMatch(/Android version is coming soon/i)
   })
 
+  test('FAQ + Footer mention Android is in active development (not "coming soon")', async ({
+    page
+  }) => {
+    // Android port kickoff 2026-06-08 — copy on the site must now
+    // surface Android as in-progress (was "iOS-only; no Android
+    // timeline" through v1.2). The phrase "coming soon" stays banned
+    // by the M4 test above; this test locks the new contract.
+    //
+    // FAQ uses an accordion — the device-compatibility answer is not
+    // in the DOM until its question is clicked. Match the existing
+    // pattern below (the GPS-precondition test does the same).
+    await page.getByRole('button', { name: 'Which devices are compatible with Efficiver?' }).click()
+    const answer = page.getByText(/An Android port is in active development/i)
+    await expect(answer).toBeVisible()
+
+    const footerTxt = (await page.locator('footer').textContent()) ?? ''
+    expect(footerTxt).toMatch(/Android/i)
+    expect(footerTxt).toMatch(/development|underway|in progress|being built/i)
+  })
+
   test('FAQ does NOT promise unshipped Enterprise plan (I11)', async ({ page }) => {
     const faq = (await page.locator('section#faq').textContent()) ?? ''
     expect(faq).not.toMatch(/Enterprise plan is coming soon/i)
@@ -105,15 +125,17 @@ test.describe('WhatsNew section (H1, H2)', () => {
     expect(txt).toMatch(/Anomaly Detection/i)
   })
 
-  test('uses Efficient Route (H2) — Eco Route appears only in rename note', async ({ page }) => {
+  test('WhatsNew has no stale "Eco Route" copy (H2 closure)', async ({ page }) => {
+    // The v1.2 WhatsNew carried a polish bullet `"Eco Route" is now
+    // "Efficient Route" everywhere in the app.` That bullet was tied
+    // to the v1.1→v1.2 rename and was dropped from the v1.3 WhatsNew
+    // (the polish list was re-curated for v1.3 features). What still
+    // matters: the v1.3 WhatsNew section MUST NOT carry any stale
+    // bare "Eco Route" copy from earlier drafts. The full "Eco Route
+    // is now Efficient Route" rename note no longer appears here —
+    // it now lives only on the Releases page's collapsed v1.2 entry.
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Efficient Route/i)
-    // "Eco Route" may appear inside the rename-explanation phrase
-    // ('"Eco Route" is now "Efficient Route" everywhere in the app.').
-    // Any other occurrence would mean a stale v1.1 reference survived.
-    const ecoRouteMatches = txt.match(/Eco Route/gi) ?? []
-    const renameMatches = txt.match(/"Eco Route" is now "Efficient Route"/gi) ?? []
-    expect(ecoRouteMatches.length).toBe(renameMatches.length)
+    expect(txt).not.toMatch(/Eco Route/i)
   })
 })
 
