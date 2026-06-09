@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * SEO / structured-data — verifies the H8 + M7 closures from
- * WEBSITE_AUDIT_V12.
- *
- *   - H8: index.html OG / Twitter / JSON-LD updated for v1.2 messaging
- *         (no stale v1.1 / "Eco Route").
- *   - M7: JSON-LD aggregateRating removed (no fabricated 4.9/150 block).
+ * SEO / structured-data — verifies OG / Twitter / JSON-LD updated for
+ * v1.3 messaging (no stale v1.2 / v1.1 / "Eco Route") and the M7 closure
+ * (no fabricated aggregateRating).
  */
 
 test.describe('index.html meta + structured data', () => {
@@ -14,11 +11,11 @@ test.describe('index.html meta + structured data', () => {
     await page.goto('/')
   })
 
-  test('og:title references v1.2 (not v1.1)', async ({ page }) => {
+  test('og:title references v1.3 (not earlier versions)', async ({ page }) => {
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content')
     expect(ogTitle).toBeTruthy()
-    expect(ogTitle).toMatch(/v1\.2/)
-    expect(ogTitle).not.toMatch(/v1\.1/)
+    expect(ogTitle).toMatch(/v1\.3/)
+    expect(ogTitle).not.toMatch(/v1\.[12]\b/)
   })
 
   test('og:title does NOT reference "Eco Route" (H2)', async ({ page }) => {
@@ -26,18 +23,18 @@ test.describe('index.html meta + structured data', () => {
     expect(ogTitle).not.toMatch(/Eco Route/i)
   })
 
-  test('og:description mentions v1.2 flagship features', async ({ page }) => {
+  test('og:description mentions v1.3 flagship features', async ({ page }) => {
     const ogDesc = await page.locator('meta[property="og:description"]').getAttribute('content')
     expect(ogDesc).toBeTruthy()
-    expect(ogDesc).toMatch(/Apple Maps|interactive|live drive map|drive view/i)
-    expect(ogDesc).toMatch(/iCloud/i)
+    expect(ogDesc).toMatch(/CarPlay/i)
+    expect(ogDesc).toMatch(/savings projection|Year Recap/i)
   })
 
-  test('twitter:title references v1.2', async ({ page }) => {
+  test('twitter:title references v1.3', async ({ page }) => {
     const twTitle = await page.locator('meta[name="twitter:title"]').getAttribute('content')
     expect(twTitle).toBeTruthy()
-    expect(twTitle).toMatch(/v1\.2/)
-    expect(twTitle).not.toMatch(/v1\.1/)
+    expect(twTitle).toMatch(/v1\.3/)
+    expect(twTitle).not.toMatch(/v1\.[12]\b/)
   })
 
   test('canonical URL points to https://www.efficiver.com', async ({ page }) => {
@@ -50,12 +47,12 @@ test.describe('index.html meta + structured data', () => {
     expect(robots).toBe('index, follow')
   })
 
-  test('JSON-LD softwareVersion is "1.2"', async ({ page }) => {
+  test('JSON-LD softwareVersion is "1.3"', async ({ page }) => {
     const jsonLd = await page.locator('script[type="application/ld+json"]').first().textContent()
     expect(jsonLd).toBeTruthy()
     const parsed = JSON.parse(jsonLd!)
     expect(parsed['@type']).toBe('MobileApplication')
-    expect(parsed.softwareVersion).toBe('1.2')
+    expect(parsed.softwareVersion).toBe('1.3')
   })
 
   test('JSON-LD does NOT contain aggregateRating block (M7)', async ({ page }) => {

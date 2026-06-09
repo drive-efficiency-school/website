@@ -10,6 +10,8 @@
     BrainCircuit,
     Leaf,
     Banknote,
+    Car,
+    Sparkles,
     Plus,
     Minus
   } from 'lucide-vue-next'
@@ -19,68 +21,68 @@
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16 max-w-4xl">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4">CURRENT — v1.2</Badge>
+      <Badge variant="default" class="mb-4">CURRENT — v1.3</Badge>
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Release notes</h1>
       <p class="text-lg text-muted-foreground">
         Every Efficiver release, in one place. Older entries are collapsed — tap to expand.
       </p>
     </div>
 
-    <!-- v1.2 -->
+    <!-- v1.3 -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
-          <CardTitle class="text-2xl">v1.2 — Live drive map, iCloud sync, accessibility</CardTitle>
-          <span class="text-sm text-muted-foreground whitespace-nowrap">May 2026</span>
+          <CardTitle class="text-2xl"
+            >v1.3 — CarPlay, annual savings projection, Year Recap</CardTitle
+          >
+          <span class="text-sm text-muted-foreground whitespace-nowrap">June 2026</span>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.2 brings a live, interactive drive map; iCloud sync across your devices; and a deep
-          accessibility pass — now available on the App Store.
+          v1.3 brings Efficiver into your car with CarPlay support, projects your year's savings
+          from efficient driving, and surfaces a shareable Year Recap — now on the App Store.
         </p>
 
         <div class="flex gap-4 items-start">
           <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
-            <Map class="size-5 text-blue-600 dark:text-blue-400" />
+            <Car class="size-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">Live drive map</h3>
+            <h3 class="font-semibold text-lg mb-1">CarPlay support</h3>
             <p class="text-muted-foreground">
-              A full-screen Apple Maps view that follows you smoothly as you drive. Pinch to zoom,
-              two-finger drag to rotate. Acceleration and braking events render as colored markers
-              (green / orange / red) along your route — on the live map and again on the past-trip
-              Route card in Session Detail. When iPhone is in Low Power Mode (with Prioritize Low
-              Power on in <em>Settings → General</em>), the map pauses with a clear placeholder.
+              Drive with your phone in your pocket. Efficiver appears as a Driving Task on your
+              car's CarPlay screen — tap Drive to start tracking, see your live score, distance, and
+              time on the head unit, tap Stop to save. Voice prompts route through your car's audio.
+              Works wired or wireless.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
-            <Cloud class="size-5 text-orange-600 dark:text-orange-400" />
+            <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">iCloud sync</h3>
+            <h3 class="font-semibold text-lg mb-1">Annual savings projection</h3>
             <p class="text-muted-foreground">
-              Your driving sessions and the Smart Detection model now sync across your iPhones and
-              iPad via your own private iCloud database. Sign in to iCloud on each device and
-              Efficiver picks up where you left off. Optional and off by default; toggle in
-              <em>Settings</em>.
+              Set up Wallet Watch with your fuel cost and currency, and the Sessions screen shows a
+              projected annual savings number that grows as you drive. A dedicated detail panel
+              breaks down what's saved so far and what's projected for the year.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
-            <Accessibility class="size-5 text-green-600 dark:text-green-400" />
+            <Sparkles class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">Built accessibility-first</h3>
+            <h3 class="font-semibold text-lg mb-1">Year Recap</h3>
             <p class="text-muted-foreground">
-              Full VoiceOver support, Dynamic Type from default through AX5, Reduce Motion across
-              every animation, Reduce Transparency, Differentiate Without Color, Bold Text, and
-              lifecycle announcements for drive started / stopped / saved. Drive your way.
+              A shareable card with your year's driving stats — total kilometres, average
+              efficiency, top drives, and savings if Wallet Watch is configured. Surfaced from the
+              top of the Sessions screen, ready to share.
             </p>
           </div>
         </div>
@@ -88,17 +90,112 @@
         <div>
           <h3 class="font-semibold text-lg mb-2">Smaller improvements</h3>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
-            <li>"Eco Route" is now "Efficient Route" everywhere in the app.</li>
             <li>
-              Drive gauge inner circle is now visible in light mode (was effectively invisible).
+              Smart Forecast on Trends — see where your efficiency is heading and use the "cut idle
+              by X%" lever to simulate the impact of reducing idle time.
             </li>
-            <li>Page-bullet and Stop button tap targets grown to Apple's 44pt minimum.</li>
-            <li>Calibration phase-change confirmations spell out the transition before saving.</li>
-            <li>Wallet Watch Save button moved to the toolbar.</li>
+            <li>Pattern Insights card surfaces what's actually driving your scores day-to-day.</li>
+            <li>Anomaly Detection flags drives that fall outside your usual pattern.</li>
+            <li>
+              Sessions screen restructured with side-by-side Trends and Savings tiles plus the Year
+              Recap pill at the top.
+            </li>
+            <li>
+              Live Activity Stop button is now reliable even after the app has been closed — uses
+              Apple's documented orphan-activity recovery pattern.
+            </li>
+            <li>
+              CarPlay voice prompts come through at normal volume regardless of whether the head
+              unit is on FM or playing music.
+            </li>
+            <li>Welcome onboarding text scales cleanly at the largest Dynamic Type sizes.</li>
           </ul>
         </div>
       </CardContent>
     </Card>
+
+    <!-- v1.2 -->
+    <details class="mb-4 group">
+      <summary class="cursor-pointer">
+        <Card class="hover:border-primary/40 transition-colors">
+          <CardHeader>
+            <div class="flex justify-between items-center gap-4">
+              <CardTitle class="text-xl"
+                >v1.2 — Live drive map, iCloud sync, accessibility</CardTitle
+              >
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-muted-foreground whitespace-nowrap">May 2026</span>
+                <Plus class="size-5 text-muted-foreground group-open:hidden" />
+                <Minus class="size-5 text-primary hidden group-open:inline" />
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+      </summary>
+      <Card class="mt-2 ml-2 border-l-2 border-l-primary/30">
+        <CardContent class="pt-6 space-y-4">
+          <div class="flex gap-4 items-start">
+            <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
+              <Map class="size-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h3 class="font-semibold mb-1">Live drive map</h3>
+              <p class="text-muted-foreground">
+                A full-screen Apple Maps view that follows you smoothly as you drive. Pinch to zoom,
+                two-finger drag to rotate. Acceleration and braking events render as colored markers
+                (green / orange / red) along your route — on the live map and again on the past-trip
+                Route card in Session Detail. When iPhone is in Low Power Mode (with Prioritize Low
+                Power on in <em>Settings → General</em>), the map pauses with a clear placeholder.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
+              <Cloud class="size-5 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div>
+              <h3 class="font-semibold mb-1">iCloud sync</h3>
+              <p class="text-muted-foreground">
+                Your driving sessions and the Smart Detection model now sync across your iPhones and
+                iPad via your own private iCloud database. Sign in to iCloud on each device and
+                Efficiver picks up where you left off. Optional and off by default; toggle in
+                <em>Settings</em>.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+              <Accessibility class="size-5 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h3 class="font-semibold mb-1">Built accessibility-first</h3>
+              <p class="text-muted-foreground">
+                Full VoiceOver support, Dynamic Type from default through AX5, Reduce Motion across
+                every animation, Reduce Transparency, Differentiate Without Color, Bold Text, and
+                lifecycle announcements for drive started / stopped / saved. Drive your way.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-semibold mb-2">Smaller improvements</h3>
+            <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+              <li>"Eco Route" is now "Efficient Route" everywhere in the app.</li>
+              <li>
+                Drive gauge inner circle is now visible in light mode (was effectively invisible).
+              </li>
+              <li>Page-bullet and Stop button tap targets grown to Apple's 44pt minimum.</li>
+              <li>
+                Calibration phase-change confirmations spell out the transition before saving.
+              </li>
+              <li>Wallet Watch Save button moved to the toolbar.</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    </details>
 
     <!-- v1.1 -->
     <details class="mb-4 group">

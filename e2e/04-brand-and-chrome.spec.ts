@@ -76,9 +76,9 @@ test.describe('Footer (H7, M5, M12)', () => {
     await page.locator('footer').scrollIntoViewIfNeeded()
   })
 
-  test('version label references v1.2 (H7 — dynamic, not hardcoded v1.1.0)', async ({ page }) => {
+  test('version label references v1.3 (H7 — dynamic, not hardcoded v1.1.0)', async ({ page }) => {
     const footer = (await page.locator('footer').textContent()) ?? ''
-    expect(footer).toMatch(/v1\.2/)
+    expect(footer).toMatch(/v1\.3/)
     expect(footer).not.toMatch(/v1\.1\.0\s*\(26052227\)/)
   })
 

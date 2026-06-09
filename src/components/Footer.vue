@@ -6,7 +6,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.2.3 (26060702)'
+  const version = 'v1.3.0 (26060902)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -59,10 +59,9 @@
             </a>
           </div>
           <div>
-            <span class="text-muted-foreground flex items-center cursor-not-allowed opacity-60">
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
               CarPlay
-              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">Future</Badge>
-            </span>
+            </a>
           </div>
           <div>
             <a

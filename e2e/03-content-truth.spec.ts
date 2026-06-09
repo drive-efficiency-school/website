@@ -75,24 +75,34 @@ test.describe('WhatsNew section (H1, H2)', () => {
       .catch(() => undefined)
   })
 
-  test('lists v1.2 interactive Apple Maps drive view', async ({ page }) => {
+  test('lists v1.3 CarPlay support', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Apple Maps|interactive|live drive map/i)
+    expect(txt).toMatch(/CarPlay/i)
   })
 
-  test('lists v1.2 per-waypoint event markers', async ({ page }) => {
+  test('lists v1.3 annual savings projection', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/waypoint/i)
+    expect(txt).toMatch(/annual savings projection|savings projection/i)
   })
 
-  test('lists v1.2 iCloud sync', async ({ page }) => {
+  test('lists v1.3 Year Recap', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/iCloud/i)
+    expect(txt).toMatch(/Year Recap/i)
   })
 
-  test('lists v1.2 accessibility commitments', async ({ page }) => {
+  test('lists v1.3 Smart Forecast / Idle Lever in the polish list', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/VoiceOver|Dynamic Type|Accessibility/i)
+    expect(txt).toMatch(/Smart Forecast|cut idle by/i)
+  })
+
+  test('lists v1.3 Pattern Insights in the polish list', async ({ page }) => {
+    const txt = (await page.locator('section#whats-new').textContent()) ?? ''
+    expect(txt).toMatch(/Pattern Insights/i)
+  })
+
+  test('lists v1.3 Anomaly Detection in the polish list', async ({ page }) => {
+    const txt = (await page.locator('section#whats-new').textContent()) ?? ''
+    expect(txt).toMatch(/Anomaly Detection/i)
   })
 
   test('uses Efficient Route (H2) — Eco Route appears only in rename note', async ({ page }) => {
@@ -113,20 +123,27 @@ test.describe('Releases page (H1, H2)', () => {
     await expect(page.getByText('Release', { exact: false }).first()).toBeVisible()
   })
 
-  test('lists v1.2 release entry', async ({ page }) => {
+  test('lists v1.3 release entry', async ({ page }) => {
+    const txt = (await page.locator('body').textContent()) ?? ''
+    expect(txt).toMatch(/v?1\.3/)
+  })
+
+  test('keeps v1.2 release entry in history (collapsed)', async ({ page }) => {
     const txt = (await page.locator('body').textContent()) ?? ''
     expect(txt).toMatch(/v?1\.2/)
   })
 
-  test('uses Efficient Route in the v1.2 entry (H2)', async ({ page }) => {
+  test('uses Efficient Route somewhere on Releases (carried into v1.2 history)', async ({
+    page
+  }) => {
     const txt = (await page.locator('body').textContent()) ?? ''
     expect(txt).toMatch(/Efficient Route/i)
   })
 
-  test('mentions v1.2 flagship features', async ({ page }) => {
+  test('mentions v1.3 flagship features (CarPlay + Savings + Year Recap)', async ({ page }) => {
     const txt = (await page.locator('body').textContent()) ?? ''
-    expect(txt).toMatch(/iCloud/i)
-    expect(txt).toMatch(/Accessibility|VoiceOver/i)
+    expect(txt).toMatch(/CarPlay/i)
+    expect(txt).toMatch(/savings projection|Year Recap/i)
   })
 })
 
