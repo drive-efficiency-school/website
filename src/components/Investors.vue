@@ -13,7 +13,7 @@
           Efficiver is an offline driving-feedback app for iPhone — privacy-first, sensor-based, no
           OBD hardware. Our mission, <em>Save Earth, Wealth, and Health</em>, drives the product
           roadmap: reduce emissions, save fuel, drive safer. Correspondence:
-          <a href="mailto:investors@efficiver.com" class="underline">investors@efficiver.com</a>.
+          <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>.
         </p>
       </div>
     </section>
@@ -75,7 +75,7 @@
       <div class="opacity-70">
         <p>
           Interested in joining our journey? Contact our Investor Relations team at
-          <a href="mailto:investors@efficiver.com" class="underline">investors@efficiver.com</a> for
+          <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a> for
           partnership opportunities, financials, or to schedule a pitch.
         </p>
       </div>
