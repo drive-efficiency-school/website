@@ -2,7 +2,7 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, Car, Banknote, Sparkles } from 'lucide-vue-next'
+  import { ArrowRight, Car, BarChart3, Minimize2 } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
@@ -22,16 +22,16 @@
       body: 'Drive with your phone in your pocket. Efficiver appears as a Driving Task on your car’s CarPlay screen — tap Drive to start tracking, see your live score, distance, and time on the head unit, tap Stop to save. Voice prompts route through your car’s audio. Works wired or wireless.'
     },
     {
-      icon: Banknote,
+      icon: BarChart3,
       color: 'text-orange-600 dark:text-orange-400',
-      title: 'Annual savings projection',
-      body: 'See how much you’ll save this year by driving efficiently. Set up Wallet Watch with your fuel cost and currency, and the Sessions screen shows a projected annual savings number — updated as you drive.'
+      title: 'A redesigned Insights tab',
+      body: 'Your savings and efficiency, front and centre. The new Insights tab opens on an Analytics view — your real savings so far this year and CO₂ impact, plus your average efficiency score, all free. Flip to a searchable list of every drive whenever you want.'
     },
     {
-      icon: Sparkles,
+      icon: Minimize2,
       color: 'text-green-600 dark:text-green-400',
-      title: 'Year Recap',
-      body: 'A shareable card with your year’s driving stats — total kilometres, average efficiency, top drives, and savings. Surfaced from the top of the Sessions screen, ready to share.'
+      title: 'Minimize the drive',
+      body: 'Keep driving while you do other things. Swipe the drive screen down and it shrinks to a live mini-bar — your score and distance stay one tap away while you change a setting or open another screen. Tap to jump back in, or end the drive right from the bar.'
     }
   ]
 </script>
@@ -44,7 +44,7 @@
       <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.3</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        CarPlay support, an annual savings projection, and a shareable Year Recap — now on the App
+        CarPlay support, a redesigned Insights tab, and a minimizable drive screen — now on the App
         Store.
       </h3>
 
@@ -91,15 +91,15 @@
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
-        <li>
-          Smart Forecast on Trends — see where your efficiency is heading and use the "cut idle by
-          X%" lever to simulate the impact of reducing idle time.
-        </li>
-        <li>Pattern Insights card surfaces what's actually driving your scores day-to-day.</li>
+        <li>Search your past drives by name or date from the Sessions list.</li>
         <li>Anomaly Detection flags drives that fall outside your usual pattern.</li>
         <li>
-          Sessions screen restructured with side-by-side Trends and Savings tiles plus the Year
-          Recap pill at the top.
+          Smarter auto-stop — Efficiver senses when your engine is actually off and ends parked
+          drives sooner, while protecting long waits at traffic lights.
+        </li>
+        <li>
+          The full Year Recap, the Smart Forecast on Trends, and the "cut idle by X%" lever are part
+          of Efficiver Pro — coming soon.
         </li>
         <li>
           Live Activity Stop button is now reliable even after the app has been closed — uses
