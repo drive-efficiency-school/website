@@ -11,7 +11,8 @@
     Leaf,
     Banknote,
     Car,
-    Sparkles,
+    BarChart3,
+    Minimize2,
     Plus,
     Minus
   } from 'lucide-vue-next'
@@ -33,15 +34,16 @@
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
           <CardTitle class="text-2xl"
-            >v1.3 — CarPlay, annual savings projection, Year Recap</CardTitle
+            >v1.3 — CarPlay, redesigned Insights, minimizable drive</CardTitle
           >
           <span class="text-sm text-muted-foreground whitespace-nowrap">June 2026</span>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.3 brings Efficiver into your car with CarPlay support, projects your year's savings
-          from efficient driving, and surfaces a shareable Year Recap — now on the App Store.
+          v1.3 brings Efficiver into your car with CarPlay support, redesigns the Insights tab
+          around your real savings and efficiency, and lets you minimize the drive screen so you can
+          keep driving while you do other things — now on the App Store.
         </p>
 
         <div class="flex gap-4 items-start">
@@ -61,28 +63,30 @@
 
         <div class="flex gap-4 items-start">
           <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
-            <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
+            <BarChart3 class="size-5 text-orange-600 dark:text-orange-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">Annual savings projection</h3>
+            <h3 class="font-semibold text-lg mb-1">Redesigned Insights tab</h3>
             <p class="text-muted-foreground">
-              Set up Wallet Watch with your fuel cost and currency, and the Sessions screen shows a
-              projected annual savings number that grows as you drive. A dedicated detail panel
-              breaks down what's saved so far and what's projected for the year.
+              The Insights tab opens on an Analytics view that puts your savings and efficiency
+              front and centre — your real savings so far this year, your CO₂ impact, and your
+              average efficiency score, all free. Flip to a searchable list of every drive whenever
+              you want. The year-end savings forecast is part of Efficiver Pro — coming soon.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
-            <Sparkles class="size-5 text-green-600 dark:text-green-400" />
+            <Minimize2 class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">Year Recap</h3>
+            <h3 class="font-semibold text-lg mb-1">Minimize the drive</h3>
             <p class="text-muted-foreground">
-              A shareable card with your year's driving stats — total kilometres, average
-              efficiency, top drives, and savings if Wallet Watch is configured. Surfaced from the
-              top of the Sessions screen, ready to share.
+              Swipe the drive screen down and it shrinks to a live mini-bar instead of ending the
+              drive — your score and distance stay one tap away while you change a setting or open
+              another screen. The bar stays put wherever you navigate; tap it to jump back in, or
+              end the drive right there.
             </p>
           </div>
         </div>
@@ -90,15 +94,15 @@
         <div>
           <h3 class="font-semibold text-lg mb-2">Smaller improvements</h3>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
-            <li>
-              Smart Forecast on Trends — see where your efficiency is heading and use the "cut idle
-              by X%" lever to simulate the impact of reducing idle time.
-            </li>
-            <li>Pattern Insights card surfaces what's actually driving your scores day-to-day.</li>
+            <li>Search your past drives by name or date from the Sessions list.</li>
             <li>Anomaly Detection flags drives that fall outside your usual pattern.</li>
             <li>
-              Sessions screen restructured with side-by-side Trends and Savings tiles plus the Year
-              Recap pill at the top.
+              Smarter auto-stop — Efficiver senses when your engine is actually off and ends parked
+              drives sooner, while protecting long waits at traffic lights.
+            </li>
+            <li>
+              The full Year Recap, the Smart Forecast on Trends, and the "cut idle by X%" lever are
+              part of Efficiver Pro — coming soon.
             </li>
             <li>
               Live Activity Stop button is now reliable even after the app has been closed — uses
