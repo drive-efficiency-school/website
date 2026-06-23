@@ -1,10 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { config } from '@/lib/config'
+</script>
 
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16">
     <h1 class="text-3xl font-bold mb-6 text-center">Terms of Use for Efficiver</h1>
 
-    <p class="text-center text-sm text-muted-foreground mb-10">Last updated: May 27, 2026</p>
+    <p class="text-center text-sm text-muted-foreground mb-10">
+      Last updated: {{ config.lastUpdated.terms }}
+    </p>
 
     <!-- Section 1: Acceptance of Terms -->
     <section class="mb-8">

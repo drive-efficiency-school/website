@@ -19,7 +19,6 @@ interface ImportMetaEnv {
   readonly VITE_SHARE_ON_REDDIT: string
   readonly VITE_SHARE_NATIVE: string
   readonly VITE_LAUNCH_OFFER_ECO_MASTER: string
-  readonly VITE_EXIT_POPUP_SAVINGS: string
   readonly VITE_EMAIL_API_BASE_URL: string
 }
 

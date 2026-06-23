@@ -11,7 +11,8 @@
     Fingerprint,
     Map,
     Cloud,
-    Accessibility
+    Accessibility,
+    Car
   } from 'lucide-vue-next'
 
   interface FeaturesProps {
@@ -21,6 +22,12 @@
   }
 
   const featureList: FeaturesProps[] = [
+    {
+      icon: 'car',
+      title: 'CarPlay support',
+      description:
+        'Drive with your phone in your pocket — Efficiver runs as a Driving Task on the CarPlay screen, with voice prompts through your car audio. Wired or wireless.'
+    },
     {
       icon: 'map',
       title: 'Live drive map',
@@ -89,6 +96,7 @@
     | typeof Map
     | typeof Cloud
     | typeof Accessibility
+    | typeof Car
   > = {
     tabletSmartphone: TabletSmartphone,
     badgeCheck: BadgeCheck,
@@ -99,7 +107,8 @@
     fingerprint: Fingerprint,
     map: Map,
     cloud: Cloud,
-    accessibility: Accessibility
+    accessibility: Accessibility,
+    car: Car
   }
 </script>
 

@@ -1,4 +1,12 @@
 export const config = {
+  // "Last updated" dates for the legal/help pages. Single source of
+  // truth — bump the relevant entry when that page's CONTENT changes
+  // (these are content-change dates, not build/deploy dates).
+  lastUpdated: {
+    help: 'June 23, 2026',
+    privacy: 'May 25, 2026',
+    terms: 'May 27, 2026'
+  },
   contact: {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'contact@efficiver.com',
     phone: import.meta.env.VITE_CONTACT_PHONE || '', // Default to empty to hide
@@ -33,8 +41,5 @@ export const config = {
   },
   pricing: {
     launchOffer: import.meta.env.VITE_LAUNCH_OFFER_ECO_MASTER !== 'false' // Default to true
-  },
-  popup: {
-    savings: import.meta.env.VITE_EXIT_POPUP_SAVINGS || '$300,000+ in Fuel Costs'
   }
 }

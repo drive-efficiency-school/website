@@ -1,11 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { config } from '@/lib/config'
+</script>
 
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16">
     <!-- Document Title (excluded from opacity-80) -->
     <h1 class="text-3xl font-bold mb-6 text-center">Help & Support for Efficiver</h1>
 
-    <p class="text-center text-sm text-muted-foreground mb-10">Last updated: May 27, 2026</p>
+    <p class="text-center text-sm text-muted-foreground mb-10">
+      Last updated: {{ config.lastUpdated.help }}
+    </p>
 
     <!-- Section 1: Getting Started -->
     <section class="mb-8">
@@ -59,6 +63,32 @@
           <li>
             <strong>Real-time Efficiency Score:</strong> Live percentage score showing your driving
             efficiency, updated every second.
+          </li>
+          <li>
+            <strong>CarPlay support (v1.3):</strong> Efficiver appears as a Driving Task on your
+            car's CarPlay screen — tap Drive to start, see your live score, distance, and time on
+            the head unit, tap Stop to save. Voice prompts route through your car's audio. Wired or
+            wireless.
+          </li>
+          <li>
+            <strong>Redesigned Insights tab (v1.3):</strong> Opens on an Analytics view — your real
+            savings so far this year, CO₂ impact, and average efficiency score, all free. Flip to a
+            searchable list of every drive.
+          </li>
+          <li>
+            <strong>Minimize the drive (v1.3):</strong> Swipe the drive screen down to shrink it to
+            a live mini-bar instead of ending the drive; your score and distance stay one tap away
+            while you do other things.
+          </li>
+          <li>
+            <strong>Anomaly Detection (v1.3):</strong> Drives that fall outside your usual pattern
+            get flagged on the Sessions list.
+          </li>
+          <li>
+            <strong>Pattern Insights + Year Recap (v1.3):</strong> AI-generated coaching on what's
+            driving your scores, plus a shareable Year Recap. The AI copy uses Apple Intelligence
+            where available; the full Year Recap, Smart Forecast, and idle lever are part of
+            Efficiver Pro (coming soon).
           </li>
           <li>
             <strong>Live drive map (v1.2):</strong> Full-screen Apple Maps view that follows you as
@@ -162,6 +192,22 @@
             on
           </li>
         </ul>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">Minimize the drive (v1.3)</h3>
+        <p>
+          Swipe the drive screen down and it shrinks to a live mini-bar instead of ending the drive
+          — your score and distance stay one tap away while you change a setting or open another
+          screen. The bar stays put wherever you navigate; tap it to jump back in, or end the drive
+          right there.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3)</h3>
+        <p>
+          With your iPhone connected to CarPlay, Efficiver appears as a Driving Task tile. Tap Drive
+          to start, watch your live Efficiency Score, distance, and time on the head unit, and tap
+          Stop to save. Voice prompts play through your car's audio. See the CarPlay entries under
+          Troubleshooting if prompts are missing or faint.
+        </p>
       </div>
     </section>
 
@@ -289,6 +335,43 @@
             with your iOS version and phone model.
           </dd>
         </dl>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3)</h3>
+        <dl class="space-y-4">
+          <dt class="font-semibold">Efficiver doesn't appear on the CarPlay screen</dt>
+          <dd>
+            Make sure Efficiver is updated to v1.3 or later and your iPhone is connected to CarPlay
+            (wired or wireless). Efficiver appears as a <em>Driving Task</em> tile on the CarPlay
+            Home screen. If you don't see it, open
+            <em>iOS Settings → General → CarPlay → [your car] → Customize</em> and confirm Efficiver
+            is in the included apps.
+          </dd>
+
+          <dt class="font-semibold">CarPlay voice prompts are missing or faint</dt>
+          <dd>
+            Voice prompts play through your car's audio. If you can't hear them: make sure
+            <strong>CarPlay is the selected audio source</strong> on your head unit (some cars stay
+            on FM or AUX until CarPlay takes over), turn up the car volume, and confirm
+            <em>Voice Assistance</em> is on and not muted (use the <em>Mute</em> button on the
+            CarPlay screen — tap it again to hear "Voice unmuted"). Head units vary; if prompts are
+            quiet right after connecting, starting the drive again usually re-selects CarPlay audio.
+          </dd>
+
+          <dt class="font-semibold">Score, distance, or mistakes stay at zero on CarPlay</dt>
+          <dd>
+            CarPlay drives use your iPhone's GPS, so give it a few seconds to acquire a signal. You
+            don't need to open the app on your phone — the drive runs in the background. If values
+            stay at zero, set Location to <em>Always</em> with <em>Precise Location</em> on in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>.
+          </dd>
+
+          <dt class="font-semibold">Started a drive on CarPlay but it didn't save</dt>
+          <dd>
+            Tap <em>Stop</em> on the CarPlay screen, or use the <em>Stop</em> button on the Lock
+            Screen Live Activity — the drive saves automatically. This works even if the app was
+            force-quit.
+          </dd>
+        </dl>
       </div>
     </section>
 
@@ -394,11 +477,25 @@
           <li><strong>Notes:</strong> Tap to add a note (up to 255 characters, v1.1)</li>
           <li><strong>Rename:</strong> Tap the title to rename the session inline (v1.1)</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Analytics Features</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Insights tab (v1.3)</h3>
         <ul class="list-disc pl-6">
-          <li><strong>Average Score Card:</strong> Overall performance across all sessions</li>
-          <li><strong>Session Comparison:</strong> Track improvement over time</li>
-          <li><strong>Detailed Breakdown:</strong> Per-session analysis with timestamps</li>
+          <li>
+            <strong>Analytics view:</strong> Your real savings so far this year, CO₂ impact, and
+            average efficiency score — all free.
+          </li>
+          <li>
+            <strong>Sessions view:</strong> A searchable list of every drive — search by name or
+            date.
+          </li>
+          <li>
+            <strong>Trends:</strong> Efficiency forecast with a "cut idle by X%" lever and a
+            Patterns card. The full Year Recap, Smart Forecast, and idle lever are part of Efficiver
+            Pro (coming soon); the AI coaching uses Apple Intelligence where available.
+          </li>
+          <li>
+            <strong>Anomaly flags:</strong> Drives outside your usual pattern are marked on the
+            Sessions list.
+          </li>
         </ul>
       </div>
     </section>
@@ -471,7 +568,7 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Before Contacting Support</h3>
         <ul class="list-disc pl-6">
           <li>Check this help page for solutions to common issues</li>
-          <li>Ensure your app is updated to the latest version (currently v1.2)</li>
+          <li>Ensure your app is updated to the latest version (currently v1.3)</li>
           <li>Note your iOS version and iPhone model</li>
           <li>Include screenshots if describing visual issues</li>
           <li>Describe the problem with specific steps to reproduce</li>
@@ -521,6 +618,12 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
           <li>
+            <strong>v1.3 (June 2026):</strong> CarPlay support, redesigned Insights tab (Analytics +
+            searchable Sessions), minimize the drive, Anomaly Detection, AI-powered Pattern Insights
+            and recap narrative (Apple Intelligence), smarter auto-stop, more reliable Live Activity
+            Stop
+          </li>
+          <li>
             <strong>v1.2 (May 2026):</strong> Live drive map with per-waypoint event markers, iCloud
             sync across your devices, deep accessibility pass, Low Power Mode-aware map
           </li>
@@ -537,7 +640,7 @@
         <ul class="list-disc pl-6">
           <li>Android port — in active development</li>
           <li>Apple Watch companion app — a future release</li>
-          <li>Foundation Models-powered session summarisation</li>
+          <li>Efficiver Pro — the full Year Recap, Smart Forecast, and idle lever (coming soon)</li>
         </ul>
         <p class="mt-4 text-sm">
           Efficiver ships today on iOS (iPhone, iPad, CarPlay). An Android port is in active

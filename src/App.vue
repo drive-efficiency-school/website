@@ -21,7 +21,10 @@
   // handles haven't been migrated to the `efficiver-*` namespace yet
   // (see WEBSITE_AUDIT_V12 I10). Re-introduce once handles are live.
   const Pricing = defineAsyncComponent(() => import('./components/Pricing.vue'))
-  const Community = defineAsyncComponent(() => import('./components/Community.vue'))
+  // Community.vue removed from render 2026-06-23 — its only CTA was a disabled
+  // "Follow Us on Social Media" button under a Discord icon, but no social /
+  // community presence is configured (config.socials are empty). Re-introduce
+  // with a working link once a real community (e.g. Discord) exists.
   const NewsletterSignup = defineAsyncComponent(() => import('./components/NewsletterSignup.vue'))
   const FAQ = defineAsyncComponent(() => import('./components/FAQ.vue'))
   const Contact = defineAsyncComponent(() => import('./components/Contact.vue'))
@@ -104,7 +107,6 @@
     <Features />
     <Comparison />
     <HowItWorks />
-    <Community />
     <Pricing />
     <section v-if="config.features.newsletter" id="newsletter" class="container py-24 sm:py-32">
       <div class="mx-auto max-w-2xl text-center">
