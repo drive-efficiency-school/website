@@ -4,7 +4,7 @@ export const config = {
   // (these are content-change dates, not build/deploy dates).
   lastUpdated: {
     help: 'June 23, 2026',
-    privacy: 'May 25, 2026',
+    privacy: 'June 26, 2026',
     terms: 'May 27, 2026'
   },
   contact: {
