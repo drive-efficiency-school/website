@@ -185,9 +185,9 @@
         </p>
 
         <p class="mt-4">
-          Both forms submit to <code>https://email.efficiency.school/api/v1</code>, an
-          Efficiver-operated email API. Data is retained for the time needed to fulfill your request
-          and respond. No third-party processors.
+          Both forms submit to <code>{{ config.api.baseUrl }}</code
+          >, an Efficiver-operated email API. Data is retained for the time needed to fulfill your
+          request and respond. No third-party processors.
         </p>
       </div>
     </section>

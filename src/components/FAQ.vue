@@ -5,6 +5,7 @@
     AccordionItem,
     AccordionTrigger
   } from '@/components/ui/accordion'
+  import { config } from '@/lib/config'
 
   interface FAQProps {
     question: string
@@ -69,8 +70,7 @@
     },
     {
       question: 'How can I get support for Efficiver?',
-      answer:
-        'Our support team is here to help! Contact us at contact@efficiver.com for assistance or visit our FAQ section for quick answers.',
+      answer: `Our support team is here to help! Contact us at ${config.contact.email} for assistance or visit our FAQ section for quick answers.`,
       value: 'item-9'
     },
     {
@@ -98,10 +98,8 @@
       </AccordionItem>
     </Accordion>
     <h3 class="font-medium mt-4">
-      Still have questions?
-      <a href="mailto:contact@efficiver.com" class="underline"
-        >Contact us at contact@efficiver.com</a
-      >
+      Still have questions? Contact us at
+      <a :href="'mailto:' + config.contact.email" class="underline">{{ config.contact.email }}</a>
     </h3>
   </section>
 </template>

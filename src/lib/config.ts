@@ -5,7 +5,8 @@ export const config = {
   lastUpdated: {
     help: 'June 23, 2026',
     privacy: 'June 26, 2026',
-    terms: 'May 27, 2026'
+    terms: 'May 27, 2026',
+    accessibility: 'June 30, 2026'
   },
   contact: {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'contact@efficiver.com',

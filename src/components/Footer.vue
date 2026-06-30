@@ -6,7 +6,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.8 (26062601)'
+  const version = 'v1.3.8 (26063004)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -158,6 +158,15 @@
               @click="emit('navigate', 'privacy')"
             >
               Privacy Policy
+            </a>
+          </div>
+          <div>
+            <a
+              href="#accessibility"
+              class="opacity-60 hover:opacity-100 cursor-pointer"
+              @click="emit('navigate', 'accessibility')"
+            >
+              Accessibility
             </a>
           </div>
           <div>

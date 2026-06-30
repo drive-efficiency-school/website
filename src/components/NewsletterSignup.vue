@@ -45,8 +45,8 @@
       const formData: NewsletterSubscriptionData = {
         email: newsletterForm.email,
         name: newsletterForm.name || undefined,
-        preferences: newsletterForm.preferences.length > 0 ? newsletterForm.preferences : undefined,
-        source: 'www.efficiver.com'
+        preferences: newsletterForm.preferences.length > 0 ? newsletterForm.preferences : undefined
+        // source intentionally omitted — api.ts defaults it to config.contact.website (.env-driven)
       }
 
       const result = await apiService.subscribeToNewsletter(formData)

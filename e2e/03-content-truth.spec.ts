@@ -197,6 +197,39 @@ test.describe('Features grid (H4)', () => {
   })
 })
 
+test.describe('Accessibility page (iOS scope)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/#accessibility')
+    await expect(page.getByText('Accessibility at Efficiver')).toBeVisible()
+  })
+
+  test('lists the Apple-verified iPhone support features', async ({ page }) => {
+    const body = (await page.locator('body').textContent()) ?? ''
+    for (const feature of [
+      'VoiceOver',
+      'Voice Control',
+      'Dynamic Type',
+      'Reduced Motion',
+      'Differentiate Without Color',
+      'Dark Interface'
+    ]) {
+      expect(body).toContain(feature)
+    }
+  })
+
+  test('honestly discloses the Bold Text brand-font limitation', async ({ page }) => {
+    const body = (await page.locator('body').textContent()) ?? ''
+    expect(body).toMatch(/Known limitations/i)
+    expect(body).toMatch(/brand title font does not bold/i)
+  })
+
+  test('does NOT claim Android support yet (iOS-only scope)', async ({ page }) => {
+    const body = (await page.locator('body').textContent()) ?? ''
+    expect(body).not.toMatch(/TalkBack/i)
+    expect(body).not.toMatch(/Android Settings/i)
+  })
+})
+
 test.describe('HowItWorks (H6)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
