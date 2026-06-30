@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 /**
  * Route + status checks for every fake hash-route in the SPA.
  * Per src/App.vue, the routes are: '' (main), investors, terms,
- * privacy, help, coming-soon, releases.
+ * privacy, accessibility, help, coming-soon, releases.
  */
 
 const routes: Array<{ hash: string; identifier: string }> = [
@@ -11,6 +11,7 @@ const routes: Array<{ hash: string; identifier: string }> = [
   { hash: '#investors', identifier: 'Save Earth, Wealth, and Health' },
   { hash: '#terms', identifier: 'Terms of Use' },
   { hash: '#privacy', identifier: 'Privacy Policy' },
+  { hash: '#accessibility', identifier: 'Accessibility at Efficiver' },
   { hash: '#help', identifier: 'Help & Support' },
   { hash: '#coming-soon', identifier: 'Coming Soon' },
   { hash: '#releases', identifier: 'Release' }

@@ -35,6 +35,7 @@
   const Investors = defineAsyncComponent(() => import('./components/Investors.vue'))
   const TermsOfUse = defineAsyncComponent(() => import('./components/TermsOfUse.vue'))
   const PrivacyPolicy = defineAsyncComponent(() => import('./components/PrivacyPolicy.vue'))
+  const Accessibility = defineAsyncComponent(() => import('./components/Accessibility.vue'))
   const Help = defineAsyncComponent(() => import('./components/Help.vue'))
   const ComingSoon = defineAsyncComponent(() => import('./components/ComingSoon.vue'))
   const Releases = defineAsyncComponent(() => import('./components/Releases.vue'))
@@ -42,16 +43,26 @@
   const showInvestors = ref(false)
   const showTerms = ref(false)
   const showPrivacy = ref(false)
+  const showAccessibility = ref(false)
   const showHelp = ref(false)
   const showComingSoon = ref(false)
   const showReleases = ref(false)
 
   function navigate(
-    target: 'main' | 'investors' | 'terms' | 'privacy' | 'help' | 'coming-soon' | 'releases'
+    target:
+      | 'main'
+      | 'investors'
+      | 'terms'
+      | 'privacy'
+      | 'accessibility'
+      | 'help'
+      | 'coming-soon'
+      | 'releases'
   ) {
     showInvestors.value = target === 'investors'
     showTerms.value = target === 'terms'
     showPrivacy.value = target === 'privacy'
+    showAccessibility.value = target === 'accessibility'
     showHelp.value = target === 'help'
     showComingSoon.value = target === 'coming-soon'
     showReleases.value = target === 'releases'
@@ -60,6 +71,7 @@
       showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
+      showAccessibility.value ||
       showHelp.value ||
       showComingSoon.value ||
       showReleases.value
@@ -74,6 +86,7 @@
     showInvestors.value = hash === 'investors'
     showTerms.value = hash === 'terms'
     showPrivacy.value = hash === 'privacy'
+    showAccessibility.value = hash === 'accessibility'
     showHelp.value = hash === 'help'
     showComingSoon.value = hash === 'coming-soon'
     showReleases.value = hash === 'releases'
@@ -81,6 +94,7 @@
       showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
+      showAccessibility.value ||
       showHelp.value ||
       showComingSoon.value ||
       showReleases.value
@@ -99,7 +113,13 @@
   <Navbar @navigate="navigate" />
   <div
     v-if="
-      !showInvestors && !showTerms && !showPrivacy && !showHelp && !showComingSoon && !showReleases
+      !showInvestors &&
+      !showTerms &&
+      !showPrivacy &&
+      !showAccessibility &&
+      !showHelp &&
+      !showComingSoon &&
+      !showReleases
     "
   >
     <Hero />
@@ -119,6 +139,7 @@
   <Investors v-if="showInvestors" />
   <TermsOfUse v-else-if="showTerms" />
   <PrivacyPolicy v-else-if="showPrivacy" />
+  <Accessibility v-else-if="showAccessibility" @navigate="navigate" />
   <Help v-else-if="showHelp" />
   <ComingSoon v-else-if="showComingSoon" />
   <Releases v-else-if="showReleases" @navigate="navigate" />
