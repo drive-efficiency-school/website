@@ -562,7 +562,10 @@
             <strong>Email:</strong>
             <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>
           </li>
-          <li><strong>Website:</strong> www.efficiver.com</li>
+          <li>
+            <strong>Website:</strong>
+            <a :href="config.contact.website" class="underline">{{ config.contact.website }}</a>
+          </li>
           <li><strong>Response Time:</strong> We aim to respond within a few business days</li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Before Contacting Support</h3>

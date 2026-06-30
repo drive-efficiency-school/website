@@ -56,8 +56,8 @@
         phone: contactForm.phone.trim() || undefined,
         company: contactForm.company.trim() || undefined,
         subject: contactForm.subject,
-        message: contactForm.message,
-        source: 'www.efficiver.com'
+        message: contactForm.message
+        // source intentionally omitted — api.ts defaults it to config.contact.website (.env-driven)
       }
 
       await apiService.submitContactForm(formData)
