@@ -100,9 +100,12 @@ test.describe('WhatsNew section (H1, H2)', () => {
     expect(txt).toMatch(/CarPlay/i)
   })
 
-  test('lists v1.3 annual savings projection', async ({ page }) => {
+  test('lists v1.3 observed-savings messaging (savings so far this year)', async ({ page }) => {
+    // The shipped WhatsNew copy advertises real observed savings ("your real
+    // savings so far this year"), not a forward "savings projection" — that
+    // forecast lives under Efficiver Pro. Assert the actual shipped wording.
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/annual savings projection|savings projection/i)
+    expect(txt).toMatch(/real savings so far this year/i)
   })
 
   test('lists v1.3 Year Recap', async ({ page }) => {
@@ -115,9 +118,12 @@ test.describe('WhatsNew section (H1, H2)', () => {
     expect(txt).toMatch(/Smart Forecast|cut idle by/i)
   })
 
-  test('lists v1.3 Pattern Insights in the polish list', async ({ page }) => {
+  test('lists v1.3 redesigned Insights tab', async ({ page }) => {
+    // The shipped copy surfaces the Insights-tab redesign rather than a
+    // standalone "Pattern Insights" feature; Anomaly Detection (the pattern
+    // signal) is asserted separately below.
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Pattern Insights/i)
+    expect(txt).toMatch(/redesigned Insights tab/i)
   })
 
   test('lists v1.3 Anomaly Detection in the polish list', async ({ page }) => {
