@@ -62,7 +62,11 @@ class ApiService {
         throw new Error(errorData.reason || `HTTP ${response.status}: ${response.statusText}`)
       }
 
-      return await response.json()
+      // Some endpoints (e.g. POST /contact) return 201 with an empty body.
+      // Parsing "" as JSON throws ("Unexpected end of JSON input"), which
+      // would surface a false error even though the request succeeded.
+      const text = await response.text()
+      return (text ? JSON.parse(text) : {}) as T
     } catch (error) {
       console.error('API request failed:', error)
       throw error
