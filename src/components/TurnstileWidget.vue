@@ -9,7 +9,7 @@
   const container = ref<HTMLElement | null>(null)
   let widgetId: string | undefined
 
-  const SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/api.js?render=explicit'
+  const SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
 
   function loadScript(): Promise<void> {
     return new Promise((resolve, reject) => {
