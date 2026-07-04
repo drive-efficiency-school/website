@@ -224,7 +224,10 @@
               />
             </div>
 
-            <TurnstileWidget ref="turnstileRef" v-model="turnstileToken" />
+            <!-- Turnstile widget temporarily removed: the ~1KB token bloats the
+                 request body, which 504s on the app10↔Cloudflare path (AWS issue,
+                 not MTU — under investigation). Honeypot above stays active.
+                 Re-add this line + set TURNSTILE_ENFORCED=true once AWS is fixed. -->
 
             <Alert v-if="submitStatus === 'error'" variant="destructive">
               <AlertCircle class="w-4 h-4" />
