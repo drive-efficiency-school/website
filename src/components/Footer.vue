@@ -6,7 +6,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.9 (26063006)'
+  const version = 'v1.3.10 (26070401)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
