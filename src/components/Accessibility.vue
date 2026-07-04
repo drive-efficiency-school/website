@@ -79,15 +79,20 @@
       <h2 class="text-2xl font-semibold mb-4">Report an accessibility barrier</h2>
       <div class="opacity-80">
         <p>
-          If something doesn't work with your assistive technology, we want to fix it. Use the
-          <strong>Accessibility Feedback</strong> option on our
-          <a href="#contact" class="text-primary hover:underline" @click="emit('navigate', 'main')"
-            >Contact</a
-          >
-          form, or email us at
+          If something doesn't work with your assistive technology, we want to fix it. Email us at
           <a :href="'mailto:' + config.contact.email" class="text-primary hover:underline">{{
             config.contact.email
-          }}</a>
+          }}</a
+          ><template v-if="config.features.contact">
+            or use the <strong>Accessibility Feedback</strong> option on our
+            <a
+              href="#contact"
+              class="text-primary hover:underline"
+              @click="emit('navigate', 'main')"
+              >Contact</a
+            >
+            form</template
+          >
           — we read every report.
         </p>
       </div>
