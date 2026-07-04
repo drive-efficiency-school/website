@@ -10,6 +10,9 @@ export interface ContactFormData {
   subject: string
   message: string
   source?: string
+  // Anti-spam: honeypot decoy + Cloudflare Turnstile token.
+  honeypot?: string
+  turnstileToken?: string
 }
 
 export interface NewsletterSubscriptionData {
@@ -17,6 +20,9 @@ export interface NewsletterSubscriptionData {
   name?: string
   preferences?: string[]
   source?: string
+  // Anti-spam: honeypot decoy + Cloudflare Turnstile token.
+  honeypot?: string
+  turnstileToken?: string
 }
 
 export interface ApiResponse {
@@ -85,6 +91,9 @@ class ApiService {
     if (data.phone) payload.phone = data.phone
     if (data.company) payload.company = data.company
     payload.source = data.source || config.contact.website || 'www.efficiver.com'
+    // Anti-spam — honeypot only when a bot filled it; token always when present.
+    if (data.honeypot) payload.honeypot = data.honeypot
+    if (data.turnstileToken) payload.turnstileToken = data.turnstileToken
 
     return this.request<ApiResponse>('/contact', {
       method: 'POST',

@@ -34,6 +34,12 @@ export const config = {
   api: {
     baseUrl: import.meta.env.VITE_EMAIL_API_BASE_URL || 'https://email.efficiency.school/api/v1'
   },
+  turnstile: {
+    // Public Cloudflare Turnstile site key — safe to commit (it's embedded in
+    // the page HTML anyway). Local dev can override with the always-pass dummy
+    // key `1x00000000000000000000AA` via VITE_TURNSTILE_SITE_KEY.
+    siteKey: import.meta.env.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAADvTYLRHCZaufXVy'
+  },
   share: {
     x: import.meta.env.VITE_SHARE_ON_X !== 'false',
     linkedin: import.meta.env.VITE_SHARE_ON_LINKEDIN !== 'false',

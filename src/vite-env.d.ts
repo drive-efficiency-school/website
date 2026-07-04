@@ -20,8 +20,30 @@ interface ImportMetaEnv {
   readonly VITE_SHARE_NATIVE: string
   readonly VITE_LAUNCH_OFFER_ECO_MASTER: string
   readonly VITE_EMAIL_API_BASE_URL: string
+  readonly VITE_TURNSTILE_SITE_KEY: string
 }
 
 interface ImportMeta {
   readonly env: ImportMetaEnv
+}
+
+// Cloudflare Turnstile — loaded from challenges.cloudflare.com/turnstile/api.js
+interface TurnstileRenderOptions {
+  sitekey: string
+  callback?: (token: string) => void
+  'error-callback'?: () => void
+  'expired-callback'?: () => void
+  theme?: 'auto' | 'light' | 'dark'
+  size?: 'normal' | 'flexible' | 'compact'
+}
+
+interface Turnstile {
+  render: (el: HTMLElement | string, options: TurnstileRenderOptions) => string
+  reset: (widgetId?: string) => void
+  remove: (widgetId?: string) => void
+  getResponse: (widgetId?: string) => string | undefined
+}
+
+interface Window {
+  turnstile?: Turnstile
 }
