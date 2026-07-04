@@ -136,8 +136,12 @@ test.describe('Removed components (I8, I9, I10)', () => {
   })
 
   test('Team section is NOT rendered (I10 — pending handle migration)', async ({ page }) => {
+    // Assert the Team component itself is absent via its section id + real
+    // heading — NOT a loose "Our Team" substring, which collided with the
+    // Contact form's legitimate "reach out to our team" copy once the form
+    // was enabled (Team.vue's actual heading is "Meet the Team Behind Efficiver").
+    await expect(page.locator('section#team')).toHaveCount(0)
     const body = (await page.locator('body').textContent()) ?? ''
-    expect(body).not.toMatch(/Meet our Team/i)
-    expect(body).not.toMatch(/Our Team/i)
+    expect(body).not.toMatch(/Meet the Team Behind Efficiver/i)
   })
 })
