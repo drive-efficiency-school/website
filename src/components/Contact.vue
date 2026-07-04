@@ -114,6 +114,7 @@
                   name="first-name"
                   autocomplete="given-name"
                   type="text"
+                  required
                   placeholder="Alex"
                 />
               </div>
@@ -129,6 +130,19 @@
                   placeholder="Smith"
                 />
               </div>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <Label for="email">Email</Label>
+              <Input
+                id="email"
+                v-model="contactForm.email"
+                name="email"
+                autocomplete="email"
+                type="email"
+                required
+                placeholder="alex@example.com"
+              />
             </div>
 
             <div class="flex flex-col gap-1.5">
@@ -179,6 +193,7 @@
                 id="message"
                 v-model="contactForm.message"
                 name="message"
+                required
                 placeholder="Your message about Efficiver..."
                 rows="5"
               />
