@@ -53,7 +53,7 @@ test.describe('Navbar (H9, H10)', () => {
     })
     await page.reload()
     // Wait for Vue to mount + Navbar onMounted to run.
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load') // NOT networkidle: the Turnstile widget keeps the network busy indefinitely
     const hasDarkClass = await page.evaluate(() =>
       document.documentElement.classList.contains('dark')
     )
@@ -96,7 +96,7 @@ test.describe('Footer (H7, M5, M12)', () => {
 test.describe('ExitIntent popup (M11)', () => {
   test('triggered popup uses Subline brand line, not $300,000 claim', async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load') // NOT networkidle: the Turnstile widget keeps the network busy indefinitely
     // Mouseleave on `document` is what ExitIntentPopup listens for.
     await page.evaluate(() => {
       const event = new MouseEvent('mouseleave', { bubbles: true })
@@ -114,7 +114,7 @@ test.describe('ExitIntent popup (M11)', () => {
 test.describe('Removed components (I8, I9, I10)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load') // NOT networkidle: the Turnstile widget keeps the network busy indefinitely
   })
 
   test('Testimonials section is NOT rendered (I8)', async ({ page }) => {

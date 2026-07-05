@@ -32,7 +32,7 @@ test.describe('SPA hash routes', () => {
 test.describe('HTML semantic correctness', () => {
   test('no duplicate element IDs on the home page', async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load') // NOT networkidle: the Turnstile widget keeps the network busy indefinitely
     const duplicates = await page.evaluate(() => {
       const seen = new Map<string, number>()
       document.querySelectorAll('[id]').forEach((el) => {
