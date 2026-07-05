@@ -63,5 +63,8 @@
 </script>
 
 <template>
-  <div ref="container" />
+  <!-- text-left: the injected Turnstile iframe is inline, so an inherited
+       text-center (e.g. the newsletter section wrapper) would center it;
+       forms keep the widget left-aligned with the field stack. -->
+  <div ref="container" class="text-left" />
 </template>
