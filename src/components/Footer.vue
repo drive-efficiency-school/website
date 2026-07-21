@@ -2,11 +2,10 @@
   import { ref } from 'vue'
   import Separator from './ui/separator/Separator.vue'
   import { config } from '@/lib/config'
-  import { Badge } from '@/components/ui/badge'
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.19 (26070502)'
+  const version = 'v1.3.22 (26072103)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -64,6 +63,11 @@
             </a>
           </div>
           <div>
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
+              Apple Watch
+            </a>
+          </div>
+          <div>
             <a
               v-if="config.app.android"
               :href="config.app.android"
@@ -72,29 +76,34 @@
             >
               Android
             </a>
-            <span
-              v-else
-              class="text-muted-foreground flex items-center cursor-not-allowed opacity-60"
-            >
-              Android
-              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">In development</Badge>
+            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
+              Android <span class="text-[10px]">(soon)</span>
             </span>
           </div>
           <div>
             <a
-              v-if="config.app.watch.apple"
-              :href="config.app.watch.apple"
+              v-if="config.app.androidAuto"
+              :href="config.app.androidAuto"
               target="_blank"
               class="opacity-60 hover:opacity-100"
             >
-              Apple Watch
+              Android Auto
             </a>
-            <span
-              v-else
-              class="text-muted-foreground flex items-center cursor-not-allowed opacity-60"
+            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
+              Android Auto <span class="text-[10px]">(soon)</span>
+            </span>
+          </div>
+          <div>
+            <a
+              v-if="config.app.watch.android"
+              :href="config.app.watch.android"
+              target="_blank"
+              class="opacity-60 hover:opacity-100"
             >
-              Apple Watch
-              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">Future</Badge>
+              Wear OS
+            </a>
+            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
+              Wear OS <span class="text-[10px]">(soon)</span>
             </span>
           </div>
         </div>

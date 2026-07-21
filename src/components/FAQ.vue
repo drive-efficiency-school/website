@@ -59,7 +59,7 @@
     {
       question: 'Which devices are compatible with Efficiver?',
       answer:
-        "Efficiver runs on iPhones with iOS 26 or later, and on iPad, with CarPlay support in v1.3. The AI-powered coaching insights use Apple Intelligence where it's available; every other feature works without it. An Apple Watch companion is on the roadmap for a future release. An Android port is in active development — we don't have a public release date yet, and we'll announce beta sign-up here when one is open.",
+        "Efficiver runs on iPhones with iOS 26 or later, and on iPad, with CarPlay support (v1.3) and an Apple Watch companion (v1.4). The AI-powered coaching insights use Apple Intelligence where it's available; every other feature works without it. An Android port is in active development — we don't have a public release date yet, and we'll announce beta sign-up here when one is open.",
       value: 'item-7'
     },
     {

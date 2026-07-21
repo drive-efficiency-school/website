@@ -25,6 +25,7 @@ export const config = {
   app: {
     ios: import.meta.env.VITE_APP_STORE_LINK || 'https://apps.apple.com/app/efficiver/id6754255974',
     android: import.meta.env.VITE_PLAY_STORE_LINK || '',
+    androidAuto: import.meta.env.VITE_ANDROID_AUTO_LINK || '',
     watch: {
       apple: import.meta.env.VITE_APPLE_WATCH_LINK || '',
       android: import.meta.env.VITE_ANDROID_WATCH_LINK || ''

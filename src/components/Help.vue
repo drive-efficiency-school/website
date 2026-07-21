@@ -91,6 +91,15 @@
             Efficiver Pro (coming soon).
           </li>
           <li>
+            <strong>Apple Watch companion (v1.4):</strong> Live score, mistakes, and elapsed time on
+            your wrist. Start or stop with a tap or Siri, feel a haptic buzz on every harsh accel or
+            brake, and see your last drive's score and savings on your watch face.
+          </li>
+          <li>
+            <strong>More accurate savings (v1.4):</strong> Fuel and CO₂ savings are now calculated
+            from your actual speed, acceleration, and road grade, not just your Efficiency Score.
+          </li>
+          <li>
             <strong>Live drive map (v1.2):</strong> Full-screen Apple Maps view that follows you as
             you drive. Pinch to zoom, two-finger drag to rotate. Acceleration and braking events
             render as colored markers (green / orange / red) along your route.
@@ -621,6 +630,11 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
           <li>
+            <strong>v1.4 (July 2026):</strong> Apple Watch companion (live glance, Start/Stop +
+            Siri, haptics, watch-face complication), more accurate fuel &amp; CO₂ savings from your
+            actual driving physics, live drive card on CarPlay and Watch Smart Stack
+          </li>
+          <li>
             <strong>v1.3 (June 2026):</strong> CarPlay support, redesigned Insights tab (Analytics +
             searchable Sessions), minimize the drive, Anomaly Detection, AI-powered Pattern Insights
             and recap narrative (Apple Intelligence), smarter auto-stop, more reliable Live Activity
@@ -642,13 +656,12 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">On the Roadmap</h3>
         <ul class="list-disc pl-6">
           <li>Android port — in active development</li>
-          <li>Apple Watch companion app — a future release</li>
           <li>Efficiver Pro — the full Year Recap, Smart Forecast, and idle lever (coming soon)</li>
         </ul>
         <p class="mt-4 text-sm">
-          Efficiver ships today on iOS (iPhone, iPad, CarPlay). An Android port is in active
-          development — we don't have a public release date yet, and we'll announce beta sign-up
-          when one is open.
+          Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch). An Android port is in
+          active development — we don't have a public release date yet, and we'll announce beta
+          sign-up when one is open.
         </p>
       </div>
     </section>

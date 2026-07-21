@@ -2,13 +2,13 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, Car, BarChart3, Minimize2 } from 'lucide-vue-next'
+  import { ArrowRight, Watch, Banknote, Layers } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
 
   interface Flagship {
-    icon: typeof Car
+    icon: typeof Watch
     color: string
     title: string
     body: string
@@ -16,22 +16,22 @@
 
   const flagships: Flagship[] = [
     {
-      icon: Car,
+      icon: Watch,
       color: 'text-blue-600 dark:text-blue-400',
-      title: 'CarPlay support',
-      body: 'Drive with your phone in your pocket. Efficiver appears as a Driving Task on your car’s CarPlay screen — tap Drive to start tracking, see your live score, distance, and time on the head unit, tap Stop to save. Voice prompts route through your car’s audio. Works wired or wireless.'
+      title: 'Apple Watch companion',
+      body: 'Your drive, on your wrist. Live score, mistakes, and elapsed time at a glance — start or stop with a tap or Siri, with a haptic buzz on every harsh accel or brake. Weather and your drive advisory show before you start; your last drive’s score and savings stay on your watch face.'
     },
     {
-      icon: BarChart3,
+      icon: Banknote,
       color: 'text-orange-600 dark:text-orange-400',
-      title: 'A redesigned Insights tab',
-      body: 'Your savings and efficiency, front and centre. The new Insights tab opens on an Analytics view — your real savings so far this year and CO₂ impact, plus your average efficiency score, all free. Flip to a searchable list of every drive whenever you want.'
+      title: 'More accurate savings',
+      body: 'Fuel and CO₂ savings are now calculated from your actual speed, acceleration, and road grade — not just your Efficiency Score. Same private math, entirely on your device.'
     },
     {
-      icon: Minimize2,
+      icon: Layers,
       color: 'text-green-600 dark:text-green-400',
-      title: 'Minimize the drive',
-      body: 'Keep driving while you do other things. Swipe the drive screen down and it shrinks to a live mini-bar — your score and distance stay one tap away while you change a setting or open another screen. Tap to jump back in, or end the drive right from the bar.'
+      title: 'Your drive card, everywhere',
+      body: 'The same live drive card now appears on your car’s CarPlay screen and your Apple Watch’s Smart Stack, not just the Lock Screen. Stop the drive from wherever you glance.'
     }
   ]
 </script>
@@ -39,19 +39,19 @@
 <template>
   <section id="whats-new" class="container py-24 sm:py-32">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.3</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.4</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.3</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.4</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        CarPlay support, a redesigned Insights tab, and a minimizable drive screen — now on the App
-        Store.
+        An Apple Watch companion, more accurate savings, and your drive card everywhere — now on the
+        App Store.
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
         <Button as-child class="w-5/6 md:w-auto font-bold group/arrow">
           <a :href="config.app.ios" target="_blank" rel="noopener">
-            Download v1.3 on the App Store
+            Download v1.4 on the App Store
             <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
           </a>
         </Button>
@@ -87,29 +87,21 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in v1.3</span>
+        <span>More improvements in v1.4</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
-        <li>Search your past drives by name or date from the Sessions list.</li>
-        <li>Anomaly Detection flags drives that fall outside your usual pattern.</li>
         <li>
-          Smarter auto-stop — Efficiver senses when your engine is actually off and ends parked
-          drives sooner, while protecting long waits at traffic lights.
+          Gear Shift Speed rows in Settings now show the true range for each gear — no more
+          overlapping numbers.
         </li>
         <li>
-          The full Year Recap, the Smart Forecast on Trends, and the "cut idle by X%" lever are part
-          of Efficiver Pro — coming soon.
+          Auto-Track Drive starts more reliably, with clearer handling of the Always-location
+          permission it needs.
         </li>
         <li>
-          Live Activity Stop button is now reliable even after the app has been closed — uses
-          Apple's documented orphan-activity recovery pattern.
+          Sharper, higher-contrast live drive card on CarPlay and your Apple Watch's Smart Stack.
         </li>
-        <li>
-          CarPlay voice prompts come through at normal volume regardless of whether the head unit is
-          on FM or playing music.
-        </li>
-        <li>Welcome onboarding text scales cleanly at the largest Dynamic Type sizes.</li>
       </ul>
     </details>
   </section>
