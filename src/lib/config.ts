@@ -3,7 +3,7 @@ export const config = {
   // truth — bump the relevant entry when that page's CONTENT changes
   // (these are content-change dates, not build/deploy dates).
   lastUpdated: {
-    help: 'June 23, 2026',
+    help: 'July 27, 2026',
     privacy: 'June 26, 2026',
     terms: 'May 27, 2026',
     accessibility: 'June 30, 2026'
@@ -25,6 +25,10 @@ export const config = {
   app: {
     ios: import.meta.env.VITE_APP_STORE_LINK || 'https://apps.apple.com/app/efficiver/id6754255974',
     android: import.meta.env.VITE_PLAY_STORE_LINK || '',
+    // Retained (unused) 2026-07-27: the Android app no longer ships an Android
+    // Auto surface — Google Play ruled a phone-sensor driving dashboard outside
+    // the Car App Library's permitted categories, so the footer entry was
+    // removed. Kept here so the key is ready if a future category ever fits.
     androidAuto: import.meta.env.VITE_ANDROID_AUTO_LINK || '',
     watch: {
       apple: import.meta.env.VITE_APPLE_WATCH_LINK || '',

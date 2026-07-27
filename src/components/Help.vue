@@ -100,6 +100,17 @@
             from your actual speed, acceleration, and road grade, not just your Efficiency Score.
           </li>
           <li>
+            <strong>Converged Trends (v1.5):</strong> Your recorded daily scores and your forecast
+            share one interactive chart, split by a "Today" divider. Drag across it to scrub any day
+            — the headline shows that day's score, labelled Observed or Predicted.
+          </li>
+          <li>
+            <strong>AidOps Edge (v1.5):</strong> The on-device intelligence behind your Year Recap
+            and Your Patterns now shows an honest status wherever it appears, with a new
+            <strong>Settings → Assistance</strong> page telling you whether Apple Intelligence is
+            active. Insights are generated on your phone; nothing leaves your device.
+          </li>
+          <li>
             <strong>Live drive map (v1.2):</strong> Full-screen Apple Maps view that follows you as
             you drive. Pinch to zoom, two-finger drag to rotate. Acceleration and braking events
             render as colored markers (green / orange / red) along your route.
@@ -629,6 +640,11 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
+          <li>
+            <strong>v1.5 (July 2026):</strong> converged Trends chart (recorded history and forecast
+            in one scrubbable chart), AidOps Edge on-device insights with an honest status and a new
+            Assistance page in Settings, Insights cards that name their destination
+          </li>
           <li>
             <strong>v1.4 (July 2026):</strong> Apple Watch companion (live glance, Start/Stop +
             Siri, haptics, watch-face complication), more accurate fuel &amp; CO₂ savings from your

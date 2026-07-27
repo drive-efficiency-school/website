@@ -64,9 +64,13 @@ test.describe('FAQ (C3, M3, M4, I11)', () => {
     const answer = page.getByText(/An Android port is in active development/i)
     await expect(answer).toBeVisible()
 
+    // The FAQ (above) carries the prose commitment. The footer's Platforms
+    // column — introduced in v1.4 — is a compact list, so it marks Android
+    // with a "(soon)" chip rather than a sentence; asserting development
+    // PROSE there stopped matching the shipped design. What must stay true is
+    // that Android is listed but NOT presented as already available.
     const footerTxt = (await page.locator('footer').textContent()) ?? ''
-    expect(footerTxt).toMatch(/Android/i)
-    expect(footerTxt).toMatch(/development|underway|in progress|being built/i)
+    expect(footerTxt).toMatch(/Android\s*\(soon\)/i)
   })
 
   test('FAQ does NOT promise unshipped Enterprise plan (I11)', async ({ page }) => {
@@ -95,40 +99,35 @@ test.describe('WhatsNew section (H1, H2)', () => {
       .catch(() => undefined)
   })
 
-  test('lists v1.3 CarPlay support', async ({ page }) => {
+  // WhatsNew always advertises the CURRENT release. These assertions moved
+  // from v1.3 → v1.5 (2026-07-27); they had already gone stale through v1.4,
+  // so the block now pins the badge/heading version alongside the features to
+  // make the next drift fail loudly instead of silently.
+  test('badge and heading announce v1.5', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/CarPlay/i)
+    expect(txt).toMatch(/NEW\s*—\s*v1\.5/i)
+    expect(txt).toMatch(/What's New in Efficiver 1\.5/i)
+    // Never advertise a version that isn't the current one.
+    expect(txt).not.toMatch(/v1\.[0-4]\b/)
   })
 
-  test('lists v1.3 observed-savings messaging (savings so far this year)', async ({ page }) => {
-    // The shipped WhatsNew copy advertises real observed savings ("your real
-    // savings so far this year"), not a forward "savings projection" — that
-    // forecast lives under Efficiver Pro. Assert the actual shipped wording.
+  test('lists the v1.5 converged Trends chart', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/real savings so far this year/i)
+    expect(txt).toMatch(/one chart/i)
+    expect(txt).toMatch(/forecast/i)
   })
 
-  test('lists v1.3 Year Recap', async ({ page }) => {
+  test('lists v1.5 AidOps Edge on-device insights', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
+    expect(txt).toMatch(/AidOps Edge/i)
     expect(txt).toMatch(/Year Recap/i)
+    // The privacy promise must ride along with any AI claim (M-series intent).
+    expect(txt).toMatch(/nothing leaves your device/i)
   })
 
-  test('lists v1.3 Smart Forecast / Idle Lever in the polish list', async ({ page }) => {
+  test('lists v1.5 Insights destination labels', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Smart Forecast|cut idle by/i)
-  })
-
-  test('lists v1.3 redesigned Insights tab', async ({ page }) => {
-    // The shipped copy surfaces the Insights-tab redesign rather than a
-    // standalone "Pattern Insights" feature; Anomaly Detection (the pattern
-    // signal) is asserted separately below.
-    const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/redesigned Insights tab/i)
-  })
-
-  test('lists v1.3 Anomaly Detection in the polish list', async ({ page }) => {
-    const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Anomaly Detection/i)
+    expect(txt).toMatch(/Savings and Efficiency cards/i)
   })
 
   test('WhatsNew has no stale "Eco Route" copy (H2 closure)', async ({ page }) => {

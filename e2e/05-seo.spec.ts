@@ -11,11 +11,17 @@ test.describe('index.html meta + structured data', () => {
     await page.goto('/')
   })
 
-  test('og:title references v1.3 (not earlier versions)', async ({ page }) => {
+  // Titles are deliberately VERSION-FREE from v1.5 (owner call 2026-07-27).
+  // A version baked into the share title goes stale the moment the next
+  // release ships and is cached by every social scraper — version news
+  // belongs in the description and on the Releases page. This test replaces
+  // the old "og:title references v1.3" pin, which had already gone stale
+  // through v1.4 and would go stale again every release.
+  test('og:title carries NO version number', async ({ page }) => {
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content')
     expect(ogTitle).toBeTruthy()
-    expect(ogTitle).toMatch(/v1\.3/)
-    expect(ogTitle).not.toMatch(/v1\.[12]\b/)
+    expect(ogTitle).not.toMatch(/v?\d+\.\d+/)
+    expect(ogTitle).toMatch(/Efficiver/i)
   })
 
   test('og:title does NOT reference "Eco Route" (H2)', async ({ page }) => {
@@ -23,18 +29,20 @@ test.describe('index.html meta + structured data', () => {
     expect(ogTitle).not.toMatch(/Eco Route/i)
   })
 
-  test('og:description mentions v1.3 flagship features', async ({ page }) => {
+  test('og:description carries the evergreen product pitch', async ({ page }) => {
     const ogDesc = await page.locator('meta[property="og:description"]').getAttribute('content')
     expect(ogDesc).toBeTruthy()
     expect(ogDesc).toMatch(/CarPlay/i)
-    expect(ogDesc).toMatch(/savings projection|Year Recap/i)
+    expect(ogDesc).toMatch(/Year Recap|patterns/i)
+    // The privacy promise is the load-bearing claim — never drop it.
+    expect(ogDesc).toMatch(/nothing leaves your device/i)
   })
 
-  test('twitter:title references v1.3', async ({ page }) => {
+  test('twitter:title carries NO version number', async ({ page }) => {
     const twTitle = await page.locator('meta[name="twitter:title"]').getAttribute('content')
     expect(twTitle).toBeTruthy()
-    expect(twTitle).toMatch(/v1\.3/)
-    expect(twTitle).not.toMatch(/v1\.[12]\b/)
+    expect(twTitle).not.toMatch(/v?\d+\.\d+/)
+    expect(twTitle).toMatch(/Efficiver/i)
   })
 
   test('canonical URL points to https://www.efficiver.com', async ({ page }) => {
@@ -47,12 +55,12 @@ test.describe('index.html meta + structured data', () => {
     expect(robots).toBe('index, follow')
   })
 
-  test('JSON-LD softwareVersion is "1.3"', async ({ page }) => {
+  test('JSON-LD softwareVersion is "1.5"', async ({ page }) => {
     const jsonLd = await page.locator('script[type="application/ld+json"]').first().textContent()
     expect(jsonLd).toBeTruthy()
     const parsed = JSON.parse(jsonLd!)
     expect(parsed['@type']).toBe('MobileApplication')
-    expect(parsed.softwareVersion).toBe('1.3')
+    expect(parsed.softwareVersion).toBe('1.5')
   })
 
   test('JSON-LD does NOT contain aggregateRating block (M7)', async ({ page }) => {

@@ -5,7 +5,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.22 (26072103)'
+  const version = 'v1.3.22 (26072703)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -80,19 +80,10 @@
               Android <span class="text-[10px]">(soon)</span>
             </span>
           </div>
-          <div>
-            <a
-              v-if="config.app.androidAuto"
-              :href="config.app.androidAuto"
-              target="_blank"
-              class="opacity-60 hover:opacity-100"
-            >
-              Android Auto
-            </a>
-            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
-              Android Auto <span class="text-[10px]">(soon)</span>
-            </span>
-          </div>
+          <!-- Android Auto entry removed 2026-07-27: the Android app no longer ships an
+               Android Auto surface (Google Play ruled a phone-sensor driving dashboard
+               outside the Car App Library's permitted categories), so advertising it as
+               "(soon)" would be untrue. CarPlay above is unaffected and stays. -->
           <div>
             <a
               v-if="config.app.watch.android"

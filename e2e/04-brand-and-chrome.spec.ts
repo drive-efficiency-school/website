@@ -88,8 +88,15 @@ test.describe('Footer (H7, M5, M12)', () => {
   })
 
   test('does NOT label Apple Watch as "Soon" (M5)', async ({ page }) => {
-    const footer = (await page.locator('footer').textContent()) ?? ''
-    expect(footer).not.toMatch(/Apple Watch[^.]{0,40}Soon/i)
+    // Scoped to the Apple Watch entry itself. The old loose window regex
+    // (/Apple Watch[^.]{0,40}Soon/) false-positived once v1.4 introduced the
+    // compact Platforms column, where the very next entry is legitimately
+    // "Android (soon)" — it was flagging Android's marker as Apple Watch's.
+    const appleWatch = page
+      .locator('footer')
+      .getByRole('link', { name: 'Apple Watch', exact: true })
+    await expect(appleWatch).toBeVisible()
+    expect((await appleWatch.textContent()) ?? '').not.toMatch(/soon/i)
   })
 })
 
