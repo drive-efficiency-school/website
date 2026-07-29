@@ -12,15 +12,18 @@
   const Features = defineAsyncComponent(() => import('./components/Features.vue'))
   const HowItWorks = defineAsyncComponent(() => import('./components/HowItWorks.vue'))
   const Comparison = defineAsyncComponent(() => import('./components/Comparison.vue'))
-  // Testimonials.vue removed from render per WEBSITE_AUDIT_V12 I8 — the
-  // template-default placeholder reviews and shadcn-stock avatars are an
-  // FTC compliance risk. Re-introduce when real App Store review excerpts
-  // are available.
+  // Testimonials.vue DELETED 2026-07-29 (was unrendered since
+  // WEBSITE_AUDIT_V12 I8). The template-default placeholder reviews and
+  // shadcn-stock avatars were an FTC compliance risk, and one fabricated
+  // "Fleet Manager" review claiming a 10% emissions cut sat next to a real
+  // fleet product. If real App Store / Play review excerpts are ever
+  // shown, build it fresh from attributed quotes.
   //
   // Team.vue also removed from render per user 2026-05-25 — social
   // handles haven't been migrated to the `efficiver-*` namespace yet
   // (see WEBSITE_AUDIT_V12 I10). Re-introduce once handles are live.
   const Pricing = defineAsyncComponent(() => import('./components/Pricing.vue'))
+  const FleetCallout = defineAsyncComponent(() => import('./components/FleetCallout.vue'))
   // Community.vue removed from render 2026-06-23 — its only CTA was a disabled
   // "Follow Us on Social Media" button under a Discord icon, but no social /
   // community presence is configured (config.socials are empty). Re-introduce
@@ -128,6 +131,7 @@
     <Comparison />
     <HowItWorks />
     <Pricing />
+    <FleetCallout />
     <section v-if="config.features.newsletter" id="newsletter" class="container py-24 sm:py-32">
       <div class="mx-auto max-w-2xl text-center">
         <NewsletterSignup />

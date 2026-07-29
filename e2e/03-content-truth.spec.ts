@@ -246,3 +246,38 @@ test.describe('HowItWorks (H6)', () => {
     expect(body).not.toMatch(/select your engine type \(Petrol, Diesel and EV\)/i)
   })
 })
+
+test.describe('Fleet callout (v1.5)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+  })
+
+  test('tells drivers fleet joining is invite-only', async ({ page }) => {
+    const section = page.locator('#fleet')
+    await section.scrollIntoViewIfNeeded()
+    const text = (await section.textContent()) ?? ''
+    expect(text).toMatch(/invite/i)
+    expect(text).toMatch(/Join a fleet/i)
+    // The honest driver action is "ask your employer" — we must not imply
+    // a driver can obtain access from us.
+    expect(text).toMatch(/ask your employer/i)
+  })
+
+  test('operator card is marked Coming soon and offers no purchase path', async ({ page }) => {
+    const section = page.locator('#fleet')
+    await section.scrollIntoViewIfNeeded()
+    await expect(section.getByTestId('fleet-coming-soon')).toBeVisible()
+    const text = (await section.textContent()) ?? ''
+    // Production still runs TEST-mode payment keys: no pricing or checkout
+    // may be advertised here until the live-key cutover.
+    expect(text).not.toMatch(/buy now|subscribe now|start free trial|per month|\$\d|₹\d/i)
+  })
+
+  test('states the on-duty boundary, matching the privacy policy', async ({ page }) => {
+    const section = page.locator('#fleet')
+    await section.scrollIntoViewIfNeeded()
+    const text = (await section.textContent()) ?? ''
+    expect(text).toMatch(/on duty/i)
+    expect(text).toMatch(/off-duty drives stay on your phone/i)
+  })
+})

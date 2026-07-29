@@ -18,7 +18,15 @@
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>
             Your driving data stays on your device (iPhone or Android phone). We don't see it and we
-            don't store it on our servers.
+            don't store it on our servers — <strong>unless you join a fleet</strong> (see the next
+            point), which almost nobody does.
+          </li>
+          <li>
+            <strong>Fleet mode is the one exception, and it is opt-in.</strong> If your employer
+            runs Efficiver Fleet and gives you an invite code, the drives you record
+            <em>while you are on duty</em> are uploaded and shared with that employer. You are shown
+            what will be shared and must agree before joining, you control the on-duty switch, and
+            you can leave at any time. Off-duty drives never leave your phone. See section 3.
           </li>
           <li>
             On iPhone, iCloud sync is optional and uses <em>your</em> private iCloud database —
@@ -33,8 +41,11 @@
             The website's newsletter and contact form collect only what you type in, for the purpose
             you submitted them.
           </li>
-          <li>We don't sell, share, rent, or trade your personal information.</li>
-          <li>No advertising identifiers, no third-party analytics, no telemetry.</li>
+          <li>
+            We never sell, rent, or trade your personal information, and we don't share it with
+            anyone except your own fleet if you choose to join one.
+          </li>
+          <li>No advertising identifiers, no third-party analytics, no ad tracking.</li>
         </ul>
       </div>
     </section>
@@ -47,8 +58,9 @@
         <ul class="list-disc pl-6 space-y-2">
           <li>
             <strong>Driving sessions</strong> (speed, acceleration, braking, idle time, gear use,
-            GPS waypoints, route choices) are stored locally using SwiftData. They are never
-            transmitted to Efficiver's servers.
+            GPS waypoints, route choices) are stored locally using SwiftData. They are not
+            transmitted to Efficiver's servers — the only exception is an on-duty drive when you
+            have joined a fleet (section 3).
           </li>
           <li>
             <strong>Smart Detection model</strong> is trained entirely on your iPhone using Apple's
@@ -91,7 +103,7 @@
           <li>No advertising identifiers (IDFA, IDFV)</li>
           <li>No analytics events (no Apple App Analytics, no third-party SDKs)</li>
           <li>No crash reports sent to us</li>
-          <li>No telemetry of any kind</li>
+          <li>No usage analytics or telemetry about how you use the app</li>
           <li>No location history beyond the active drive session</li>
         </ul>
       </div>
@@ -105,8 +117,9 @@
         <ul class="list-disc pl-6 space-y-2">
           <li>
             <strong>Driving sessions</strong> (speed, acceleration, braking, idle time, gear use,
-            GPS waypoints, route choices) are stored locally on your phone. They are never
-            transmitted to Efficiver's servers.
+            GPS waypoints, route choices) are stored locally on your phone. They are not transmitted
+            to Efficiver's servers — the only exception is an on-duty drive when you have joined a
+            fleet (section 3).
           </li>
           <li>
             <strong>Smart Detection model</strong> is trained entirely on your phone. The model
@@ -150,7 +163,8 @@
         <h3 class="text-xl font-semibold mt-6 mb-2">No cloud sync</h3>
         <p>
           The Android app does not sync to any cloud service. All of your data stays on your phone
-          until you delete it in the app or uninstall.
+          until you delete it in the app or uninstall — unless you have joined a fleet, in which
+          case on-duty drives are uploaded to that fleet (section 3).
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">What the Android app does NOT collect</h3>
@@ -158,15 +172,105 @@
           <li>No advertising identifiers</li>
           <li>No analytics events (no third-party analytics SDKs)</li>
           <li>No crash reports sent to us</li>
-          <li>No telemetry of any kind</li>
+          <li>No usage analytics or telemetry about how you use the app</li>
           <li>No location history beyond the active drive session stored on your phone</li>
         </ul>
       </div>
     </section>
 
-    <!-- Section 3: The Efficiver website -->
+    <!-- Section 3: Fleet mode -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">3. The Efficiver website (efficiver.com)</h2>
+      <h2 class="text-2xl font-semibold mb-4">3. Fleet mode (opt-in, both apps)</h2>
+      <div class="opacity-80">
+        <p>
+          Some drivers use Efficiver for work, for an employer that runs
+          <strong>Efficiver Fleet</strong>. This is the only situation in which your driving data
+          leaves your phone and becomes visible to someone else. It is off unless you deliberately
+          turn it on, and it works the same way on iPhone and Android.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">How it is switched on</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>
+            Your employer gives you an <strong>invite code</strong>. Without a valid code from a
+            fleet with an active subscription, you cannot join — there is no open sign-up.
+          </li>
+          <li>
+            Before you join, the app shows you a <strong>consent screen</strong> describing what
+            will be shared. You must accept it to continue.
+          </li>
+          <li>
+            Once joined, you control an <strong>on-duty / off-duty</strong> switch. Nothing is
+            uploaded while you are off duty.
+          </li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">What is shared, and when</h3>
+        <p>
+          When you finish a drive <em>while on duty</em>, that drive is uploaded to your fleet. It
+          contains:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 mt-2">
+          <li>
+            The <strong>route of that drive</strong> — GPS points with timestamps, speed, heading
+            and altitude.
+          </li>
+          <li>
+            <strong>Driving-quality events</strong> from that drive — harsh acceleration and
+            braking, with severity and when they happened.
+          </li>
+          <li>
+            A <strong>summary</strong> — Efficiency Score, distance, idle time, start and end time,
+            and whether the drive started automatically or manually.
+          </li>
+          <li>
+            Identifiers that tie the drive to you as a driver in that fleet, and to the device that
+            recorded it.
+          </li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">What is never shared with your fleet</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Drives recorded while you are off duty</strong>, which stay on your phone.
+          </li>
+          <li>Any drive at all if you have not joined a fleet.</li>
+          <li>
+            Continuous or background location when you are not driving — Efficiver only records
+            during a drive.
+          </li>
+          <li>Your contacts, messages, photos, or anything unrelated to the drive itself.</li>
+          <li>Your Smart Detection model, which never leaves your device.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">Who controls that data</h3>
+        <p>
+          Once an on-duty drive is uploaded,
+          <strong>your employer decides what happens to it</strong>. In data-protection terms they
+          are the controller and Efficiver processes the data on their behalf, under our agreement
+          with them. Your employer also sets <strong>how long</strong>
+          uploaded drives are kept, after which they are permanently purged.
+        </p>
+        <p class="mt-2">
+          This means that to see, correct, or delete drives that have already been uploaded, you
+          should ask your employer or fleet administrator first — they control that data. If you
+          cannot reach them, email
+          <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a> and we
+          will help you get to the right place.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">Leaving a fleet</h3>
+        <p>
+          You can leave a fleet at any time from the same screen you joined on. After you leave,
+          nothing further is uploaded. Drives already uploaded remain with your employer under their
+          retention setting, as described above.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4: The Efficiver website -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">4. The Efficiver website (efficiver.com)</h2>
       <div class="opacity-80">
         <p>The website has two optional forms that send information to us:</p>
 
@@ -192,12 +296,18 @@
       </div>
     </section>
 
-    <!-- Section 4: How we share data -->
+    <!-- Section 5: How we share data -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">4. How we share data</h2>
+      <h2 class="text-2xl font-semibold mb-4">5. How we share data</h2>
       <div class="opacity-80">
-        <p>We don't sell, rent, share, or trade your personal information. The only exceptions:</p>
+        <p>We don't sell, rent, or trade your personal information. The only times it is shared:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>
+            <strong>Your employer, if you join a fleet.</strong> On-duty drives are uploaded and
+            shared with the fleet you joined, which is the whole purpose of that feature. This only
+            happens after you enter their invite code and accept the consent screen. Full detail in
+            section 3.
+          </li>
           <li>
             <strong>Service providers for weather and maps.</strong> To deliver the weather and
             route features, your location (and, for routing, your destination searches) is sent to
@@ -217,9 +327,9 @@
       </div>
     </section>
 
-    <!-- Section 5: Your rights -->
+    <!-- Section 6: Your rights -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">5. Your rights</h2>
+      <h2 class="text-2xl font-semibold mb-4">6. Your rights</h2>
       <div class="opacity-80">
         <p>You can:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
@@ -238,6 +348,11 @@
             sessions remain on whichever device created them until you delete them. (The Android app
             has no cloud sync.)
           </li>
+          <li>
+            <strong>Leave a fleet</strong> at any time from the fleet screen in Settings, which
+            stops any further uploads. For drives already uploaded, ask your employer or fleet
+            administrator — they control that data and set how long it is kept (section 3).
+          </li>
           <li>Unsubscribe from the newsletter via the link in any newsletter email.</li>
           <li>
             Email <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>
@@ -247,9 +362,9 @@
       </div>
     </section>
 
-    <!-- Section 6: Children's privacy -->
+    <!-- Section 7: Children's privacy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">6. Children's privacy</h2>
+      <h2 class="text-2xl font-semibold mb-4">7. Children's privacy</h2>
       <div class="opacity-80">
         <p>
           Efficiver is intended for users aged 17 and over. We do not knowingly collect personal
@@ -259,9 +374,9 @@
       </div>
     </section>
 
-    <!-- Section 7: Changes to this policy -->
+    <!-- Section 8: Changes to this policy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">7. Changes to this policy</h2>
+      <h2 class="text-2xl font-semibold mb-4">8. Changes to this policy</h2>
       <div class="opacity-80">
         <p>
           We may update this Privacy Policy as the app and website evolve. The "Last updated" date
@@ -271,9 +386,9 @@
       </div>
     </section>
 
-    <!-- Section 8: Contact -->
+    <!-- Section 9: Contact -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">8. Contact</h2>
+      <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
       <div class="opacity-80">
         <p>
           For privacy questions, email
