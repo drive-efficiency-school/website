@@ -357,9 +357,11 @@
             <div>
               <h3 class="font-semibold mb-1">Built accessibility-first</h3>
               <p class="text-muted-foreground">
-                Full VoiceOver support, Dynamic Type from default through AX5, Reduce Motion across
-                every animation, Reduce Transparency, Differentiate Without Color, Bold Text, and
-                lifecycle announcements for drive started / stopped / saved. Drive your way.
+                On iPhone: full VoiceOver support, Dynamic Type from default through AX5, Reduce
+                Motion across every animation, Reduce Transparency, Differentiate Without Color,
+                Bold Text, and lifecycle announcements for drive started / stopped / saved. Drive
+                your way. (This release predates the Android app — see the
+                <strong>Accessibility</strong> page for what each platform supports today.)
               </p>
             </div>
           </div>
@@ -529,10 +531,19 @@
       </Card>
     </details>
 
-    <div class="mt-12 text-center">
+    <!-- Both stores since 2026-08-23. "Download the latest version" pointed only at
+         the App Store, which read as iOS-only on a page that lists the shared
+         release history. -->
+    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-3">
       <Button as-child variant="default">
         <a :href="config.app.ios" target="_blank" rel="noopener">
-          Download the latest version
+          Download on the App Store
+          <ExternalLinkIcon class="size-4 ml-2" />
+        </a>
+      </Button>
+      <Button v-if="config.app.android" as-child variant="default">
+        <a :href="config.app.android" target="_blank" rel="noopener">
+          Get it on Google Play
           <ExternalLinkIcon class="size-4 ml-2" />
         </a>
       </Button>

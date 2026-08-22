@@ -15,9 +15,9 @@
       <h2 class="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
       <div class="opacity-80">
         <p>
-          By downloading, installing, or using the Efficiver iPhone app (the "App") or accessing
-          efficiver.com (the "Website"), you agree to these Terms of Use. If you do not agree,
-          please do not use the App or the Website.
+          By downloading, installing, or using the Efficiver mobile app for iPhone or Android (the
+          "App") or accessing efficiver.com (the "Website"), you agree to these Terms of Use. If you
+          do not agree, please do not use the App or the Website.
         </p>
       </div>
     </section>
@@ -28,8 +28,8 @@
       <div class="opacity-80">
         <p>
           Efficiver grants you a limited, non-exclusive, non-transferable, revocable license to
-          download and use the App on your personal iPhone for personal, non-commercial purposes.
-          You may not:
+          download and use the App on your personal iPhone or Android device for personal,
+          non-commercial purposes. You may not:
         </p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>Modify, adapt, translate, decompile, reverse-engineer, or disassemble the App</li>
@@ -64,14 +64,14 @@
             reflect actual conditions on the road.
           </li>
           <li>
-            Efficiver depends on your iPhone's built-in GPS (provided by Apple's Core Location
-            service) for speed, distance, route, and scoring. GPS accuracy may be reduced or
-            unavailable in tunnels, underground parking, urban canyons, or under heavy tree cover,
-            and brief GPS recovery events can produce transient inaccuracies in distance, idle time,
-            or harsh-event detection that self-correct on the next clean fix. Efficiver shows
-            on-screen GPS-quality indicators ("GPS Warming Up" and "Low GPS") but does not control
-            GPS accuracy and is not liable for scoring or route inaccuracies caused by GPS
-            conditions outside of its control.
+            Efficiver depends on your device's built-in GPS (Apple's Core Location service on
+            iPhone, Android's location services on Android) for speed, distance, route, and scoring.
+            GPS accuracy may be reduced or unavailable in tunnels, underground parking, urban
+            canyons, or under heavy tree cover, and brief GPS recovery events can produce transient
+            inaccuracies in distance, idle time, or harsh-event detection that self-correct on the
+            next clean fix. Efficiver shows on-screen GPS-quality indicators ("GPS Warming Up" and
+            "Low GPS") but does not control GPS accuracy and is not liable for scoring or route
+            inaccuracies caused by GPS conditions outside of its control.
           </li>
           <li>
             Always obey traffic laws, signs, signals, and road conditions. Use your own judgment. Do

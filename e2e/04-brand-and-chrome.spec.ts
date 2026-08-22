@@ -34,8 +34,16 @@ test.describe('Hero (M9, M10, I3)', () => {
     expect(body).not.toMatch(/10K\+|10,000\+ (drivers|users)/i)
   })
 
-  test('Hero retains FaceID Secured (M10 — verified accurate)', async ({ page }) => {
-    await expect(page.getByText('FaceID Secured', { exact: false }).first()).toBeVisible()
+  test('Hero biometric claim is platform-neutral (M10 — reframed 2026-08-23)', async ({ page }) => {
+    // M10 originally asserted "FaceID Secured" and was audited as ACCURATE — it
+    // was, while iOS was the only platform. Google Play production access landed
+    // 2026-08-23, and Face ID is an Apple technology: Android uses BiometricPrompt
+    // (fingerprint or face, device-dependent). The claim is therefore now
+    // platform-incomplete rather than wrong, and "Biometric Secured" covers both
+    // without naming a technology half the userbase does not have.
+    await expect(page.getByText('Biometric Secured', { exact: false }).first()).toBeVisible()
+    const body = (await page.locator('body').textContent()) ?? ''
+    expect(body).not.toMatch(/FaceID Secured/i)
   })
 })
 

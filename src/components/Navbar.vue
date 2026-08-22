@@ -74,18 +74,21 @@
     }
   ]
 
+  // Platform-neutral since the Android launch (2026-08-23): this dropdown is the
+  // first feature list a visitor sees, and naming only Apple technologies read as
+  // an iOS-only product. Specifics stay on the Features section.
   const featureList: FeatureProps[] = [
     {
       title: 'Live drive map',
-      description: 'Apple Maps follow + per-waypoint event markers.'
+      description: 'Apple Maps on iPhone, Google Maps on Android + event markers.'
     },
     {
       title: 'Accessibility-first',
-      description: 'VoiceOver, Dynamic Type, Reduce Motion, and more.'
+      description: 'VoiceOver and TalkBack, larger text, reduced motion.'
     },
     {
-      title: 'iCloud sync',
-      description: 'Sessions and Smart Detection model across devices.'
+      title: 'Watch companions',
+      description: 'Apple Watch on iPhone, Wear OS on Android.'
     }
   ]
 

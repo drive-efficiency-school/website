@@ -290,8 +290,10 @@
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
             Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
-            <em>Settings → Driving</em>. Grant Motion &amp; Fitness permission in
-            <em>iOS Settings → Privacy &amp; Security</em>.
+            <em>Settings → Driving</em>. On iPhone, grant Motion &amp; Fitness permission in
+            <em>iOS Settings → Privacy &amp; Security</em>. On Android, grant
+            <em>Physical activity</em> and set Location to <em>Allow all the time</em> in
+            <em>Android Settings → Apps → Efficiver → Permissions</em>.
           </dd>
 
           <dt class="font-semibold">Engine detection not working properly</dt>
@@ -315,11 +317,13 @@
             <em>"Low GPS"</em> label (and the
             <em>"GPS Signal Weak — Scores may be affected"</em> banner on the gauge) means signal
             accuracy has dropped below the ~30 m threshold; scoring continues but accuracy may be
-            reduced. To fix: ensure location permissions are granted and
-            <em>Precise Location</em> is enabled in
-            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>. Drive
-            outdoors with a clear view of the sky. After exiting a tunnel or underground area,
-            expect a one-or-two-second recovery before scoring resumes normally.
+            reduced. To fix: ensure location permissions are granted and precise location is enabled
+            — on iPhone in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>, on
+            Android in <em>Android Settings → Apps → Efficiver → Permissions → Location</em> with
+            <em>Use precise location</em> on. Drive outdoors with a clear view of the sky. After
+            exiting a tunnel or underground area, expect a one-or-two-second recovery before scoring
+            resumes normally.
           </dd>
 
           <dt class="font-semibold">High battery usage during drives</dt>
@@ -462,13 +466,18 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Security</h3>
         <ul class="list-disc pl-6">
-          <li><strong>Biometric Lock:</strong> Face ID / Touch ID protection on app launch</li>
+          <li>
+            <strong>Biometric Lock:</strong> device biometric protection on app launch — Face ID /
+            Touch ID on iPhone, fingerprint or face unlock on Android
+          </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Accessibility (v1.2)</h3>
         <p>
-          Efficiver respects every iOS accessibility setting from
-          <em>iOS Settings → Accessibility</em>. No special in-app toggle is needed:
+          Efficiver respects your platform's accessibility settings — from
+          <em>iOS Settings → Accessibility</em> on iPhone and
+          <em>Android Settings → Accessibility</em> on Android. No special in-app toggle is needed.
         </p>
+        <p class="mt-2"><strong>On iPhone:</strong></p>
         <ul class="list-disc pl-6">
           <li>VoiceOver — full support across every screen + drive lifecycle announcements</li>
           <li>Dynamic Type — default size through AX5</li>
@@ -477,6 +486,19 @@
           <li>Differentiate Without Color — markers carry shape + label</li>
           <li>Bold Text — semantic text bolds; brand title font is a known limitation</li>
         </ul>
+        <p class="mt-2"><strong>On Android:</strong></p>
+        <ul class="list-disc pl-6">
+          <li>TalkBack — every interactive control carries a spoken label</li>
+          <li>Larger text — all text scales with your system font size</li>
+          <li>Reduce motion — animation gating across the app</li>
+          <li>Dark theme — follows your system setting</li>
+          <li>Touch targets — interactive controls meet the 48dp minimum</li>
+        </ul>
+        <p class="mt-2 text-sm">
+          Differentiate Without Color and Voice Control are iPhone-only today — see the
+          <strong>Accessibility</strong> page for the full per-platform list and current
+          limitations.
+        </p>
       </div>
     </section>
 
@@ -591,7 +613,11 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Before Contacting Support</h3>
         <ul class="list-disc pl-6">
           <li>Check this help page for solutions to common issues</li>
-          <li>Ensure your app is updated to the latest version (currently v1.3)</li>
+          <!-- No hardcoded version: this line went stale at v1.3 and stayed wrong through
+               v1.4 and v1.5. The instruction is useful without a number. -->
+          <li>
+            Ensure your app is updated to the latest version from the App Store or Google Play
+          </li>
           <li>Note your iOS version and iPhone model</li>
           <li>Include screenshots if describing visual issues</li>
           <li>Describe the problem with specific steps to reproduce</li>
@@ -671,13 +697,12 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">On the Roadmap</h3>
         <ul class="list-disc pl-6">
-          <li>Android port — in active development</li>
           <li>Efficiver Pro — the full Year Recap, Smart Forecast, and idle lever (coming soon)</li>
         </ul>
         <p class="mt-4 text-sm">
-          Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch). An Android port is in
-          active development — we don't have a public release date yet, and we'll announce beta
-          sign-up when one is open.
+          Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch) and on Android via
+          Google Play, with a Wear OS companion. Android requires Android 12 or later on a 64-bit
+          device.
         </p>
       </div>
     </section>
