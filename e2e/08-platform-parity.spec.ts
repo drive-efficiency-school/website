@@ -80,8 +80,12 @@ const IOS_EXCLUSIVE: Array<{ ios: RegExp; counterpart: RegExp; label: string }> 
  * These can only ever be QUALIFIED — there is nothing to balance them against,
  * so the "or balanced" half of the rule must not apply. Folding them into
  * IOS_EXCLUSIVE with a never-matching counterpart would work but would read as
- * an oversight; the asymmetry is real and worth naming. The Android app has no
- * Assistant integration and no cloud sync, both confirmed in its source.
+ * an oversight; the asymmetry is real and worth naming.
+ *
+ * iCloud specifically: the Android app has no EFFICIVER cloud sync, confirmed in
+ * its source. It does participate in Android's own backup to the user's Google
+ * account (allowBackup=true, exclude-only data_extraction_rules.xml) — that is a
+ * Google feature, not an iCloud counterpart, so it does not balance this term.
  */
 const IPHONE_ONLY: Array<{ ios: RegExp; label: string }> = [
   { ios: /\bSiri\b/i, label: 'Siri (iPhone only)' },
