@@ -74,9 +74,23 @@
         </p>
 
         <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+          <!-- Dual-platform CTAs (Play production access granted 2026-08-23). The
+               generic "Download Now" named no store, which was fine while iOS was the
+               only one; with both live the visitor needs to know which is which. The
+               Android button stays gated on config.app.android so a cleared env var
+               reverts the site to iOS-only rather than linking to nothing. -->
           <Button as-child class="w-5/6 md:w-auto font-bold group/arrow">
             <a :href="config.app.ios" target="_blank">
-              Download Now
+              Download on the App Store
+              <ArrowRight
+                class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform"
+              />
+            </a>
+          </Button>
+
+          <Button v-if="config.app.android" as-child class="w-5/6 md:w-auto font-bold group/arrow">
+            <a :href="config.app.android" target="_blank">
+              Get it on Google Play
               <ArrowRight
                 class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform"
               />
@@ -96,7 +110,7 @@
             ><Check class="size-5 mr-2 text-primary" /> Background Ready</span
           >
           <span class="flex items-center"
-            ><Check class="size-5 mr-2 text-primary" /> FaceID Secured</span
+            ><Check class="size-5 mr-2 text-primary" /> Biometric Secured</span
           >
         </div>
 

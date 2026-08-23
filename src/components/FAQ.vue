@@ -5,6 +5,7 @@
     AccordionItem,
     AccordionTrigger
   } from '@/components/ui/accordion'
+  import { config } from '@/lib/config'
 
   interface FAQProps {
     question: string
@@ -16,7 +17,7 @@
     {
       question: 'How does Efficiver detect my engine without hardware?',
       answer:
-        "Efficiver uses your iPhone's built-in accelerometer to detect vehicle vibration patterns. This allows us to identify engine type (petrol, diesel, EV) and driving behavior without any external hardware or OBD dongles.",
+        "Efficiver uses your phone's built-in accelerometer to detect vehicle vibration patterns. A one-time calibration teaches it to tell your engine running from stopped, which is what drives idle detection — no external hardware or OBD dongle. You tell Efficiver your fuel type (petrol, diesel or electric) once in Settings; the app doesn't infer it.",
       value: 'item-1'
     },
     {
@@ -28,7 +29,7 @@
     {
       question: 'What cars are supported?',
       answer:
-        'Efficiver works with all vehicles - petrol, diesel, hybrid, and electric. The app automatically calibrates to your specific vehicle during the first few drives.',
+        'Efficiver works with petrol, diesel and electric vehicles — you pick your fuel type in Settings. Setup is a one-time Smart Detection calibration that takes about two minutes while parked (roughly a minute with the engine running, then a minute with it off), not something that happens automatically as you drive.',
       value: 'item-3'
     },
     {
@@ -38,9 +39,15 @@
       value: 'item-4'
     },
     {
+      question: 'Does Efficiver need a clear GPS signal to work?',
+      answer:
+        'Yes. Speed, distance, route, and scoring all come from your phone\'s GPS, so GPS accuracy directly affects your Efficiency Score. Efficiver shows an orange "GPS Warming Up" label for the first few seconds of every drive and a red "Low GPS" label (plus a "GPS Signal Weak — Scores may be affected" banner) whenever signal accuracy drops. Scoring continues during weak signal so you don\'t lose your drive, but accuracy may be reduced. Best results outdoors with a clear view of the sky — tunnels, underground parking, dense tree cover, and tall buildings (urban canyons) can degrade accuracy and cause brief glitches such as a small jump in distance, a stray harsh-event flag on signal recovery, or the idle timer triggering while you\'re actually moving through a tunnel. These self-correct on the next good fix.',
+      value: 'item-gps'
+    },
+    {
       question: 'Is my data safe with Efficiver?',
       answer:
-        "Yes. Your driving data stays on your iPhone, stored locally. iCloud sync is optional and uses your own private iCloud database — never Efficiver's servers. We don't collect, store, or sell your driving data. Privacy is built in.",
+        "Yes. Your driving data stays on your phone, stored locally — in SwiftData on iPhone and SQLite on Android. On iPhone, iCloud sync is optional and uses your own private iCloud database — never Efficiver's servers. We don't collect, store, or sell your driving data. Privacy is built in.",
       value: 'item-5'
     },
     {
@@ -52,19 +59,18 @@
     {
       question: 'Which devices are compatible with Efficiver?',
       answer:
-        'Efficiver runs on iPhones with iOS 18 or later, and on iPad. An Apple Watch companion is on the roadmap for a future release. We are currently iOS-only; there is no Android timeline.',
+        "Efficiver runs on iPhones with iOS 26 or later, and on iPad, with CarPlay support (v1.3) and an Apple Watch companion (v1.4). The AidOps Edge coaching insights use Apple Intelligence where it's available; every other feature works without it. Efficiver is also available on Google Play for Android 12 and later, on 64-bit devices, with a Wear OS companion.",
       value: 'item-7'
     },
     {
       question: 'How is Efficiver different from OBD dongle apps?',
       answer:
-        "Unlike OBD apps that require $50+ hardware dongles, Efficiver works with just your iPhone. No cables, no Bluetooth pairing issues, no battery drain from external devices - and it's completely free.",
+        "Unlike OBD apps that require $50+ hardware dongles, Efficiver works with just your phone. No cables, no Bluetooth pairing issues, no battery drain from external devices - and it's completely free.",
       value: 'item-8'
     },
     {
       question: 'How can I get support for Efficiver?',
-      answer:
-        'Our support team is here to help! Contact us at contact@efficiver.com for assistance or visit our FAQ section for quick answers.',
+      answer: `Our support team is here to help! Contact us at ${config.contact.email} for assistance or visit our FAQ section for quick answers.`,
       value: 'item-9'
     },
     {
@@ -92,10 +98,8 @@
       </AccordionItem>
     </Accordion>
     <h3 class="font-medium mt-4">
-      Still have questions?
-      <a href="mailto:contact@efficiver.com" class="underline"
-        >Contact us at contact@efficiver.com</a
-      >
+      Still have questions? Contact us at
+      <a :href="'mailto:' + config.contact.email" class="underline">{{ config.contact.email }}</a>
     </h3>
   </section>
 </template>

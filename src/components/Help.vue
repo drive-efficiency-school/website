@@ -1,11 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { config } from '@/lib/config'
+</script>
 
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16">
     <!-- Document Title (excluded from opacity-80) -->
     <h1 class="text-3xl font-bold mb-6 text-center">Help & Support for Efficiver</h1>
 
-    <p class="text-center text-sm text-muted-foreground mb-10">Last updated: May 25, 2026</p>
+    <p class="text-center text-sm text-muted-foreground mb-10">
+      Last updated: {{ config.lastUpdated.help }}
+    </p>
 
     <!-- Section 1: Getting Started -->
     <section class="mb-8">
@@ -17,7 +21,7 @@
           <li><strong>Welcome:</strong> Introduction to Efficiver's features</li>
           <li>
             <strong>Permissions:</strong> <em>Required:</em> Grant location access for GPS tracking
-            and Motion &amp; Fitness access for auto start/stop and engine detection
+            and Motion &amp; Fitness access for auto-start/stop and engine detection
           </li>
           <li>
             <strong>Vehicle Setup:</strong> Configure your fuel type (petrol, diesel, electric),
@@ -46,7 +50,7 @@
       <h2 class="text-2xl font-semibold mb-4">How Efficiver Works</h2>
       <div class="opacity-80">
         <p>
-          Efficiver uses your iPhone's built-in sensors to track your driving and give instant
+          Efficiver uses your phone's built-in sensors to track your driving and give instant
           feedback to save fuel — entirely on-device, no OBD hardware required.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Key Features</h3>
@@ -61,9 +65,57 @@
             efficiency, updated every second.
           </li>
           <li>
-            <strong>Live drive map (v1.2):</strong> Full-screen Apple Maps view that follows you as
-            you drive. Pinch to zoom, two-finger drag to rotate. Acceleration and braking events
-            render as colored markers (green / orange / red) along your route.
+            <strong>CarPlay support (v1.3, iPhone):</strong> Efficiver appears as a Driving Task on
+            your car's CarPlay screen — tap Drive to start, see your live score, distance, and time
+            on the head unit, tap Stop to save. Voice prompts route through your car's audio. Wired
+            or wireless.
+          </li>
+          <li>
+            <strong>Redesigned Insights tab (v1.3):</strong> Opens on an Analytics view — your real
+            savings so far this year, CO₂ impact, and average efficiency score, all free. Flip to a
+            searchable list of every drive.
+          </li>
+          <li>
+            <strong>Minimize the drive (v1.3):</strong> Swipe the drive screen down to shrink it to
+            a live mini-bar instead of ending the drive; your score and distance stay one tap away
+            while you do other things.
+          </li>
+          <li>
+            <strong>Anomaly Detection (v1.3):</strong> Drives that fall outside your usual pattern
+            get flagged on the Sessions list.
+          </li>
+          <li>
+            <strong>Pattern Insights + Year Recap (v1.3):</strong> AI-generated coaching on what's
+            driving your scores, plus a shareable Year Recap. The AI copy uses Apple Intelligence
+            where available; the full Year Recap, Smart Forecast, and idle lever are part of
+            Efficiver Pro (coming soon).
+          </li>
+          <li>
+            <strong>Watch companion:</strong> Live score, mistakes, and elapsed time on your wrist,
+            start or stop with a tap, and a watch-face complication — on Apple Watch (v1.4) and on
+            Wear OS. Siri start/stop and the haptic buzz on every harsh accel or brake are iPhone
+            and Apple Watch only today.
+          </li>
+          <li>
+            <strong>More accurate savings (v1.4):</strong> Fuel and CO₂ savings are now calculated
+            from your actual speed, acceleration, and road grade, not just your Efficiency Score.
+          </li>
+          <li>
+            <strong>Converged Trends (v1.5):</strong> Your recorded daily scores and your forecast
+            share one interactive chart, split by a "Today" divider. Drag across it to scrub any day
+            — the headline shows that day's score, labelled Observed or Predicted.
+          </li>
+          <li>
+            <strong>AidOps Edge (v1.5):</strong> The on-device intelligence behind your Year Recap
+            and Your Patterns now shows an honest status wherever it appears, with a new
+            <strong>Settings → Assistance</strong> page telling you whether Apple Intelligence is
+            active. Insights are generated on your phone; nothing leaves your device.
+          </li>
+          <li>
+            <strong>Live drive map (v1.2):</strong> Full-screen map that follows you as you drive —
+            Apple Maps on iPhone, Google Maps on Android. Pinch to zoom, two-finger drag to rotate.
+            Acceleration and braking events render as colored markers (green / orange / red) along
+            your route.
           </li>
           <li>
             <strong>Per-waypoint event markers (v1.2):</strong> Colored markers appear on the live
@@ -72,8 +124,8 @@
           </li>
           <li>
             <strong>Low Power Mode-aware map (v1.2):</strong> When iPhone is in Low Power Mode and
-            <em>Prioritize Low Power</em> is on in app preferences, the map pauses with a clear
-            placeholder to save battery.
+            <em>Prioritize Low Power</em> is on in <em>Settings → General</em>, the map pauses with
+            a clear placeholder to save battery.
           </li>
           <li>
             <strong>iCloud sync (v1.2):</strong> Your sessions and the trained Smart Detection model
@@ -90,16 +142,16 @@
             currency, per session and per month.
           </li>
           <li>
-            <strong>Accessibility (v1.2):</strong> Full VoiceOver support, Dynamic Type (default
-            through AX5), Reduce Motion, Reduce Transparency, Differentiate Without Color, Bold
-            Text, and lifecycle announcements.
+            <strong>Accessibility (v1.2):</strong> Full screen-reader support — VoiceOver on iPhone,
+            TalkBack on Android — plus larger text, reduced motion and lifecycle announcements. See
+            the Accessibility section below for exactly what each platform supports.
           </li>
           <li>
             <strong>Voice Guidance:</strong> Audio feedback in multiple languages to help you drive
             better.
           </li>
           <li>
-            <strong>Auto Start/Stop:</strong> Automatically begins and ends drives when you
+            <strong>Auto-Start/Stop:</strong> Automatically begins and ends drives when you
             start/stop moving.
           </li>
           <li>
@@ -112,6 +164,12 @@
           </li>
           <li>
             <strong>Session History:</strong> Detailed analytics for each of your driving sessions.
+          </li>
+          <li>
+            <strong>GPS Required:</strong> Speed, distance, route, and scoring come from your
+            iPhone's GPS. Best results outdoors with a clear view of the sky. The app shows an
+            orange <em>"GPS Warming Up"</em> label for the first few seconds, and a red
+            <em>"Low GPS"</em> label whenever signal accuracy drops below ~30 m.
           </li>
           <li>
             <strong>Offline Operation:</strong> Works offline with GPS signal; all data stays on
@@ -144,7 +202,10 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Page 2 — Live drive map (v1.2)</h3>
         <ul class="list-disc pl-6">
-          <li>Full-screen Apple Maps view that follows you smoothly as you drive</li>
+          <li>
+            Full-screen map that follows you smoothly as you drive — Apple Maps on iPhone, Google
+            Maps on Android
+          </li>
           <li>Pinch to zoom, two-finger drag to rotate</li>
           <li>+/- and recenter buttons in the corner</li>
           <li>
@@ -156,6 +217,22 @@
             on
           </li>
         </ul>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">Minimize the drive (v1.3)</h3>
+        <p>
+          Swipe the drive screen down and it shrinks to a live mini-bar instead of ending the drive
+          — your score and distance stay one tap away while you change a setting or open another
+          screen. The bar stays put wherever you navigate; tap it to jump back in, or end the drive
+          right there.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3, iPhone)</h3>
+        <p>
+          With your iPhone connected to CarPlay, Efficiver appears as a Driving Task tile. Tap Drive
+          to start, watch your live Efficiency Score, distance, and time on the head unit, and tap
+          Stop to save. Voice prompts play through your car's audio. See the CarPlay entries under
+          Troubleshooting if prompts are missing or faint.
+        </p>
       </div>
     </section>
 
@@ -217,9 +294,11 @@
         <dl class="space-y-4">
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
-            Ensure <em>Auto Start Drive</em> and <em>Auto Stop Drive</em> are enabled in
-            <em>Settings → Driving Preferences</em>. Grant Motion &amp; Fitness permission in
-            <em>iOS Settings → Privacy &amp; Security</em>.
+            Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
+            <em>Settings → Driving</em>. On iPhone, grant Motion &amp; Fitness permission in
+            <em>iOS Settings → Privacy &amp; Security</em>. On Android, grant
+            <em>Physical activity</em> and set Location to <em>Allow all the time</em> in
+            <em>Android Settings → Apps → Efficiver → Permissions</em>.
           </dd>
 
           <dt class="font-semibold">Engine detection not working properly</dt>
@@ -231,24 +310,34 @@
 
           <dt class="font-semibold">No voice feedback</dt>
           <dd>
-            Check <em>Settings → Voice Preferences → Voice Assistance</em>. Verify device volume and
-            Do Not Disturb settings. Try changing the voice language.
+            Check <em>Settings → Voice → Voice Assistance</em>. Verify device volume and Do Not
+            Disturb settings. Try changing the voice language.
           </dd>
 
-          <dt class="font-semibold">GPS signal weak or unavailable</dt>
+          <dt class="font-semibold">GPS signal weak or accuracy degraded</dt>
           <dd>
-            GPS is <em>required</em> for Efficiver to function. Ensure location permissions are
-            granted and GPS is enabled. Drive to an area with better GPS reception — the app cannot
-            provide efficiency feedback without GPS signal.
+            GPS is <em>required</em> for Efficiver to function, and accuracy matters as much as
+            signal presence. Watch for the orange <em>"GPS Warming Up"</em> label at the start of
+            each drive — wait for it to clear before relying on the score. A red
+            <em>"Low GPS"</em> label (and the
+            <em>"GPS Signal Weak — Scores may be affected"</em> banner on the gauge) means signal
+            accuracy has dropped below the ~30 m threshold; scoring continues but accuracy may be
+            reduced. To fix: ensure location permissions are granted and precise location is enabled
+            — on iPhone in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>, on
+            Android in <em>Android Settings → Apps → Efficiver → Permissions → Location</em> with
+            <em>Use precise location</em> on. Drive outdoors with a clear view of the sky. After
+            exiting a tunnel or underground area, expect a one-or-two-second recovery before scoring
+            resumes normally.
           </dd>
 
           <dt class="font-semibold">High battery usage during drives</dt>
           <dd>
-            Enable <em>Prioritize Low Power</em> in <em>Settings → App Preferences</em>. With iOS
-            Low Power Mode on, the live drive map automatically pauses (v1.2).
+            Enable <em>Prioritize Low Power</em> in <em>Settings → General</em>. With iOS Low Power
+            Mode on, the live drive map automatically pauses (v1.2).
           </dd>
 
-          <dt class="font-semibold">iCloud sync not working</dt>
+          <dt class="font-semibold">iCloud sync not working (iPhone)</dt>
           <dd>
             Ensure you're signed in to the same iCloud account on each device, and that
             <em>iCloud Drive</em> is enabled in <em>iOS Settings → [Your Name] → iCloud</em>.
@@ -257,15 +346,15 @@
 
           <dt class="font-semibold">Live drive map looks blank or laggy</dt>
           <dd>
-            Confirm <em>Apple Maps</em> is enabled in <em>Settings → App Preferences</em>. Check for
-            an iOS update; map tile rendering benefits from recent iOS versions. Disable Low Power
-            Mode if you want the map active.
+            Confirm <em>Apple Maps</em> is enabled in <em>Settings → General</em>. Check for an iOS
+            update; map tile rendering benefits from recent iOS versions. Disable Low Power Mode if
+            you want the map active.
           </dd>
 
           <dt class="font-semibold">Incorrect vehicle parameters</dt>
           <dd>
-            Go to <em>Settings → Vehicle Parameters</em> and update fuel type, engine size, and
-            transmission to match your actual vehicle.
+            Go to <em>Settings → Vehicle</em> and update fuel type, engine size, and transmission to
+            match your actual vehicle.
           </dd>
 
           <dt class="font-semibold">App not responding or crashing</dt>
@@ -273,6 +362,43 @@
             Force quit and restart the app. Check for iOS updates. If issues persist, contact
             <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>
             with your iOS version and phone model.
+          </dd>
+        </dl>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3, iPhone)</h3>
+        <dl class="space-y-4">
+          <dt class="font-semibold">Efficiver doesn't appear on the CarPlay screen</dt>
+          <dd>
+            Make sure Efficiver is updated to v1.3 or later and your iPhone is connected to CarPlay
+            (wired or wireless). Efficiver appears as a <em>Driving Task</em> tile on the CarPlay
+            Home screen. If you don't see it, open
+            <em>iOS Settings → General → CarPlay → [your car] → Customize</em> and confirm Efficiver
+            is in the included apps.
+          </dd>
+
+          <dt class="font-semibold">CarPlay voice prompts are missing or faint</dt>
+          <dd>
+            Voice prompts play through your car's audio. If you can't hear them: make sure
+            <strong>CarPlay is the selected audio source</strong> on your head unit (some cars stay
+            on FM or AUX until CarPlay takes over), turn up the car volume, and confirm
+            <em>Voice Assistance</em> is on and not muted (use the <em>Mute</em> button on the
+            CarPlay screen — tap it again to hear "Voice unmuted"). Head units vary; if prompts are
+            quiet right after connecting, starting the drive again usually re-selects CarPlay audio.
+          </dd>
+
+          <dt class="font-semibold">Score, distance, or mistakes stay at zero on CarPlay</dt>
+          <dd>
+            CarPlay drives use your iPhone's GPS, so give it a few seconds to acquire a signal. You
+            don't need to open the app on your phone — the drive runs in the background. If values
+            stay at zero, set Location to <em>Always</em> with <em>Precise Location</em> on in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>.
+          </dd>
+
+          <dt class="font-semibold">Started a drive on CarPlay but it didn't save</dt>
+          <dd>
+            Tap <em>Stop</em> on the CarPlay screen, or use the <em>Stop</em> button on the Lock
+            Screen Live Activity — the drive saves automatically. This works even if the app was
+            force-quit.
           </dd>
         </dl>
       </div>
@@ -287,7 +413,7 @@
           <li><strong>Technical:</strong> Detailed vehicle settings and advanced options</li>
           <li><strong>Non-Technical:</strong> Simplified interface with guided explanations</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Vehicle Parameters</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Vehicle</h3>
         <ul class="list-disc pl-6">
           <li><strong>Fuel Type:</strong> Petrol, Diesel, or Electric</li>
           <li><strong>Engine Size:</strong> Capacity in cc (petrol/diesel) or kW (electric)</li>
@@ -297,42 +423,50 @@
           <li><strong>Turbocharged:</strong> Enable for turbo engines</li>
           <li><strong>Number of Gears:</strong> For manual transmissions (4-8 gears)</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Driving Preferences</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Driving</h3>
         <ul class="list-disc pl-6">
           <li>
             <strong>Proficiency Level:</strong> 1-5 scale (1=Beginner, 5=Expert) — adjusts feedback
             sensitivity
           </li>
           <li>
-            <strong>Auto Start Drive:</strong> Automatically begin tracking when vehicle moves
+            <strong>Auto-Start Drive:</strong> Automatically begin tracking when vehicle moves
           </li>
-          <li><strong>Auto Stop Drive:</strong> Automatically end tracking when vehicle stops</li>
+          <li><strong>Auto-Stop Drive:</strong> Automatically end tracking when vehicle stops</li>
           <li>
-            <strong>Auto Track Drive:</strong> Background-log a drive when you start it from
+            <strong>Auto-Track Drive:</strong> Background-log a drive when you start it from
             Efficient Route in Apple/Google Maps
           </li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Voice Preferences</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Voice</h3>
         <ul class="list-disc pl-6">
           <li><strong>Voice Assistance:</strong> Enable / disable audio feedback</li>
           <li><strong>Language:</strong> Choose from available voice languages</li>
           <li><strong>Voice Volume:</strong> Adjust feedback loudness</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">App Preferences</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">General</h3>
         <ul class="list-disc pl-6">
           <li><strong>Units:</strong> Kilometers / Miles or Liters / Gallons</li>
           <li>
             <strong>Prioritize Low Power:</strong> Battery-saving mode (pauses the live map in iOS
             Low Power Mode)
           </li>
-          <li><strong>Apple Maps:</strong> Enable the live drive map (increases battery usage)</li>
+          <li>
+            <strong>Apple Maps</strong> (called <strong>Google Maps</strong> on Android): Enable the
+            live drive map (increases battery usage)
+          </li>
           <li><strong>Temperature in Gauge:</strong> Show weather temperature</li>
           <li>
-            <strong>iCloud sync:</strong> Sync sessions and the Smart Detection model across your
-            devices via your private iCloud database. Off by default.
+            <strong>iCloud sync (iPhone):</strong> Sync sessions and the Smart Detection model
+            across your devices via your private iCloud database. Off by default.
           </li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Wallet Watch</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Savings</h3>
+        <p class="mb-2">
+          Umbrella for savings-related sub-features. Currently contains Wallet Watch (fuel / energy
+          cost tracking); more sub-features will land in future releases.
+        </p>
+        <h4 class="font-semibold mt-3 mb-1">Wallet Watch</h4>
         <ul class="list-disc pl-6">
           <li><strong>Fuel Price:</strong> Set per litre / gallon in your local currency</li>
           <li><strong>Baseline Consumption:</strong> Your vehicle's typical fuel economy</li>
@@ -340,13 +474,18 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Security</h3>
         <ul class="list-disc pl-6">
-          <li><strong>Biometric Lock:</strong> Face ID / Touch ID protection on app launch</li>
+          <li>
+            <strong>Biometric Lock:</strong> device biometric protection on app launch — Face ID /
+            Touch ID on iPhone, fingerprint or face unlock on Android
+          </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Accessibility (v1.2)</h3>
         <p>
-          Efficiver respects every iOS accessibility setting from
-          <em>iOS Settings → Accessibility</em>. No special in-app toggle is needed:
+          Efficiver respects your platform's accessibility settings — from
+          <em>iOS Settings → Accessibility</em> on iPhone and
+          <em>Android Settings → Accessibility</em> on Android. No special in-app toggle is needed.
         </p>
+        <p class="mt-2"><strong>On iPhone:</strong></p>
         <ul class="list-disc pl-6">
           <li>VoiceOver — full support across every screen + drive lifecycle announcements</li>
           <li>Dynamic Type — default size through AX5</li>
@@ -355,6 +494,19 @@
           <li>Differentiate Without Color — markers carry shape + label</li>
           <li>Bold Text — semantic text bolds; brand title font is a known limitation</li>
         </ul>
+        <p class="mt-2"><strong>On Android:</strong></p>
+        <ul class="list-disc pl-6">
+          <li>TalkBack — every interactive control carries a spoken label</li>
+          <li>Larger text — all text scales with your system font size</li>
+          <li>Reduce motion — animation gating across the app</li>
+          <li>Dark theme — follows your system setting</li>
+          <li>Touch targets — interactive controls meet the 48dp minimum</li>
+        </ul>
+        <p class="mt-2 text-sm">
+          Differentiate Without Color and Voice Control are iPhone-only today — see the
+          <strong>Accessibility</strong> page for the full per-platform list and current
+          limitations.
+        </p>
       </div>
     </section>
 
@@ -375,11 +527,25 @@
           <li><strong>Notes:</strong> Tap to add a note (up to 255 characters, v1.1)</li>
           <li><strong>Rename:</strong> Tap the title to rename the session inline (v1.1)</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">Analytics Features</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">Insights tab (v1.3)</h3>
         <ul class="list-disc pl-6">
-          <li><strong>Average Score Card:</strong> Overall performance across all sessions</li>
-          <li><strong>Session Comparison:</strong> Track improvement over time</li>
-          <li><strong>Detailed Breakdown:</strong> Per-session analysis with timestamps</li>
+          <li>
+            <strong>Analytics view:</strong> Your real savings so far this year, CO₂ impact, and
+            average efficiency score — all free.
+          </li>
+          <li>
+            <strong>Sessions view:</strong> A searchable list of every drive — search by name or
+            date.
+          </li>
+          <li>
+            <strong>Trends:</strong> Efficiency forecast with a "cut idle by X%" lever and a
+            Patterns card. The full Year Recap, Smart Forecast, and idle lever are part of Efficiver
+            Pro (coming soon); the AI coaching uses Apple Intelligence where available.
+          </li>
+          <li>
+            <strong>Anomaly flags:</strong> Drives outside your usual pattern are marked on the
+            Sessions list.
+          </li>
         </ul>
       </div>
     </section>
@@ -390,17 +556,18 @@
       <div class="opacity-80">
         <p>
           Efficiver is designed with privacy-first principles. By default, all your driving data
-          stays on your iPhone. See the full
+          stays on your phone. See the full
           <a href="#privacy" class="underline">Privacy Policy</a> for details.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Storage</h3>
         <ul class="list-disc pl-6">
           <li>
             <strong>Local Only by default:</strong> Driving sessions, vehicle settings, and the
-            trained Smart Detection model are stored locally in SwiftData on your iPhone.
+            trained Smart Detection model are stored locally on your phone — in SwiftData on iPhone,
+            SQLite on Android.
           </li>
           <li>
-            <strong>Optional iCloud sync (v1.2):</strong> If enabled, sessions and the Smart
+            <strong>Optional iCloud sync (v1.2, iPhone):</strong> If enabled, sessions and the Smart
             Detection model sync via <em>your</em> private iCloud database. Efficiver has no access
             to it.
           </li>
@@ -428,8 +595,8 @@
           <li>Reset all settings to defaults</li>
           <li>Uninstall the app to remove all locally-stored data</li>
           <li>
-            Disable iCloud sync to stop adding new cloud-stored sessions; previously synced sessions
-            remain on whichever device created them until you delete them
+            On iPhone, disable iCloud sync to stop adding new cloud-stored sessions; previously
+            synced sessions remain on whichever device created them until you delete them
           </li>
         </ul>
       </div>
@@ -446,13 +613,20 @@
             <strong>Email:</strong>
             <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>
           </li>
-          <li><strong>Website:</strong> www.efficiver.com</li>
+          <li>
+            <strong>Website:</strong>
+            <a :href="config.contact.website" class="underline">{{ config.contact.website }}</a>
+          </li>
           <li><strong>Response Time:</strong> We aim to respond within a few business days</li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Before Contacting Support</h3>
         <ul class="list-disc pl-6">
           <li>Check this help page for solutions to common issues</li>
-          <li>Ensure your app is updated to the latest version (currently v1.2)</li>
+          <!-- No hardcoded version: this line went stale at v1.3 and stayed wrong through
+               v1.4 and v1.5. The instruction is useful without a number. -->
+          <li>
+            Ensure your app is updated to the latest version from the App Store or Google Play
+          </li>
           <li>Note your iOS version and iPhone model</li>
           <li>Include screenshots if describing visual issues</li>
           <li>Describe the problem with specific steps to reproduce</li>
@@ -471,7 +645,8 @@
           <dt class="font-semibold">Does Efficiver require internet?</dt>
           <dd>
             No, Efficiver works completely offline using only your phone's sensors. Internet is
-            optional and only used for iCloud sync (if enabled) and weather (via Apple WeatherKit).
+            optional and only used for iCloud sync on iPhone (if enabled) and weather (Apple
+            WeatherKit on iPhone, OpenWeather on Android).
           </dd>
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
@@ -495,15 +670,33 @@
       <h2 class="text-2xl font-semibold mb-4">Updates & Roadmap</h2>
       <div class="opacity-80">
         <p>
-          We regularly update Efficiver with new features and improvements. Check the App Store for
-          updates, or read the full
+          We regularly update Efficiver with new features and improvements. Check the App Store or
+          Google Play for updates, or read the full
           <a href="#releases" class="underline">release notes</a>.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>v1.2 (May 2026):</strong> Live drive map with per-waypoint event markers, iCloud
-            sync across your devices, deep accessibility pass, Low Power Mode-aware map
+            <strong>v1.5 (July 2026):</strong> converged Trends chart (recorded history and forecast
+            in one scrubbable chart), AidOps Edge on-device insights with an honest status and a new
+            Assistance page in Settings, Insights cards that name their destination
+          </li>
+          <li>
+            <strong>v1.4 (July 2026, iPhone):</strong> Apple Watch companion (live glance,
+            Start/Stop + Siri, haptics, watch-face complication), more accurate fuel &amp; CO₂
+            savings from your actual driving physics, live drive card on CarPlay and Watch Smart
+            Stack. The Android app arrived later, with a Wear OS companion.
+          </li>
+          <li>
+            <strong>v1.3 (June 2026, iPhone):</strong> CarPlay support, redesigned Insights tab
+            (Analytics + searchable Sessions), minimize the drive, Anomaly Detection, AI-powered
+            Pattern Insights and recap narrative (Apple Intelligence), smarter auto-stop, more
+            reliable Live Activity Stop
+          </li>
+          <li>
+            <strong>v1.2 (May 2026, iPhone):</strong> Live drive map with per-waypoint event
+            markers, iCloud sync across your devices, deep accessibility pass, Low Power Mode-aware
+            map
           </li>
           <li>
             <strong>v1.1 (May 2026):</strong> Smart Detection auto-calibration, Efficient Route
@@ -516,11 +709,13 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">On the Roadmap</h3>
         <ul class="list-disc pl-6">
-          <li>Apple Watch companion app — a future release</li>
-          <li>Foundation Models-powered session summarisation</li>
-          <li>CarPlay integration</li>
+          <li>Efficiver Pro — the full Year Recap, Smart Forecast, and idle lever (coming soon)</li>
         </ul>
-        <p class="mt-4 text-sm">Efficiver is currently iOS-only; we have no Android timeline.</p>
+        <p class="mt-4 text-sm">
+          Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch) and on Android via
+          Google Play, with a Wear OS companion. Android requires Android 12 or later on a 64-bit
+          device.
+        </p>
       </div>
     </section>
   </div>

@@ -34,6 +34,10 @@
   interface RouteProps {
     href: string
     label: string
+    // Navigation target for App.vue's `navigate()`. Omit for home-page
+    // section anchors (defaults to 'main' — scroll on the home page);
+    // set to a view name (e.g. 'help') for full-page views.
+    nav?: string
   }
 
   interface FeatureProps {
@@ -47,13 +51,16 @@
       label: "What's New"
     },
     {
-      href: '#testimonials',
-      label: 'Testimonials'
+      // Replaces the old Testimonials link (section unrendered → dead anchor).
+      // Help is a full-page view, so it routes through App.vue's `navigate`,
+      // not a home-page section scroll.
+      href: '#help',
+      label: 'Help & Support',
+      nav: 'help'
     },
-    {
-      href: '#contact',
-      label: 'Contact'
-    },
+    // Contact link removed — the Contact section is gated off
+    // (VITE_SHOW_CONTACT=false in .env), so #contact was a dead anchor.
+    // Re-add here when the Contact section is re-enabled.
     {
       href: '#faq',
       label: 'FAQ'
@@ -67,18 +74,21 @@
     }
   ]
 
+  // Platform-neutral since the Android launch (2026-08-23): this dropdown is the
+  // first feature list a visitor sees, and naming only Apple technologies read as
+  // an iOS-only product. Specifics stay on the Features section.
   const featureList: FeatureProps[] = [
     {
       title: 'Live drive map',
-      description: 'Apple Maps follow + per-waypoint event markers.'
+      description: 'Apple Maps on iPhone, Google Maps on Android + event markers.'
     },
     {
       title: 'Accessibility-first',
-      description: 'VoiceOver, Dynamic Type, Reduce Motion, and more.'
+      description: 'VoiceOver and TalkBack, larger text, reduced motion.'
     },
     {
-      title: 'iCloud sync',
-      description: 'Sessions and Smart Detection model across devices.'
+      title: 'Watch companions',
+      description: 'Apple Watch on iPhone, Wear OS on Android.'
     }
   ]
 
@@ -141,9 +151,9 @@
                   <a href="#features" @click="emit('navigate', 'main')"> Features </a>
                 </Button>
               </SheetClose>
-              <SheetClose v-for="{ href, label } in routeList" :key="label" as-child>
+              <SheetClose v-for="{ href, label, nav } in routeList" :key="label" as-child>
                 <Button as-child variant="ghost" class="justify-start text-base">
-                  <a :href="href" @click="emit('navigate', 'main')">
+                  <a :href="href" @click="emit('navigate', nav || 'main')">
                     {{ label }}
                   </a>
                 </Button>
@@ -212,13 +222,13 @@
 
       <!-- Plain route links (no dropdown, no hover-trigger). -->
       <Button
-        v-for="{ href, label } in routeList"
+        v-for="{ href, label, nav } in routeList"
         :key="label"
         as-child
         variant="ghost"
         class="justify-start text-base"
       >
-        <a :href="href" @click="emit('navigate', 'main')">
+        <a :href="href" @click="emit('navigate', nav || 'main')">
           {{ label }}
         </a>
       </Button>

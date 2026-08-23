@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 .env
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/.playwright-mcp/

@@ -11,7 +11,9 @@
     Fingerprint,
     Map,
     Cloud,
-    Accessibility
+    Accessibility,
+    Car,
+    Watch
   } from 'lucide-vue-next'
 
   interface FeaturesProps {
@@ -20,35 +22,59 @@
     description: string
   }
 
+  // Every claim below is checked against the shipping apps (2026-08-23). Platform-
+  // specific capabilities are LABELLED rather than stated as universal:
+  //  - CarPlay is iOS-only. There is deliberately NO Android Auto surface — Google
+  //    ruled a phone-sensor driving dashboard outside the Car App Library's
+  //    permitted categories, so it must not be implied here.
+  //  - The map is Apple Maps on iPhone and Google Maps on Android (maps-compose).
+  //  - iCloud sync is iOS-only; the Android app has no equivalent sync feature.
+  //  - "Cornering" was REMOVED: no cornering detection exists in either codebase
+  //    (verified — the engine tracks acceleration, braking and idle only).
+  //  - Biometric lock is Face ID / Touch ID on iOS and BiometricPrompt
+  //    (androidx.biometric) on Android — so the wording is platform-neutral.
   const featureList: FeaturesProps[] = [
+    {
+      icon: 'car',
+      title: 'CarPlay support (iPhone)',
+      description:
+        'Drive with your phone in your pocket — Efficiver runs as a Driving Task on the CarPlay screen, with voice prompts through your car audio. Wired or wireless.'
+    },
+    {
+      icon: 'watch',
+      title: 'Watch companions',
+      description:
+        'Start and stop drives from your wrist and glance at your live score — Apple Watch on iPhone, Wear OS on Android.'
+    },
     {
       icon: 'map',
       title: 'Live drive map',
       description:
-        'Full-screen Apple Maps view that follows you smoothly, with per-waypoint event markers.'
+        'Full-screen map that follows you smoothly, with per-waypoint event markers — Apple Maps on iPhone, Google Maps on Android.'
     },
     {
       icon: 'accessibility',
       title: 'Accessibility-first',
       description:
-        'VoiceOver, Dynamic Type AX1-AX5, Reduce Motion, Reduce Transparency, Differentiate Without Color.'
+        'Works with the screen reader and text-size settings you already use — VoiceOver and Dynamic Type on iPhone, TalkBack and font scaling on Android.'
     },
     {
       icon: 'cloud',
-      title: 'iCloud sync',
-      description: 'Sessions and your trained Smart Detection model sync across your devices.'
+      title: 'iCloud sync (iPhone)',
+      description:
+        'On iPhone, sessions and your trained Smart Detection model sync across your devices via your own private iCloud database.'
     },
     {
       icon: 'brainCircuit',
       title: 'Smart Detection',
       description:
-        'Learns your engine signature on-device. No OBD dongle, no rev-range setup, no data leaving your iPhone.'
+        'A one-time, roughly two-minute calibration teaches Efficiver to tell your engine running from stopped, on-device. No OBD dongle, no rev-range setup.'
     },
     {
       icon: 'tabletSmartphone',
       title: 'Offline & background-aware',
       description:
-        'Works offline using only your iPhone sensors. Continues logging when you switch to Maps or Music.'
+        "Works offline using only your phone's sensors. Continues logging when you switch to Maps or Music."
     },
     {
       icon: 'goal',
@@ -58,12 +84,13 @@
     {
       icon: 'activity',
       title: 'Advanced Metrics',
-      description: 'Monitor Acceleration, Braking, Cornering, and Idle Time in real-time.'
+      description: 'Monitor Acceleration, Braking, and Idle Time in real-time.'
     },
     {
       icon: 'fingerprint',
       title: 'Biometric Privacy',
-      description: 'Your data is local and secured with FaceID/TouchID. No tracking, ever.'
+      description:
+        'Your drives are stored on your phone and can be locked behind your device biometrics. No tracking, ever.'
     },
     {
       icon: 'mic',
@@ -89,6 +116,8 @@
     | typeof Map
     | typeof Cloud
     | typeof Accessibility
+    | typeof Car
+    | typeof Watch
   > = {
     tabletSmartphone: TabletSmartphone,
     badgeCheck: BadgeCheck,
@@ -99,7 +128,9 @@
     fingerprint: Fingerprint,
     map: Map,
     cloud: Cloud,
-    accessibility: Accessibility
+    accessibility: Accessibility,
+    car: Car,
+    watch: Watch
   }
 </script>
 

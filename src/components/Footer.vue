@@ -2,11 +2,10 @@
   import { ref } from 'vue'
   import Separator from './ui/separator/Separator.vue'
   import { config } from '@/lib/config'
-  import { Badge } from '@/components/ui/badge'
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.2.0 (26052501)'
+  const version = 'v1.3.26 (26082317)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -59,27 +58,42 @@
             </a>
           </div>
           <div>
-            <span class="text-muted-foreground flex items-center cursor-not-allowed opacity-60">
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
               CarPlay
-              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">Future</Badge>
-            </span>
+            </a>
+          </div>
+          <div>
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
+              Apple Watch
+            </a>
           </div>
           <div>
             <a
-              v-if="config.app.watch.apple"
-              :href="config.app.watch.apple"
+              v-if="config.app.android"
+              :href="config.app.android"
               target="_blank"
               class="opacity-60 hover:opacity-100"
             >
-              Apple Watch
+              Android
             </a>
-            <span
-              v-else
-              class="text-muted-foreground flex items-center cursor-not-allowed opacity-60"
-            >
-              Apple Watch
-              <Badge variant="secondary" class="ml-2 h-5 px-1.5 text-[10px]">Future</Badge>
+            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
+              Android <span class="text-[10px]">(soon)</span>
             </span>
+          </div>
+          <!-- Android Auto entry removed 2026-07-27: the Android app no longer ships an
+               Android Auto surface (Google Play ruled a phone-sensor driving dashboard
+               outside the Car App Library's permitted categories), so advertising it as
+               "(soon)" would be untrue. CarPlay above is unaffected and stays. -->
+          <!-- Wear OS ships INSIDE the Android app (Play delivers the wear build from the
+               same listing — there is no separate store URL, which is why
+               VITE_ANDROID_WATCH_LINK is empty and always has been). Gating on that empty
+               var rendered "Wear OS (soon)" for a companion that has shipped since
+               vCode 10042, while Apple Watch directly above renders as available with no
+               gate at all. Same treatment for both now. -->
+          <div>
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
+              Wear OS
+            </a>
           </div>
         </div>
 
@@ -142,6 +156,15 @@
               @click="emit('navigate', 'privacy')"
             >
               Privacy Policy
+            </a>
+          </div>
+          <div>
+            <a
+              href="#accessibility"
+              class="opacity-60 hover:opacity-100 cursor-pointer"
+              @click="emit('navigate', 'accessibility')"
+            >
+              Accessibility
             </a>
           </div>
           <div>

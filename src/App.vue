@@ -12,16 +12,22 @@
   const Features = defineAsyncComponent(() => import('./components/Features.vue'))
   const HowItWorks = defineAsyncComponent(() => import('./components/HowItWorks.vue'))
   const Comparison = defineAsyncComponent(() => import('./components/Comparison.vue'))
-  // Testimonials.vue removed from render per WEBSITE_AUDIT_V12 I8 — the
-  // template-default placeholder reviews and shadcn-stock avatars are an
-  // FTC compliance risk. Re-introduce when real App Store review excerpts
-  // are available.
+  // Testimonials.vue DELETED 2026-07-29 (was unrendered since
+  // WEBSITE_AUDIT_V12 I8). The template-default placeholder reviews and
+  // shadcn-stock avatars were an FTC compliance risk, and one fabricated
+  // "Fleet Manager" review claiming a 10% emissions cut sat next to a real
+  // fleet product. If real App Store / Play review excerpts are ever
+  // shown, build it fresh from attributed quotes.
   //
   // Team.vue also removed from render per user 2026-05-25 — social
   // handles haven't been migrated to the `efficiver-*` namespace yet
   // (see WEBSITE_AUDIT_V12 I10). Re-introduce once handles are live.
   const Pricing = defineAsyncComponent(() => import('./components/Pricing.vue'))
-  const Community = defineAsyncComponent(() => import('./components/Community.vue'))
+  const FleetCallout = defineAsyncComponent(() => import('./components/FleetCallout.vue'))
+  // Community.vue removed from render 2026-06-23 — its only CTA was a disabled
+  // "Follow Us on Social Media" button under a Discord icon, but no social /
+  // community presence is configured (config.socials are empty). Re-introduce
+  // with a working link once a real community (e.g. Discord) exists.
   const NewsletterSignup = defineAsyncComponent(() => import('./components/NewsletterSignup.vue'))
   const FAQ = defineAsyncComponent(() => import('./components/FAQ.vue'))
   const Contact = defineAsyncComponent(() => import('./components/Contact.vue'))
@@ -32,6 +38,7 @@
   const Investors = defineAsyncComponent(() => import('./components/Investors.vue'))
   const TermsOfUse = defineAsyncComponent(() => import('./components/TermsOfUse.vue'))
   const PrivacyPolicy = defineAsyncComponent(() => import('./components/PrivacyPolicy.vue'))
+  const Accessibility = defineAsyncComponent(() => import('./components/Accessibility.vue'))
   const Help = defineAsyncComponent(() => import('./components/Help.vue'))
   const ComingSoon = defineAsyncComponent(() => import('./components/ComingSoon.vue'))
   const Releases = defineAsyncComponent(() => import('./components/Releases.vue'))
@@ -39,16 +46,26 @@
   const showInvestors = ref(false)
   const showTerms = ref(false)
   const showPrivacy = ref(false)
+  const showAccessibility = ref(false)
   const showHelp = ref(false)
   const showComingSoon = ref(false)
   const showReleases = ref(false)
 
   function navigate(
-    target: 'main' | 'investors' | 'terms' | 'privacy' | 'help' | 'coming-soon' | 'releases'
+    target:
+      | 'main'
+      | 'investors'
+      | 'terms'
+      | 'privacy'
+      | 'accessibility'
+      | 'help'
+      | 'coming-soon'
+      | 'releases'
   ) {
     showInvestors.value = target === 'investors'
     showTerms.value = target === 'terms'
     showPrivacy.value = target === 'privacy'
+    showAccessibility.value = target === 'accessibility'
     showHelp.value = target === 'help'
     showComingSoon.value = target === 'coming-soon'
     showReleases.value = target === 'releases'
@@ -57,6 +74,7 @@
       showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
+      showAccessibility.value ||
       showHelp.value ||
       showComingSoon.value ||
       showReleases.value
@@ -71,6 +89,7 @@
     showInvestors.value = hash === 'investors'
     showTerms.value = hash === 'terms'
     showPrivacy.value = hash === 'privacy'
+    showAccessibility.value = hash === 'accessibility'
     showHelp.value = hash === 'help'
     showComingSoon.value = hash === 'coming-soon'
     showReleases.value = hash === 'releases'
@@ -78,6 +97,7 @@
       showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
+      showAccessibility.value ||
       showHelp.value ||
       showComingSoon.value ||
       showReleases.value
@@ -96,7 +116,13 @@
   <Navbar @navigate="navigate" />
   <div
     v-if="
-      !showInvestors && !showTerms && !showPrivacy && !showHelp && !showComingSoon && !showReleases
+      !showInvestors &&
+      !showTerms &&
+      !showPrivacy &&
+      !showAccessibility &&
+      !showHelp &&
+      !showComingSoon &&
+      !showReleases
     "
   >
     <Hero />
@@ -104,8 +130,8 @@
     <Features />
     <Comparison />
     <HowItWorks />
-    <Community />
     <Pricing />
+    <FleetCallout />
     <section v-if="config.features.newsletter" id="newsletter" class="container py-24 sm:py-32">
       <div class="mx-auto max-w-2xl text-center">
         <NewsletterSignup />
@@ -117,6 +143,7 @@
   <Investors v-if="showInvestors" />
   <TermsOfUse v-else-if="showTerms" />
   <PrivacyPolicy v-else-if="showPrivacy" />
+  <Accessibility v-else-if="showAccessibility" @navigate="navigate" />
   <Help v-else-if="showHelp" />
   <ComingSoon v-else-if="showComingSoon" />
   <Releases v-else-if="showReleases" @navigate="navigate" />

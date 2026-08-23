@@ -37,6 +37,13 @@
     dismissPopup()
   }
 
+  // Android launched 2026-08-23. This popup sent EVERY visitor to the App Store,
+  // so an Android reader was pushed to a store they cannot install from.
+  function goToPlayStore() {
+    window.open(config.app.android, '_blank')
+    dismissPopup()
+  }
+
   onMounted(() => {
     // Only add listener on desktop (screen width > 768px)
     if (window.innerWidth > 768) {
@@ -73,7 +80,16 @@
 
         <div class="flex flex-col gap-3">
           <Button class="w-full font-bold group/arrow" size="lg" @click="goToAppStore">
-            Download Free Now
+            Download on the App Store
+            <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            v-if="config.app.android"
+            class="w-full font-bold group/arrow"
+            size="lg"
+            @click="goToPlayStore"
+          >
+            Get it on Google Play
             <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
           </Button>
           <Button variant="ghost" class="w-full text-muted-foreground" @click="dismissPopup">

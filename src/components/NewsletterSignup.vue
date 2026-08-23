@@ -8,6 +8,7 @@
 
   import { AlertCircle, CheckCircle, Loader2, Mail } from 'lucide-vue-next'
   import { apiService, type NewsletterSubscriptionData } from '@/lib/api'
+  import TurnstileWidget from './TurnstileWidget.vue'
 
   interface NewsletterFormProps {
     email: string
@@ -34,6 +35,11 @@
   const successMessage = ref('')
   const isNewSubscriber = ref(true)
 
+  // Anti-spam: hidden honeypot (real users leave it blank) + Turnstile token.
+  const honeypot = ref('')
+  const turnstileToken = ref('')
+  const turnstileRef = ref<InstanceType<typeof TurnstileWidget> | null>(null)
+
   const handleSubmit = async () => {
     if (isSubmitting.value) return
 
@@ -46,7 +52,9 @@
         email: newsletterForm.email,
         name: newsletterForm.name || undefined,
         preferences: newsletterForm.preferences.length > 0 ? newsletterForm.preferences : undefined,
-        source: 'www.efficiver.com'
+        // source intentionally omitted — api.ts defaults it to config.contact.website (.env-driven)
+        honeypot: honeypot.value || undefined,
+        turnstileToken: turnstileToken.value || undefined
       }
 
       const result = await apiService.subscribeToNewsletter(formData)
@@ -67,6 +75,10 @@
       errorMessage.value = error instanceof Error ? error.message : 'An unexpected error occurred'
     } finally {
       isSubmitting.value = false
+      // Turnstile tokens are single-use — refresh for any subsequent submit.
+      honeypot.value = ''
+      turnstileToken.value = ''
+      turnstileRef.value?.reset()
     }
   }
 
@@ -143,6 +155,21 @@
             </button>
           </div>
         </div>
+
+        <!-- Honeypot: hidden from real users; bots that fill it are dropped. -->
+        <div class="hidden" aria-hidden="true">
+          <label for="newsletter-website">Website</label>
+          <input
+            id="newsletter-website"
+            v-model="honeypot"
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <TurnstileWidget ref="turnstileRef" v-model="turnstileToken" />
 
         <Alert v-if="submitStatus === 'error'" variant="destructive">
           <AlertCircle class="w-4 h-4" />

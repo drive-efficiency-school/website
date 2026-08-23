@@ -10,6 +10,9 @@ export interface ContactFormData {
   subject: string
   message: string
   source?: string
+  // Anti-spam: honeypot decoy + Cloudflare Turnstile token.
+  honeypot?: string
+  turnstileToken?: string
 }
 
 export interface NewsletterSubscriptionData {
@@ -17,6 +20,9 @@ export interface NewsletterSubscriptionData {
   name?: string
   preferences?: string[]
   source?: string
+  // Anti-spam: honeypot decoy + Cloudflare Turnstile token.
+  honeypot?: string
+  turnstileToken?: string
 }
 
 export interface ApiResponse {
@@ -62,7 +68,11 @@ class ApiService {
         throw new Error(errorData.reason || `HTTP ${response.status}: ${response.statusText}`)
       }
 
-      return await response.json()
+      // Some endpoints (e.g. POST /contact) return 201 with an empty body.
+      // Parsing "" as JSON throws ("Unexpected end of JSON input"), which
+      // would surface a false error even though the request succeeded.
+      const text = await response.text()
+      return (text ? JSON.parse(text) : {}) as T
     } catch (error) {
       console.error('API request failed:', error)
       throw error
@@ -80,7 +90,10 @@ class ApiService {
 
     if (data.phone) payload.phone = data.phone
     if (data.company) payload.company = data.company
-    if (data.source) payload.source = data.source
+    payload.source = data.source || config.contact.website || 'www.efficiver.com'
+    // Anti-spam — honeypot only when a bot filled it; token always when present.
+    if (data.honeypot) payload.honeypot = data.honeypot
+    if (data.turnstileToken) payload.turnstileToken = data.turnstileToken
 
     return this.request<ApiResponse>('/contact', {
       method: 'POST',

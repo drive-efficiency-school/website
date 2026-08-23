@@ -2,13 +2,13 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, Map, Cloud, Accessibility } from 'lucide-vue-next'
+  import { ArrowRight, BarChart3, Sparkles, Compass } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
 
   interface Flagship {
-    icon: typeof Map
+    icon: typeof BarChart3
     color: string
     title: string
     body: string
@@ -16,22 +16,22 @@
 
   const flagships: Flagship[] = [
     {
-      icon: Map,
+      icon: BarChart3,
       color: 'text-blue-600 dark:text-blue-400',
-      title: 'Live drive map',
-      body: 'A full-screen Apple Maps view that follows you smoothly as you drive. Pinch to zoom, two-finger drag to rotate. Acceleration and braking events appear as colored markers (green / orange / red) along your route — on the live map and again on the past-trip Route card. When iPhone is in Low Power Mode, the map politely pauses to save battery.'
+      title: 'One chart, your whole story',
+      body: 'Your recorded days and your forecast now live in a single interactive chart. Drag across it to scrub any day and read that exact score — past or predicted — with your average, your patterns, and the idle lever right below it.'
     },
     {
-      icon: Cloud,
-      color: 'text-orange-600 dark:text-orange-400',
-      title: 'iCloud sync',
-      body: 'Your driving sessions and the Smart Detection model now sync across your iPhones and iPad via your own private iCloud database. Sign in to iCloud on each device and Efficiver picks up where you left off. Optional and off by default.'
+      icon: Sparkles,
+      color: 'text-purple-600 dark:text-purple-400',
+      title: 'AidOps Edge, on your phone',
+      body: 'The on-device intelligence that narrates your Year Recap and Your Patterns now has a name and an honest status wherever it appears — plus a new Assistance page in Settings. On iPhone it runs on Apple Intelligence; on Android it uses a small model you download once (about 248 MB). Efficiver always computes the numbers; the model only phrases them, and it runs entirely on your phone — nothing leaves your device to generate them.'
     },
     {
-      icon: Accessibility,
+      icon: Compass,
       color: 'text-green-600 dark:text-green-400',
-      title: 'Built accessibility-first',
-      body: 'Full VoiceOver support, Dynamic Type from default through AX5, Reduce Motion respected across every animation, Reduce Transparency, Differentiate Without Color, Bold Text, and lifecycle announcements for drive start / stop / saved. Few driving apps are built this way.'
+      title: 'Insights that say where they go',
+      body: 'The Savings and Efficiency cards now show their destination — Recap, Trends, or Set Up — so a tap is never a surprise. Deeper pages share one consistent title style throughout the app.'
     }
   ]
 </script>
@@ -39,18 +39,29 @@
 <template>
   <section id="whats-new" class="container py-24 sm:py-32">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.2</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.5</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.2</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.5</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        A live drive map, iCloud sync, and a deep accessibility pass — now on the App Store.
+        A single scrubbable chart for your history and forecast, on-device AidOps Edge insights, and
+        Insights cards that tell you where they lead.
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+        <!-- Dual-platform CTAs. The version was baked into the label ("Download v1.5
+             on the App Store"), which goes stale every release AND named only one
+             store. Both are now store-named and version-free; the Badge above still
+             carries the version, in one place instead of three. -->
         <Button as-child class="w-5/6 md:w-auto font-bold group/arrow">
           <a :href="config.app.ios" target="_blank" rel="noopener">
-            Download v1.2 on the App Store
+            Download on the App Store
+            <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+          </a>
+        </Button>
+        <Button v-if="config.app.android" as-child class="w-5/6 md:w-auto font-bold group/arrow">
+          <a :href="config.app.android" target="_blank" rel="noopener">
+            Get it on Google Play
             <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
           </a>
         </Button>
@@ -86,16 +97,21 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in v1.2</span>
+        <span>More improvements in v1.5</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
-        <li>"Eco Route" is now "Efficient Route" everywhere in the app.</li>
-        <li>Per-waypoint event markers appear on the past-trip Route card in Session Detail.</li>
-        <li>Drive gauge inner circle is now visible in light mode (was effectively invisible).</li>
-        <li>Page-bullet and Stop button tap targets grown to Apple's 44pt minimum touch target.</li>
-        <li>Calibration phase-change confirmations spell out the transition before saving.</li>
-        <li>Wallet Watch Save button moved to the toolbar.</li>
+        <li>
+          Refreshing your forecast keeps the chart on screen — your recorded history stays visible
+          while the new projection is calculated.
+        </li>
+        <li>
+          Your Patterns tells you when it's being rewritten, instead of silently swapping the text
+          once it lands.
+        </li>
+        <li>
+          Joining a fleet now explains clearly when the fleet's subscription is what's blocking you.
+        </li>
       </ul>
     </details>
   </section>
