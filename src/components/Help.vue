@@ -50,7 +50,7 @@
       <h2 class="text-2xl font-semibold mb-4">How Efficiver Works</h2>
       <div class="opacity-80">
         <p>
-          Efficiver uses your iPhone's built-in sensors to track your driving and give instant
+          Efficiver uses your phone's built-in sensors to track your driving and give instant
           feedback to save fuel — entirely on-device, no OBD hardware required.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Key Features</h3>
@@ -65,10 +65,10 @@
             efficiency, updated every second.
           </li>
           <li>
-            <strong>CarPlay support (v1.3):</strong> Efficiver appears as a Driving Task on your
-            car's CarPlay screen — tap Drive to start, see your live score, distance, and time on
-            the head unit, tap Stop to save. Voice prompts route through your car's audio. Wired or
-            wireless.
+            <strong>CarPlay support (v1.3, iPhone):</strong> Efficiver appears as a Driving Task on
+            your car's CarPlay screen — tap Drive to start, see your live score, distance, and time
+            on the head unit, tap Stop to save. Voice prompts route through your car's audio. Wired
+            or wireless.
           </li>
           <li>
             <strong>Redesigned Insights tab (v1.3):</strong> Opens on an Analytics view — your real
@@ -91,9 +91,10 @@
             Efficiver Pro (coming soon).
           </li>
           <li>
-            <strong>Apple Watch companion (v1.4):</strong> Live score, mistakes, and elapsed time on
-            your wrist. Start or stop with a tap or Siri, feel a haptic buzz on every harsh accel or
-            brake, and see your last drive's score and savings on your watch face.
+            <strong>Watch companion:</strong> Live score, mistakes, and elapsed time on your wrist,
+            start or stop with a tap, and a watch-face complication — on Apple Watch (v1.4) and on
+            Wear OS. Siri start/stop and the haptic buzz on every harsh accel or brake are iPhone
+            and Apple Watch only today.
           </li>
           <li>
             <strong>More accurate savings (v1.4):</strong> Fuel and CO₂ savings are now calculated
@@ -111,9 +112,10 @@
             active. Insights are generated on your phone; nothing leaves your device.
           </li>
           <li>
-            <strong>Live drive map (v1.2):</strong> Full-screen Apple Maps view that follows you as
-            you drive. Pinch to zoom, two-finger drag to rotate. Acceleration and braking events
-            render as colored markers (green / orange / red) along your route.
+            <strong>Live drive map (v1.2):</strong> Full-screen map that follows you as you drive —
+            Apple Maps on iPhone, Google Maps on Android. Pinch to zoom, two-finger drag to rotate.
+            Acceleration and braking events render as colored markers (green / orange / red) along
+            your route.
           </li>
           <li>
             <strong>Per-waypoint event markers (v1.2):</strong> Colored markers appear on the live
@@ -140,9 +142,9 @@
             currency, per session and per month.
           </li>
           <li>
-            <strong>Accessibility (v1.2):</strong> Full VoiceOver support, Dynamic Type (default
-            through AX5), Reduce Motion, Reduce Transparency, Differentiate Without Color, Bold
-            Text, and lifecycle announcements.
+            <strong>Accessibility (v1.2):</strong> Full screen-reader support — VoiceOver on iPhone,
+            TalkBack on Android — plus larger text, reduced motion and lifecycle announcements. See
+            the Accessibility section below for exactly what each platform supports.
           </li>
           <li>
             <strong>Voice Guidance:</strong> Audio feedback in multiple languages to help you drive
@@ -200,7 +202,10 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Page 2 — Live drive map (v1.2)</h3>
         <ul class="list-disc pl-6">
-          <li>Full-screen Apple Maps view that follows you smoothly as you drive</li>
+          <li>
+            Full-screen map that follows you smoothly as you drive — Apple Maps on iPhone, Google
+            Maps on Android
+          </li>
           <li>Pinch to zoom, two-finger drag to rotate</li>
           <li>+/- and recenter buttons in the corner</li>
           <li>
@@ -221,7 +226,7 @@
           right there.
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3)</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3, iPhone)</h3>
         <p>
           With your iPhone connected to CarPlay, Efficiver appears as a Driving Task tile. Tap Drive
           to start, watch your live Efficiency Score, distance, and time on the head unit, and tap
@@ -332,7 +337,7 @@
             Mode on, the live drive map automatically pauses (v1.2).
           </dd>
 
-          <dt class="font-semibold">iCloud sync not working</dt>
+          <dt class="font-semibold">iCloud sync not working (iPhone)</dt>
           <dd>
             Ensure you're signed in to the same iCloud account on each device, and that
             <em>iCloud Drive</em> is enabled in <em>iOS Settings → [Your Name] → iCloud</em>.
@@ -360,7 +365,7 @@
           </dd>
         </dl>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3)</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">CarPlay (v1.3, iPhone)</h3>
         <dl class="space-y-4">
           <dt class="font-semibold">Efficiver doesn't appear on the CarPlay screen</dt>
           <dd>
@@ -446,11 +451,14 @@
             <strong>Prioritize Low Power:</strong> Battery-saving mode (pauses the live map in iOS
             Low Power Mode)
           </li>
-          <li><strong>Apple Maps:</strong> Enable the live drive map (increases battery usage)</li>
+          <li>
+            <strong>Apple Maps</strong> (called <strong>Google Maps</strong> on Android): Enable the
+            live drive map (increases battery usage)
+          </li>
           <li><strong>Temperature in Gauge:</strong> Show weather temperature</li>
           <li>
-            <strong>iCloud sync:</strong> Sync sessions and the Smart Detection model across your
-            devices via your private iCloud database. Off by default.
+            <strong>iCloud sync (iPhone):</strong> Sync sessions and the Smart Detection model
+            across your devices via your private iCloud database. Off by default.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Savings</h3>
@@ -548,17 +556,18 @@
       <div class="opacity-80">
         <p>
           Efficiver is designed with privacy-first principles. By default, all your driving data
-          stays on your iPhone. See the full
+          stays on your phone. See the full
           <a href="#privacy" class="underline">Privacy Policy</a> for details.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Storage</h3>
         <ul class="list-disc pl-6">
           <li>
             <strong>Local Only by default:</strong> Driving sessions, vehicle settings, and the
-            trained Smart Detection model are stored locally in SwiftData on your iPhone.
+            trained Smart Detection model are stored locally on your phone — in SwiftData on iPhone,
+            SQLite on Android.
           </li>
           <li>
-            <strong>Optional iCloud sync (v1.2):</strong> If enabled, sessions and the Smart
+            <strong>Optional iCloud sync (v1.2, iPhone):</strong> If enabled, sessions and the Smart
             Detection model sync via <em>your</em> private iCloud database. Efficiver has no access
             to it.
           </li>
@@ -586,8 +595,8 @@
           <li>Reset all settings to defaults</li>
           <li>Uninstall the app to remove all locally-stored data</li>
           <li>
-            Disable iCloud sync to stop adding new cloud-stored sessions; previously synced sessions
-            remain on whichever device created them until you delete them
+            On iPhone, disable iCloud sync to stop adding new cloud-stored sessions; previously
+            synced sessions remain on whichever device created them until you delete them
           </li>
         </ul>
       </div>
@@ -636,7 +645,8 @@
           <dt class="font-semibold">Does Efficiver require internet?</dt>
           <dd>
             No, Efficiver works completely offline using only your phone's sensors. Internet is
-            optional and only used for iCloud sync (if enabled) and weather (via Apple WeatherKit).
+            optional and only used for iCloud sync on iPhone (if enabled) and weather (Apple
+            WeatherKit on iPhone, OpenWeather on Android).
           </dd>
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
@@ -660,8 +670,8 @@
       <h2 class="text-2xl font-semibold mb-4">Updates & Roadmap</h2>
       <div class="opacity-80">
         <p>
-          We regularly update Efficiver with new features and improvements. Check the App Store for
-          updates, or read the full
+          We regularly update Efficiver with new features and improvements. Check the App Store or
+          Google Play for updates, or read the full
           <a href="#releases" class="underline">release notes</a>.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
@@ -672,19 +682,21 @@
             Assistance page in Settings, Insights cards that name their destination
           </li>
           <li>
-            <strong>v1.4 (July 2026):</strong> Apple Watch companion (live glance, Start/Stop +
-            Siri, haptics, watch-face complication), more accurate fuel &amp; CO₂ savings from your
-            actual driving physics, live drive card on CarPlay and Watch Smart Stack
+            <strong>v1.4 (July 2026, iPhone):</strong> Apple Watch companion (live glance,
+            Start/Stop + Siri, haptics, watch-face complication), more accurate fuel &amp; CO₂
+            savings from your actual driving physics, live drive card on CarPlay and Watch Smart
+            Stack. The Android app arrived later, with a Wear OS companion.
           </li>
           <li>
-            <strong>v1.3 (June 2026):</strong> CarPlay support, redesigned Insights tab (Analytics +
-            searchable Sessions), minimize the drive, Anomaly Detection, AI-powered Pattern Insights
-            and recap narrative (Apple Intelligence), smarter auto-stop, more reliable Live Activity
-            Stop
+            <strong>v1.3 (June 2026, iPhone):</strong> CarPlay support, redesigned Insights tab
+            (Analytics + searchable Sessions), minimize the drive, Anomaly Detection, AI-powered
+            Pattern Insights and recap narrative (Apple Intelligence), smarter auto-stop, more
+            reliable Live Activity Stop
           </li>
           <li>
-            <strong>v1.2 (May 2026):</strong> Live drive map with per-waypoint event markers, iCloud
-            sync across your devices, deep accessibility pass, Low Power Mode-aware map
+            <strong>v1.2 (May 2026, iPhone):</strong> Live drive map with per-waypoint event
+            markers, iCloud sync across your devices, deep accessibility pass, Low Power Mode-aware
+            map
           </li>
           <li>
             <strong>v1.1 (May 2026):</strong> Smart Detection auto-calibration, Efficient Route

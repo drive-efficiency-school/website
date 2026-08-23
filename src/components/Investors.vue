@@ -62,9 +62,10 @@
       <div class="opacity-70">
         <p>
           Offline operation limits advanced analytics, potentially impacting personalization.
-          Android development is underway; expanding to Apple Watch requires investment. Competition
-          from car manufacturer apps may challenge market share, though our offline-first approach
-          mitigates this.
+          Efficiver now ships on both iPhone and Android, each with a watch companion, so sustaining
+          feature parity across two platforms is an ongoing cost rather than a one-off build. In-car
+          surfaces remain uneven between the platforms. Competition from car manufacturer apps may
+          challenge market share, though our offline-first approach mitigates this.
         </p>
       </div>
     </section>

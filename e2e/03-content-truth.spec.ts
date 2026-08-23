@@ -34,7 +34,9 @@ test.describe('FAQ (C3, M3, M4, I11)', () => {
     // trigger is expanded. Click into the data-safety question
     // (which is C3's target — old "item-5" by audit numbering).
     await page.getByRole('button', { name: 'Is my data safe with Efficiver?' }).click()
-    const answer = page.getByText(/Your driving data stays on your iPhone/i)
+    // Matches "stays on your phone" — the answer was iPhone-only prose until the
+    // Android launch; the platform word is incidental to what C3 asserts below.
+    const answer = page.getByText(/Your driving data stays on your phone/i)
     await expect(answer).toBeVisible()
     const answerText = (await answer.textContent()) ?? ''
     expect(answerText).toMatch(/iCloud|CloudKit/)

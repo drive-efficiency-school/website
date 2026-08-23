@@ -47,7 +47,7 @@
     {
       question: 'Is my data safe with Efficiver?',
       answer:
-        "Yes. Your driving data stays on your iPhone, stored locally. iCloud sync is optional and uses your own private iCloud database — never Efficiver's servers. We don't collect, store, or sell your driving data. Privacy is built in.",
+        "Yes. Your driving data stays on your phone, stored locally — in SwiftData on iPhone and SQLite on Android. On iPhone, iCloud sync is optional and uses your own private iCloud database — never Efficiver's servers. We don't collect, store, or sell your driving data. Privacy is built in.",
       value: 'item-5'
     },
     {
