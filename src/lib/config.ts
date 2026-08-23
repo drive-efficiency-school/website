@@ -3,10 +3,10 @@ export const config = {
   // truth — bump the relevant entry when that page's CONTENT changes
   // (these are content-change dates, not build/deploy dates).
   lastUpdated: {
-    help: 'July 27, 2026',
-    privacy: 'July 29, 2026',
-    terms: 'May 27, 2026',
-    accessibility: 'June 30, 2026'
+    help: 'August 23, 2026',
+    privacy: 'August 23, 2026',
+    terms: 'August 23, 2026',
+    accessibility: 'August 23, 2026'
   },
   contact: {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'contact@efficiver.com',
