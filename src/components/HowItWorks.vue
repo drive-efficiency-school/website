@@ -18,14 +18,14 @@
       badgeTitle: 'Download',
       title: 'Download & Auto-Calibrate',
       description:
-        "Install Efficiver and run Smart Detection's one-minute calibration on first launch — Efficiver learns your engine's signature automatically. No OBD dongle, no rev-range setup.",
+        "Install Efficiver and run Smart Detection's calibration once while parked — about two minutes, a minute with the engine running and a minute with it off. It learns to tell your engine running from stopped. No OBD dongle, no rev-range setup.",
       alt: 'Download the Efficiver app on mobile'
     },
     {
       badgeTitle: 'Drive',
       title: 'Drive & Track – Offline',
       description:
-        'Track your driving efficiency offline using only your iPhone sensors. Keep Efficiver visible while you drive; logging continues when you switch to Maps or Music.',
+        "Track your driving efficiency offline using only your phone's sensors. Keep Efficiver visible while you drive; logging continues when you switch to Maps or Music.",
       alt: 'Drive and track with your phone in the car'
     },
     {

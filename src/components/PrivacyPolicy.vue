@@ -30,7 +30,9 @@
           </li>
           <li>
             On iPhone, iCloud sync is optional and uses <em>your</em> private iCloud database —
-            never our servers. The Android app has no cloud sync; your data stays on your phone.
+            never our servers. On Android, Efficiver does not sync to our servers either; if you
+            leave Android's own backup switched on, your drives and settings are backed up to
+            <em>your</em> Google account so a replacement phone can restore them.
           </li>
           <li>
             To show weather and plan efficient routes, the app sends your location to weather and
@@ -64,7 +66,8 @@
           </li>
           <li>
             <strong>Smart Detection model</strong> is trained entirely on your iPhone using Apple's
-            machine-learning frameworks. The model never leaves your device.
+            machine-learning frameworks, and is never sent to Efficiver. If you switch on iCloud
+            sync, it syncs through <em>your</em> private iCloud database (below).
           </li>
           <li>
             <strong>Vehicle settings</strong> (fuel type, engine size, transmission) are stored
@@ -122,8 +125,9 @@
             fleet (section 3).
           </li>
           <li>
-            <strong>Smart Detection model</strong> is trained entirely on your phone. The model
-            never leaves your device.
+            <strong>Smart Detection model</strong> is trained entirely on your phone and is never
+            sent to Efficiver. It is included in your Google account backup (below), so a
+            replacement phone keeps your calibration.
           </li>
           <li>
             <strong>Vehicle settings</strong> (fuel type, engine size, transmission) are stored
@@ -160,11 +164,23 @@
           </li>
         </ul>
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">No cloud sync</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-2">Backup to your Google account</h3>
         <p>
-          The Android app does not sync to any cloud service. All of your data stays on your phone
-          until you delete it in the app or uninstall — unless you have joined a fleet, in which
-          case on-duty drives are uploaded to that fleet (section 3).
+          Efficiver runs no cloud sync of its own on Android — there is no Efficiver server holding
+          your drives, and nothing is uploaded to us. The one exception is a fleet: if you have
+          joined one, on-duty drives are uploaded to that fleet (section 3).
+        </p>
+        <p class="mt-2">
+          Android itself, however, does back the app up if you have device backup switched on. That
+          is a Google feature, it goes to <em>your</em> Google account, and Efficiver cannot read
+          it. We deliberately include your drive history, your settings and your Smart Detection
+          calibration so that losing or replacing your phone does not lose your data. Verbose logs
+          and the recomputable forecast cache are excluded.
+        </p>
+        <p class="mt-2">
+          To turn it off, use Android's own setting — typically
+          <em>Settings → Google → Backup</em>, or the per-app control your device provides. Turning
+          it off stops future backups; it does not delete a backup already taken.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">What the Android app does NOT collect</h3>
@@ -240,7 +256,7 @@
             during a drive.
           </li>
           <li>Your contacts, messages, photos, or anything unrelated to the drive itself.</li>
-          <li>Your Smart Detection model, which never leaves your device.</li>
+          <li>Your Smart Detection model, which is never shared with your fleet.</li>
         </ul>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">Who controls that data</h3>
@@ -345,8 +361,9 @@
           <li>Uninstall the app to remove all locally-stored data from your device.</li>
           <li>
             On iPhone, disable iCloud sync to stop new cloud-stored sessions; previously-synced
-            sessions remain on whichever device created them until you delete them. (The Android app
-            has no cloud sync.)
+            sessions remain on whichever device created them until you delete them. On Android, turn
+            off device backup in Android's settings to stop future backups, and delete the existing
+            app backup from your Google account to remove what has already been saved.
           </li>
           <li>
             <strong>Leave a fleet</strong> at any time from the fleet screen in Settings, which

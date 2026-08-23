@@ -13,7 +13,9 @@ import { test, expect } from '@playwright/test'
  *         badges that don't ship.
  *   - H6: HowItWorks step 1 reflects Smart Detection auto-calibration.
  *   - M3: Fuel-savings claim softened in FAQ.
- *   - M4: Android timeline honest (not "coming soon").
+ *   - M4: Android timeline honest (not "coming soon"). Since 2026-08-23
+ *         Android is LAUNCHED — the contract flipped from "not yet
+ *         available" to "available, with its device requirement stated".
  *   - I11: No Enterprise references in FAQ / Contact (Pricing is
  *          DEFERRED per user 2026-05-25 and is explicitly skipped).
  */
@@ -32,7 +34,9 @@ test.describe('FAQ (C3, M3, M4, I11)', () => {
     // trigger is expanded. Click into the data-safety question
     // (which is C3's target — old "item-5" by audit numbering).
     await page.getByRole('button', { name: 'Is my data safe with Efficiver?' }).click()
-    const answer = page.getByText(/Your driving data stays on your iPhone/i)
+    // Matches "stays on your phone" — the answer was iPhone-only prose until the
+    // Android launch; the platform word is incidental to what C3 asserts below.
+    const answer = page.getByText(/Your driving data stays on your phone/i)
     await expect(answer).toBeVisible()
     const answerText = (await answer.textContent()) ?? ''
     expect(answerText).toMatch(/iCloud|CloudKit/)
@@ -49,28 +53,64 @@ test.describe('FAQ (C3, M3, M4, I11)', () => {
     expect(faq).not.toMatch(/Android version is coming soon/i)
   })
 
-  test('FAQ + Footer mention Android is in active development (not "coming soon")', async ({
+  test('FAQ + Footer present Android as AVAILABLE (Play production access 2026-08-23)', async ({
     page
   }) => {
-    // Android port kickoff 2026-06-08 — copy on the site must now
-    // surface Android as in-progress (was "iOS-only; no Android
-    // timeline" through v1.2). The phrase "coming soon" stays banned
-    // by the M4 test above; this test locks the new contract.
+    // CONTRACT FLIP. Until 2026-08-23 this test asserted the opposite — that
+    // Android was listed but NOT presented as available, enforced via the
+    // footer's "(soon)" chip. Google Play granted production access on that
+    // date, so the hedge became the inaccuracy this suite exists to prevent.
     //
-    // FAQ uses an accordion — the device-compatibility answer is not
-    // in the DOM until its question is clicked. Match the existing
-    // pattern below (the GPS-precondition test does the same).
+    // The ban on "coming soon" (M4 above) is unchanged and still applies: the
+    // site may never use that phrase in either direction.
+    //
+    // FAQ uses an accordion — the device-compatibility answer is not in the
+    // DOM until its question is clicked. Match the existing pattern below
+    // (the GPS-precondition test does the same).
     await page.getByRole('button', { name: 'Which devices are compatible with Efficiver?' }).click()
-    const answer = page.getByText(/An Android port is in active development/i)
+    const answer = page.getByText(/available on Google Play/i)
     await expect(answer).toBeVisible()
 
-    // The FAQ (above) carries the prose commitment. The footer's Platforms
-    // column — introduced in v1.4 — is a compact list, so it marks Android
-    // with a "(soon)" chip rather than a sentence; asserting development
-    // PROSE there stopped matching the shipped design. What must stay true is
-    // that Android is listed but NOT presented as already available.
+    // The device requirement is a real gate (minSdk 31 + arm64-v8a only, which
+    // is why 5 of 36 closed testers could not install). Stating it here keeps
+    // the FAQ from implying every Android phone qualifies.
+    const answerText = (await answer.textContent()) ?? ''
+    expect(answerText).toMatch(/Android 12/i)
+    expect(answerText).toMatch(/64-bit/i)
+
+    // The hedge must be gone from the footer's Platforms column, and Android
+    // must be a real link rather than a disabled span.
     const footerTxt = (await page.locator('footer').textContent()) ?? ''
-    expect(footerTxt).toMatch(/Android\s*\(soon\)/i)
+    expect(footerTxt).not.toMatch(/Android\s*\(soon\)/i)
+    await expect(page.locator('footer a[href*="play.google.com"]').first()).toBeVisible()
+  })
+
+  test('Hero offers both store CTAs, neither generic (dual-platform launch)', async ({ page }) => {
+    // With two stores live, "Download Now" no longer tells a visitor which one
+    // they are getting. Both CTAs must name their store.
+    const hero = page.locator('section').first()
+    await expect(hero.getByRole('link', { name: /Download on the App Store/i })).toBeVisible()
+    await expect(hero.getByRole('link', { name: /Get it on Google Play/i })).toBeVisible()
+  })
+
+  test('Hero biometric claim is platform-neutral (Face ID is iOS-only)', async ({ page }) => {
+    const hero = (await page.locator('section').first().textContent()) ?? ''
+    expect(hero).toMatch(/Biometric Secured/i)
+    expect(hero).not.toMatch(/FaceID Secured/i)
+  })
+
+  test('site NEVER claims Android Auto — Google rejected the category', async ({ page }) => {
+    // Google Play ruled a phone-sensor driving dashboard outside the Car App
+    // Library's permitted categories; the Android Auto surface was removed in
+    // vCode 48 (2026-07-27) and the car code ships dormant. An appeal may be
+    // filed later, but until it SUCCEEDS the site must not advertise it — not as
+    // available, and not as "coming soon" either.
+    //
+    // This guard exists because the dual-platform launch is exactly when someone
+    // would reasonably pattern-match "CarPlay → Android Auto" and add it back.
+    // CarPlay (iOS) is unaffected and legitimately shipped.
+    const body = (await page.locator('body').textContent()) ?? ''
+    expect(body).not.toMatch(/Android Auto/i)
   })
 
   test('FAQ does NOT promise unshipped Enterprise plan (I11)', async ({ page }) => {
@@ -228,10 +268,22 @@ test.describe('Accessibility page (iOS scope)', () => {
     expect(body).toMatch(/brand title font does not bold/i)
   })
 
-  test('does NOT claim Android support yet (iOS-only scope)', async ({ page }) => {
+  test('covers Android accessibility, scoped to what actually ships', async ({ page }) => {
+    // CONTRACT FLIP (2026-08-23). This previously asserted the page must NOT
+    // mention Android — correct while the Android app was unreleased, since
+    // claiming support for an unshipped app would have been the over-claim.
+    // Android is now live, and an accessibility page that reads "Supported on
+    // iPhone" tells an Android user with access needs that they are unsupported.
     const body = (await page.locator('body').textContent()) ?? ''
-    expect(body).not.toMatch(/TalkBack/i)
-    expect(body).not.toMatch(/Android Settings/i)
+    expect(body).toMatch(/Supported on Android/i)
+    expect(body).toMatch(/TalkBack/i)
+
+    // Only VERIFIED capabilities may be claimed. Voice Control, Reduce
+    // Transparency and Bold Text are iOS platform features with no Android
+    // equivalent in the app, and Differentiate Without Color ships on iPhone
+    // only — all three are disclosed as limitations rather than claimed.
+    expect(body).toMatch(/Known limitations/i)
+    expect(body).toMatch(/Differentiate Without Color.{0,80}not yet on\s*Android/is)
   })
 })
 
@@ -240,10 +292,18 @@ test.describe('HowItWorks (H6)', () => {
     await page.goto('/')
   })
 
-  test('step 1 describes Smart Detection auto-calibration, not manual', async ({ page }) => {
+  test('step 1 names Smart Detection and describes the real calibration', async ({ page }) => {
+    // Renamed 2026-08-23. The old name — "auto-calibration, not manual" — encoded
+    // a belief the app never matched (playbook A2): calibration is a ONE-TIME,
+    // MANUAL step you run while parked (~2 min: engine on, then off, then ~10s of
+    // training), not something that happens automatically over the first few
+    // drives. The assertion below is unchanged and still passes on "Smart
+    // Detection"; only the name and this note were wrong.
     const body = (await page.locator('body').textContent()) ?? ''
-    expect(body).toMatch(/Smart Detection|auto[- ]?calibrat|automatic/i)
+    expect(body).toMatch(/Smart Detection/i)
     expect(body).not.toMatch(/select your engine type \(Petrol, Diesel and EV\)/i)
+    // The old "calibrates during the first few drives" claim must not return.
+    expect(body).not.toMatch(/calibrates.{0,40}first few drives/i)
   })
 })
 

@@ -53,7 +53,7 @@
             <BarChart3 class="size-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">One chart, your whole story</h3>
+            <h4 class="font-semibold text-lg mb-1">One chart, your whole story</h4>
             <p class="text-muted-foreground">
               Trends used to show your recorded days and your forecast as separate cards. They're
               now a single continuous chart: your observed daily scores flow into your projection,
@@ -69,7 +69,7 @@
             <Sparkles class="size-5 text-purple-600 dark:text-purple-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">AidOps Edge, on your phone</h3>
+            <h4 class="font-semibold text-lg mb-1">AidOps Edge, on your phone</h4>
             <p class="text-muted-foreground">
               The on-device intelligence that narrates your Year Recap and Your Patterns is now
               called AidOps Edge, and it tells you its state wherever it appears — active, off, or
@@ -86,7 +86,7 @@
             <Compass class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg mb-1">Insights that say where they go</h3>
+            <h4 class="font-semibold text-lg mb-1">Insights that say where they go</h4>
             <p class="text-muted-foreground">
               The Savings and Efficiency cards on Insights now name their destination — Recap,
               Trends, or Set Up — so tapping one is never a surprise. Deeper pages across the app
@@ -96,7 +96,7 @@
         </div>
 
         <div>
-          <h3 class="font-semibold text-lg mb-2">Smaller improvements</h3>
+          <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
             <li>
               Refreshing your forecast keeps the chart on screen — your recorded history stays
@@ -122,7 +122,7 @@
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
               <CardTitle class="text-xl"
-                >v1.4 — Apple Watch companion, more accurate savings</CardTitle
+                >v1.4 (iPhone) — Apple Watch companion, more accurate savings</CardTitle
               >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">July 2026</span>
@@ -138,7 +138,8 @@
           <p class="text-muted-foreground">
             v1.4 brings Efficiver to your wrist with a full Apple Watch companion, makes your fuel
             and CO₂ savings more accurate by calculating them from your actual driving physics, and
-            puts your live drive card on CarPlay and your Watch's Smart Stack.
+            puts your live drive card on CarPlay and your Watch's Smart Stack. (This release
+            predates the Android app — Wear OS arrived with the Android release.)
           </p>
 
           <div class="flex gap-4 items-start">
@@ -146,7 +147,7 @@
               <Watch class="size-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <h3 class="font-semibold text-lg mb-1">Apple Watch companion</h3>
+              <h4 class="font-semibold text-lg mb-1">Apple Watch companion (iPhone)</h4>
               <p class="text-muted-foreground">
                 Your drive on your wrist — Efficiver's first watchOS companion. See your live score,
                 accel and braking mistakes, and elapsed time at a glance; start or stop a drive with
@@ -163,7 +164,7 @@
               <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h3 class="font-semibold text-lg mb-1">More accurate savings</h3>
+              <h4 class="font-semibold text-lg mb-1">More accurate savings</h4>
               <p class="text-muted-foreground">
                 Fuel and CO₂ savings are now calculated from your actual speed, acceleration, and
                 road grade for every second of the drive — not derived from your Efficiency Score.
@@ -178,17 +179,17 @@
               <Layers class="size-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <h3 class="font-semibold text-lg mb-1">Your drive card, everywhere</h3>
+              <h4 class="font-semibold text-lg mb-1">Your drive card, everywhere</h4>
               <p class="text-muted-foreground">
-                The Live Activity card that shows your drive on the Lock Screen now also appears on
-                your car's CarPlay screen and your Apple Watch's Smart Stack — the same live score
-                and a Stop button, wherever you glance.
+                On iPhone, the Live Activity card that shows your drive on the Lock Screen now also
+                appears on your car's CarPlay screen and your Apple Watch's Smart Stack — the same
+                live score and a Stop button, wherever you glance.
               </p>
             </div>
           </div>
 
           <div>
-            <h3 class="font-semibold text-lg mb-2">Smaller improvements</h3>
+            <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
             <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>
                 Gear Shift Speed rows in Settings now show the true range for each gear, instead of
@@ -198,7 +199,7 @@
                 Auto-Track Drive starts more reliably, with clearer handling of the Always-location
                 permission it needs.
               </li>
-              <li>Sharper, higher-contrast live drive card on CarPlay and Apple Watch.</li>
+              <li>Sharper, higher-contrast live drive card on iPhone, CarPlay and Apple Watch.</li>
             </ul>
           </div>
         </CardContent>
@@ -212,7 +213,7 @@
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
               <CardTitle class="text-xl"
-                >v1.3 — CarPlay, redesigned Insights, minimizable drive</CardTitle
+                >v1.3 (iPhone) — CarPlay, redesigned Insights, minimizable drive</CardTitle
               >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">June 2026</span>
@@ -230,7 +231,7 @@
               <Car class="size-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">CarPlay support</h3>
+              <h4 class="font-semibold mb-1">CarPlay support</h4>
               <p class="text-muted-foreground">
                 Drive with your phone in your pocket. Efficiver appears as a Driving Task on your
                 car's CarPlay screen — tap Drive to start tracking, see your live score, distance,
@@ -245,7 +246,7 @@
               <BarChart3 class="size-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Redesigned Insights tab</h3>
+              <h4 class="font-semibold mb-1">Redesigned Insights tab</h4>
               <p class="text-muted-foreground">
                 The Insights tab opens on an Analytics view that puts your savings and efficiency
                 front and centre — your real savings so far this year, your CO₂ impact, and your
@@ -261,7 +262,7 @@
               <Minimize2 class="size-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Minimize the drive</h3>
+              <h4 class="font-semibold mb-1">Minimize the drive</h4>
               <p class="text-muted-foreground">
                 Swipe the drive screen down and it shrinks to a live mini-bar instead of ending the
                 drive — your score and distance stay one tap away while you change a setting or open
@@ -272,7 +273,7 @@
           </div>
 
           <div>
-            <h3 class="font-semibold mb-2">Smaller improvements</h3>
+            <h4 class="font-semibold mb-2">Smaller improvements</h4>
             <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>Search your past drives by name or date from the Sessions list.</li>
               <li>Anomaly Detection flags drives that fall outside your usual pattern.</li>
@@ -306,7 +307,7 @@
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
               <CardTitle class="text-xl"
-                >v1.2 — Live drive map, iCloud sync, accessibility</CardTitle
+                >v1.2 (iPhone) — Live drive map, iCloud sync, accessibility</CardTitle
               >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">May 2026</span>
@@ -324,7 +325,7 @@
               <Map class="size-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Live drive map</h3>
+              <h4 class="font-semibold mb-1">Live drive map</h4>
               <p class="text-muted-foreground">
                 A full-screen Apple Maps view that follows you smoothly as you drive. Pinch to zoom,
                 two-finger drag to rotate. Acceleration and braking events render as colored markers
@@ -340,7 +341,7 @@
               <Cloud class="size-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">iCloud sync</h3>
+              <h4 class="font-semibold mb-1">iCloud sync</h4>
               <p class="text-muted-foreground">
                 Your driving sessions and the Smart Detection model now sync across your iPhones and
                 iPad via your own private iCloud database. Sign in to iCloud on each device and
@@ -355,17 +356,19 @@
               <Accessibility class="size-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Built accessibility-first</h3>
+              <h4 class="font-semibold mb-1">Built accessibility-first</h4>
               <p class="text-muted-foreground">
-                Full VoiceOver support, Dynamic Type from default through AX5, Reduce Motion across
-                every animation, Reduce Transparency, Differentiate Without Color, Bold Text, and
-                lifecycle announcements for drive started / stopped / saved. Drive your way.
+                On iPhone: full VoiceOver support, Dynamic Type from default through AX5, Reduce
+                Motion across every animation, Reduce Transparency, Differentiate Without Color,
+                Bold Text, and lifecycle announcements for drive started / stopped / saved. Drive
+                your way. (This release predates the Android app — see the
+                <strong>Accessibility</strong> page for what each platform supports today.)
               </p>
             </div>
           </div>
 
           <div>
-            <h3 class="font-semibold mb-2">Smaller improvements</h3>
+            <h4 class="font-semibold mb-2">Smaller improvements</h4>
             <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>"Eco Route" is now "Efficient Route" everywhere in the app.</li>
               <li>
@@ -389,7 +392,7 @@
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
               <CardTitle class="text-xl"
-                >v1.1 — Smart Detection, Efficient Route, Wallet Watch</CardTitle
+                >v1.1 (iPhone) — Smart Detection, Efficient Route, Wallet Watch</CardTitle
               >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">May 2026</span>
@@ -407,7 +410,7 @@
               <BrainCircuit class="size-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Smart Detection</h3>
+              <h4 class="font-semibold mb-1">Smart Detection</h4>
               <p class="text-muted-foreground">
                 Efficiver learns your car on its own. No more rev-range setup — tap
                 <em>Calibrate Smart Detection</em> on first launch (about a minute) and acceleration
@@ -421,7 +424,7 @@
               <Leaf class="size-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Efficient Route</h3>
+              <h4 class="font-semibold mb-1">Efficient Route</h4>
               <p class="text-muted-foreground">
                 Plan an efficient route inside Efficiver and open it in Apple or Google Maps for
                 turn-by-turn directions. Efficiver quietly logs the drive for you and saves it when
@@ -435,7 +438,7 @@
               <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h3 class="font-semibold mb-1">Wallet Watch</h3>
+              <h4 class="font-semibold mb-1">Wallet Watch</h4>
               <p class="text-muted-foreground">
                 See how much money and CO₂ you saved on every drive, in your local currency (₹, $,
                 £, and more). Set your fuel price and baseline consumption in
@@ -444,7 +447,7 @@
             </div>
           </div>
           <div>
-            <h3 class="font-semibold mb-2">Smaller improvements</h3>
+            <h4 class="font-semibold mb-2">Smaller improvements</h4>
             <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>Rename a session straight from the in-drive top bar.</li>
               <li>Add notes to any session, up to 255 characters.</li>
@@ -465,7 +468,9 @@
         <Card class="hover:border-primary/40 transition-colors">
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
-              <CardTitle class="text-xl">v1.0.1 — Notifications, privacy & app size</CardTitle>
+              <CardTitle class="text-xl"
+                >v1.0.1 (iPhone) — Notifications, privacy & app size</CardTitle
+              >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">April 2026</span>
                 <Plus class="size-5 text-muted-foreground group-open:hidden" />
@@ -478,21 +483,21 @@
       <Card class="mt-2 ml-2 border-l-2 border-l-primary/30">
         <CardContent class="pt-6 space-y-4">
           <div>
-            <h3 class="font-semibold mb-1">🔔 Notifications</h3>
+            <h4 class="font-semibold mb-1">🔔 Notifications</h4>
             <p class="text-muted-foreground">
               Auto-detection alerts (drive started/stopped) no longer pile up in Notification Center
               across multiple drives — newer alerts now replace older ones of the same type.
             </p>
           </div>
           <div>
-            <h3 class="font-semibold mb-1">🛡️ Privacy & permissions</h3>
+            <h4 class="font-semibold mb-1">🛡️ Privacy & permissions</h4>
             <p class="text-muted-foreground">
               Clearer permission prompt for motion sensors, explaining how Efficiver detects when
               your engine is running.
             </p>
           </div>
           <div>
-            <h3 class="font-semibold mb-1">📦 App size</h3>
+            <h4 class="font-semibold mb-1">📦 App size</h4>
             <p class="text-muted-foreground">
               Optimized internal code for a smaller, more efficient app.
             </p>
@@ -507,7 +512,7 @@
         <Card class="hover:border-primary/40 transition-colors">
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
-              <CardTitle class="text-xl">v1.0 — Initial release</CardTitle>
+              <CardTitle class="text-xl">v1.0 (iPhone) — Initial release</CardTitle>
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">Q1 2026</span>
                 <Plus class="size-5 text-muted-foreground group-open:hidden" />
@@ -529,10 +534,19 @@
       </Card>
     </details>
 
-    <div class="mt-12 text-center">
+    <!-- Both stores since 2026-08-23. "Download the latest version" pointed only at
+         the App Store, which read as iOS-only on a page that lists the shared
+         release history. -->
+    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-3">
       <Button as-child variant="default">
         <a :href="config.app.ios" target="_blank" rel="noopener">
-          Download the latest version
+          Download on the App Store
+          <ExternalLinkIcon class="size-4 ml-2" />
+        </a>
+      </Button>
+      <Button v-if="config.app.android" as-child variant="default">
+        <a :href="config.app.android" target="_blank" rel="noopener">
+          Get it on Google Play
           <ExternalLinkIcon class="size-4 ml-2" />
         </a>
       </Button>

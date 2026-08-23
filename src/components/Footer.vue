@@ -5,7 +5,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.25 (26082001)'
+  const version = 'v1.3.25 (26082316)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -84,18 +84,16 @@
                Android Auto surface (Google Play ruled a phone-sensor driving dashboard
                outside the Car App Library's permitted categories), so advertising it as
                "(soon)" would be untrue. CarPlay above is unaffected and stays. -->
+          <!-- Wear OS ships INSIDE the Android app (Play delivers the wear build from the
+               same listing — there is no separate store URL, which is why
+               VITE_ANDROID_WATCH_LINK is empty and always has been). Gating on that empty
+               var rendered "Wear OS (soon)" for a companion that has shipped since
+               vCode 10042, while Apple Watch directly above renders as available with no
+               gate at all. Same treatment for both now. -->
           <div>
-            <a
-              v-if="config.app.watch.android"
-              :href="config.app.watch.android"
-              target="_blank"
-              class="opacity-60 hover:opacity-100"
-            >
+            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
               Wear OS
             </a>
-            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
-              Wear OS <span class="text-[10px]">(soon)</span>
-            </span>
           </div>
         </div>
 

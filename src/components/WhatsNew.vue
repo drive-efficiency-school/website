@@ -25,7 +25,7 @@
       icon: Sparkles,
       color: 'text-purple-600 dark:text-purple-400',
       title: 'AidOps Edge, on your phone',
-      body: 'The on-device intelligence that narrates your Year Recap and Your Patterns now has a name and an honest status wherever it appears — plus a new Assistance page in Settings showing whether Apple Intelligence is active. Insights are generated on your phone; nothing leaves your device.'
+      body: 'The on-device intelligence that narrates your Year Recap and Your Patterns now has a name and an honest status wherever it appears — plus a new Assistance page in Settings. On iPhone it runs on Apple Intelligence; on Android it uses a small model you download once (about 248 MB). Efficiver always computes the numbers; the model only phrases them, and it runs entirely on your phone — nothing leaves your device to generate them.'
     },
     {
       icon: Compass,
@@ -49,9 +49,19 @@
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+        <!-- Dual-platform CTAs. The version was baked into the label ("Download v1.5
+             on the App Store"), which goes stale every release AND named only one
+             store. Both are now store-named and version-free; the Badge above still
+             carries the version, in one place instead of three. -->
         <Button as-child class="w-5/6 md:w-auto font-bold group/arrow">
           <a :href="config.app.ios" target="_blank" rel="noopener">
-            Download v1.5 on the App Store
+            Download on the App Store
+            <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+          </a>
+        </Button>
+        <Button v-if="config.app.android" as-child class="w-5/6 md:w-auto font-bold group/arrow">
+          <a :href="config.app.android" target="_blank" rel="noopener">
+            Get it on Google Play
             <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
           </a>
         </Button>

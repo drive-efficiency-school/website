@@ -3,10 +3,10 @@ export const config = {
   // truth — bump the relevant entry when that page's CONTENT changes
   // (these are content-change dates, not build/deploy dates).
   lastUpdated: {
-    help: 'July 27, 2026',
-    privacy: 'July 29, 2026',
-    terms: 'May 27, 2026',
-    accessibility: 'June 30, 2026'
+    help: 'August 23, 2026',
+    privacy: 'August 23, 2026',
+    terms: 'August 23, 2026',
+    accessibility: 'August 23, 2026'
   },
   contact: {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'contact@efficiver.com',
@@ -24,7 +24,12 @@ export const config = {
   },
   app: {
     ios: import.meta.env.VITE_APP_STORE_LINK || 'https://apps.apple.com/app/efficiver/id6754255974',
-    android: import.meta.env.VITE_PLAY_STORE_LINK || '',
+    // Google Play production access granted 2026-08-23 — the listing is live, so the
+    // link defaults on. Every Android surface on the site is gated on this being
+    // non-empty, which is what kept "(soon)" honest until now.
+    android:
+      import.meta.env.VITE_PLAY_STORE_LINK ||
+      'https://play.google.com/store/apps/details?id=school.efficiency.drive.efficiver',
     // Retained (unused) 2026-07-27: the Android app no longer ships an Android
     // Auto surface — Google Play ruled a phone-sensor driving dashboard outside
     // the Car App Library's permitted categories, so the footer entry was
