@@ -28,6 +28,14 @@ async function openFeaturesDropdown(wrapper: VueWrapper) {
   await settle()
 }
 
+// Not `.at(-1)` - the project's configured TS lib target predates ES2022, so
+// Array.prototype.at fails the real type-check (vue-tsc) even though vitest's
+// own transpile lets it through unnoticed.
+function lastEmittedNavigate(wrapper: VueWrapper): unknown[] {
+  const events = wrapper.emitted('navigate')!
+  return events[events.length - 1]
+}
+
 describe('Navbar', () => {
   beforeEach(() => {
     localStorage.clear()
@@ -59,7 +67,7 @@ describe('Navbar', () => {
       const help = document.body.querySelectorAll('a[href="#help"]')[0] as HTMLElement
       help.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['help'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['help'])
     })
 
     it('falls back to "main" for an item with no nav target', async () => {
@@ -67,7 +75,7 @@ describe('Navbar', () => {
       const faq = document.body.querySelectorAll('a[href="#faq"]')[0] as HTMLElement
       faq.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
     })
   })
 
@@ -88,7 +96,7 @@ describe('Navbar', () => {
       )[0] as HTMLElement
       item.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
     })
   })
 
@@ -108,12 +116,12 @@ describe('Navbar', () => {
       const logos = document.body.querySelectorAll('a[href="/#"]')
       ;(logos[1] as HTMLElement).dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
 
       const features = document.body.querySelector('a[href="#features"]') as HTMLElement
       features.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
     })
 
     it('routes its own copy of an explicit-nav item to that target', async () => {
@@ -122,7 +130,7 @@ describe('Navbar', () => {
       const help = document.body.querySelectorAll('a[href="#help"]')[1] as HTMLElement
       help.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['help'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['help'])
     })
 
     it('falls back to main for its own copy of a no-nav item', async () => {
@@ -131,7 +139,7 @@ describe('Navbar', () => {
       const whatsNew = document.body.querySelectorAll('a[href="#whats-new"]')[1] as HTMLElement
       whatsNew.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
     })
 
     it('routes the external Dashboard entry to coming-soon and prevents the default link navigation', async () => {
@@ -143,7 +151,7 @@ describe('Navbar', () => {
       const event = new MouseEvent('click', { bubbles: true, cancelable: true })
       dashboard.dispatchEvent(event)
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['coming-soon'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['coming-soon'])
       expect(event.defaultPrevented).toBe(true)
     })
 
@@ -161,7 +169,7 @@ describe('Navbar', () => {
       const event = new MouseEvent('click', { bubbles: true, cancelable: true })
       button.dispatchEvent(event)
       await wrapper.vm.$nextTick()
-      expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['coming-soon'])
+      expect(lastEmittedNavigate(wrapper)).toEqual(['coming-soon'])
       expect(event.defaultPrevented).toBe(true)
     })
   })

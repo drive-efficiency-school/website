@@ -167,6 +167,26 @@ describe('ExitIntentPopup', () => {
     wrapper.unmount()
   })
 
+  it("closes on Escape, but does NOT persist a dismissal - the sheet's own close path, not the button", async () => {
+    // Distinct from dismissPopup(): Escape drives radix's v-model:open from
+    // the OTHER direction (the Sheet emitting update:open back to the
+    // parent), not our own button handler. A reader who backs out with
+    // Escape has not said "don't show me this again" the way clicking
+    // "No thanks" does, so it must not write the localStorage flag.
+    const wrapper = mount(ExitIntentPopup, { attachTo: document.body })
+    leaveThroughTop()
+    await wrapper.vm.$nextTick()
+    expect(document.body.textContent).toContain('before you go')
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+    await wrapper.vm.$nextTick()
+    await settle()
+
+    expect(document.body.textContent).not.toContain('before you go')
+    expect(localStorage.getItem('exitPopupDismissed')).toBeNull()
+    wrapper.unmount()
+  })
+
   it('detaches its document listener on unmount', () => {
     const add = vi.spyOn(document, 'addEventListener')
     const remove = vi.spyOn(document, 'removeEventListener')

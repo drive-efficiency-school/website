@@ -21,6 +21,14 @@ function linkTexts(wrapper: ReturnType<typeof mount>) {
   return wrapper.findAll('a').map((a) => a.text())
 }
 
+// Not `.at(-1)` - the project's configured TS lib target predates ES2022, so
+// Array.prototype.at fails the real type-check (vue-tsc) even though vitest's
+// own transpile lets it through unnoticed.
+function lastEmittedNavigate(wrapper: ReturnType<typeof mount>): unknown[] {
+  const events = wrapper.emitted('navigate')!
+  return events[events.length - 1]
+}
+
 describe('Footer', () => {
   beforeEach(() => {
     config.contact.phone = ''
@@ -123,7 +131,7 @@ describe('Footer', () => {
       for (const [href, target] of Object.entries(targets)) {
         const link = wrapper.get(`a[href="${href}"]`)
         await link.trigger('click')
-        expect(wrapper.emitted('navigate')!.at(-1)).toEqual([target])
+        expect(lastEmittedNavigate(wrapper)).toEqual([target])
       }
     })
 
@@ -133,7 +141,17 @@ describe('Footer', () => {
       for (const label of staticLabels) {
         const link = wrapper.findAll('a').find((a) => a.text().trim() === label)!
         await link.trigger('click')
-        expect(wrapper.emitted('navigate')!.at(-1)).toEqual(['main'])
+        expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
+      }
+    })
+
+    it('routes Contact Us, FAQ, Newsletter and Feedback all back to main', async () => {
+      const wrapper = mount(Footer)
+      const labels = ['Contact Us', 'FAQ', 'Newsletter', 'Feedback']
+      for (const label of labels) {
+        const link = wrapper.findAll('a').find((a) => a.text().trim() === label)!
+        await link.trigger('click')
+        expect(lastEmittedNavigate(wrapper)).toEqual(['main'])
       }
     })
   })

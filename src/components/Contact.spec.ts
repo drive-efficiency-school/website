@@ -11,7 +11,7 @@ import Contact from './Contact.vue'
 const turnstileReset = vi.fn()
 const TurnstileWidgetStub = defineComponent({
   name: 'TurnstileWidget',
-  props: ['modelValue'],
+  props: { modelValue: { type: String, default: '' } },
   emits: ['update:modelValue'],
   setup(_props, { expose }) {
     expose({ reset: turnstileReset })
@@ -50,6 +50,30 @@ describe('Contact', () => {
   beforeEach(() => {
     mockSubmit.mockReset()
     turnstileReset.mockClear()
+  })
+
+  it('submits a subject the reader picks, not just the default', async () => {
+    // The Select needs a keyboard open (a plain click on the trigger doesn't
+    // open radix-vue's listbox in this environment) and a pointerup on the
+    // option to commit it - confirmed empirically before writing this.
+    mockSubmit.mockResolvedValue({ message: 'ok' } satisfies ApiResponse)
+    const wrapper = mountForm()
+    document.body.appendChild(wrapper.element)
+    await fill(wrapper, { firstName: 'Alex', email: 'alex@example.test' })
+
+    const trigger = wrapper.get('#subject')
+    await trigger.trigger('keydown', { key: 'Enter' })
+    await new Promise((resolve) => setTimeout(resolve, 20))
+    const option = Array.from(document.body.querySelectorAll('[role="option"]')).find(
+      (el) => el.textContent?.trim() === 'Technical Support'
+    ) as HTMLElement
+    option.dispatchEvent(new PointerEvent('pointerup', { bubbles: true }))
+    await wrapper.vm.$nextTick()
+
+    await submit(wrapper)
+    expect(mockSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({ subject: 'Technical Support' })
+    )
   })
 
   it('defaults the subject to General Inquiry', async () => {

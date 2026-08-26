@@ -15,7 +15,7 @@ import NewsletterSignup from './NewsletterSignup.vue'
 const turnstileReset = vi.fn()
 const TurnstileWidgetStub = defineComponent({
   name: 'TurnstileWidget',
-  props: ['modelValue'],
+  props: { modelValue: { type: String, default: '' } },
   emits: ['update:modelValue'],
   setup(_props, { expose }) {
     expose({ reset: turnstileReset })
