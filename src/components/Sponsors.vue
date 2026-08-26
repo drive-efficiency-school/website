@@ -1,6 +1,10 @@
 <script setup lang="ts">
   import Marquee from '@selemondev/vue3-marquee'
-  import '@selemondev/vue3-marquee/dist/style.css'
+  // Not '.../dist/style.css' - the package's own exports map only declares
+  // './style.css'. The old path resolved under Vite's dev-server (browser
+  // resolution is more permissive) but fails outright under vitest's
+  // Node-ESM-strict transform, which is what surfaced it.
+  import '@selemondev/vue3-marquee/style.css'
 
   import { Car, Zap, Leaf, Battery, Smartphone, Globe, Bike } from 'lucide-vue-next'
 
