@@ -103,7 +103,7 @@
 
         <div class="flex flex-wrap justify-center gap-6 mt-8 text-base font-medium">
           <span class="flex items-center"
-            ><Check class="size-5 mr-2 text-primary" /> No Data Collection</span
+            ><Check class="size-5 mr-2 text-primary" /> No Ads or Analytics</span
           >
           <span class="flex items-center"
             ><Check class="size-5 mr-2 text-primary" /> Background Ready</span

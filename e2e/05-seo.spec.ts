@@ -34,8 +34,17 @@ test.describe('index.html meta + structured data', () => {
     expect(ogDesc).toBeTruthy()
     expect(ogDesc).toMatch(/CarPlay/i)
     expect(ogDesc).toMatch(/Year Recap|patterns/i)
-    // The privacy promise is the load-bearing claim — never drop it.
-    expect(ogDesc).toMatch(/nothing leaves your device/i)
+    // CONTRACT FLIP. This required `nothing leaves your device` to be PRESENT.
+    // The privacy promise IS load-bearing and still is — but that phrasing is
+    // unqualified and untrue as written: driving data syncs to the user's own
+    // iCloud (on by default — AppMain.makeSharedModelContainer attempts CloudKit
+    // .private first) or Android's Google-account backup, and weather and maps
+    // each receive a coordinate. The promise is kept, SCOPED to what is verified,
+    // and banned in both directions so neither the absolute nor its removal can
+    // drift back.
+    expect(ogDesc).not.toMatch(/nothing leaves your device/i)
+    expect(ogDesc).toMatch(/never reach Efficiver's servers/i)
+    expect(ogDesc).toMatch(/no ads, no analytics/i)
   })
 
   test('twitter:title carries NO version number', async ({ page }) => {

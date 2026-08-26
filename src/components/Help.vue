@@ -557,25 +557,26 @@
       <h2 class="text-2xl font-semibold mb-4">Privacy & Data Security</h2>
       <div class="opacity-80">
         <p>
-          Efficiver is designed with privacy-first principles. By default, all your driving data
-          stays on your phone. See the full
+          Your driving data is yours: it is stored on your phone, and where it syncs it syncs
+          through your OWN cloud account — never to Efficiver's servers. See the full
           <a href="#privacy" class="underline">Privacy Policy</a> for details.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Storage</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Local Only by default:</strong> Driving sessions, vehicle settings, and the
-            trained Smart Detection model are stored locally on your phone — in SwiftData on iPhone,
-            SQLite on Android.
+            <strong>On your phone:</strong> Driving sessions, vehicle settings and the trained Smart
+            Detection model are stored locally — SwiftData on iPhone, SQLite on Android.
           </li>
           <li>
-            <strong>Optional iCloud sync (v1.2, iPhone):</strong> If enabled, sessions and the Smart
-            Detection model sync via <em>your</em> private iCloud database. Efficiver has no access
-            to it.
+            <strong>iCloud sync (iPhone):</strong> When you are signed in to iCloud, sessions and
+            the Smart Detection model sync through <em>your own</em> private iCloud database.
+            Efficiver has no access to it. On Android there is no Efficiver cloud sync; Android's
+            own backup, if you leave it on, saves to <em>your</em> Google account.
           </li>
           <li>
-            <strong>No third-party servers:</strong> No analytics SDKs, no advertising IDs, no
-            telemetry.
+            <strong>No ads or analytics:</strong> No analytics SDKs, no advertising IDs, no
+            telemetry. Weather and maps are served by Apple on iPhone and by OpenWeather and Google
+            on Android — see the Privacy Policy for what each receives.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Permissions</h3>
