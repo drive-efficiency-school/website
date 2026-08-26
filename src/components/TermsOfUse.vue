@@ -28,14 +28,17 @@
       <div class="opacity-80">
         <p>
           Efficiver grants you a limited, non-exclusive, non-transferable, revocable license to
-          download and use the App on your personal iPhone or Android device for personal,
-          non-commercial purposes. You may not:
+          download and use the App on your iPhone or Android device. Personal use is free. Using
+          Efficiver for work — where an employer receives the drives you record while on duty — is
+          provided through <strong>Efficiver Fleet</strong>, under that fleet's agreement with
+          Efficiver; see section 3 of our <a href="#privacy" class="underline">Privacy Policy</a>.
+          You may not:
         </p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>Modify, adapt, translate, decompile, reverse-engineer, or disassemble the App</li>
           <li>
-            Use the App for commercial fleet, ride-share, or driving-school operations without a
-            separate written agreement with Efficiver
+            Use the App for commercial fleet, ride-share, or driving-school operations other than
+            through Efficiver Fleet or a separate written agreement with Efficiver
           </li>
           <li>Remove any copyright, trademark, or other proprietary notices</li>
           <li>Use the App or Website in violation of any applicable law</li>

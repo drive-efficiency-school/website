@@ -407,9 +407,10 @@
       <h2 class="text-2xl font-semibold mb-4">7. Children's privacy</h2>
       <div class="opacity-80">
         <p>
-          Efficiver is intended for users aged 17 and over. We do not knowingly collect personal
-          information from children under 13. If you believe we have inadvertently received such
-          information, please contact us and we will delete it.
+          Efficiver carries a 17+ age rating on the app stores, which reflects the app's content and
+          its use while driving. Separately, and whatever that rating says, we do not knowingly
+          collect personal information from children under 13. If you believe we have inadvertently
+          received such information, please contact us and we will delete it.
         </p>
       </div>
     </section>

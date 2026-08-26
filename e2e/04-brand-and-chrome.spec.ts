@@ -112,14 +112,18 @@ test.describe('ExitIntent popup (M11)', () => {
   test('triggered popup uses Subline brand line, not $300,000 claim', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('load') // NOT networkidle: the Turnstile widget keeps the network busy indefinitely
-    // Mouseleave on `document` is what ExitIntentPopup listens for.
-    await page.evaluate(() => {
-      const event = new MouseEvent('mouseleave', { bubbles: true })
-      document.dispatchEvent(event)
-    })
-    // Subline replacement (M11) — give the popup time to mount.
-    const subline = page.getByText('Save. Drive. Live.', { exact: false }).first()
-    await expect(subline).toBeVisible({ timeout: 5_000 })
+    // Mouseleave on `document` is what ExitIntentPopup listens for. RETRY the
+    // dispatch: the component is lazy (defineAsyncComponent) and registers the
+    // listener in onMounted, so a single dispatch can land before it exists.
+    // `hasShown` guards re-entry, so repeating is harmless.
+    await expect(async () => {
+      await page.evaluate(() =>
+        document.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }))
+      )
+      await expect(page.getByText('Save. Drive. Live.', { exact: false }).first()).toBeVisible({
+        timeout: 1_000
+      })
+    }).toPass({ timeout: 15_000 })
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/\$300,000|\$300K/i)
     expect(body).not.toMatch(/10K\+ drivers/i)

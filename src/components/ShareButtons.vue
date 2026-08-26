@@ -14,7 +14,9 @@
 
   const props = withDefaults(defineProps<ShareButtonsProps>(), {
     title: 'Efficiver - Free Driving Coach',
-    text: "I'm saving fuel with Efficiver - the free offline driving coach app! 🚗💚",
+    // No first-person OUTCOME claim: the site must not put a savings result in
+    // the sharer's mouth for something the product does not measure.
+    text: 'Efficiver — a driving coach that runs on your phone, no OBD hardware. 🚗',
     url: config.contact.website
   })
 
