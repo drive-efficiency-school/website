@@ -15,7 +15,10 @@ import { test, expect } from '@playwright/test'
 test.describe('Privacy Policy (C1, I4, I5)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#privacy')
-    await expect(page.getByText('Privacy Policy', { exact: false }).first()).toBeVisible()
+    // The H1, not the footer link. `getByText('Privacy Policy')` also matches the
+    // footer entry present on EVERY page, so it can be satisfied while the lazy
+    // route view is still unmounted - the body read then finds nothing.
+    await expect(page.getByText('Privacy Policy for Efficiver').first()).toBeVisible()
   })
 
   test('mentions iCloud / CloudKit private-database sync', async ({ page }) => {
@@ -54,7 +57,8 @@ test.describe('Privacy Policy (C1, I4, I5)', () => {
 test.describe('Terms of Use (C2)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#terms')
-    await expect(page.getByText('Terms of Use', { exact: false }).first()).toBeVisible()
+    // The H1, not the footer link - see the note in the Privacy block above.
+    await expect(page.getByText('Terms of Use for Efficiver').first()).toBeVisible()
   })
 
   test('contains dedicated Driving Safety section', async ({ page }) => {

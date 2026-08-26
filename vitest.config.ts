@@ -19,6 +19,13 @@ import vue from '@vitejs/plugin-vue'
  *   class; e2e and a visual pass are what cover it.
  *
  * Everything this project authors is held to 100% on all four metrics.
+ *
+ * PHASE 1 IS INCOMPLETE. src/lib is at 100%; the 39 component files are not
+ * started, so `npm run test:unit` currently REPORTS ~4% AND EXITS NON-ZERO.
+ * That is deliberate. The threshold is the target and lowering it to match
+ * today's coverage would hide exactly the gap it exists to expose. `npm run ci`
+ * does not yet run this suite for the same reason - put it back the moment the
+ * component tests land.
  */
 export default defineConfig({
   plugins: [vue()],

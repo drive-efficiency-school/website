@@ -20,8 +20,9 @@
         <ol class="list-decimal pl-6">
           <li><strong>Welcome:</strong> Introduction to Efficiver's features</li>
           <li>
-            <strong>Permissions:</strong> <em>Required:</em> Grant location access for GPS tracking
-            and Motion &amp; Fitness access for auto-start/stop and engine detection
+            <strong>Permissions:</strong> <em>Required:</em> Grant location access — it drives GPS
+            tracking and the automatic start/stop of drives — and Motion &amp; Fitness access, which
+            Efficiver uses to detect when your engine is running and to track idle time
           </li>
           <li>
             <strong>Vehicle Setup:</strong> Configure your fuel type (petrol, diesel, electric),
@@ -143,9 +144,9 @@
             currency, per session and per month.
           </li>
           <li>
-            <strong>Accessibility (v1.2):</strong> Full screen-reader support — VoiceOver on iPhone,
+            <strong>Accessibility (v1.2):</strong> Screen-reader support — VoiceOver on iPhone,
             TalkBack on Android — plus larger text, reduced motion and lifecycle announcements. See
-            the Accessibility section below for exactly what each platform supports.
+            the Accessibility page for what each platform supports and what is not covered yet.
           </li>
           <li>
             <strong>Voice Guidance:</strong> Audio feedback in multiple languages to help you drive
@@ -270,8 +271,10 @@
           <li><strong>0-39%:</strong> Significant improvement needed</li>
         </ul>
         <p class="mt-4">
-          <strong>Note:</strong> <em>Harsh braking detection</em> is more sensitive than
-          acceleration to encourage smoother, safer driving and better fuel efficiency.
+          <strong>Note:</strong> The thresholds for a harsh event adapt to your speed and gear, so
+          the same change in speed can register in town and pass unremarked on a motorway. In town
+          Efficiver flags sharp acceleration a little sooner than sharp braking; at higher speeds
+          that reverses.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Vehicle-Specific Tips</h3>
         <ul class="list-disc pl-6">
@@ -300,9 +303,11 @@
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
             Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
-            <em>Settings → Driving</em>. On iPhone, grant Motion &amp; Fitness permission in
-            <em>iOS Settings → Privacy &amp; Security</em>. On Android, grant
-            <em>Physical activity</em> and set Location to <em>Allow all the time</em> in
+            <em>Settings → Driving</em>. Automatic start/stop runs on location, so on iPhone set
+            Location to <em>Always</em> with <em>Precise Location</em> on in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>. On
+            Android, set Location to <em>Allow all the time</em> and grant
+            <em>Physical activity</em> in
             <em>Android Settings → Apps → Efficiver → Permissions</em>.
           </dd>
 
@@ -492,7 +497,7 @@
         </p>
         <p class="mt-2"><strong>On iPhone:</strong></p>
         <ul class="list-disc pl-6">
-          <li>VoiceOver — full support across every screen + drive lifecycle announcements</li>
+          <li>VoiceOver — supported throughout the app + drive lifecycle announcements</li>
           <li>Dynamic Type — default size through AX5</li>
           <li>Reduce Motion — animation gating across the app</li>
           <li>Reduce Transparency — Material backgrounds fall back to solids</li>
@@ -589,7 +594,8 @@
             calculations
           </li>
           <li>
-            <strong>Motion &amp; Fitness:</strong> Used for auto-start/stop and engine detection
+            <strong>Motion &amp; Fitness:</strong> Used to detect when your engine is running and to
+            track idle time. Automatic start/stop uses location, not this permission.
           </li>
           <li>
             <strong>Siri (iPhone):</strong> Start and stop a drive hands-free with Siri. Efficiver
