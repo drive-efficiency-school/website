@@ -17,31 +17,31 @@
     {
       question: 'How does Efficiver detect my engine without hardware?',
       answer:
-        "Efficiver uses your phone's built-in accelerometer to detect vehicle vibration patterns. A one-time calibration teaches it to tell your engine running from stopped, which is what drives idle detection — no external hardware or OBD dongle. You tell Efficiver your fuel type (petrol, diesel or electric) once in Settings; the app doesn't infer it.",
+        "Efficiver uses your phone's built-in accelerometer to detect vehicle vibration patterns. An initial calibration, which you run yourself while parked, teaches it to tell your engine running from stopped — that is what drives idle detection. No external hardware or OBD dongle. You tell Efficiver your fuel type (petrol, diesel or electric) once in Settings; the app doesn't infer it.",
       value: 'item-1'
     },
     {
       question: 'Does Efficiver require internet or hardware?',
       answer:
-        "No. Efficiver works completely offline using your device's sensors - no internet connection or external hardware is needed. Your data never leaves your phone.",
+        "No hardware, and no connection for the core of it. Recording a drive, your Efficiency Score, engine detection and your saved sessions all run on your phone's own sensors and work with no internet at all. Connected features are separate: weather, the live map, Efficient Route planning, iCloud sync on iPhone, Android's own backup, and fleet upload if you have joined one.",
       value: 'item-2'
     },
     {
       question: 'What cars are supported?',
       answer:
-        'Efficiver works with petrol, diesel and electric vehicles — you pick your fuel type in Settings. Setup is a one-time Smart Detection calibration that takes about two minutes while parked (roughly a minute with the engine running, then a minute with it off), not something that happens automatically as you drive.',
+        'Efficiver works with petrol, diesel and electric vehicles — you pick your fuel type in Settings. Setup is an initial Smart Detection calibration that takes about two minutes while parked (roughly a minute with the engine running, then a minute with it off), plus a few seconds of training. You start it yourself; it does not happen automatically as you drive. Recalibrate from Settings → Vehicle if you change where your phone sits in the car, or start driving a different vehicle — the model is learned in that position, and the app will not detect the change for you.',
       value: 'item-3'
     },
     {
-      question: 'How much fuel can I save with Efficiver?',
+      question: 'How much fuel can efficient driving save?',
       answer:
-        'Industry studies show that efficient-driving techniques typically save 8-22% on fuel depending on habits and vehicle. Efficiver gives you real-time feedback so you can adopt those techniques — your actual savings depend on how much you adjust.',
+        'Efficient-driving techniques — smoother acceleration, gentler braking, steadier speeds and less idling — are widely studied as a way to reduce fuel use, and the reported effect varies a lot with the vehicle, the route and the driver. Efficiver gives you feedback so you can adopt those techniques; what you actually save depends on how much you change. Efficiver has not measured its own effect on fuel use, so we do not publish a figure for it.',
       value: 'item-4'
     },
     {
       question: 'Does Efficiver need a clear GPS signal to work?',
       answer:
-        'Yes. Speed, distance, route, and scoring all come from your phone\'s GPS, so GPS accuracy directly affects your Efficiency Score. Efficiver shows an orange "GPS Warming Up" label for the first few seconds of every drive and a red "Low GPS" label (plus a "GPS Signal Weak — Scores may be affected" banner) whenever signal accuracy drops. Scoring continues during weak signal so you don\'t lose your drive, but accuracy may be reduced. Best results outdoors with a clear view of the sky — tunnels, underground parking, dense tree cover, and tall buildings (urban canyons) can degrade accuracy and cause brief glitches such as a small jump in distance, a stray harsh-event flag on signal recovery, or the idle timer triggering while you\'re actually moving through a tunnel. These self-correct on the next good fix.',
+        'Yes. Speed, distance, route, and scoring all come from your phone\'s GPS, so GPS accuracy directly affects your Efficiency Score. Efficiver shows an orange "GPS Warming Up" label for the first few seconds of every drive and a red "Low GPS" label (plus a "GPS Signal Weak — Scores may be affected" banner) whenever signal accuracy drops. Scoring continues during weak signal so you don\'t lose your drive, but accuracy may be reduced. Best results outdoors with a clear view of the sky — tunnels, underground parking, dense tree cover and tall buildings (urban canyons) can degrade accuracy. When the fix goes stale, Efficiver pauses the idle timer rather than counting you as idling, and it does not raise acceleration or braking events from the first readings after the signal returns. Normal scoring resumes on the next good fix.',
       value: 'item-gps'
     },
     {
@@ -53,7 +53,7 @@
     {
       question: 'What are the pricing plans for Efficiver?',
       answer:
-        'Efficiver is currently free, with all features included. No in-app purchases. Future pricing has not been decided.',
+        'Efficiver is free to download and use, and there is nothing to buy today. Some deeper features — score forecasts, driving patterns, idle-time insights and your annual savings projection — are reserved for Efficiver Pro, which is coming; pricing is still being finalised.',
       value: 'item-6'
     },
     {
@@ -65,7 +65,7 @@
     {
       question: 'How is Efficiver different from OBD dongle apps?',
       answer:
-        "Unlike OBD apps that require $50+ hardware dongles, Efficiver works with just your phone. No cables, no Bluetooth pairing issues, no battery drain from external devices - and it's completely free.",
+        "OBD apps need a hardware dongle plugged into your car's port. Efficiver works with just your phone — no cable, no Bluetooth pairing, nothing to fit. It is free to download and use.",
       value: 'item-8'
     },
     {

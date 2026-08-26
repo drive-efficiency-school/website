@@ -20,8 +20,9 @@
         <ol class="list-decimal pl-6">
           <li><strong>Welcome:</strong> Introduction to Efficiver's features</li>
           <li>
-            <strong>Permissions:</strong> <em>Required:</em> Grant location access for GPS tracking
-            and Motion &amp; Fitness access for auto-start/stop and engine detection
+            <strong>Permissions:</strong> <em>Required:</em> Grant location access — it drives GPS
+            tracking and the automatic start/stop of drives — and Motion &amp; Fitness access, which
+            Efficiver uses to detect when your engine is running and to track idle time
           </li>
           <li>
             <strong>Vehicle Setup:</strong> Configure your fuel type (petrol, diesel, electric),
@@ -36,9 +37,9 @@
             <strong>Idle Stop:</strong> Configure how Efficiver detects when your engine is idling
           </li>
           <li>
-            <strong>Smart Detection:</strong> A one-minute auto-calibration that records your
-            engine's unique vibration signature. Park, keep the engine warm and idling, and tap
-            <em>Calibrate</em>. Smart Detection takes it from there.
+            <strong>Smart Detection:</strong> An initial two-minute calibration you run while parked
+            — about a minute with the engine running, a minute with it off, then a few seconds of
+            training. Park, keep the engine warm and idling, and tap <em>Calibrate</em>.
           </li>
           <li><strong>Start Your Drive:</strong> Setup complete — tap the Drive button and go</li>
         </ol>
@@ -56,9 +57,10 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Key Features</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Smart Detection:</strong> Identifies when your engine is running by recognizing
-            its unique vibration 'fingerprint'. Auto-calibrates from a short sample on first launch
-            — no rev-range setup, no OBD dongle.
+            <strong>Smart Detection:</strong> Identifies when your engine is running from its
+            vibration while parked. You run the initial calibration yourself — about two minutes —
+            with no rev-range setup and no OBD dongle. Recalibrate from
+            <em>Settings → Vehicle</em> if your phone's position in the car changes.
           </li>
           <li>
             <strong>Real-time Efficiency Score:</strong> Live percentage score showing your driving
@@ -142,9 +144,9 @@
             currency, per session and per month.
           </li>
           <li>
-            <strong>Accessibility (v1.2):</strong> Full screen-reader support — VoiceOver on iPhone,
+            <strong>Accessibility (v1.2):</strong> Screen-reader support — VoiceOver on iPhone,
             TalkBack on Android — plus larger text, reduced motion and lifecycle announcements. See
-            the Accessibility section below for exactly what each platform supports.
+            the Accessibility page for what each platform supports and what is not covered yet.
           </li>
           <li>
             <strong>Voice Guidance:</strong> Audio feedback in multiple languages to help you drive
@@ -172,8 +174,9 @@
             <em>"Low GPS"</em> label whenever signal accuracy drops below ~30 m.
           </li>
           <li>
-            <strong>Offline Operation:</strong> Works offline with GPS signal; all data stays on
-            your iPhone unless you opt in to iCloud sync.
+            <strong>Offline Operation:</strong> Recording and scoring need only GPS and run with no
+            connection. Weather, the live map, Efficient Route planning, iCloud sync on iPhone,
+            Android's own backup and fleet upload use a connection when one is available.
           </li>
         </ul>
       </div>
@@ -252,7 +255,10 @@
             score
           </li>
           <li>Use appropriate gears for your speed (manual transmission)</li>
-          <li>Minimize idling — turn off the engine when stopped for more than ~10 seconds</li>
+          <li>
+            Minimize idling — Efficiver counts idling once you have been stopped with the engine
+            running for 30 seconds
+          </li>
           <li>Keep tires properly inflated and the vehicle well-maintained</li>
           <li>Reduce unnecessary weight in your vehicle</li>
           <li>Plan routes to avoid heavy traffic when possible</li>
@@ -265,8 +271,10 @@
           <li><strong>0-39%:</strong> Significant improvement needed</li>
         </ul>
         <p class="mt-4">
-          <strong>Note:</strong> <em>Harsh braking detection</em> is more sensitive than
-          acceleration to encourage smoother, safer driving and better fuel efficiency.
+          <strong>Note:</strong> The thresholds for a harsh event adapt to your speed and gear, so
+          the same change in speed can register in town and pass unremarked on a motorway. In town
+          Efficiver flags sharp acceleration a little sooner than sharp braking; at higher speeds
+          that reverses.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Vehicle-Specific Tips</h3>
         <ul class="list-disc pl-6">
@@ -295,9 +303,11 @@
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
             Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
-            <em>Settings → Driving</em>. On iPhone, grant Motion &amp; Fitness permission in
-            <em>iOS Settings → Privacy &amp; Security</em>. On Android, grant
-            <em>Physical activity</em> and set Location to <em>Allow all the time</em> in
+            <em>Settings → Driving</em>. Automatic start/stop runs on location, so on iPhone set
+            Location to <em>Always</em> with <em>Precise Location</em> on in
+            <em>iOS Settings → Privacy &amp; Security → Location Services → Efficiver</em>. On
+            Android, set Location to <em>Allow all the time</em> and grant
+            <em>Physical activity</em> in
             <em>Android Settings → Apps → Efficiver → Permissions</em>.
           </dd>
 
@@ -487,7 +497,7 @@
         </p>
         <p class="mt-2"><strong>On iPhone:</strong></p>
         <ul class="list-disc pl-6">
-          <li>VoiceOver — full support across every screen + drive lifecycle announcements</li>
+          <li>VoiceOver — supported throughout the app + drive lifecycle announcements</li>
           <li>Dynamic Type — default size through AX5</li>
           <li>Reduce Motion — animation gating across the app</li>
           <li>Reduce Transparency — Material backgrounds fall back to solids</li>
@@ -555,25 +565,26 @@
       <h2 class="text-2xl font-semibold mb-4">Privacy & Data Security</h2>
       <div class="opacity-80">
         <p>
-          Efficiver is designed with privacy-first principles. By default, all your driving data
-          stays on your phone. See the full
+          Your driving data is yours: it is stored on your phone, and where it syncs it syncs
+          through your OWN cloud account — never to Efficiver's servers. See the full
           <a href="#privacy" class="underline">Privacy Policy</a> for details.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Storage</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Local Only by default:</strong> Driving sessions, vehicle settings, and the
-            trained Smart Detection model are stored locally on your phone — in SwiftData on iPhone,
-            SQLite on Android.
+            <strong>On your phone:</strong> Driving sessions, vehicle settings and the trained Smart
+            Detection model are stored locally — SwiftData on iPhone, SQLite on Android.
           </li>
           <li>
-            <strong>Optional iCloud sync (v1.2, iPhone):</strong> If enabled, sessions and the Smart
-            Detection model sync via <em>your</em> private iCloud database. Efficiver has no access
-            to it.
+            <strong>iCloud sync (iPhone):</strong> When you are signed in to iCloud, sessions and
+            the Smart Detection model sync through <em>your own</em> private iCloud database.
+            Efficiver has no access to it. On Android there is no Efficiver cloud sync; Android's
+            own backup, if you leave it on, saves to <em>your</em> Google account.
           </li>
           <li>
-            <strong>No third-party servers:</strong> No analytics SDKs, no advertising IDs, no
-            telemetry.
+            <strong>No ads or analytics:</strong> No analytics SDKs, no advertising IDs, no
+            telemetry. Weather and maps are served by Apple on iPhone and by OpenWeather and Google
+            on Android — see the Privacy Policy for what each receives.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Permissions</h3>
@@ -583,10 +594,12 @@
             calculations
           </li>
           <li>
-            <strong>Motion &amp; Fitness:</strong> Used for auto-start/stop and engine detection
+            <strong>Motion &amp; Fitness:</strong> Used to detect when your engine is running and to
+            track idle time. Automatic start/stop uses location, not this permission.
           </li>
           <li>
-            <strong>Speech Recognition:</strong> Optional, for voice commands (future feature)
+            <strong>Siri (iPhone):</strong> Start and stop a drive hands-free with Siri. Efficiver
+            requests no microphone or speech-recognition permission of its own.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Deletion</h3>
@@ -633,26 +646,37 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Quick FAQ</h3>
         <dl class="space-y-4">
-          <dt class="font-semibold">Does Efficiver work with all vehicles?</dt>
+          <dt class="font-semibold">Which vehicles does Efficiver work with?</dt>
           <dd>
-            Yes — Efficiver works with petrol, diesel, hybrid, and electric vehicles of all makes
-            and models.
+            Cars running on petrol, diesel or electricity — you pick your fuel type in
+            <em>Settings → Vehicle</em>. There is no hybrid setting yet, and two- and three-wheelers
+            and trucks are not modelled: those need their own consumption model rather than a new
+            entry in the picker.
           </dd>
 
           <dt class="font-semibold">Is Efficiver free?</dt>
-          <dd>Yes. All features are free, with no in-app purchases.</dd>
+          <dd>
+            Efficiver is free to download and use, and there is nothing to buy today. Some deeper
+            features — score forecasts, driving patterns, idle-time insights and your annual savings
+            projection — are reserved for <strong>Efficiver Pro</strong>, which is coming; pricing
+            is still being finalised.
+          </dd>
 
           <dt class="font-semibold">Does Efficiver require internet?</dt>
           <dd>
-            No, Efficiver works completely offline using only your phone's sensors. Internet is
-            optional and only used for iCloud sync on iPhone (if enabled) and weather (Apple
-            WeatherKit on iPhone, OpenWeather on Android).
+            Not for the core of it. Recording a drive, your Efficiency Score, engine detection and
+            your saved sessions run on your phone's own sensors with no connection at all. A
+            connection is used for weather (Apple WeatherKit on iPhone, OpenWeather on Android), the
+            live map and Efficient Route planning, iCloud sync on iPhone, Android's own backup, and
+            fleet upload if you have joined a fleet.
           </dd>
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
           <dd>
-            The scoring is based on real driving physics and calibrated for accuracy, though
-            individual results may vary based on vehicle condition and driving conditions.
+            Scoring is based on driving physics — how smoothly you accelerate and brake, how
+            steadily you hold a speed and how long you idle. It has not been validated against
+            measured fuel use, so treat it as a consistent way to compare your own drives rather
+            than an absolute measurement.
           </dd>
 
           <dt class="font-semibold">Can I use Efficiver while driving?</dt>
@@ -699,8 +723,8 @@
             map
           </li>
           <li>
-            <strong>v1.1 (May 2026):</strong> Smart Detection auto-calibration, Efficient Route
-            planning, Wallet Watch fuel + CO₂ savings, in-drive session rename + notes
+            <strong>v1.1 (May 2026):</strong> Smart Detection calibration, Efficient Route planning,
+            Wallet Watch fuel + CO₂ savings, in-drive session rename + notes
           </li>
           <li>
             <strong>v1.0.x (Q1-Q2 2026):</strong> Initial release with vibration-based engine

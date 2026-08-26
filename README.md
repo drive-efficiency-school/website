@@ -1,8 +1,22 @@
-# Efficiver Landing Page Template
+# Efficiver — www.efficiver.com
 
-## <a href="https://www.shadcn-vue.com/" target="_blank">Shadcn-Vue</a> + <a href="https://vuejs.org/" target="_blank">Vue.js</a> + <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> + <a href="https://tailwindcss.com/" target="_blank">Tailwind</a>.
+The public marketing + support site for Efficiver. Built on Shadcn-Vue + Vue 3 +
+TypeScript + Tailwind (originally scaffolded from the shadcn-vue landing-page
+template, since heavily diverged).
 
-Live demo is now available: <a href="https://shadcn-vue-landing-page.vercel.app" target="_blank">Live Demo</a>
+## Claim accuracy
+
+Customer-facing copy on this site is held to the app source, not to marketing
+intent. The e2e suite encodes those claims as assertions — see `e2e/09` through
+`e2e/22` — so a claim that stops being true fails the build. Two rules learned
+the hard way and worth keeping:
+
+- **Absence assertions need a mount barrier.** Route views are lazy
+  (`defineAsyncComponent`), so reading `body.textContent()` straight after
+  `goto` can assert against an empty page and PASS for the wrong reason.
+- **No `\b` anchors against `textContent`.** Adjacent element text concatenates
+  with no separator ("Fuel & CO₂ SavingsQuantify..."), so `/\bquantify\b/`
+  never matches.
 
 ## Sections
 
@@ -112,7 +126,7 @@ Use the provided deployment scripts to deploy to the appropriate environment:
 
 **Server Details:**
 
-- **Host**: `app01.digidhamu.com`
+- **Host**: `app03.digidhamu.com`
 - **User**: `dhamukrish`
 - **Dev Path**: `/home/dhamukrish/digidhamu/efficiver.com/www-dev`
 - **Prod Path**: `/home/dhamukrish/digidhamu/efficiver.com/www`

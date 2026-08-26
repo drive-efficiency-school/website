@@ -29,9 +29,10 @@
             you can leave at any time. Off-duty drives never leave your phone. See section 3.
           </li>
           <li>
-            On iPhone, iCloud sync is optional and uses <em>your</em> private iCloud database —
-            never our servers. On Android, Efficiver does not sync to our servers either; if you
-            leave Android's own backup switched on, your drives and settings are backed up to
+            On iPhone, if you are signed in to iCloud your sessions sync through <em>your own</em>
+            private iCloud database — never our servers. On Android, Efficiver does not sync to our
+            servers either; if you leave Android's own backup switched on, your drives and settings
+            are backed up to
             <em>your</em> Google account so a replacement phone can restore them.
           </li>
           <li>
@@ -66,8 +67,8 @@
           </li>
           <li>
             <strong>Smart Detection model</strong> is trained entirely on your iPhone using Apple's
-            machine-learning frameworks, and is never sent to Efficiver. If you switch on iCloud
-            sync, it syncs through <em>your</em> private iCloud database (below).
+            machine-learning frameworks, and is never sent to Efficiver. While you are signed in to
+            iCloud it syncs through <em>your own</em> private iCloud database (below).
           </li>
           <li>
             <strong>Vehicle settings</strong> (fuel type, engine size, transmission) are stored
@@ -93,12 +94,27 @@
           </li>
         </ul>
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">iCloud sync (optional, off by default)</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-2">iCloud sync (on while you are signed in)</h3>
         <p>
-          If you turn on iCloud sync, your driving sessions and the Smart Detection model
-          synchronize across <em>your</em> Apple devices via <em>your</em> private iCloud database.
-          This is end-to-end inside your iCloud account; Efficiver has no access to it. You can
-          disable iCloud sync at any time in iOS Settings or the app's preferences.
+          <strong>Efficiver does not have a separate sync switch.</strong> While your iPhone is
+          signed in to iCloud, your driving sessions and the Smart Detection model synchronize
+          across <em>your own</em> Apple devices through <em>your own</em> private iCloud database.
+          Efficiver has no access to that database — the data is in your Apple account, not on our
+          servers.
+        </p>
+        <p class="mt-2">
+          We keep it that way deliberately: a per-user sync switch would mean maintaining two
+          different storage layouts and migrating your history between them, which is exactly the
+          kind of change that has cost users their data before.
+        </p>
+        <p class="mt-2">
+          You control it in iOS, not in Efficiver. Open
+          <em>Settings → [your name] → iCloud</em>, tap <em>See All</em> next to
+          <em>Saved to iCloud</em>, and choose Efficiver. Apple describes the effect as the app no
+          longer connecting with iCloud, so your data exists only on your device. Apple does not
+          document what happens to data already stored in iCloud at that point, so we will not claim
+          it either — if you want that removed, contact us and we will help you get to the right
+          place.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">What the app does NOT collect</h3>
@@ -107,7 +123,10 @@
           <li>No analytics events (no Apple App Analytics, no third-party SDKs)</li>
           <li>No crash reports sent to us</li>
           <li>No usage analytics or telemetry about how you use the app</li>
-          <li>No location history beyond the active drive session</li>
+          <li>
+            No location tracking outside an active drive. Each drive's route is stored with that
+            session on your device.
+          </li>
         </ul>
       </div>
     </section>
@@ -189,7 +208,10 @@
           <li>No analytics events (no third-party analytics SDKs)</li>
           <li>No crash reports sent to us</li>
           <li>No usage analytics or telemetry about how you use the app</li>
-          <li>No location history beyond the active drive session stored on your phone</li>
+          <li>
+            No location tracking outside an active drive. Each drive's route is stored with that
+            session on your phone.
+          </li>
         </ul>
       </div>
     </section>
@@ -360,10 +382,11 @@
           </li>
           <li>Uninstall the app to remove all locally-stored data from your device.</li>
           <li>
-            On iPhone, disable iCloud sync to stop new cloud-stored sessions; previously-synced
-            sessions remain on whichever device created them until you delete them. On Android, turn
-            off device backup in Android's settings to stop future backups, and delete the existing
-            app backup from your Google account to remove what has already been saved.
+            On iPhone, turn Efficiver off under <em>Settings → [your name] → iCloud → See All</em>
+            to stop it syncing. Deleting your sessions inside the app removes them from iCloud and
+            your other devices too. On Android, turn off device backup in Android's settings to stop
+            future backups, and delete the existing app backup from your Google account to remove
+            what has already been saved.
           </li>
           <li>
             <strong>Leave a fleet</strong> at any time from the fleet screen in Settings, which
@@ -384,9 +407,10 @@
       <h2 class="text-2xl font-semibold mb-4">7. Children's privacy</h2>
       <div class="opacity-80">
         <p>
-          Efficiver is intended for users aged 17 and over. We do not knowingly collect personal
-          information from children under 13. If you believe we have inadvertently received such
-          information, please contact us and we will delete it.
+          Efficiver carries a 17+ age rating on the app stores, which reflects the app's content and
+          its use while driving. Separately, and whatever that rating says, we do not knowingly
+          collect personal information from children under 13. If you believe we have inadvertently
+          received such information, please contact us and we will delete it.
         </p>
       </div>
     </section>

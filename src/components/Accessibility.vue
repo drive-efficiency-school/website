@@ -32,8 +32,8 @@
       <div class="opacity-80">
         <ul class="list-disc pl-6 space-y-2">
           <li>
-            <strong>VoiceOver</strong> — full support across every screen, plus spoken
-            drive-lifecycle announcements
+            <strong>VoiceOver</strong> — supported throughout the app, plus spoken drive-lifecycle
+            announcements. See Known limitations below for what is not covered yet
           </li>
           <li><strong>Voice Control</strong> — operate the app hands-free</li>
           <li><strong>Larger Text (Dynamic Type)</strong> — from the default size through AX5</li>

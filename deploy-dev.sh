@@ -21,10 +21,19 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}🚀 Starting Efficiver website deployment to DEVELOPMENT...${NC}"
 
+# Build with the DEV robots policy. This script used to reuse whatever ./dist
+# happened to contain — which was prod's build, carrying `index, follow`. That is
+# why the dev site was indexable. Building here makes the environment a property
+# of the deploy, not of whatever was built last.
+echo -e "${YELLOW}🏗  Building with SITE_ENV=dev (noindex)...${NC}"
+if ! npm run build:dev; then
+    echo -e "${RED}❌ Build failed — nothing deployed.${NC}"
+    exit 1
+fi
+
 # Check if source directory exists
 if [ ! -d "$SOURCE_DIR" ]; then
     echo -e "${RED}❌ Error: Source directory '$SOURCE_DIR' does not exist!${NC}"
-    echo -e "${YELLOW}💡 Make sure to run 'npm run build' first${NC}"
     exit 1
 fi
 

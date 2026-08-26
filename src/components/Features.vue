@@ -13,7 +13,8 @@
     Cloud,
     Accessibility,
     Car,
-    Watch
+    Watch,
+    BatteryCharging
   } from 'lucide-vue-next'
 
   interface FeaturesProps {
@@ -68,18 +69,31 @@
       icon: 'brainCircuit',
       title: 'Smart Detection',
       description:
-        'A one-time, roughly two-minute calibration teaches Efficiver to tell your engine running from stopped, on-device. No OBD dongle, no rev-range setup.'
+        'An initial two-minute calibration, run while parked, teaches Efficiver to tell your engine running from stopped, on-device. No OBD dongle, no rev-range setup.'
     },
     {
       icon: 'tabletSmartphone',
       title: 'Offline & background-aware',
       description:
-        "Works offline using only your phone's sensors. Continues logging when you switch to Maps or Music."
+        'Records and scores your drive on your phone, with no connection needed. Weather, the map and route planning use a connection when you have one. Keeps logging when you switch to Maps or Music.'
+    },
+    {
+      // D8. Verified in source on BOTH platforms — iOS PowerManager observes
+      // NSProcessInfoPowerStateDidChange; Android registers a receiver on
+      // PowerManager.ACTION_POWER_SAVE_MODE_CHANGED. The setting ships ON
+      // (AppPrefsLogic.DEFAULT_IS_PRIORITISE_LOW_POWER_ENABLED = true).
+      // Deliberately states BEHAVIOUR, never a quantity of battery saved:
+      // there is no battery instrumentation in either app to support one.
+      icon: 'battery',
+      title: 'Respects Low Power Mode',
+      description:
+        'Prioritise Low Power is on by default. When your phone enters Low Power Mode or Battery Saver, the live map pauses and background work is reduced — on iPhone and Android.'
     },
     {
       icon: 'goal',
-      title: 'Fuel & CO₂ Savings',
-      description: 'Quantify fuel savings and CO₂ reductions with detailed session metrics.'
+      title: 'Fuel & CO₂ Estimates',
+      description:
+        'Estimated fuel, cost and CO₂ impact for every session, from your trip and the vehicle details you set. Results vary with the vehicle, road, traffic, route and driving conditions.'
     },
     {
       icon: 'activity',
@@ -95,12 +109,14 @@
     {
       icon: 'mic',
       title: 'Voice Commands',
-      description: 'Stay safe with hands-free voice controls to start and stop your drives.'
+      description:
+        'Hands-free voice control to start and stop your drives, so you can keep your hands on the wheel.'
     },
     {
       icon: 'badgeCheck',
-      title: 'Safer Driving Tips',
-      description: 'Get personalized offline coaching to improve your driving habits and safety.'
+      title: 'Driving Tips',
+      description:
+        'Get personalized offline coaching to build smoother, more efficient driving habits.'
     }
   ]
 
@@ -118,6 +134,7 @@
     | typeof Accessibility
     | typeof Car
     | typeof Watch
+    | typeof BatteryCharging
   > = {
     tabletSmartphone: TabletSmartphone,
     badgeCheck: BadgeCheck,
@@ -130,7 +147,8 @@
     cloud: Cloud,
     accessibility: Accessibility,
     car: Car,
-    watch: Watch
+    watch: Watch,
+    battery: BatteryCharging
   }
 </script>
 
@@ -141,10 +159,17 @@
     <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">Why Choose Efficiver?</h2>
 
     <h3 class="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-      Discover the powerful features that make Efficiver the ultimate offline eco-driving app –
-      designed to help you save fuel, reduce emissions, and drive safer, all without needing
-      internet or hardware.
+      Discover the features that make Efficiver an offline eco-driving app – designed to help you
+      save fuel, reduce emissions, and drive more smoothly, all without needing internet or
+      hardware.
     </h3>
+
+    <!-- Review §5.3: the safety boundary belongs next to live-coaching content,
+         not only in the Terms. Mirrors TermsOfUse §3 in substance. -->
+    <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground">
+      Efficiver provides feedback intended to support smoother and more efficient driving. It is not
+      a navigation, collision-avoidance or safety-critical system.
+    </p>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div v-for="{ icon, title, description } in featureList" :key="title">

@@ -8,7 +8,8 @@ import { test, expect } from '@playwright/test'
 
 const routes: Array<{ hash: string; identifier: string }> = [
   { hash: '', identifier: 'Efficiver' }, // Navbar wordmark always present
-  { hash: '#investors', identifier: 'Save Earth, Wealth, and Health' },
+  // #investors intentionally absent — the route was removed (D2, findings 10/11).
+  // e2e/11-traction-claims.spec.ts asserts it no longer resolves.
   { hash: '#terms', identifier: 'Terms of Use' },
   { hash: '#privacy', identifier: 'Privacy Policy' },
   { hash: '#accessibility', identifier: 'Accessibility at Efficiver' },

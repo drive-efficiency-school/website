@@ -94,7 +94,7 @@
           </Button>
           <Button variant="ghost" class="w-full text-muted-foreground" @click="dismissPopup">
             <X class="h-4 w-4 mr-2" />
-            No thanks, I'll pay more for fuel
+            No thanks
           </Button>
         </div>
       </div>

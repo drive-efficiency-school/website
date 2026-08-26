@@ -16,9 +16,9 @@
   const HowItWorksList: HowItWorksProps[] = [
     {
       badgeTitle: 'Download',
-      title: 'Download & Auto-Calibrate',
+      title: 'Download & Calibrate',
       description:
-        "Install Efficiver and run Smart Detection's calibration once while parked — about two minutes, a minute with the engine running and a minute with it off. It learns to tell your engine running from stopped. No OBD dongle, no rev-range setup.",
+        "Install Efficiver and run Smart Detection's initial calibration while parked — about two minutes, a minute with the engine running and a minute with it off. You start it yourself; it does not happen while you drive. It learns to tell your engine running from stopped. No OBD dongle, no rev-range setup.",
       alt: 'Download the Efficiver app on mobile'
     },
     {
@@ -30,16 +30,16 @@
     },
     {
       badgeTitle: 'Analyze',
-      title: 'Analyze and Save – Fuel & CO2 Insights',
+      title: 'Analyze – Fuel & CO2 Insights',
       description:
-        'Get detailed trip metrics to quantify fuel savings and reduce CO2 emissions effortlessly.',
+        'Get detailed trip metrics with estimated fuel, cost and CO2 impact for each drive.',
       alt: 'Trip analytics and CO2/fuel insights'
     },
     {
       badgeTitle: 'Improve',
-      title: 'Improve and Stay Safe – Personalized Tips',
+      title: 'Improve – Personalized Tips',
       description:
-        'Receive offline coaching tips to drive safer and more efficiently with every session.',
+        'Receive offline coaching tips to drive more smoothly and efficiently with every session.',
       alt: 'Improve driving with personalized tips'
     }
   ]
@@ -78,6 +78,11 @@
         </Card>
 
         <div class="w-[105px] md:w-[175px] lg:w-[210px] mx-auto -scale-x-100 text-primary">
+          <!-- v8 ignore start: `alt || title` is unreachable while every entry
+               in HowItWorksList sets `alt` - the whole tag is bracketed
+               because a template comment cannot sit between one attribute and
+               another. The icon-selection ternary just above stays genuinely
+               tested: all four branches are asserted by name in the spec. -->
           <component
             :is="
               index === 0
@@ -90,6 +95,7 @@
             "
             :aria-label="alt || title"
           />
+          <!-- v8 ignore stop -->
         </div>
         <div
           :class="[
