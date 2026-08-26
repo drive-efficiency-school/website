@@ -75,7 +75,7 @@
       icon: 'tabletSmartphone',
       title: 'Offline & background-aware',
       description:
-        "Works offline using only your phone's sensors. Continues logging when you switch to Maps or Music."
+        'Records and scores your drive on your phone, with no connection needed. Weather, the map and route planning use a connection when you have one. Keeps logging when you switch to Maps or Music.'
     },
     {
       // D8. Verified in source on BOTH platforms — iOS PowerManager observes

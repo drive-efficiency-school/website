@@ -23,7 +23,7 @@
     {
       question: 'Does Efficiver require internet or hardware?',
       answer:
-        "No. Efficiver works completely offline using your device's sensors - no internet connection or external hardware is needed. Your data never leaves your phone.",
+        "No hardware, and no connection for the core of it. Recording a drive, your Efficiency Score, engine detection and your saved sessions all run on your phone's own sensors and work with no internet at all. Connected features are separate: weather, the live map, Efficient Route planning, iCloud sync on iPhone, Android's own backup, and fleet upload if you have joined one.",
       value: 'item-2'
     },
     {

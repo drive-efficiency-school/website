@@ -173,8 +173,9 @@
             <em>"Low GPS"</em> label whenever signal accuracy drops below ~30 m.
           </li>
           <li>
-            <strong>Offline Operation:</strong> Works offline with GPS signal; all data stays on
-            your iPhone unless you opt in to iCloud sync.
+            <strong>Offline Operation:</strong> Recording and scoring need only GPS and run with no
+            connection. Weather, the live map, Efficient Route planning, iCloud sync on iPhone,
+            Android's own backup and fleet upload use a connection when one is available.
           </li>
         </ul>
       </div>
@@ -645,9 +646,11 @@
 
           <dt class="font-semibold">Does Efficiver require internet?</dt>
           <dd>
-            No, Efficiver works completely offline using only your phone's sensors. Internet is
-            optional and only used for iCloud sync on iPhone (if enabled) and weather (Apple
-            WeatherKit on iPhone, OpenWeather on Android).
+            Not for the core of it. Recording a drive, your Efficiency Score, engine detection and
+            your saved sessions run on your phone's own sensors with no connection at all. A
+            connection is used for weather (Apple WeatherKit on iPhone, OpenWeather on Android), the
+            live map and Efficient Route planning, iCloud sync on iPhone, Android's own backup, and
+            fleet upload if you have joined a fleet.
           </dd>
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
