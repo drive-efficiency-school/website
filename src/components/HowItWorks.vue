@@ -30,9 +30,9 @@
     },
     {
       badgeTitle: 'Analyze',
-      title: 'Analyze and Save – Fuel & CO2 Insights',
+      title: 'Analyze – Fuel & CO2 Insights',
       description:
-        'Get detailed trip metrics to quantify fuel savings and reduce CO2 emissions effortlessly.',
+        'Get detailed trip metrics with estimated fuel, cost and CO2 impact for each drive.',
       alt: 'Trip analytics and CO2/fuel insights'
     },
     {

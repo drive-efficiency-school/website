@@ -91,8 +91,9 @@
     },
     {
       icon: 'goal',
-      title: 'Fuel & CO₂ Savings',
-      description: 'Quantify fuel savings and CO₂ reductions with detailed session metrics.'
+      title: 'Fuel & CO₂ Estimates',
+      description:
+        'Estimated fuel, cost and CO₂ impact for every session, from your trip and the vehicle details you set. Results vary with the vehicle, road, traffic, route and driving conditions.'
     },
     {
       icon: 'activity',
