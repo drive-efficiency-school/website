@@ -123,7 +123,10 @@
           <li>No analytics events (no Apple App Analytics, no third-party SDKs)</li>
           <li>No crash reports sent to us</li>
           <li>No usage analytics or telemetry about how you use the app</li>
-          <li>No location history beyond the active drive session</li>
+          <li>
+            No location tracking outside an active drive. Each drive's route is stored with that
+            session on your device.
+          </li>
         </ul>
       </div>
     </section>
@@ -205,7 +208,10 @@
           <li>No analytics events (no third-party analytics SDKs)</li>
           <li>No crash reports sent to us</li>
           <li>No usage analytics or telemetry about how you use the app</li>
-          <li>No location history beyond the active drive session stored on your phone</li>
+          <li>
+            No location tracking outside an active drive. Each drive's route is stored with that
+            session on your phone.
+          </li>
         </ul>
       </div>
     </section>

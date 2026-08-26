@@ -254,7 +254,10 @@
             score
           </li>
           <li>Use appropriate gears for your speed (manual transmission)</li>
-          <li>Minimize idling — turn off the engine when stopped for more than ~10 seconds</li>
+          <li>
+            Minimize idling — Efficiver counts idling once you have been stopped with the engine
+            running for 30 seconds
+          </li>
           <li>Keep tires properly inflated and the vehicle well-maintained</li>
           <li>Reduce unnecessary weight in your vehicle</li>
           <li>Plan routes to avoid heavy traffic when possible</li>
@@ -589,7 +592,8 @@
             <strong>Motion &amp; Fitness:</strong> Used for auto-start/stop and engine detection
           </li>
           <li>
-            <strong>Speech Recognition:</strong> Optional, for voice commands (future feature)
+            <strong>Siri (iPhone):</strong> Start and stop a drive hands-free with Siri. Efficiver
+            requests no microphone or speech-recognition permission of its own.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Data Deletion</h3>
@@ -636,10 +640,12 @@
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Quick FAQ</h3>
         <dl class="space-y-4">
-          <dt class="font-semibold">Does Efficiver work with all vehicles?</dt>
+          <dt class="font-semibold">Which vehicles does Efficiver work with?</dt>
           <dd>
-            Yes — Efficiver works with petrol, diesel, hybrid, and electric vehicles of all makes
-            and models.
+            Cars running on petrol, diesel or electricity — you pick your fuel type in
+            <em>Settings → Vehicle</em>. There is no hybrid setting yet, and two- and three-wheelers
+            and trucks are not modelled: those need their own consumption model rather than a new
+            entry in the picker.
           </dd>
 
           <dt class="font-semibold">Is Efficiver free?</dt>
@@ -656,8 +662,10 @@
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
           <dd>
-            The scoring is based on real driving physics and calibrated for accuracy, though
-            individual results may vary based on vehicle condition and driving conditions.
+            Scoring is based on driving physics — how smoothly you accelerate and brake, how
+            steadily you hold a speed and how long you idle. It has not been validated against
+            measured fuel use, so treat it as a consistent way to compare your own drives rather
+            than an absolute measurement.
           </dd>
 
           <dt class="font-semibold">Can I use Efficiver while driving?</dt>

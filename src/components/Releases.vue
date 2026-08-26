@@ -526,9 +526,8 @@
         <CardContent class="pt-6">
           <p class="text-muted-foreground">
             The first public release of Efficiver — the free, offline efficient-driving coach for
-            iPhone. Calibrate for petrol, diesel or EV; track acceleration, braking, cornering and
-            idle time in real time; save fuel and CO₂ with personalised coaching, all entirely on
-            your device.
+            iPhone. Calibrate for petrol, diesel or EV; track acceleration, braking and idle time in
+            real time; save fuel and CO₂ with personalised coaching, all entirely on your device.
           </p>
         </CardContent>
       </Card>
