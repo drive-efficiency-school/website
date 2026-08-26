@@ -25,6 +25,9 @@ dist-ssr
 
 .env
 
+# Vitest coverage output
+/coverage/
+
 # Playwright
 /test-results/
 /playwright-report/
