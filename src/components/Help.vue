@@ -649,7 +649,12 @@
           </dd>
 
           <dt class="font-semibold">Is Efficiver free?</dt>
-          <dd>Yes. All features are free, with no in-app purchases.</dd>
+          <dd>
+            Efficiver is free to download and use, and there is nothing to buy today. Some deeper
+            features — score forecasts, driving patterns, idle-time insights and your annual savings
+            projection — are reserved for <strong>Efficiver Pro</strong>, which is coming; pricing
+            is still being finalised.
+          </dd>
 
           <dt class="font-semibold">Does Efficiver require internet?</dt>
           <dd>

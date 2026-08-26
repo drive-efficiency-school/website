@@ -53,7 +53,7 @@
     {
       question: 'What are the pricing plans for Efficiver?',
       answer:
-        'Efficiver is currently free, with all features included. No in-app purchases. Future pricing has not been decided.',
+        'Efficiver is free to download and use, and there is nothing to buy today. Some deeper features — score forecasts, driving patterns, idle-time insights and your annual savings projection — are reserved for Efficiver Pro, which is coming; pricing is still being finalised.',
       value: 'item-6'
     },
     {
@@ -65,7 +65,7 @@
     {
       question: 'How is Efficiver different from OBD dongle apps?',
       answer:
-        "Unlike OBD apps that require $50+ hardware dongles, Efficiver works with just your phone. No cables, no Bluetooth pairing issues, no battery drain from external devices - and it's completely free.",
+        "OBD apps need a hardware dongle plugged into your car's port. Efficiver works with just your phone — no cable, no Bluetooth pairing, nothing to fit. It is free to download and use.",
       value: 'item-8'
     },
     {
