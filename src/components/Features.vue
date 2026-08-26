@@ -13,7 +13,8 @@
     Cloud,
     Accessibility,
     Car,
-    Watch
+    Watch,
+    BatteryCharging
   } from 'lucide-vue-next'
 
   interface FeaturesProps {
@@ -77,6 +78,18 @@
         "Works offline using only your phone's sensors. Continues logging when you switch to Maps or Music."
     },
     {
+      // D8. Verified in source on BOTH platforms — iOS PowerManager observes
+      // NSProcessInfoPowerStateDidChange; Android registers a receiver on
+      // PowerManager.ACTION_POWER_SAVE_MODE_CHANGED. The setting ships ON
+      // (AppPrefsLogic.DEFAULT_IS_PRIORITISE_LOW_POWER_ENABLED = true).
+      // Deliberately states BEHAVIOUR, never a quantity of battery saved:
+      // there is no battery instrumentation in either app to support one.
+      icon: 'battery',
+      title: 'Respects Low Power Mode',
+      description:
+        'Prioritise Low Power is on by default. When your phone enters Low Power Mode or Battery Saver, the live map pauses and background work is reduced — on iPhone and Android.'
+    },
+    {
       icon: 'goal',
       title: 'Fuel & CO₂ Savings',
       description: 'Quantify fuel savings and CO₂ reductions with detailed session metrics.'
@@ -118,6 +131,7 @@
     | typeof Accessibility
     | typeof Car
     | typeof Watch
+    | typeof BatteryCharging
   > = {
     tabletSmartphone: TabletSmartphone,
     badgeCheck: BadgeCheck,
@@ -130,7 +144,8 @@
     cloud: Cloud,
     accessibility: Accessibility,
     car: Car,
-    watch: Watch
+    watch: Watch,
+    battery: BatteryCharging
   }
 </script>
 
