@@ -38,6 +38,13 @@ test.describe('GPS accuracy disclosure (commit 01dee8e)', () => {
 
   test('Terms of Use carries GPS-accuracy liability framing', async ({ page }) => {
     await page.goto('/#terms')
+    // Mount barrier — REQUIRED for every route test in this file. Route views
+    // are lazy (defineAsyncComponent in App.vue), so reading body text straight
+    // after goto races the mount; the assertion then runs against an empty body
+    // and fails (or, for a not.toMatch, passes for the wrong reason). Four tests
+    // here had no barrier and were passing on timing luck. Same hazard
+    // 08-platform-parity.spec.ts documents in its header.
+    await expect(page.getByText('Terms of Use', { exact: false }).first()).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/GPS/)
     expect(body).toMatch(/Core Location|Apple's/)
@@ -47,6 +54,8 @@ test.describe('GPS accuracy disclosure (commit 01dee8e)', () => {
 test.describe('Auto-Start / Auto-Stop / Auto-Track hyphenation (commit bfca4aa)', () => {
   test('Help page uses hyphenated forms', async ({ page }) => {
     await page.goto('/#help')
+    // Mount barrier — see the note on the Terms test above. Lazy view.
+    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/Auto-Start/)
     expect(body).toMatch(/Auto-Stop/)
@@ -55,6 +64,7 @@ test.describe('Auto-Start / Auto-Stop / Auto-Track hyphenation (commit bfca4aa)'
 
   test('Releases page uses hyphenated Auto-Track', async ({ page }) => {
     await page.goto('/#releases')
+    await expect(page.getByText('Release notes', { exact: false }).first()).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/Auto-Track/)
   })
@@ -63,6 +73,7 @@ test.describe('Auto-Start / Auto-Stop / Auto-Track hyphenation (commit bfca4aa)'
 test.describe('Settings rename to Savings (commits 4c51c27, 7341afa)', () => {
   test('Help page shows Savings parent heading with Wallet Watch sub-section', async ({ page }) => {
     await page.goto('/#help')
+    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/\bSavings\b/)
     expect(body).toMatch(/Wallet Watch/)
