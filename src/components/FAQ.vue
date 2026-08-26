@@ -33,9 +33,9 @@
       value: 'item-3'
     },
     {
-      question: 'How much fuel can I save with Efficiver?',
+      question: 'How much fuel can efficient driving save?',
       answer:
-        'Industry studies show that efficient-driving techniques typically save 8-22% on fuel depending on habits and vehicle. Efficiver gives you real-time feedback so you can adopt those techniques — your actual savings depend on how much you adjust.',
+        'Efficient-driving techniques — smoother acceleration, gentler braking, steadier speeds and less idling — are widely studied as a way to reduce fuel use, and the reported effect varies a lot with the vehicle, the route and the driver. Efficiver gives you feedback so you can adopt those techniques; what you actually save depends on how much you change. Efficiver has not measured its own effect on fuel use, so we do not publish a figure for it.',
       value: 'item-4'
     },
     {
