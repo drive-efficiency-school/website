@@ -28,7 +28,7 @@ import { test, expect } from '@playwright/test'
  */
 const ROUTES = [
   { hash: '', name: 'home', identifier: 'Why Choose Efficiver?' },
-  { hash: '#investors', name: 'investors', identifier: 'Save Earth, Wealth, and Health' },
+  // #investors removed (D2) — no longer a route, so nothing to crawl.
   { hash: '#terms', name: 'terms', identifier: 'Terms of Use' },
   { hash: '#privacy', name: 'privacy', identifier: 'Privacy Policy' },
   { hash: '#accessibility', name: 'accessibility', identifier: 'Accessibility at Efficiver' },

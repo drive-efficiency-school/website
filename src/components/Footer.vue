@@ -5,7 +5,7 @@
 
   const emit = defineEmits(['navigate'])
 
-  const version = 'v1.3.27 (26082319)'
+  const version = 'v1.3.27 (26082615)'
   const copied = ref(false)
   const currentYear = new Date().getFullYear()
 
@@ -129,15 +129,6 @@
               @click="emit('navigate', 'main')"
             >
               Feedback
-            </a>
-          </div>
-          <div>
-            <a
-              href="#investors"
-              class="opacity-60 hover:opacity-100 cursor-pointer"
-              @click="emit('navigate', 'investors')"
-            >
-              Investors
             </a>
           </div>
           <div>

@@ -69,8 +69,7 @@
 
         <p class="max-w-screen-sm mx-auto text-xl text-muted-foreground">
           Drive smarter with Efficiver – an offline, sensor-based app designed to reduce emissions,
-          save fuel, and promote safer driving. Join thousands of eco-conscious drivers and
-          businesses in making a difference.
+          save fuel, and promote safer driving.
         </p>
 
         <div class="flex flex-col md:flex-row justify-center items-center gap-4">

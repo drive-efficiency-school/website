@@ -35,7 +35,14 @@
   const ExitIntentPopup = defineAsyncComponent(() => import('./components/ExitIntentPopup.vue'))
 
   // Conditional pages - only load when needed
-  const Investors = defineAsyncComponent(() => import('./components/Investors.vue'))
+  //
+  // Investors.vue removed from render (D2, review findings 10/11): the page
+  // presented a $5B market, 1,000+ users and 100,000 active users "by year-end"
+  // with no date, metric definition, source or method — and no year named. It
+  // also still described an iPhone-only product. The figures need dated
+  // definitions only the owner holds, and an unsourced Series-A page is the
+  // highest-liability surface on the site. File kept, like Testimonials/Team/
+  // Community/Sponsors; re-introduce with dated, defined, labelled figures.
   const TermsOfUse = defineAsyncComponent(() => import('./components/TermsOfUse.vue'))
   const PrivacyPolicy = defineAsyncComponent(() => import('./components/PrivacyPolicy.vue'))
   const Accessibility = defineAsyncComponent(() => import('./components/Accessibility.vue'))
@@ -43,7 +50,6 @@
   const ComingSoon = defineAsyncComponent(() => import('./components/ComingSoon.vue'))
   const Releases = defineAsyncComponent(() => import('./components/Releases.vue'))
 
-  const showInvestors = ref(false)
   const showTerms = ref(false)
   const showPrivacy = ref(false)
   const showAccessibility = ref(false)
@@ -52,17 +58,8 @@
   const showReleases = ref(false)
 
   function navigate(
-    target:
-      | 'main'
-      | 'investors'
-      | 'terms'
-      | 'privacy'
-      | 'accessibility'
-      | 'help'
-      | 'coming-soon'
-      | 'releases'
+    target: 'main' | 'terms' | 'privacy' | 'accessibility' | 'help' | 'coming-soon' | 'releases'
   ) {
-    showInvestors.value = target === 'investors'
     showTerms.value = target === 'terms'
     showPrivacy.value = target === 'privacy'
     showAccessibility.value = target === 'accessibility'
@@ -71,7 +68,6 @@
     showReleases.value = target === 'releases'
     window.location.hash = target === 'main' ? '' : target
     if (
-      showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
       showAccessibility.value ||
@@ -86,7 +82,6 @@
   // Handle initial and dynamic hash changes
   function handleHashChange() {
     const hash = window.location.hash.replace('#', '')
-    showInvestors.value = hash === 'investors'
     showTerms.value = hash === 'terms'
     showPrivacy.value = hash === 'privacy'
     showAccessibility.value = hash === 'accessibility'
@@ -94,7 +89,6 @@
     showComingSoon.value = hash === 'coming-soon'
     showReleases.value = hash === 'releases'
     if (
-      showInvestors.value ||
       showTerms.value ||
       showPrivacy.value ||
       showAccessibility.value ||
@@ -116,7 +110,6 @@
   <Navbar @navigate="navigate" />
   <div
     v-if="
-      !showInvestors &&
       !showTerms &&
       !showPrivacy &&
       !showAccessibility &&
@@ -140,8 +133,7 @@
     <Contact v-if="config.features.contact" />
     <FAQ />
   </div>
-  <Investors v-if="showInvestors" />
-  <TermsOfUse v-else-if="showTerms" />
+  <TermsOfUse v-if="showTerms" />
   <PrivacyPolicy v-else-if="showPrivacy" />
   <Accessibility v-else-if="showAccessibility" @navigate="navigate" />
   <Help v-else-if="showHelp" />
