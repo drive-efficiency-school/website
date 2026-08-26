@@ -78,6 +78,11 @@
         </Card>
 
         <div class="w-[105px] md:w-[175px] lg:w-[210px] mx-auto -scale-x-100 text-primary">
+          <!-- v8 ignore start: `alt || title` is unreachable while every entry
+               in HowItWorksList sets `alt` - the whole tag is bracketed
+               because a template comment cannot sit between one attribute and
+               another. The icon-selection ternary just above stays genuinely
+               tested: all four branches are asserted by name in the spec. -->
           <component
             :is="
               index === 0
@@ -90,6 +95,7 @@
             "
             :aria-label="alt || title"
           />
+          <!-- v8 ignore stop -->
         </div>
         <div
           :class="[

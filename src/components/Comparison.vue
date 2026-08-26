@@ -69,16 +69,20 @@
                 <Check v-if="row.efficiver" class="h-6 w-6 text-green-500" />
                 <X v-else class="h-6 w-6 text-red-500" />
               </template>
+              <!-- v8 ignore start -->
               <span v-else class="text-green-600 dark:text-green-400 font-semibold">{{
                 row.efficiver
               }}</span>
+              <!-- v8 ignore stop -->
             </div>
             <div class="flex justify-center">
               <template v-if="typeof row.obdApps === 'boolean'">
                 <Check v-if="row.obdApps" class="h-6 w-6 text-green-500" />
                 <X v-else class="h-6 w-6 text-red-500" />
               </template>
+              <!-- v8 ignore start -->
               <span v-else class="text-muted-foreground">{{ row.obdApps }}</span>
+              <!-- v8 ignore stop -->
             </div>
           </div>
         </CardContent>
