@@ -69,7 +69,7 @@
       icon: 'brainCircuit',
       title: 'Smart Detection',
       description:
-        'A one-time, roughly two-minute calibration teaches Efficiver to tell your engine running from stopped, on-device. No OBD dongle, no rev-range setup.'
+        'An initial two-minute calibration, run while parked, teaches Efficiver to tell your engine running from stopped, on-device. No OBD dongle, no rev-range setup.'
     },
     {
       icon: 'tabletSmartphone',

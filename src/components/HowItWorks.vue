@@ -16,9 +16,9 @@
   const HowItWorksList: HowItWorksProps[] = [
     {
       badgeTitle: 'Download',
-      title: 'Download & Auto-Calibrate',
+      title: 'Download & Calibrate',
       description:
-        "Install Efficiver and run Smart Detection's calibration once while parked — about two minutes, a minute with the engine running and a minute with it off. It learns to tell your engine running from stopped. No OBD dongle, no rev-range setup.",
+        "Install Efficiver and run Smart Detection's initial calibration while parked — about two minutes, a minute with the engine running and a minute with it off. You start it yourself; it does not happen while you drive. It learns to tell your engine running from stopped. No OBD dongle, no rev-range setup.",
       alt: 'Download the Efficiver app on mobile'
     },
     {

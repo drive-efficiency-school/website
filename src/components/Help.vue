@@ -36,9 +36,9 @@
             <strong>Idle Stop:</strong> Configure how Efficiver detects when your engine is idling
           </li>
           <li>
-            <strong>Smart Detection:</strong> A one-minute auto-calibration that records your
-            engine's unique vibration signature. Park, keep the engine warm and idling, and tap
-            <em>Calibrate</em>. Smart Detection takes it from there.
+            <strong>Smart Detection:</strong> An initial two-minute calibration you run while parked
+            — about a minute with the engine running, a minute with it off, then a few seconds of
+            training. Park, keep the engine warm and idling, and tap <em>Calibrate</em>.
           </li>
           <li><strong>Start Your Drive:</strong> Setup complete — tap the Drive button and go</li>
         </ol>
@@ -56,9 +56,10 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Key Features</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Smart Detection:</strong> Identifies when your engine is running by recognizing
-            its unique vibration 'fingerprint'. Auto-calibrates from a short sample on first launch
-            — no rev-range setup, no OBD dongle.
+            <strong>Smart Detection:</strong> Identifies when your engine is running from its
+            vibration while parked. You run the initial calibration yourself — about two minutes —
+            with no rev-range setup and no OBD dongle. Recalibrate from
+            <em>Settings → Vehicle</em> if your phone's position in the car changes.
           </li>
           <li>
             <strong>Real-time Efficiency Score:</strong> Live percentage score showing your driving
@@ -699,8 +700,8 @@
             map
           </li>
           <li>
-            <strong>v1.1 (May 2026):</strong> Smart Detection auto-calibration, Efficient Route
-            planning, Wallet Watch fuel + CO₂ savings, in-drive session rename + notes
+            <strong>v1.1 (May 2026):</strong> Smart Detection calibration, Efficient Route planning,
+            Wallet Watch fuel + CO₂ savings, in-drive session rename + notes
           </li>
           <li>
             <strong>v1.0.x (Q1-Q2 2026):</strong> Initial release with vibration-based engine
