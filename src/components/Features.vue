@@ -108,12 +108,14 @@
     {
       icon: 'mic',
       title: 'Voice Commands',
-      description: 'Stay safe with hands-free voice controls to start and stop your drives.'
+      description:
+        'Hands-free voice control to start and stop your drives, so you can keep your hands on the wheel.'
     },
     {
       icon: 'badgeCheck',
-      title: 'Safer Driving Tips',
-      description: 'Get personalized offline coaching to improve your driving habits and safety.'
+      title: 'Driving Tips',
+      description:
+        'Get personalized offline coaching to build smoother, more efficient driving habits.'
     }
   ]
 
@@ -156,10 +158,17 @@
     <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">Why Choose Efficiver?</h2>
 
     <h3 class="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-      Discover the powerful features that make Efficiver the ultimate offline eco-driving app –
-      designed to help you save fuel, reduce emissions, and drive safer, all without needing
-      internet or hardware.
+      Discover the features that make Efficiver an offline eco-driving app – designed to help you
+      save fuel, reduce emissions, and drive more smoothly, all without needing internet or
+      hardware.
     </h3>
+
+    <!-- Review §5.3: the safety boundary belongs next to live-coaching content,
+         not only in the Terms. Mirrors TermsOfUse §3 in substance. -->
+    <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground">
+      Efficiver provides feedback intended to support smoother and more efficient driving. It is not
+      a navigation, collision-avoidance or safety-critical system.
+    </p>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div v-for="{ icon, title, description } in featureList" :key="title">

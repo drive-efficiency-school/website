@@ -37,9 +37,9 @@
     },
     {
       badgeTitle: 'Improve',
-      title: 'Improve and Stay Safe – Personalized Tips',
+      title: 'Improve – Personalized Tips',
       description:
-        'Receive offline coaching tips to drive safer and more efficiently with every session.',
+        'Receive offline coaching tips to drive more smoothly and efficiently with every session.',
       alt: 'Improve driving with personalized tips'
     }
   ]
