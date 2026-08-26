@@ -21,6 +21,7 @@
     "dev": "vite",
     "prebuild": "node scripts/bump-version.mjs",
     "build": "vue-tsc && vite build",
+    "build:dev": "SITE_ENV=dev npm run build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "lint:check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
