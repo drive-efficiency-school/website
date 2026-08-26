@@ -90,7 +90,8 @@ class ApiService {
 
     if (data.phone) payload.phone = data.phone
     if (data.company) payload.company = data.company
-    payload.source = data.source || config.contact.website || 'www.efficiver.com'
+    // config.contact.website always falls back to a literal, so it is never empty.
+    payload.source = data.source || config.contact.website
     // Anti-spam — honeypot only when a bot filled it; token always when present.
     if (data.honeypot) payload.honeypot = data.honeypot
     if (data.turnstileToken) payload.turnstileToken = data.turnstileToken
@@ -104,7 +105,8 @@ class ApiService {
   async subscribeToNewsletter(data: NewsletterSubscriptionData): Promise<SubscribeResult> {
     const payload = {
       ...data,
-      source: data.source || config.contact.website || 'www.efficiver.com'
+      // As above: config.contact.website is never empty.
+      source: data.source || config.contact.website
     }
 
     return this.request<SubscribeResult>('/subscribers/subscribe', {
