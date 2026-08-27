@@ -22,7 +22,12 @@ import { test, expect } from '@playwright/test'
  *     OpenWeather) though its three sub-items are all verified true.
  *
  * WHAT STAYS, because it is verified:
- *   Features "No tracking, ever"  — no analytics, no ad IDs, no telemetry.
+ *   Features "No advertising identifiers, no third-party analytics, no ad
+ *     tracking" — the SAME verified claim "No tracking, ever" made (no
+ *     analytics, no ad IDs, no telemetry), scoped explicitly to ad/analytics
+ *     tracking so it can no longer be read as "nothing about you is ever
+ *     transmitted anywhere" (v2 review §3.1 — that broader reading is false
+ *     once Fleet and weather/maps are accounted for).
  *   The AidOps-scoped "nothing leaves your device" in Help / Releases /
  *     WhatsNew — scoped to insight GENERATION, which does run on-device.
  *     Pinned below so this correction cannot over-swing and delete it.
@@ -78,11 +83,13 @@ test.describe('Help states the real default, not a false one', () => {
 })
 
 test.describe('Verified privacy claims are preserved', () => {
-  test('Features keeps "No tracking, ever"', async ({ page }) => {
+  test('Features keeps the verified no-ad-tracking claim, scoped', async ({ page }) => {
     await page.goto('/')
     await page.locator('section#features').scrollIntoViewIfNeeded()
     const f = (await page.locator('section#features').textContent()) ?? ''
-    expect(f).toMatch(/No tracking, ever/i)
+    expect(f).toMatch(/No advertising identifiers, no third-party analytics, no ad tracking/i)
+    // The unqualified absolute must not come back either.
+    expect(f).not.toMatch(/No tracking, ever/i)
   })
 
   test('the AidOps-scoped on-device claim survives', async ({ page }) => {

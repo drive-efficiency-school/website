@@ -80,12 +80,15 @@ describe('Navbar', () => {
   })
 
   describe('the Features dropdown', () => {
-    it('is platform-neutral - Apple and Android technologies named side by side', async () => {
+    it('names both platforms for map and accessibility, and stays iPhone-only for Watch', async () => {
       const wrapper = mountNavbar()
       await openFeaturesDropdown(wrapper)
       expect(document.body.textContent).toContain('Apple Maps on iPhone, Google Maps on Android')
       expect(document.body.textContent).toContain('VoiceOver and TalkBack')
-      expect(document.body.textContent).toContain('Apple Watch on iPhone, Wear OS on Android')
+      // Wear OS is built but never published to Play (ced4cb0) - the dropdown
+      // must not imply it's available on Android.
+      expect(document.body.textContent).toContain('Apple Watch companion')
+      expect(document.body.textContent).not.toMatch(/Wear OS/)
     })
 
     it('sends the reader to the Features section and closes the routing back to main', async () => {

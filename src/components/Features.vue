@@ -107,7 +107,7 @@
       icon: 'fingerprint',
       title: 'Biometric Privacy',
       description:
-        'Your drives are stored on your phone and can be locked behind your device biometrics. No tracking, ever.'
+        'Your drives are stored on your phone and can be locked behind your device biometrics. No advertising identifiers, no third-party analytics, no ad tracking.'
     },
     {
       icon: 'mic',
@@ -162,9 +162,9 @@
     <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">Why Choose Efficiver?</h2>
 
     <h3 class="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-      Discover the features that make Efficiver an offline eco-driving app – designed to help you
-      save fuel, reduce emissions, and drive more smoothly, all without needing internet or
-      hardware.
+      Discover the features that help you understand and improve your driving efficiency. Core trip
+      recording and scoring work with no internet connection or extra vehicle hardware; estimated
+      fuel, cost and CO₂ impact come from your trip data.
     </h3>
 
     <!-- Review §5.3: the safety boundary belongs next to live-coaching content,

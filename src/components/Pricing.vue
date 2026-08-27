@@ -21,7 +21,11 @@
     title: string
     popular: PopularPlan
     description: string
-    buttonText: string
+    // Only the Fleet card renders this literally ("Talk to us"). Efficiver
+    // shows its own store-link text and Pro echoes its own price label -
+    // both computed, not stored, so there is no second copy of the text to
+    // drift out of sync with what the button actually does.
+    buttonText?: string
     benefitList: string[]
   }
 
@@ -44,7 +48,6 @@
       title: 'Efficiver',
       popular: 0,
       description: 'Everything you need to start driving more efficiently.',
-      buttonText: 'Get Started',
       benefitList: [
         'Unlimited drives',
         'Your Efficiency Score after every drive',
@@ -59,7 +62,6 @@
       title: 'Efficiver Pro',
       popular: 1,
       description: 'Depth on your own phone — trends, explanations and full history.',
-      buttonText: 'Get Started',
       benefitList: [
         'Everything in Efficiver',
         'Full score with explanations',
@@ -118,8 +120,8 @@
     <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">Plans</h2>
 
     <h3 class="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
-      Efficiver is free to use today. Efficiver Pro adds depth on your own phone, and Efficiver
-      Fleet covers driving for work.
+      Efficiver is free to use today. Efficiver Pro will add deeper insights and history, and
+      Efficiver Fleet covers driving for work.
     </h3>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
@@ -155,8 +157,27 @@
         </CardContent>
 
         <CardFooter>
-          <Button :variant="popular === PopularPlan?.NO ? 'secondary' : 'default'" class="w-full">
-            {{ buttonText }}
+          <!-- Efficiver: a real store link, the same dual-platform pattern Hero/
+               WhatsNew/Releases use. Pro: disabled - "Get Started" next to a
+               "Coming soon" price implied Pro was already buyable; the button
+               now just echoes the price label above it, so the two can never
+               say different things. Fleet: an in-page anchor to the enquiry
+               form, not a dead button. -->
+          <div v-if="id === 'efficiver'" class="flex flex-col gap-2 w-full">
+            <Button as-child class="w-full">
+              <a :href="config.app.ios" target="_blank" rel="noopener">Get Started — App Store</a>
+            </Button>
+            <Button v-if="config.app.android" as-child variant="secondary" class="w-full">
+              <a :href="config.app.android" target="_blank" rel="noopener"
+                >Get Started — Google Play</a
+              >
+            </Button>
+          </div>
+          <Button v-else-if="id === 'pro'" variant="secondary" class="w-full" disabled>
+            {{ getPriceLabel(id) }}
+          </Button>
+          <Button v-else as-child class="w-full">
+            <a href="#fleet">{{ buttonText }}</a>
           </Button>
         </CardFooter>
       </Card>

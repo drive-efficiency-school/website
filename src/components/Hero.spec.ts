@@ -69,7 +69,7 @@ describe('Hero', () => {
       expect.stringContaining('DriveButton interface'),
       expect.stringContaining('calibration screen'),
       expect.stringContaining('trip score card'),
-      expect.stringContaining('fuel savings metrics'),
+      expect.stringContaining('estimated fuel and CO2 metrics'),
       expect.stringContaining('driving analytics'),
       expect.stringContaining('eco-driving badges')
     ])

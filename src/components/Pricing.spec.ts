@@ -3,7 +3,13 @@ import { mount } from '@vue/test-utils'
 
 vi.mock('@/lib/config', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/lib/config')>()
-  return { config: { ...actual.config, pricing: { ...actual.config.pricing } } }
+  return {
+    config: {
+      ...actual.config,
+      pricing: { ...actual.config.pricing },
+      app: { ...actual.config.app }
+    }
+  }
 })
 
 import Pricing from './Pricing.vue'
@@ -70,10 +76,58 @@ describe('Pricing', () => {
     expect(fleet.classes().join(' ')).toContain('opacity-75')
   })
 
-  it("uses the secondary button style for every plan except Pro's", () => {
-    const wrapper = mount(Pricing)
-    const buttons = wrapper.findAll('button')
-    expect(buttons[0].text()).toBe('Get Started') // Efficiver
-    expect(buttons[2].text()).toBe('Talk to us') // Fleet
+  describe('what each button actually does', () => {
+    it('links Efficiver to the App Store', () => {
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = ''
+      const wrapper = mount(Pricing)
+      const free = cards(wrapper)[0]
+      const link = free.get('a[href="https://apps.apple.com/test-app"]')
+      expect(link.text()).toContain('Get Started')
+    })
+
+    it('adds a Google Play link for Efficiver once Android is configured', () => {
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = 'https://play.google.com/test-app'
+      const wrapper = mount(Pricing)
+      const free = cards(wrapper)[0]
+      expect(free.get('a[href="https://play.google.com/test-app"]').text()).toContain('Get Started')
+    })
+
+    it('omits the Play link for Efficiver with no Android link configured', () => {
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = ''
+      const wrapper = mount(Pricing)
+      const free = cards(wrapper)[0]
+      expect(free.text()).not.toContain('Google Play')
+    })
+
+    it("disables Pro's button - it must never claim to be purchasable today", () => {
+      // "Get Started" sitting under a "Coming soon" price was the exact
+      // contradiction the review flagged. The button now echoes the SAME
+      // price-label function the card's price line uses, so the two can
+      // never say different things.
+      config.pricing.launchOffer = true
+      const wrapper = mount(Pricing)
+      const pro = cards(wrapper)[1]
+      const button = pro.get('button')
+      expect(button.text()).toBe('Coming soon')
+      expect(button.attributes('disabled')).toBeDefined()
+      expect(pro.find('a').exists()).toBe(false)
+    })
+
+    it("keeps Pro's button in lockstep with its own price label when the launch flag flips", () => {
+      config.pricing.launchOffer = false
+      const wrapper = mount(Pricing)
+      const pro = cards(wrapper)[1]
+      expect(pro.get('button').text()).toBe('In-App Purchase')
+    })
+
+    it('sends Fleet to the enquiry form on the same page, not a dead button', () => {
+      const wrapper = mount(Pricing)
+      const fleet = cards(wrapper)[2]
+      const link = fleet.get('a[href="#fleet"]')
+      expect(link.text()).toBe('Talk to us')
+    })
   })
 })

@@ -33,18 +33,20 @@ test.describe('index.html meta + structured data', () => {
     const ogDesc = await page.locator('meta[property="og:description"]').getAttribute('content')
     expect(ogDesc).toBeTruthy()
     expect(ogDesc).toMatch(/CarPlay/i)
-    expect(ogDesc).toMatch(/Year Recap|patterns/i)
-    // CONTRACT FLIP. This required `nothing leaves your device` to be PRESENT.
-    // The privacy promise IS load-bearing and still is — but that phrasing is
-    // unqualified and untrue as written: driving data syncs to the user's own
-    // iCloud (on by default — AppMain.makeSharedModelContainer attempts CloudKit
-    // .private first) or Android's Google-account backup, and weather and maps
-    // each receive a coordinate. The promise is kept, SCOPED to what is verified,
-    // and banned in both directions so neither the absolute nor its removal can
-    // drift back.
+    expect(ogDesc).toMatch(/AI insights|forecast/i)
+    // SECOND CONTRACT FLIP (v2 review §3.7 + §3.1). The first flip required
+    // "never reach Efficiver's servers" as an unqualified absolute - correct
+    // against the earlier "nothing leaves your device" claim, but itself still
+    // false once Fleet is accounted for: on-duty drives ARE uploaded to a
+    // fleet a driver has chosen to join. Scoped again, banned in both
+    // directions once more so neither phrasing can drift back silently.
     expect(ogDesc).not.toMatch(/nothing leaves your device/i)
-    expect(ogDesc).toMatch(/never reach Efficiver's servers/i)
+    expect(ogDesc).not.toMatch(/never reach Efficiver's servers/i)
+    expect(ogDesc).toMatch(/no data leaves your phone unless you join a fleet/i)
     expect(ogDesc).toMatch(/no ads, no analytics/i)
+    // §3.7: Year Recap and the full forecast are Pro-gated ("coming soon") -
+    // the metadata must not present them as unconditionally available today.
+    expect(ogDesc).not.toMatch(/\bYear Recap\b/i)
   })
 
   test('twitter:title carries NO version number', async ({ page }) => {

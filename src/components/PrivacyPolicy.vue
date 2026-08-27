@@ -19,7 +19,7 @@
           <li>
             Your driving data stays on your device (iPhone or Android phone). We don't see it and we
             don't store it on our servers — <strong>unless you join a fleet</strong> (see the next
-            point), which almost nobody does.
+            point).
           </li>
           <li>
             <strong>Fleet mode is the one exception, and it is opt-in.</strong> If your employer
@@ -45,8 +45,9 @@
             you submitted them.
           </li>
           <li>
-            We never sell, rent, or trade your personal information, and we don't share it with
-            anyone except your own fleet if you choose to join one.
+            We never sell, rent, or trade your personal information. Beyond your own fleet if you
+            choose to join one, and the weather and maps providers above who only see a location
+            request, we don't share it with anyone.
           </li>
           <li>No advertising identifiers, no third-party analytics, no ad tracking.</li>
         </ul>

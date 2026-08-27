@@ -51,7 +51,11 @@ describe('Features', () => {
     const wrapper = mount(Features)
     expect(wrapper.text()).toContain('CarPlay support (iPhone)')
     expect(wrapper.text()).toContain('iCloud sync (iPhone)')
-    expect(wrapper.text()).toContain('Apple Watch on iPhone, Wear OS on Android')
+    // Apple Watch companion (iPhone) - Wear OS is built but never published to
+    // Play (unsigned bundle, no store track; ced4cb0). Advertising it would be
+    // a claim about something no user can actually install.
+    expect(wrapper.text()).toContain('Apple Watch companion (iPhone)')
+    expect(wrapper.text()).not.toMatch(/Wear OS/)
     expect(wrapper.text()).not.toMatch(/\bAndroid Auto\b/)
     expect(wrapper.text()).not.toMatch(/\bcornering\b/i)
   })

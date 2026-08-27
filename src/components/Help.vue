@@ -131,8 +131,8 @@
           </li>
           <li>
             <strong>iCloud sync (v1.2):</strong> Your sessions and the trained Smart Detection model
-            sync across your iPhones and iPad via your own private iCloud database. Optional and off
-            by default.
+            sync across your iPhones and iPad via your own private iCloud database. No separate
+            switch — it syncs automatically once you're signed in to iCloud.
           </li>
           <li>
             <strong>Efficient Route (v1.1):</strong> Plan an efficient route inside Efficiver and
@@ -467,8 +467,9 @@
           </li>
           <li><strong>Temperature in Gauge:</strong> Show weather temperature</li>
           <li>
-            <strong>iCloud sync (iPhone):</strong> Sync sessions and the Smart Detection model
-            across your devices via your private iCloud database. Off by default.
+            <strong>iCloud sync (iPhone):</strong> Managed by iOS, not a switch inside Efficiver —
+            sessions and the Smart Detection model sync automatically while you're signed in to
+            iCloud, via your own private iCloud database.
           </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Savings</h3>

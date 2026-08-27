@@ -36,11 +36,11 @@
             <span class="mr-2 text-primary">
               <Badge>New</Badge>
             </span>
-            <span>Limited Time Offer – Free!</span>
+            <span>Free Forever</span>
           </Badge>
           <Badge variant="secondary" class="text-sm py-2">
             <span class="mr-2">🚗</span>
-            <span>Free for every driver</span>
+            <span>Free for personal use</span>
           </Badge>
         </div>
 
@@ -53,7 +53,7 @@
           <div class="flex justify-center mb-8">
             <img
               src="/Logo-v1_Transparent.webp"
-              alt="Efficiver Logo - Free offline driving coach app for fuel efficiency and safe driving"
+              alt="Efficiver logo - phone-based driving efficiency coach"
               width="784"
               height="615"
               fetchpriority="high"
@@ -68,8 +68,9 @@
         </div>
 
         <p class="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-          Drive smarter with Efficiver – an offline, sensor-based app designed to reduce emissions,
-          save fuel, and make every drive smoother.
+          Drive smarter and smoother with Efficiver – an offline, sensor-based app that helps you
+          understand and improve your driving efficiency, with estimated fuel, cost and CO₂ impact
+          for every drive.
         </p>
 
         <div class="flex flex-col md:flex-row justify-center items-center gap-4">
@@ -131,7 +132,7 @@
             v-for="(image, index) in mode === 'light' ? lightImages : darkImages"
             :key="index"
             :src="image"
-            :alt="`Efficiver app screenshot showing ${index === 0 ? 'DriveButton interface' : index === 1 ? 'calibration screen' : index === 2 ? 'trip score card' : index === 3 ? 'fuel savings metrics' : index === 4 ? 'driving analytics' : 'eco-driving badges'}`"
+            :alt="`Efficiver app screenshot showing ${index === 0 ? 'DriveButton interface' : index === 1 ? 'calibration screen' : index === 2 ? 'trip score card' : index === 3 ? 'estimated fuel and CO2 metrics' : index === 4 ? 'driving analytics' : 'eco-driving badges'}`"
             width="600"
             height="1304"
             loading="lazy"

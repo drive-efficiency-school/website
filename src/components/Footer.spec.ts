@@ -33,6 +33,7 @@ describe('Footer', () => {
   beforeEach(() => {
     config.contact.phone = ''
     config.app.android = ''
+    config.app.watch.android = ''
     config.features.contact = true
     config.features.newsletter = true
     config.socials.instagram = ''
@@ -71,7 +72,26 @@ describe('Footer', () => {
       const wrapper = mount(Footer)
       const android = wrapper.findAll('a').find((a) => a.text().trim() === 'Android')!
       expect(android.attributes('href')).toBe('https://play.google.com/test')
-      expect(wrapper.text()).not.toContain('(soon)')
+      // Not a blanket page-wide check: Wear OS carries its own, independent
+      // "(soon)" gate (it is built but never published to Play - ced4cb0), so
+      // "(soon)" can legitimately still appear elsewhere on the page.
+      expect(linkTexts(wrapper).find((t) => t.includes('Android'))).not.toContain('(soon)')
+    })
+
+    it('marks Wear OS "(soon)" and not clickable - built but never published to Play', () => {
+      const wrapper = mount(Footer)
+      expect(wrapper.text()).toContain('Wear OS')
+      expect(wrapper.text()).toContain('(soon)')
+      expect(linkTexts(wrapper).some((t) => t.includes('Wear OS'))).toBe(false)
+    })
+
+    it('links straight to the Wear OS listing once that link is configured', () => {
+      config.app.watch.android = 'https://play.google.com/store/apps/details?id=wear.test'
+      const wrapper = mount(Footer)
+      const wearOs = wrapper.findAll('a').find((a) => a.text().trim() === 'Wear OS')!
+      expect(wearOs.attributes('href')).toBe(
+        'https://play.google.com/store/apps/details?id=wear.test'
+      )
     })
 
     it('hides Contact Us and Feedback together when the contact feature is off', () => {
@@ -135,9 +155,11 @@ describe('Footer', () => {
       }
     })
 
-    it('sends the static platform links (iOS, CarPlay, Apple Watch, Wear OS) back to main', async () => {
+    it('sends the static platform links (iOS, CarPlay, Apple Watch) back to main', async () => {
+      // Wear OS is excluded here - it is conditionally a link (see its own
+      // gated tests above) rather than an always-present static one.
       const wrapper = mount(Footer)
-      const staticLabels = ['iOS', 'CarPlay', 'Apple Watch', 'Wear OS']
+      const staticLabels = ['iOS', 'CarPlay', 'Apple Watch']
       for (const label of staticLabels) {
         const link = wrapper.findAll('a').find((a) => a.text().trim() === label)!
         await link.trigger('click')
