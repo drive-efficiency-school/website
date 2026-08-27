@@ -43,9 +43,12 @@
     },
     {
       icon: 'watch',
-      title: 'Watch companions',
+      title: 'Apple Watch companion (iPhone)',
+      // Wear OS is built but not published — its Play track has never had a release, so
+      // naming it here would advertise something nobody can install. Restore the pairing
+      // when the Wear OS track goes live.
       description:
-        'Start and stop drives from your wrist and glance at your live score — Apple Watch on iPhone, Wear OS on Android.'
+        'Start and stop drives from your wrist and glance at your live score, on iPhone with Apple Watch.'
     },
     {
       icon: 'map',

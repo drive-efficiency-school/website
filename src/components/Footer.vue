@@ -84,16 +84,28 @@
                Android Auto surface (Google Play ruled a phone-sensor driving dashboard
                outside the Car App Library's permitted categories), so advertising it as
                "(soon)" would be untrue. CarPlay above is unaffected and stays. -->
-          <!-- Wear OS ships INSIDE the Android app (Play delivers the wear build from the
-               same listing — there is no separate store URL, which is why
-               VITE_ANDROID_WATCH_LINK is empty and always has been). Gating on that empty
-               var rendered "Wear OS (soon)" for a companion that has shipped since
-               vCode 10042, while Apple Watch directly above renders as available with no
-               gate at all. Same treatment for both now. -->
+          <!-- Wear OS is BUILT but NOT PUBLISHED. The code ships (wear module, vCode
+               10053), but Play delivers Wear OS from its own dedicated track and that
+               track has never had a release: the module carried no signingConfig until
+               1.5.3, so every wear bundle before it was unsigned and unuploadable, and the
+               Wear OS form factor is not enabled in Play Console. No user can install it.
+               An earlier edit here removed this gate and rendered a plain "Wear OS" link on
+               the belief it had shipped — it had not. The gate is the right mechanism:
+               leave VITE_ANDROID_WATCH_LINK empty and it reads "(soon)"; set it when the
+               Wear OS track goes live and this becomes a real link with no code change. -->
           <div>
-            <a href="/#" class="opacity-60 hover:opacity-100" @click="emit('navigate', 'main')">
+            <a
+              v-if="config.app.watch.android"
+              :href="config.app.watch.android"
+              target="_blank"
+              rel="noopener"
+              class="opacity-60 hover:opacity-100"
+            >
               Wear OS
             </a>
+            <span v-else class="text-muted-foreground cursor-not-allowed opacity-60">
+              Wear OS <span class="text-[10px]">(soon)</span>
+            </span>
           </div>
         </div>
 

@@ -139,7 +139,7 @@
             v1.4 brings Efficiver to your wrist with a full Apple Watch companion, makes your fuel
             and CO₂ savings more accurate by calculating them from your actual driving physics, and
             puts your live drive card on CarPlay and your Watch's Smart Stack. (This release
-            predates the Android app — Wear OS arrived with the Android release.)
+            predates the Android app.)
           </p>
 
           <div class="flex gap-4 items-start">

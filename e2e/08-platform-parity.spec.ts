@@ -29,10 +29,15 @@ import { test, expect } from '@playwright/test'
 const ROUTES = [
   { hash: '', name: 'home', identifier: 'Why Choose Efficiver?' },
   // #investors removed (D2) — no longer a route, so nothing to crawl.
-  { hash: '#terms', name: 'terms', identifier: 'Terms of Use' },
-  { hash: '#privacy', name: 'privacy', identifier: 'Privacy Policy' },
+  // Each identifier must be text that ONLY the mounted view has. The footer links read
+  // "Terms of Use", "Privacy Policy", "Help & Support" and "Accessibility" and are present
+  // in the app shell on every route, so those bare strings satisfied the barrier BEFORE
+  // the lazy view mounted — the exact false-pass this comment block warns about, hiding in
+  // the fix for it. The page <h1>s carry the "… for Efficiver" suffix the footer lacks.
+  { hash: '#terms', name: 'terms', identifier: 'Terms of Use for Efficiver' },
+  { hash: '#privacy', name: 'privacy', identifier: 'Privacy Policy for Efficiver' },
   { hash: '#accessibility', name: 'accessibility', identifier: 'Accessibility at Efficiver' },
-  { hash: '#help', name: 'help', identifier: 'Help & Support' },
+  { hash: '#help', name: 'help', identifier: 'Help & Support for Efficiver' },
   { hash: '#coming-soon', name: 'coming-soon', identifier: 'Coming Soon' },
   { hash: '#releases', name: 'releases', identifier: 'Release notes' }
 ] as const
@@ -47,8 +52,12 @@ const ROUTES = [
  */
 const IOS_EXCLUSIVE: Array<{ ios: RegExp; counterpart: RegExp; label: string }> = [
   { ios: /\bVoiceOver\b/i, counterpart: /\bTalkBack\b/i, label: 'VoiceOver → TalkBack' },
-  { ios: /\bApple Watch\b/i, counterpart: /\bWear OS\b/i, label: 'Apple Watch → Wear OS' },
-  { ios: /\bwatchOS\b/i, counterpart: /\bWear OS\b/i, label: 'watchOS → Wear OS' },
+  // Apple Watch and watchOS were paired with Wear OS here until 2026-08-27. That was a
+  // BUG IN THE TEST once Wear OS turned out to be unpublished: pairing let an Apple Watch
+  // claim pass BY NAMING Wear OS, so the invariant actively rewarded advertising a
+  // companion nobody can install. A counterpart is only a counterpart if it ships. Both
+  // now live in IPHONE_ONLY, where qualification is the only way to pass. Move them back
+  // when the Wear OS Play track has an actual release.
   { ios: /\bApple Maps\b/i, counterpart: /\bGoogle Maps\b/i, label: 'Apple Maps → Google Maps' },
   { ios: /\bApp Store\b/i, counterpart: /\bGoogle Play\b/i, label: 'App Store → Google Play' },
   // androidx.sqlite (SupportSQLiteOpenHelper), verified in libs.versions.toml.
@@ -90,7 +99,11 @@ const IOS_EXCLUSIVE: Array<{ ios: RegExp; counterpart: RegExp; label: string }> 
 const IPHONE_ONLY: Array<{ ios: RegExp; label: string }> = [
   { ios: /\bSiri\b/i, label: 'Siri (iPhone only)' },
   { ios: /\biCloud\b/i, label: 'iCloud (iPhone only)' },
-  { ios: /\bCarPlay\b/i, label: 'CarPlay (iPhone only)' }
+  { ios: /\bCarPlay\b/i, label: 'CarPlay (iPhone only)' },
+  // Wear OS is BUILT but NOT PUBLISHED — no release has ever existed on its dedicated Play
+  // track, so the watch companion is iPhone-only in practice however much wear code exists.
+  { ios: /\bApple Watch\b/i, label: 'Apple Watch (iPhone only until Wear OS ships)' },
+  { ios: /\bwatchOS\b/i, label: 'watchOS (iPhone only until Wear OS ships)' }
 ]
 
 /**
@@ -254,10 +267,15 @@ test.describe('Platform parity across every route', () => {
     })
 
     test(`${route.name}: no shipped platform is labelled "(soon)"`, async ({ page }) => {
-      // iOS, Android and both watch companions all ship. A "(soon)" chip on any of
-      // them is the bug that left "Wear OS (soon)" on the site after launch.
+      // A "(soon)" chip on a platform that HAS shipped understates the product.
+      //
+      // Wear OS was on this list until 2026-08-27, on the belief it had shipped. It had
+      // not — its dedicated Play track has never had a release, because :wear carried no
+      // signingConfig until 1.5.3 and every earlier bundle was unsigned. So "(soon)" is
+      // the accurate label for it, and this list must not demand otherwise. Add it back
+      // when the Wear OS track goes live.
       const body = await textOf(page, route)
-      for (const shipped of ['iOS', 'Android', 'Apple Watch', 'Wear OS', 'CarPlay']) {
+      for (const shipped of ['iOS', 'Android', 'Apple Watch', 'CarPlay']) {
         expect(
           body,
           `${route.name} labels shipped platform "${shipped}" as coming soon`
@@ -296,6 +314,38 @@ test.describe('Platform parity across every route', () => {
     expect(
       offenders,
       `routes with iOS-only settings instructions and no Android path: ${offenders.join(', ')}`
+    ).toEqual([])
+  })
+
+  test('Wear OS is never presented as available while its Play track is empty', async ({
+    page
+  }) => {
+    // The inverse of every other check in this file: not "is the Android side named?" but
+    // "are we naming something nobody can install?". Wear OS code ships in the repo, which
+    // is exactly what made this easy to get wrong — the site advertised it in six places
+    // while no Wear OS release had ever existed on Play.
+    //
+    // DELETE THIS TEST when the Wear OS track goes live. Until then, Wear OS may only
+    // appear as unavailable — "(soon)", "will follow", "not available yet".
+    const UNAVAILABLE = /\(soon\)|will follow|not (yet )?available|coming/i
+    const offenders: string[] = []
+
+    for (const route of ROUTES) {
+      await textOf(page, route)
+      const statements = await statementsOf(page)
+      for (const s of statements) {
+        if (!/\bWear OS\b/i.test(s.text)) continue
+        if (UNAVAILABLE.test(s.text)) continue
+        offenders.push(`${route.name}: "${s.text.slice(0, 110)}"`)
+      }
+      // A live hyperlink is a stronger claim than prose, so check it separately.
+      const linked = await page.locator('a', { hasText: /^\s*Wear OS\s*$/i }).count()
+      if (linked > 0) offenders.push(`${route.name}: ${linked} live "Wear OS" link(s)`)
+    }
+
+    expect(
+      offenders,
+      `Wear OS presented as available, but its Play track has no release:\n  ${offenders.join('\n  ')}`
     ).toEqual([])
   })
 })

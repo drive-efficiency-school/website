@@ -87,8 +87,9 @@
       description: 'VoiceOver and TalkBack, larger text, reduced motion.'
     },
     {
-      title: 'Watch companions',
-      description: 'Apple Watch on iPhone, Wear OS on Android.'
+      title: 'Apple Watch companion',
+      // Wear OS built but not published — see Footer.vue.
+      description: 'Your live score on your wrist, on iPhone.'
     }
   ]
 
