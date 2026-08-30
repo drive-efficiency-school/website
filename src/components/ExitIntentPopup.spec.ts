@@ -187,6 +187,20 @@ describe('ExitIntentPopup', () => {
     wrapper.unmount()
   })
 
+  // Consistency sweep after the v3 content review (owner-requested, not in
+  // the doc itself): matches the "save fuel" fix already shipped elsewhere
+  // (Hero, Features, Help, Releases) - this popup is on the exit path, so it
+  // is exactly the kind of surface that outcome claim was scoped away from.
+  it('makes no outcome-savings claim in its pitch copy', async () => {
+    const wrapper = mount(ExitIntentPopup, { attachTo: document.body })
+    leaveThroughTop()
+    await wrapper.vm.$nextTick()
+
+    expect(document.body.textContent).not.toMatch(/save fuel/i)
+    expect(document.body.textContent).toMatch(/smoother, more efficient driving/i)
+    wrapper.unmount()
+  })
+
   it('detaches its document listener on unmount', () => {
     const add = vi.spyOn(document, 'addEventListener')
     const remove = vi.spyOn(document, 'removeEventListener')

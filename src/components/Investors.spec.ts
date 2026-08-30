@@ -32,4 +32,17 @@ describe('Investors', () => {
     const wrapper = mount(Investors)
     expect(wrapper.text()).toContain('Save Earth, Wealth, and Health')
   })
+
+  // Consistency sweep after the v3 content review: this page is unreachable
+  // from the live site (see the note above), but its outcome/safety language
+  // was left over from before that review and would resurface unfixed if
+  // this page is ever restored. Matches the "save fuel"/"drive safer" fixes
+  // already shipped in Hero, Features, Help and Releases.
+  it('makes no outcome-savings or safety-benefit claim in the mission line', () => {
+    const wrapper = mount(Investors)
+    const text = wrapper.text()
+    expect(text).not.toMatch(/save fuel/i)
+    expect(text).not.toMatch(/drive safer/i)
+    expect(text).toMatch(/smoother, more efficient driving/i)
+  })
 })
