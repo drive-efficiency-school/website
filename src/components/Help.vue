@@ -52,7 +52,8 @@
       <div class="opacity-80">
         <p>
           Efficiver uses your phone's built-in sensors to track your driving and give instant
-          feedback to save fuel — entirely on-device, no OBD hardware required.
+          feedback intended to support smoother, more efficient driving — entirely on-device, no OBD
+          hardware required.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Key Features</h3>
         <ul class="list-disc pl-6">
@@ -73,9 +74,9 @@
             or wireless.
           </li>
           <li>
-            <strong>Redesigned Insights tab (v1.3):</strong> Opens on an Analytics view — your real
-            savings so far this year, CO₂ impact, and average efficiency score, all free. Flip to a
-            searchable list of every drive.
+            <strong>Redesigned Insights tab (v1.3):</strong> Opens on an Analytics view — your
+            estimated fuel, cost and CO₂ impact so far this year, and average efficiency score, all
+            free. Flip to a searchable list of every drive.
           </li>
           <li>
             <strong>Minimize the drive (v1.3):</strong> Swipe the drive screen down to shrink it to
@@ -140,8 +141,8 @@
             when you arrive.
           </li>
           <li>
-            <strong>Wallet Watch (v1.1):</strong> See your fuel and CO₂ savings in your local
-            currency, per session and per month.
+            <strong>Wallet Watch (v1.1):</strong> View estimated fuel or energy use, cost and CO₂
+            impact in your local currency, per session and per month.
           </li>
           <li>
             <strong>Accessibility (v1.2):</strong> Screen-reader support — VoiceOver on iPhone,
@@ -532,8 +533,8 @@
           <li><strong>Distance:</strong> Total kilometres / miles driven</li>
           <li><strong>Duration:</strong> Total time of the driving session</li>
           <li><strong>Mistakes:</strong> Breakdown of acceleration, braking, and idle events</li>
-          <li><strong>Fuel Savings:</strong> Estimated fuel / electricity saved (Wallet Watch)</li>
-          <li><strong>Environmental Impact:</strong> CO₂ emissions avoided (Wallet Watch)</li>
+          <li><strong>Fuel Impact:</strong> Estimated fuel or energy impact (Wallet Watch)</li>
+          <li><strong>Environmental Impact:</strong> Estimated CO₂ impact (Wallet Watch)</li>
           <li><strong>Route card:</strong> Past-trip map with per-waypoint event markers (v1.2)</li>
           <li><strong>Notes:</strong> Tap to add a note (up to 255 characters, v1.1)</li>
           <li><strong>Rename:</strong> Tap the title to rename the session inline (v1.1)</li>
@@ -541,8 +542,8 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Insights tab (v1.3)</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Analytics view:</strong> Your real savings so far this year, CO₂ impact, and
-            average efficiency score — all free.
+            <strong>Analytics view:</strong> Your estimated fuel, cost and CO₂ impact so far this
+            year, and average efficiency score — all free.
           </li>
           <li>
             <strong>Sessions view:</strong> A searchable list of every drive — search by name or
@@ -609,8 +610,9 @@
           <li>Reset all settings to defaults</li>
           <li>Uninstall the app to remove all locally-stored data</li>
           <li>
-            On iPhone, disable iCloud sync to stop adding new cloud-stored sessions; previously
-            synced sessions remain on whichever device created them until you delete them
+            On iPhone, manage Efficiver's iCloud access through iOS Settings. Disabling access stops
+            future synchronization. For data already stored in iCloud, use Apple's own iCloud
+            controls, or contact Efficiver support and we'll help you get to the right place.
           </li>
         </ul>
       </div>

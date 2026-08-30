@@ -27,6 +27,23 @@
   const honeypot = ref('')
   const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
 
+  // The email field's `required` attribute alone left this button looking
+  // dead: native browser validation blocks the submit event entirely before
+  // @submit.prevent ever runs, so an empty-field click produced zero visible,
+  // app-styled response (v3 review §2.6) - only an easy-to-miss native
+  // tooltip. `@invalid` fires alongside that native tooltip without
+  // replacing it, so screen readers and sighted users both get a clear,
+  // on-brand signal instead of apparent silence.
+  const emailHint = ref('')
+
+  function clearEmailHint() {
+    emailHint.value = ''
+  }
+
+  function showEmailHint() {
+    emailHint.value = 'Enter a work email to continue.'
+  }
+
   async function register() {
     if (status.value === 'sending') return
     status.value = 'sending'
@@ -116,7 +133,12 @@
               placeholder="Work email"
               autocomplete="email"
               aria-label="Work email"
+              @invalid="showEmailHint"
+              @input="clearEmailHint"
             />
+            <p v-if="emailHint" class="text-sm text-destructive" role="alert">
+              {{ emailHint }}
+            </p>
             <!-- Anti-spam honeypot: mirrors the contact + newsletter forms. -->
             <input
               v-model="honeypot"

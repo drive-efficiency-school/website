@@ -157,6 +157,35 @@ describe('FleetCallout', () => {
     expect(wrapper.find('[role="alert"]').exists()).toBe(false)
   })
 
+  describe('the empty-required-field response (v3 review §2.6)', () => {
+    // Native `required` validation blocks the submit event entirely before
+    // @submit.prevent ever runs - clicking with an empty email produced ZERO
+    // visible, app-styled response, only an easy-to-miss native tooltip. That
+    // is what made the button read as dead. `@invalid` fires alongside the
+    // native tooltip, not instead of it.
+    it('shows a visible hint when the email field fails native validation', async () => {
+      const wrapper = mount(FleetCallout)
+      await wrapper.get('input[name="email"]').trigger('invalid')
+      expect(wrapper.get('[role="alert"]').text()).toBe('Enter a work email to continue.')
+      // No network call was ever attempted - this is purely client-side.
+      expect(mockSubmit).not.toHaveBeenCalled()
+    })
+
+    it('clears the hint once the reader starts typing', async () => {
+      const wrapper = mount(FleetCallout)
+      await wrapper.get('input[name="email"]').trigger('invalid')
+      expect(wrapper.find('[role="alert"]').exists()).toBe(true)
+
+      await wrapper.get('input[name="email"]').setValue('o')
+      expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+    })
+
+    it('shows no hint at all until the field is actually invalid', () => {
+      const wrapper = mount(FleetCallout)
+      expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+    })
+  })
+
   const captured: ContactFormData[] = []
   it('type-checks the payload shape against the real ContactFormData contract', async () => {
     mockSubmit.mockImplementation(async (payload: ContactFormData) => {

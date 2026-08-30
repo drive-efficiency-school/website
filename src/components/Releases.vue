@@ -43,9 +43,11 @@
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.5 merges your recorded history and your forecast into one interactive chart you can
-          scrub day by day, gives the on-device intelligence behind your insights a name and an
-          honest status — AidOps Edge — and makes every Insights card say where it leads.
+          v1.5 converges your recorded history and forecast into one interactive chart you can scrub
+          day by day, gives the on-device intelligence behind your insights a name and an honest
+          status — AidOps Edge — and makes every Insights card say where it leads. Trends, the
+          forecast and AidOps Edge insights ship in v1.5's code and are part of Efficiver Pro, which
+          is coming — the subscription that unlocks them hasn't rolled out yet.
         </p>
 
         <div class="flex gap-4 items-start">
@@ -76,7 +78,8 @@
               unavailable — instead of quietly falling back. A new Assistance page in Settings shows
               whether Apple Intelligence is switched on, and how to enable it if it isn't. The
               numbers are always computed by Efficiver; AidOps Edge only phrases them, on your
-              phone. Nothing leaves your device.
+              phone. Nothing leaves your device. Year Recap and Your Patterns are part of Efficiver
+              Pro, coming soon.
             </p>
           </div>
         </div>
@@ -122,7 +125,7 @@
           <CardHeader>
             <div class="flex justify-between items-center gap-4">
               <CardTitle class="text-xl"
-                >v1.4 (iPhone) — Apple Watch companion, more accurate savings</CardTitle
+                >v1.4 (iPhone) — Apple Watch companion, refined fuel and CO₂ estimates</CardTitle
               >
               <div class="flex items-center gap-3">
                 <span class="text-sm text-muted-foreground whitespace-nowrap">July 2026</span>
@@ -164,12 +167,12 @@
               <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-1">More accurate savings</h4>
+              <h4 class="font-semibold text-lg mb-1">Refined fuel and CO₂ estimates</h4>
               <p class="text-muted-foreground">
-                Fuel and CO₂ savings are now calculated from your actual speed, acceleration, and
-                road grade for every second of the drive — not derived from your Efficiency Score.
-                The math still runs entirely on your device, and older drives keep their original
-                numbers.
+                Estimated fuel and CO₂ impact is now calculated from your actual speed,
+                acceleration, and road grade for every second of the drive — not derived from your
+                Efficiency Score. The math still runs entirely on your device, and older drives keep
+                their original numbers.
               </p>
             </div>
           </div>
@@ -248,11 +251,10 @@
             <div>
               <h4 class="font-semibold mb-1">Redesigned Insights tab</h4>
               <p class="text-muted-foreground">
-                The Insights tab opens on an Analytics view that puts your savings and efficiency
-                front and centre — your real savings so far this year, your CO₂ impact, and your
-                average efficiency score, all free. Flip to a searchable list of every drive
-                whenever you want. The year-end savings forecast is part of Efficiver Pro — coming
-                soon.
+                The Insights tab opens on an Analytics view that puts your estimated impact and
+                efficiency front and centre — your estimated fuel, cost and CO₂ impact so far this
+                year, and your average efficiency score, all free. Flip to a searchable list of
+                every drive whenever you want. The year-end forecast is coming with Efficiver Pro.
               </p>
             </div>
           </div>
@@ -347,6 +349,11 @@
                 iPad via your own private iCloud database. Sign in to iCloud on each device and
                 Efficiver picks up where you left off. Optional and off by default; toggle in
                 <em>Settings</em>.
+              </p>
+              <p class="text-muted-foreground mt-2 text-sm">
+                <strong>Current behaviour:</strong> iCloud synchronization now occurs automatically
+                while you're signed in to iCloud — there is no separate synchronization switch in
+                Efficiver.
               </p>
             </div>
           </div>
@@ -527,7 +534,8 @@
           <p class="text-muted-foreground">
             The first public release of Efficiver — the free, offline efficient-driving coach for
             iPhone. Calibrate for petrol, diesel or EV; track acceleration, braking and idle time in
-            real time; save fuel and CO₂ with personalised coaching, all entirely on your device.
+            real time; get estimated fuel and CO₂ impact with personalised coaching, all entirely on
+            your device.
           </p>
         </CardContent>
       </Card>

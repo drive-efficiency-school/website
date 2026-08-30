@@ -80,7 +80,7 @@ describe('Help', () => {
   describe('fuel/CO2 language (N7, N9) - estimated, no fixed percentage', () => {
     it('calls fuel and CO2 figures estimated, not quantified', () => {
       const wrapper = mount(Help)
-      expect(wrapper.text()).toContain('Estimated fuel / electricity saved')
+      expect(wrapper.text()).toContain('Estimated fuel or energy impact')
     })
 
     it('never states the removed 8-22% fuel-saving figure', () => {

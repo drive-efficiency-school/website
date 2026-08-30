@@ -26,7 +26,9 @@
             runs Efficiver Fleet and gives you an invite code, the drives you record
             <em>while you are on duty</em> are uploaded and shared with that employer. You are shown
             what will be shared and must agree before joining, you control the on-duty switch, and
-            you can leave at any time. Off-duty drives never leave your phone. See section 3.
+            you can leave at any time. Off-duty drives are never uploaded to or shared with your
+            fleet — though depending on your platform settings, they may still synchronize or back
+            up through your own Apple or Google account, same as any other session. See section 3.
           </li>
           <li>
             On iPhone, if you are signed in to iCloud your sessions sync through <em>your own</em>
@@ -150,8 +152,9 @@
             replacement phone keeps your calibration.
           </li>
           <li>
-            <strong>Vehicle settings</strong> (fuel type, engine size, transmission) are stored
-            locally; never transmitted.
+            <strong>Vehicle settings</strong> (fuel type, engine size, transmission) are not sent to
+            Efficiver. If Android backup is enabled, they may be included in the backup stored in
+            your Google account (below).
           </li>
           <li>
             <strong>Location data</strong> is used during active drives to log waypoints and compute
@@ -223,9 +226,11 @@
       <div class="opacity-80">
         <p>
           Some drivers use Efficiver for work, for an employer that runs
-          <strong>Efficiver Fleet</strong>. This is the only situation in which your driving data
-          leaves your phone and becomes visible to someone else. It is off unless you deliberately
-          turn it on, and it works the same way on iPhone and Android.
+          <strong>Efficiver Fleet</strong>. This is the only situation in which completed drive
+          records are uploaded to Efficiver Fleet and made visible to your employer — maps, weather,
+          platform synchronization and backup are separate connected-service data flows, described
+          in sections 1 and 2. Fleet is off unless you deliberately turn it on, and it works the
+          same way on iPhone and Android.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">How it is switched on</h3>
@@ -271,7 +276,9 @@
         <h3 class="text-xl font-semibold mt-6 mb-2">What is never shared with your fleet</h3>
         <ul class="list-disc pl-6 space-y-2">
           <li>
-            <strong>Drives recorded while you are off duty</strong>, which stay on your phone.
+            <strong>Drives recorded while you are off duty</strong> — never uploaded to your fleet,
+            though depending on your platform settings they may still synchronize or back up through
+            your own Apple or Google account.
           </li>
           <li>Any drive at all if you have not joined a fleet.</li>
           <li>

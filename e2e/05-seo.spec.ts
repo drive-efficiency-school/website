@@ -34,16 +34,19 @@ test.describe('index.html meta + structured data', () => {
     expect(ogDesc).toBeTruthy()
     expect(ogDesc).toMatch(/CarPlay/i)
     expect(ogDesc).toMatch(/AI insights|forecast/i)
-    // SECOND CONTRACT FLIP (v2 review §3.7 + §3.1). The first flip required
-    // "never reach Efficiver's servers" as an unqualified absolute - correct
-    // against the earlier "nothing leaves your device" claim, but itself still
-    // false once Fleet is accounted for: on-duty drives ARE uploaded to a
-    // fleet a driver has chosen to join. Scoped again, banned in both
-    // directions once more so neither phrasing can drift back silently.
+    // THIRD CONTRACT FLIP (v3 review §2.1/§2.6-adjacent metadata sweep). The
+    // second flip's "no data leaves your phone unless you join a fleet" was
+    // itself still an absolute once iCloud sync, Android's own backup, and
+    // weather/maps location sends are counted - none of those require
+    // joining a fleet. Scoped a third time to the one thing that IS true
+    // unconditionally (drive records specifically), with the other flows
+    // pointed at the Privacy Policy instead of denied. All three phrasings
+    // stay banned so none can drift back silently.
     expect(ogDesc).not.toMatch(/nothing leaves your device/i)
     expect(ogDesc).not.toMatch(/never reach Efficiver's servers/i)
-    expect(ogDesc).toMatch(/no data leaves your phone unless you join a fleet/i)
-    expect(ogDesc).toMatch(/no ads, no analytics/i)
+    expect(ogDesc).not.toMatch(/no data leaves your phone unless you join a fleet/i)
+    expect(ogDesc).toMatch(/drive records are not sent to Efficiver unless you opt into fleet/i)
+    expect(ogDesc).toMatch(/no ads or third-party analytics/i)
     // §3.7: Year Recap and the full forecast are Pro-gated ("coming soon") -
     // the metadata must not present them as unconditionally available today.
     expect(ogDesc).not.toMatch(/\bYear Recap\b/i)
