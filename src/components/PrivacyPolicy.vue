@@ -52,6 +52,11 @@
             request, we don't share it with anyone.
           </li>
           <li>No advertising identifiers, no third-party analytics, no ad tracking.</li>
+          <li>
+            Your data is kept until you (or, for uploaded fleet drives, your employer) choose to
+            delete it — see <strong>section 6, Data retention</strong> for what applies to each type
+            of data.
+          </li>
         </ul>
       </div>
     </section>
@@ -336,8 +341,8 @@
 
         <p class="mt-4">
           Both forms submit to <code>{{ config.api.baseUrl }}</code
-          >, an Efficiver-operated email API. Data is retained for the time needed to fulfill your
-          request and respond. No third-party processors.
+          >, an Efficiver-operated email API, with no third-party processors. See section 6 for how
+          long this data is kept.
         </p>
       </div>
     </section>
@@ -373,9 +378,42 @@
       </div>
     </section>
 
-    <!-- Section 6: Your rights -->
+    <!-- Section 6: Data retention -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">6. Your rights</h2>
+      <h2 class="text-2xl font-semibold mb-4">6. Data retention</h2>
+      <div class="opacity-80">
+        <p>How long we keep each type of data, and what decides when it goes:</p>
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>
+            <strong>Driving sessions, vehicle settings and your Smart Detection model</strong> are
+            kept on your device for as long as you keep the app installed, or until you delete them
+            yourself (section 7). None of this data is ever stored on our servers, so we don't set a
+            retention period for it — deletion is entirely under your control.
+          </li>
+          <li>
+            <strong>iCloud sync (iPhone) and Android backup</strong> are governed by your own Apple
+            or Google account, not by Efficiver. That data is retained under Apple's or Google's own
+            rules for as long as sync or backup stays switched on.
+          </li>
+          <li>
+            <strong>Fleet-uploaded drives</strong> are kept for the retention period your employer
+            sets (section 3), after which they are permanently purged from our systems. Ask your
+            employer or fleet administrator for their specific period.
+          </li>
+          <li>
+            <strong>Contact form and newsletter submissions</strong> are kept in our systems until
+            you ask us to delete them (email
+            <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>).
+            Unsubscribing from the newsletter stops future emails immediately, but does not by
+            itself delete your subscriber record — email us if you want that removed too.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 7: Your rights -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">7. Your rights</h2>
       <div class="opacity-80">
         <p>You can:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
@@ -410,9 +448,9 @@
       </div>
     </section>
 
-    <!-- Section 7: Children's privacy -->
+    <!-- Section 8: Children's privacy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">7. Children's privacy</h2>
+      <h2 class="text-2xl font-semibold mb-4">8. Children's privacy</h2>
       <div class="opacity-80">
         <p>
           Efficiver carries a 17+ age rating on the app stores, which reflects the app's content and
@@ -423,9 +461,9 @@
       </div>
     </section>
 
-    <!-- Section 8: Changes to this policy -->
+    <!-- Section 9: Changes to this policy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">8. Changes to this policy</h2>
+      <h2 class="text-2xl font-semibold mb-4">9. Changes to this policy</h2>
       <div class="opacity-80">
         <p>
           We may update this Privacy Policy as the app and website evolve. The "Last updated" date
@@ -435,9 +473,9 @@
       </div>
     </section>
 
-    <!-- Section 9: Contact -->
+    <!-- Section 10: Contact -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
+      <h2 class="text-2xl font-semibold mb-4">10. Contact</h2>
       <div class="opacity-80">
         <p>
           For privacy questions, email

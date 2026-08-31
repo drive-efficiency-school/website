@@ -9,7 +9,7 @@ describe('PrivacyPolicy', () => {
     expect(wrapper.text()).toContain(`Last updated: ${config.lastUpdated.privacy}`)
   })
 
-  it('renders all ten sections (Summary + 1-9) in order', () => {
+  it('renders all eleven sections (Summary + 1-10) in order', () => {
     const wrapper = mount(PrivacyPolicy)
     const headings = wrapper.findAll('h2').map((h) => h.text())
     expect(headings).toEqual([
@@ -19,11 +19,54 @@ describe('PrivacyPolicy', () => {
       '3. Fleet mode (opt-in, both apps)',
       '4. The Efficiver website (efficiver.com)',
       '5. How we share data',
-      '6. Your rights',
-      "7. Children's privacy",
-      '8. Changes to this policy',
-      '9. Contact'
+      '6. Data retention',
+      '7. Your rights',
+      "8. Children's privacy",
+      '9. Changes to this policy',
+      '10. Contact'
     ])
+  })
+
+  // Google Play rejected the app 2026-08-30/31 for "Data retention policy
+  // not specified" - the privacy policy had retention info scattered
+  // (Fleet-uploaded drives, contact form) but no explicit statement for the
+  // primary on-device case, which is most of what the app actually stores.
+  // Verified against email-fullstack/face-backend source before writing this:
+  // ContactSubmission and Subscriber both use Fluent soft-delete with no
+  // automatic purge job anywhere in the codebase, and unsubscribing only
+  // flips `isActive` - it does not delete the Subscriber row. So the
+  // previous "retained for the time needed to fulfill your request and
+  // respond" claim in section 4 was inaccurate and is now corrected too,
+  // not just supplemented.
+  describe('Data retention (Google Play rejection, 2026-08-31)', () => {
+    it('states retention for on-device data as user-controlled, no server-side period', () => {
+      const wrapper = mount(PrivacyPolicy)
+      const text = wrapper.text()
+      expect(text).toMatch(/kept on your device for as long as you keep the app installed/i)
+      expect(text).toMatch(/we don't set a retention period for it/i)
+    })
+
+    it('states iCloud/Android backup retention is governed by the platform, not Efficiver', () => {
+      const wrapper = mount(PrivacyPolicy)
+      expect(wrapper.text()).toMatch(
+        /governed by your own Apple\s*or Google account, not by Efficiver/i
+      )
+    })
+
+    it('states Fleet-uploaded drives are purged per the employer-set period', () => {
+      const wrapper = mount(PrivacyPolicy)
+      expect(wrapper.text()).toMatch(
+        /kept for the retention period your employer\s*sets.*permanently purged/i
+      )
+    })
+
+    it('states contact/newsletter data is kept until deletion is requested, not auto-purged', () => {
+      const wrapper = mount(PrivacyPolicy)
+      const text = wrapper.text()
+      expect(text).not.toMatch(/retained for the time needed to fulfill your request and respond/i)
+      expect(text).toMatch(/kept in our systems until\s*you ask us to delete them/i)
+      expect(text).toMatch(/does not by\s*itself delete your subscriber record/i)
+    })
   })
 
   describe('iCloud (N1, D6)', () => {
