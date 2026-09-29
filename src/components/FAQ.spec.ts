@@ -32,6 +32,27 @@ describe('FAQ', () => {
     expect(link.text()).toBe(config.contact.email)
   })
 
+  async function openAnswer(wrapper: ReturnType<typeof mount>, question: string) {
+    const trigger = wrapper
+      .findAll('.AccordionRoot button')
+      .find((t) => t.text().includes(question))!
+    await trigger.trigger('click')
+    return wrapper.text()
+  }
+
+  it('explains a gap on the route map as untrusted GPS (W3, v1.6 ADR-197)', async () => {
+    const text = await openAnswer(mount(FAQ), 'Does Efficiver need a clear GPS signal')
+    expect(text).toContain(
+      "On a drive's route map, every dot is a trusted position — a gap between dots means GPS couldn't be trusted there."
+    )
+  })
+
+  it('states the fleet exception as on duty from start to end (W4, v1.6 ADR-199 D10)', async () => {
+    const text = await openAnswer(mount(FAQ), 'Is my data safe with Efficiver?')
+    expect(text).toContain('drives that are on duty from start to end are shared with them')
+    expect(text).not.toContain('the drives you record on duty are shared')
+  })
+
   it('expands an answer when its question is clicked', async () => {
     const wrapper = mount(FAQ)
     expect(wrapper.text()).not.toContain('An initial calibration')

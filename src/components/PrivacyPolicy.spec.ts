@@ -140,6 +140,35 @@ describe('PrivacyPolicy', () => {
       expect(wrapper.text()).toContain('Drives recorded while you are off duty')
     })
 
+    // v1.6 WP3 (W12) — verified against both encoders: SessionFleetEncoder.swift:106/:121 and
+    // SessionFleetEncoder.kt:141/:157 (stop reason on complete drives, the partial flag).
+    it('no longer says only COMPLETED drives are uploaded — partial ones are too (ADR-199)', () => {
+      const text = mount(PrivacyPolicy).text()
+      expect(text).not.toContain('completed drive records are uploaded')
+      expect(text).toContain('the only situation in which drive records are uploaded')
+    })
+
+    it('states the on-duty-from-start-to-end rule (ADR-199 D10)', () => {
+      const text = mount(PrivacyPolicy).text()
+      expect(text).toContain('only a drive that is on duty from start to end is uploaded')
+      expect(text).toContain(
+        'a drive you start off duty stays on your phone, even if you go on duty mid-way'
+      )
+      expect(text).not.toContain('When you finish a drive while on duty, that drive is uploaded')
+    })
+
+    it('says when an interrupted on-duty drive is uploaded, and that it is marked partial', () => {
+      expect(mount(PrivacyPolicy).text()).toContain(
+        'the part that was recorded is uploaded the next time you open the app, marked as partial — as long as your duty status has not changed since'
+      )
+    })
+
+    it('discloses the stop reason and the partial flag in what is shared', () => {
+      expect(mount(PrivacyPolicy).text()).toContain(
+        'whether the drive started and ended automatically or manually, and whether it was interrupted (partial)'
+      )
+    })
+
     it('never shares the Smart Detection model with the fleet', () => {
       const wrapper = mount(PrivacyPolicy)
       expect(wrapper.text()).toContain(

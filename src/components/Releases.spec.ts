@@ -13,7 +13,9 @@ describe('Releases', () => {
   it('lists every version, current one first, each dated', () => {
     const wrapper = mount(Releases)
     const titles = wrapper.findAll('h4, .text-2xl, .text-xl').map((el) => el.text())
+    expect(wrapper.text()).toContain('v1.6 — Trustworthy trips and savings')
     expect(wrapper.text()).toContain('v1.5 — Converged Trends, AidOps Edge')
+    expect(wrapper.text().indexOf('v1.6 — ')).toBeLessThan(wrapper.text().indexOf('v1.5 — '))
     expect(wrapper.text()).toContain('v1.4 (iPhone)')
     expect(wrapper.text()).toContain('v1.3 (iPhone)')
     expect(wrapper.text()).toContain('v1.2 (iPhone)')
@@ -23,21 +25,21 @@ describe('Releases', () => {
     expect(titles.length).toBeGreaterThan(0)
   })
 
-  it('badges v1.5 as CURRENT, always expanded (no <details> wrapper)', () => {
+  it('badges v1.6 as CURRENT, always expanded (no <details> wrapper)', () => {
     const wrapper = mount(Releases)
-    expect(wrapper.text()).toContain('CURRENT — v1.5')
-    // v1.5's own card content must not sit inside a <details>: it should be
+    expect(wrapper.text()).toContain('CURRENT — v1.6')
+    // v1.6's own card content must not sit inside a <details>: it should be
     // visible without any interaction, unlike every older version.
-    const v15 = wrapper
+    const v16 = wrapper
       .findAll('.container > *')
-      .find((el) => el.text().includes('Converged Trends'))
-    expect(v15?.element.tagName).not.toBe('DETAILS')
+      .find((el) => el.text().includes('Trustworthy trips and savings'))
+    expect(v16?.element.tagName).not.toBe('DETAILS')
   })
 
   it('collapses every older version by default', () => {
     const wrapper = mount(Releases)
     const detailsEls = wrapper.findAll('details')
-    expect(detailsEls).toHaveLength(6) // v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
+    expect(detailsEls).toHaveLength(7) // v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
     detailsEls.forEach((d) => expect(d.attributes('open')).toBeUndefined())
   })
 
@@ -52,6 +54,20 @@ describe('Releases', () => {
   })
 
   describe('claims that must stay accurate', () => {
+    it('states the v1.6 truths — interrupted drives, savings history, gallon fix, fleet rule', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('marked Interrupted')
+      expect(text).toContain('Session Details now shows Start Reason and Stop Reason')
+      expect(text).toContain(
+        'Each finished drive keeps the fuel price and typical consumption that were set when it ended'
+      )
+      expect(text).toContain(
+        'Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
+      )
+      expect(text).toContain('A drive reaches your fleet only if it was on duty from start to end')
+      expect(text).toContain('The effect is under one point, and saved scores are unchanged.')
+    })
+
     it('states AidOps Edge computation happens on-device (v1.5)', () => {
       const wrapper = mount(Releases)
       expect(wrapper.text()).toContain('Nothing leaves your device')

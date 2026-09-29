@@ -41,13 +41,13 @@
     {
       question: 'Does Efficiver need a clear GPS signal to work?',
       answer:
-        'Yes. Speed, distance, route, and scoring all come from your phone\'s GPS, so GPS accuracy directly affects your Efficiency Score. Efficiver shows an orange "GPS Warming Up" label for the first few seconds of every drive and a red "Low GPS" label (plus a "GPS Signal Weak — Scores may be affected" banner) whenever signal accuracy drops. Scoring continues during weak signal so you don\'t lose your drive, but accuracy may be reduced. Best results outdoors with a clear view of the sky — tunnels, underground parking, dense tree cover and tall buildings (urban canyons) can degrade accuracy. When the fix goes stale, Efficiver pauses the idle timer rather than counting you as idling, and it does not raise acceleration or braking events from the first readings after the signal returns. Normal scoring resumes on the next good fix.',
+        'Yes. Speed, distance, route, and scoring all come from your phone\'s GPS, so GPS accuracy directly affects your Efficiency Score. Efficiver shows an orange "GPS Warming Up" label for the first few seconds of every drive and a red "Low GPS" label (plus a "GPS Signal Weak — Scores may be affected" banner) whenever signal accuracy drops. Scoring continues during weak signal so you don\'t lose your drive, but accuracy may be reduced. Best results outdoors with a clear view of the sky — tunnels, underground parking, dense tree cover and tall buildings (urban canyons) can degrade accuracy. When the fix goes stale, Efficiver pauses the idle timer rather than counting you as idling, and it does not raise acceleration or braking events from the first readings after the signal returns. Normal scoring resumes on the next good fix. On a drive\'s route map, every dot is a trusted position — a gap between dots means GPS couldn\'t be trusted there.',
       value: 'item-gps'
     },
     {
       question: 'Is my data safe with Efficiver?',
       answer:
-        "Yes. Your driving data stays on your phone, stored locally — in SwiftData on iPhone and SQLite on Android. On iPhone, sessions sync automatically once you're signed in to iCloud, through your own private iCloud database — never Efficiver's servers, and there's no separate switch. We don't collect, store, or sell your driving data — the one exception is if you join an employer's Efficiver Fleet, where the drives you record on duty are shared with them. Privacy is built in.",
+        "Yes. Your driving data stays on your phone, stored locally — in SwiftData on iPhone and SQLite on Android. On iPhone, sessions sync automatically once you're signed in to iCloud, through your own private iCloud database — never Efficiver's servers, and there's no separate switch. We don't collect, store, or sell your driving data — the one exception is if you join an employer's Efficiver Fleet, where drives that are on duty from start to end are shared with them. Privacy is built in.",
       value: 'item-5'
     },
     {

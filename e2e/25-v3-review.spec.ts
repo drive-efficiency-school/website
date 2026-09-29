@@ -41,7 +41,10 @@ test.describe('§2.1 Privacy Policy — off-duty and Fleet-boundary framing', ()
     expect(androidSection).toMatch(/Android backup is enabled.*included in the backup/i)
   })
 
-  test('the Fleet section scopes "only situation" to completed drive records, not all data', async ({
+  // v1.6 (ADR-199): interrupted on-duty drives are uploaded too (marked partial), so the
+  // scope is "drive records", no longer "completed drive records". The v3 intent — scope
+  // "only situation" to drive records, not all data — is unchanged.
+  test('the Fleet section scopes "only situation" to drive records, not all data', async ({
     page
   }) => {
     await page.goto('/#privacy')
@@ -50,7 +53,8 @@ test.describe('§2.1 Privacy Policy — off-duty and Fleet-boundary framing', ()
     expect(body).not.toMatch(
       /only situation in which your driving data\s*leaves your phone and becomes visible/i
     )
-    expect(body).toMatch(/completed drive\s*records are uploaded to Efficiver Fleet/i)
+    expect(body).toMatch(/only situation in which drive records are\s*uploaded to Efficiver Fleet/i)
+    expect(body).not.toMatch(/completed drive\s*records are uploaded/i)
   })
 })
 

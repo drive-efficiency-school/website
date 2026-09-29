@@ -147,6 +147,55 @@ describe('Help', () => {
     })
   })
 
+  // v1.6 WP3 truth sheet (docs/Efficiver_v1.6_Release_Tracker.md), owner-approved 2026-09-29.
+  describe('v1.6 truths', () => {
+    it('explains Start Reason / Stop Reason and the Interrupted value (W7, ADR-196)', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('Start Reason / Stop Reason:')
+      expect(text).toContain('Interrupted means the app was closed before the drive ended')
+      expect(text).toContain('Drives recorded before v1.6 show N/A')
+      expect(text).toContain('Interrupted drives are marked in the list')
+    })
+
+    it('explains a gap on the Route card as untrusted GPS (W7, ADR-197)', () => {
+      expect(mount(Help).text()).toContain(
+        "Every dot is a trusted GPS position; a gap between dots means GPS couldn't be trusted there"
+      )
+    })
+
+    it('says finished drives keep their price and baseline, with the exceptions (W8, ADR-198)', () => {
+      const text = mount(Help).text()
+      expect(text).toContain(
+        'Each finished drive keeps the price and baseline that were set when it ended'
+      )
+      expect(text).toContain('After a currency change, older drives use today')
+      expect(text).toContain('Interrupted drives and drives from before v1.6 use today')
+    })
+
+    it('has a troubleshooting entry for an Interrupted drive (W9, ADR-196)', () => {
+      const wrapper = mount(Help)
+      const terms = wrapper.findAll('dt').map((dt) => dt.text())
+      expect(terms).toContain('A drive shows "Interrupted"')
+      expect(wrapper.text()).toContain('Efficiver saves a running drive every 10 seconds')
+      expect(wrapper.text()).toContain('your next drive starts fresh')
+    })
+
+    it('never claims Live Activity Stop saves a force-quit drive (W10, StopDriveIntent.swift:66-93)', () => {
+      const text = mount(Help).text()
+      expect(text).not.toContain('This works even if the app was force-quit')
+      expect(text).toContain('Stop only closes the Live Activity')
+    })
+
+    it('lists v1.6 first under Recently Shipped, with the plain gallon wording (W11, D3)', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('v1.6:')
+      expect(text).toContain(
+        'savings in per-gallon regions were shown too high and are now correct'
+      )
+      expect(text.indexOf('v1.6:')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
+    })
+  })
+
   it('lists nine troubleshooting entries plus four CarPlay-specific ones', () => {
     const wrapper = mount(Help)
     const terms = wrapper.findAll('dt').map((dt) => dt.text())

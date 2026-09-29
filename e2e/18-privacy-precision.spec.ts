@@ -95,11 +95,15 @@ test.describe('Verified privacy claims are preserved', () => {
     expect(f).not.toMatch(/No tracking, ever/i)
   })
 
+  // Since v1.6 the home-page WhatsNew no longer describes AidOps Edge (it carries the
+  // v1.6 cards); the AidOps claim lives on #releases (the v1.5 card) and in Help. The pin
+  // follows the claim to where it is made, so the correction still cannot over-swing.
   test('the AidOps-scoped on-device claim survives', async ({ page }) => {
-    await page.goto('/')
-    await page.getByText('Fleet enquiries and joining information', { exact: true }).click()
-    await page.locator('section#whats-new').scrollIntoViewIfNeeded()
-    const w = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(w).toMatch(/nothing leaves your device/i)
+    await page.goto('/#releases')
+    await expect(page.getByText('Release notes').first()).toBeVisible()
+    const r = (await page.locator('body').textContent()) ?? ''
+    expect(r).toMatch(
+      /AidOps Edge only phrases them, on your\s*phone\. Nothing leaves your device/i
+    )
   })
 })

@@ -49,11 +49,16 @@
       </div>
       <aside class="mt-8 rounded-2xl bg-muted p-6 max-w-4xl">
         <h2 class="font-semibold text-lg">Clear boundaries for drivers and managers</h2>
+        <!-- v1.6 (ADR-199): the start-to-end duty rule, Partial drives (the dashboard's badge
+             and "Recording stopped" pin), and no continuation while on duty. -->
         <p class="text-muted-foreground mt-3 leading-relaxed">
-          On-duty drives are shared with the fleet. A fleet can let drivers change duty status or
-          keep members on duty by policy. Explain who controls this before joining. The management
-          tools include retention settings and driver-data deletion; agree your organisation’s
-          policy before rollout.
+          Only drives that are on duty from start to end are shared with the fleet. A drive
+          interrupted before it ended — for example, when the phone closed the app — arrives marked
+          Partial, with its last point shown as “Recording stopped”. While a driver is on duty, a
+          short stop starts a new drive, so each leg arrives separately. A fleet can let drivers
+          change duty status or keep members on duty by policy. Explain who controls this before
+          joining. The management tools include retention settings and driver-data deletion; agree
+          your organisation’s policy before rollout.
         </p>
       </aside>
     </section>

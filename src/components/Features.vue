@@ -76,7 +76,8 @@
       icon: 'tabletSmartphone',
       title: 'Offline & background-aware',
       description:
-        'Records and scores your drive on your phone, with no connection needed. Weather, the map and route planning use a connection when you have one. Keeps logging when you switch to Maps or Music.'
+        // v1.6 (ADR-196): an interrupted drive is kept to its last 10 s autosave and marked.
+        'Records and scores your drive on your phone, with no connection needed. Weather, the map and route planning use a connection when you have one. Keeps logging when you switch to Maps or Music. If your phone closes the app mid-drive, the drive is kept up to its last automatic save and marked Interrupted.'
     },
     {
       // D8. Verified in source on BOTH platforms — iOS PowerManager observes

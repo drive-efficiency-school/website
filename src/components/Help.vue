@@ -372,7 +372,19 @@
           <dd>
             Force quit and restart the app. Check for iOS updates. If issues persist, contact
             <a href="mailto:contact@efficiver.com" class="underline">contact@efficiver.com</a>
-            with your iOS version and phone model.
+            with your iOS version and phone model. If a drive was running, it is kept up to its last
+            automatic save and shows as Interrupted.
+          </dd>
+
+          <!-- v1.6 (ADR-196): both apps autosave every 10 s; launch reconciliation marks a row
+               still recording as interrupted and never reopens it as a continuation. -->
+          <dt class="font-semibold">A drive shows "Interrupted"</dt>
+          <dd>
+            The app was closed before the drive ended — for example it was force-quit, the phone
+            restarted, or the system closed it. Efficiver saves a running drive every 10 seconds, so
+            the drive is kept up to its last save; its Stop Reason reads Interrupted and it is not
+            continued — your next drive starts fresh. To avoid it, end drives with Stop, or let
+            Auto-Stop end them, rather than force-quitting the app.
           </dd>
         </dl>
 
@@ -407,9 +419,12 @@
 
           <dt class="font-semibold">Started a drive on CarPlay but it didn't save</dt>
           <dd>
+            <!-- Verified in StopDriveIntent.swift:66-93: with the drive state gone after a
+                 force-quit, Stop only ends the orphaned Live Activity ("Drive stopped."). -->
             Tap <em>Stop</em> on the CarPlay screen, or use the <em>Stop</em> button on the Lock
-            Screen Live Activity — the drive saves automatically. This works even if the app was
-            force-quit.
+            Screen Live Activity — the drive saves automatically. If the app was force-quit during
+            the drive, <em>Stop</em> only closes the Live Activity: the drive is kept up to its last
+            automatic save and shows as Interrupted.
           </dd>
         </dl>
       </div>
@@ -483,6 +498,14 @@
           <li><strong>Fuel Price:</strong> Set per litre / gallon in your local currency</li>
           <li><strong>Baseline Consumption:</strong> Your vehicle's typical fuel economy</li>
           <li><strong>Currency:</strong> Auto-detected from your iOS region; override if needed</li>
+          <!-- v1.6 (ADR-198): the pricing inputs are stamped at drive end; the exceptions are
+               the resolver's own (currency mismatch, interrupted/legacy rows). -->
+          <li>
+            <strong>Past drives (v1.6):</strong> Each finished drive keeps the price and baseline
+            that were set when it ended, so editing them later changes only new drives. After a
+            currency change, older drives use today's price (there are no exchange rates).
+            Interrupted drives and drives from before v1.6 use today's settings.
+          </li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Security</h3>
         <ul class="list-disc pl-6">
@@ -535,7 +558,19 @@
           <li><strong>Mistakes:</strong> Breakdown of acceleration, braking, and idle events</li>
           <li><strong>Fuel Impact:</strong> Estimated fuel or energy impact (Wallet Watch)</li>
           <li><strong>Environmental Impact:</strong> Estimated CO₂ impact (Wallet Watch)</li>
-          <li><strong>Route card:</strong> Past-trip map with per-waypoint event markers (v1.2)</li>
+          <li>
+            <strong>Route card:</strong> Past-trip map with per-waypoint event markers (v1.2). Every
+            dot is a trusted GPS position; a gap between dots means GPS couldn't be trusted there
+            (v1.6)
+          </li>
+          <!-- v1.6 (ADR-196 + WP3 D1/D2): the renamed rows and the Interrupted value, as the app
+               shows them. The contract maps manual/Siri/CarPlay/Watch stops to Manual. -->
+          <li>
+            <strong>Start Reason / Stop Reason:</strong> How the drive began and ended — Manual when
+            you started or stopped it yourself, Automatic or Inactivity when Efficiver did.
+            Interrupted means the app was closed before the drive ended. Drives recorded before v1.6
+            show N/A for the stop reason (v1.6)
+          </li>
           <li><strong>Notes:</strong> Tap to add a note (up to 255 characters, v1.1)</li>
           <li><strong>Rename:</strong> Tap the title to rename the session inline (v1.1)</li>
         </ul>
@@ -547,7 +582,7 @@
           </li>
           <li>
             <strong>Sessions view:</strong> A searchable list of every drive — search by name or
-            date.
+            date. Interrupted drives are marked in the list (v1.6).
           </li>
           <li>
             <strong>Trends:</strong> Efficiency forecast with a "cut idle by X%" lever and a
@@ -704,6 +739,14 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
+          <!-- Undated until the stores release it (set the month at the prod deploy). -->
+          <li>
+            <strong>v1.6:</strong> interrupted drives are marked and each drive records how it
+            started and ended; past savings keep the price in effect when the drive ended; savings
+            in per-gallon regions were shown too high and are now correct; route maps draw only
+            trusted GPS positions; the score no longer assumes air-conditioning or tyre inputs;
+            on-duty fleet drives interrupted mid-way now arrive marked Partial
+          </li>
           <li>
             <strong>v1.5 (July 2026):</strong> converged Trends chart (recorded history and forecast
             in one scrubbable chart), AidOps Edge on-device insights with an honest status and a new
