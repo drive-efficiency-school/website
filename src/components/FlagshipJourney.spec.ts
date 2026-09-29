@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { mount, shallowMount } from '@vue/test-utils'
 import DriveStory from './DriveStory.vue'
 import EverydayValue from './EverydayValue.vue'
@@ -59,6 +59,47 @@ describe('Flagship journey', () => {
     // The pre-1.6 claim: a price edit re-priced every past drive. No longer true.
     expect(text).not.toContain('A changed price or baseline changes the estimate')
   })
+  // "#fleet" (Pricing's "Talk to us") is routed by App.vue to this page, which then scrolled
+  // to the TOP — the enquiry form sits at the bottom, so the button landed nowhere useful
+  // (e2e 24-v2 "Fleet's button scrolls…" failed 3/3 on main). The page now brings its own
+  // form into view when opened through that alias.
+  describe('the #fleet enquiry-form alias', () => {
+    // jsdom has no scrollIntoView; each test assigns a spy, so put back whatever was there
+    // (vi.restoreAllMocks does not undo a direct prototype assignment).
+    const originalScrollIntoView = Element.prototype.scrollIntoView
+    afterEach(() => {
+      window.location.hash = ''
+      Element.prototype.scrollIntoView = originalScrollIntoView
+    })
+
+    it('scrolls to the enquiry form when opened via #fleet', () => {
+      window.location.hash = '#fleet'
+      const scroll = vi.fn()
+      Element.prototype.scrollIntoView = scroll
+      const wrapper = mount(FleetPage, { attachTo: document.body })
+      expect(scroll).toHaveBeenCalledTimes(1)
+      expect(scroll.mock.contexts[0]).toBe(document.getElementById('fleet'))
+      wrapper.unmount()
+    })
+
+    it('stays at the page top when opened via #fleet-guide', () => {
+      window.location.hash = '#fleet-guide'
+      const scroll = vi.fn()
+      Element.prototype.scrollIntoView = scroll
+      const wrapper = mount(FleetPage, { attachTo: document.body })
+      expect(scroll).not.toHaveBeenCalled()
+      wrapper.unmount()
+    })
+
+    it('does nothing if the form is not in the document', () => {
+      window.location.hash = '#fleet'
+      const scroll = vi.fn()
+      Element.prototype.scrollIntoView = scroll
+      shallowMount(FleetPage) // FleetCallout stubbed and not attached: no #fleet element
+      expect(scroll).not.toHaveBeenCalled()
+    })
+  })
+
   it('tells managers the on-duty rule, Partial drives and per-leg drives (W6, ADR-199)', () => {
     const text = shallowMount(FleetPage).text()
     expect(text).toContain('Only drives that are on duty from start to end are shared')

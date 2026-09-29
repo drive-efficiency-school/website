@@ -70,12 +70,14 @@ test.describe('index.html meta + structured data', () => {
     expect(robots).toBe('index, follow')
   })
 
-  test('JSON-LD softwareVersion is "1.5"', async ({ page }) => {
+  // Moves with the release this site describes: the v1.6 content (WP3) ships to prod only
+  // after the v1.6 store approvals, so the structured data ships with it.
+  test('JSON-LD softwareVersion is "1.6"', async ({ page }) => {
     const jsonLd = await page.locator('script[type="application/ld+json"]').first().textContent()
     expect(jsonLd).toBeTruthy()
     const parsed = JSON.parse(jsonLd!)
     expect(parsed['@type']).toBe('MobileApplication')
-    expect(parsed.softwareVersion).toBe('1.5')
+    expect(parsed.softwareVersion).toBe('1.6')
   })
 
   test('JSON-LD does NOT contain aggregateRating block (M7)', async ({ page }) => {

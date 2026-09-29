@@ -163,6 +163,12 @@ describe('PrivacyPolicy', () => {
       )
     })
 
+    // W14 — every fleet frame's summary carries the proficiency level
+    // (SessionFleetEncoder.swift:110, SessionFleetEncoder.kt:145), which §3 never listed.
+    it('discloses the proficiency level every fleet upload carries (W14)', () => {
+      expect(mount(PrivacyPolicy).text()).toContain('the proficiency level you set in the app')
+    })
+
     it('discloses the stop reason and the partial flag in what is shared', () => {
       expect(mount(PrivacyPolicy).text()).toContain(
         'whether the drive started and ended automatically or manually, and whether it was interrupted (partial)'

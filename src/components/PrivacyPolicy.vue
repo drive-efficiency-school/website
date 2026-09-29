@@ -281,8 +281,8 @@
           </li>
           <li>
             A <strong>summary</strong> — Efficiency Score, distance, idle time, start and end time,
-            whether the drive started and ended automatically or manually, and whether it was
-            interrupted (partial).
+            the proficiency level you set in the app, whether the drive started and ended
+            automatically or manually, and whether it was interrupted (partial).
           </li>
           <li>
             Identifiers that tie the drive to you as a driver in that fleet, and to the device that
