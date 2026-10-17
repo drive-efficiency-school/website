@@ -68,7 +68,7 @@ test.describe('Releases: no cornering (N5)', () => {
 test.describe('Help: claims matched to the apps', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
   })
 
   test('no hybrid support and no "all makes and models" (N7)', async ({ page }) => {

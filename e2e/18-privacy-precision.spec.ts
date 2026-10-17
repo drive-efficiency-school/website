@@ -58,7 +58,7 @@ test.describe('No absolute data claim on the marketing surface', () => {
 test.describe('Help states the real default, not a false one', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
   })
 
   test('does not claim data stays on the phone by default', async ({ page }) => {
