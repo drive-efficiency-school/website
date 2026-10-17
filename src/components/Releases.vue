@@ -102,13 +102,30 @@
         <div>
           <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+            <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
+            <li>
+              iPhone scores were too generous before 1.6: they barely reacted to driving mistakes,
+              and idling pushed them up. Drives with mistakes now score lower and idling no longer
+              raises the score, the same as on Android. Past drives keep their saved score.
+            </li>
             <li>
               Route maps draw only trusted GPS positions — a gap between dots means GPS couldn’t be
               trusted there.
             </li>
             <li>
               The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the
-              phone can’t measure. The effect is under one point, and saved scores are unchanged.
+              phone can’t measure. That change alone moves a score by under one point.
+            </li>
+            <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
+            <li>
+              On iPhone, your music or podcast returns to full volume after Efficiver’s last voice
+              prompt — also when prompts overlap or a phone call interrupts one.
+            </li>
+            <li>
+              On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
+              CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and
+              score; it has no Stop button, because Live Activity buttons don’t work in CarPlay.
+              Stop from the Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
             </li>
             <li>
               The live idle count now adds up every 30-second idle period across the whole drive,
@@ -283,6 +300,14 @@
                 On iPhone, the Live Activity card that shows your drive on the Lock Screen now also
                 appears on your car's CarPlay screen and your Apple Watch's Smart Stack — the same
                 live score and a Stop button, wherever you glance.
+              </p>
+              <!-- Same "Current behaviour" pattern as the v1.2 iCloud note: history stays, the
+                   present is stated. Live Activity buttons don't perform actions in CarPlay
+                   (Apple), and the CarPlay + Watch card is one .small layout (iOS 1484736). -->
+              <p class="text-muted-foreground mt-2 text-sm">
+                <strong>Current behaviour:</strong> since v1.6 the card on CarPlay and the Smart
+                Stack shows your driving status and score without a Stop button — Live Activity
+                buttons don't work in CarPlay. The Lock Screen card keeps its Stop button.
               </p>
             </div>
           </div>

@@ -271,6 +271,13 @@
           <li><strong>40-59%:</strong> Moderate efficiency, focus on reducing mistakes</li>
           <li><strong>0-39%:</strong> Significant improvement needed</li>
         </ul>
+        <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
+        <p class="mt-4">
+          <strong>Scores from v1.6 (iPhone):</strong> before 1.6, iPhone scores were too generous —
+          they barely reacted to driving mistakes, and idling pushed them up. Drives with mistakes
+          now score lower and idling no longer raises the score, the same as on Android. Past drives
+          keep their saved score, so an older drive may score higher than a similar new one.
+        </p>
         <p class="mt-4">
           <strong>Note:</strong> The thresholds for a harsh event adapt to your speed and gear, so
           the same change in speed can register in town and pass unremarked on a motorway. In town
@@ -407,6 +414,15 @@
             <em>Voice Assistance</em> is on and not muted (use the <em>Mute</em> button on the
             CarPlay screen — tap it again to hear "Voice unmuted"). Head units vary; if prompts are
             quiet right after connecting, starting the drive again usually re-selects CarPlay audio.
+          </dd>
+
+          <!-- Truth sheet line 7 (iOS 745fbf9): the audio session is released after the last
+               prompt, also across overlapping prompts and interruptions. -->
+          <dt class="font-semibold">Music or a podcast stays quiet after a voice prompt</dt>
+          <dd>
+            Fixed in v1.6: your audio returns to full volume once Efficiver's last voice prompt
+            ends, including when prompts overlap or a phone call interrupts one. Update to the
+            latest version. If a podcast stays paused, tap play once in your podcast app.
           </dd>
 
           <dt class="font-semibold">Score, distance, or mistakes stay at zero on CarPlay</dt>
@@ -744,8 +760,11 @@
             <strong>v1.6:</strong> interrupted drives are marked and each drive records how it
             started and ended; past savings keep the price in effect when the drive ended; savings
             in per-gallon regions were shown too high and are now correct; route maps draw only
-            trusted GPS positions; the score no longer assumes air-conditioning or tyre inputs;
-            on-duty fleet drives interrupted mid-way now arrive marked Partial
+            trusted GPS positions; iPhone scores react properly to mistakes and idling (they were
+            too generous before), and the score no longer assumes air-conditioning or tyre inputs;
+            on iPhone, music and podcasts return to full volume after voice prompts and the CarPlay
+            start screen no longer flickers; on-duty fleet drives interrupted mid-way now arrive
+            marked Partial
           </li>
           <li>
             <strong>v1.5 (July 2026):</strong> converged Trends chart (recorded history and forecast

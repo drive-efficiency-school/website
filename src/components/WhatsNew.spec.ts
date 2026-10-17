@@ -64,9 +64,28 @@ describe('WhatsNew', () => {
     )
   })
 
-  it('states the score change as under one point, with saved scores unchanged (ADR-195)', () => {
+  // D4 (owner 2026-10-17): the iPhone session-clock fix (iOS b32c1ad) moves scores by far more
+  // than D2/D3's "under one point", so the old "saved scores are unchanged" line was replaced.
+  it('says plainly that iPhone scores were too generous before (D4)', () => {
     const text = mount(WhatsNew).text()
-    expect(text).toContain('The effect is under one point, and saved scores are unchanged.')
+    expect(text).toContain(
+      'iPhone scores were too generous before 1.6: they barely reacted to driving mistakes, and idling pushed them up.'
+    )
+    expect(text).toContain('Past drives keep their saved score.')
+    expect(text).toContain('That change alone moves a score by under one point.')
+    expect(text).not.toContain('saved scores are unchanged')
+  })
+
+  // Truth sheet line 7 (owner-approved 2026-10-17).
+  it('states the in-car iPhone changes — audio returns, no flicker, no Stop on the card', () => {
+    const text = mount(WhatsNew).text()
+    expect(text).toContain(
+      "your music or podcast returns to full volume after Efficiver's last voice prompt"
+    )
+    expect(text).toContain('the CarPlay start screen no longer flickers')
+    expect(text).toContain(
+      "it has no Stop button, because Live Activity buttons don't work in CarPlay"
+    )
   })
 
   it('lists the additional v1.6 improvements inside the disclosure', () => {

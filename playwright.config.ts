@@ -14,14 +14,19 @@ export default defineConfig({
     baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    // Off: failure video needs Playwright's own downloaded ffmpeg, which the house rule
+    // forbids (no `npx playwright install`). Failure screenshots + traces stay on.
+    video: 'off',
     actionTimeout: 15_000,
     navigationTimeout: 30_000
   },
   projects: [
     {
+      // House rule: run on the Mac's installed Google Chrome — never download Playwright's
+      // bundled browsers (`npx playwright install`). The bundled headless shell went missing
+      // on every Playwright update and failed the whole suite at launch.
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' }
     }
   ],
   webServer: isExternalTarget

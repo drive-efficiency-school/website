@@ -108,13 +108,32 @@
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
+        <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad): the live score's session
+             clock barely advanced, so iPhone scores barely reacted to mistakes. No migration —
+             saved scores stay as they were. -->
+        <li>
+          iPhone scores were too generous before 1.6: they barely reacted to driving mistakes, and
+          idling pushed them up. Drives with mistakes now score lower and idling no longer raises
+          the score, the same as on Android. Past drives keep their saved score.
+        </li>
         <li>
           Route maps draw only trusted GPS positions — a gap between dots means GPS couldn't be
           trusted there.
         </li>
         <li>
           The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the phone
-          can't measure. The effect is under one point, and saved scores are unchanged.
+          can't measure. That change alone moves a score by under one point.
+        </li>
+        <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
+        <li>
+          On iPhone, your music or podcast returns to full volume after Efficiver's last voice
+          prompt — also when prompts overlap or a phone call interrupts one.
+        </li>
+        <li>
+          On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
+          CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and score;
+          it has no Stop button, because Live Activity buttons don't work in CarPlay. Stop from the
+          Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
         </li>
         <li>
           The live idle count now adds up every 30-second idle period across the whole drive,

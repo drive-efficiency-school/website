@@ -194,6 +194,25 @@ describe('Help', () => {
       )
       expect(text.indexOf('v1.6:')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
     })
+
+    // D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad).
+    it('says plainly that iPhone scores were too generous before v1.6 (D4)', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('Scores from v1.6 (iPhone):')
+      expect(text).toContain('before 1.6, iPhone scores were too generous')
+      expect(text).toContain('Past drives keep their saved score')
+      expect(text).toContain('iPhone scores react properly to mistakes and idling')
+    })
+
+    // Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9).
+    it('has a CarPlay troubleshooting entry for audio that stayed quiet after a prompt', () => {
+      const wrapper = mount(Help)
+      const terms = wrapper.findAll('dt').map((dt) => dt.text())
+      expect(terms).toContain('Music or a podcast stays quiet after a voice prompt')
+      expect(wrapper.text()).toContain(
+        "your audio returns to full volume once Efficiver's last voice prompt ends"
+      )
+    })
   })
 
   it('lists nine troubleshooting entries plus four CarPlay-specific ones', () => {

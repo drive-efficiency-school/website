@@ -65,7 +65,36 @@ describe('Releases', () => {
         'Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
       )
       expect(text).toContain('A drive reaches your fleet only if it was on duty from start to end')
-      expect(text).toContain('The effect is under one point, and saved scores are unchanged.')
+    })
+
+    // D4 (owner 2026-10-17): replaces the D2/D3-only "under one point, saved scores unchanged".
+    it('says plainly that iPhone scores were too generous before v1.6 (D4)', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'iPhone scores were too generous before 1.6: they barely reacted to driving mistakes'
+      )
+      expect(text).toContain('Past drives keep their saved score.')
+      expect(text).toContain('That change alone moves a score by under one point.')
+      expect(text).not.toContain('saved scores are unchanged')
+    })
+
+    // Truth sheet line 7 (owner-approved 2026-10-17).
+    it('states the v1.6 in-car iPhone changes and the card without Stop', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'your music or podcast returns to full volume after Efficiver’s last voice prompt'
+      )
+      expect(text).toContain('the CarPlay start screen no longer flickers')
+      expect(text).toContain('because Live Activity buttons don’t work in CarPlay')
+    })
+
+    it('keeps the v1.4 history but states the current card behaviour', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('the same live score and a Stop button, wherever you glance')
+      expect(text).toContain(
+        'since v1.6 the card on CarPlay and the Smart Stack shows your driving status and score without a Stop button'
+      )
+      expect(text).toContain('The Lock Screen card keeps its Stop button.')
     })
 
     it('states AidOps Edge computation happens on-device (v1.5)', () => {
