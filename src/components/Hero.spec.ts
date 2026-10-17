@@ -34,6 +34,17 @@ describe('Hero', () => {
     expect(wrapper.text()).not.toContain('Google Play')
   })
 
+  // Beside the Play button, where people decide: the phone app is arm64-only (2026-10-17).
+  it('states the Android requirement next to the Play button', () => {
+    config.app.android = 'https://play.google.com/test-app'
+    expect(mount(Hero).text()).toContain('Android: needs Android 12 or later, 64-bit.')
+  })
+
+  it('drops the Android requirement line when there is no Play button', () => {
+    config.app.android = ''
+    expect(mount(Hero).text()).not.toContain('Android: needs Android 12 or later')
+  })
+
   it('leads with a clear flagship benefit and one main heading', () => {
     const wrapper = mount(Hero)
     expect(wrapper.get('h1').text()).toContain('Understand your driving.')
