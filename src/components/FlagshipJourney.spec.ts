@@ -37,6 +37,12 @@ describe('Flagship journey', () => {
     expect(wrapper.get('table').text()).toContain('Android 12')
     expect(wrapper.get('table').text()).toContain('iOS 26')
   })
+  // Testers on older phones could not install: the phone app is arm64-only, so the
+  // requirement is a 64-bit version of ANDROID, not just a 64-bit chip (2026-10-17).
+  it('states the Android requirement as a 64-bit version of Android', () => {
+    const table = mount(Compatibility).get('table').text()
+    expect(table).toContain('Android 12 or later, 64-bit version of Android')
+  })
   it('names the live Wear OS companion, never "Planned" (W13 — live since 2026-09-12)', () => {
     const table = mount(Compatibility).get('table').text()
     expect(table).toContain('Wear OS (Android)')

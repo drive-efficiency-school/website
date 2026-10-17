@@ -53,6 +53,20 @@ describe('FAQ', () => {
     expect(text).not.toContain('the drives you record on duty are shared')
   })
 
+  // The phone app is arm64-only: the requirement is a 64-bit version of ANDROID, not
+  // merely a 64-bit chip (testers on older phones could not install, 2026-10-17).
+  it('states the Android requirement as a 64-bit version of Android', async () => {
+    const wrapper = mount(FAQ)
+    const trigger = wrapper
+      .findAll('.AccordionRoot button')
+      .find((t) => t.text().includes('Which devices are compatible'))!
+    await trigger.trigger('click')
+    expect(wrapper.text()).toContain(
+      'for Android 12 and later, on phones running a 64-bit version of Android'
+    )
+    expect(wrapper.text()).not.toContain('on 64-bit devices')
+  })
+
   it('expands an answer when its question is clicked', async () => {
     const wrapper = mount(FAQ)
     expect(wrapper.text()).not.toContain('An initial calibration')
