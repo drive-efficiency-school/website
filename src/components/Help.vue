@@ -301,6 +301,15 @@
         <p>If something isn't working right, try these common fixes first.</p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Common Issues</h3>
         <dl class="space-y-4">
+          <!-- The phone app ships arm64-v8a native code only (app/build.gradle.kts abiFilters),
+               so Google Play hides or refuses it on 32-bit Android. Testers hit this (2026-10). -->
+          <dt class="font-semibold">Google Play says the app isn't compatible with my phone</dt>
+          <dd>
+            Efficiver for Android needs Android 12 or later, running a 64-bit version of Android.
+            Many older phones run a 32-bit version of Android, even when the chip is 64-bit, and
+            can't install it.
+          </dd>
+
           <dt class="font-semibold">App not detecting drives automatically</dt>
           <dd>
             Ensure <em>Auto-Start Drive</em> and <em>Auto-Stop Drive</em> are enabled in
@@ -741,8 +750,9 @@
         </ul>
         <p class="mt-4 text-sm">
           Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch) and on Android via
-          Google Play, with a Wear OS companion. Android requires Android 12 or later on a 64-bit
-          device; the watch companion needs Wear OS 3 or later, paired to that phone.
+          Google Play, with a Wear OS companion. Android requires Android 12 or later, running a
+          64-bit version of Android; the watch companion needs Wear OS 3 or later, paired to that
+          phone.
         </p>
       </div>
     </section>

@@ -38,6 +38,10 @@
         <p class="mt-4 text-sm text-muted-foreground">
           Free for personal use. Deeper Pro insights are coming soon.
         </p>
+        <!-- Next to the Play button, where people decide: the phone app is arm64-only. -->
+        <p v-if="config.app.android" class="mt-1 text-sm text-muted-foreground">
+          Android: needs Android 12 or later, 64-bit.
+        </p>
         <div class="flex flex-wrap gap-x-5 gap-y-3 mt-8 text-sm">
           <span
             v-for="benefit in [

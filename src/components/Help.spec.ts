@@ -147,6 +147,27 @@ describe('Help', () => {
     })
   })
 
+  // Testers on older phones could not install: the phone app is arm64-only (2026-10-17).
+  it('explains a Google Play "not compatible" message: 32-bit Android', () => {
+    const wrapper = mount(Help)
+    const terms = wrapper.findAll('dt').map((dt) => dt.text())
+    expect(terms[0]).toBe("Google Play says the app isn't compatible with my phone")
+    expect(wrapper.text()).toContain(
+      'Efficiver for Android needs Android 12 or later, running a 64-bit version of Android'
+    )
+    expect(wrapper.text()).toContain(
+      'Many older phones run a 32-bit version of Android, even when the chip is 64-bit'
+    )
+  })
+
+  it('states the Android requirement as a 64-bit version of Android, not a 64-bit device', () => {
+    const text = mount(Help).text()
+    expect(text).toContain(
+      'Android requires Android 12 or later, running a 64-bit version of Android'
+    )
+    expect(text).not.toContain('on a 64-bit device')
+  })
+
   it('lists nine troubleshooting entries plus four CarPlay-specific ones', () => {
     const wrapper = mount(Help)
     const terms = wrapper.findAll('dt').map((dt) => dt.text())

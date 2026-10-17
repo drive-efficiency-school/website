@@ -1,5 +1,15 @@
 <script setup lang="ts">
+  import { onMounted } from 'vue'
   import FleetCallout from './FleetCallout.vue'
+
+  // "#fleet" is this page's enquiry-form alias (App.vue routes it here — Pricing's
+  // "Talk to us" links to it). App scrolls every page it opens to the top, which left the
+  // form, at the bottom, out of view; opened through the alias, bring the form into view.
+  onMounted(() => {
+    if (window.location.hash === '#fleet') {
+      document.getElementById('fleet')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
 </script>
 <template>
   <main>
