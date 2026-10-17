@@ -148,12 +148,17 @@ describe('PrivacyPolicy', () => {
       expect(text).toContain('the only situation in which drive records are uploaded')
     })
 
-    it('states the on-duty-from-start-to-end rule (ADR-199 D10)', () => {
+    // v1.7: ADR-199 D10 cuts BOTH ways — going on OR off duty mid-way keeps the whole drive
+    // off the fleet. The 1.6 text only named the "start off duty" half. Kept in "uploaded"
+    // terms (never "leaves your phone" — it may still sync or back up, e2e §2.1).
+    it('states the on-duty-from-start-to-end rule, both ways (ADR-199 D10)', () => {
       const text = mount(PrivacyPolicy).text()
       expect(text).toContain('only a drive that is on duty from start to end is uploaded')
       expect(text).toContain(
-        'a drive you start off duty stays on your phone, even if you go on duty mid-way'
+        'a drive where you change duty part-way, going on or off duty, is not uploaded'
       )
+      expect(text).toContain('A drive where you change duty part-way')
+      expect(text).not.toContain('a drive you start off duty stays on your phone')
       expect(text).not.toContain('When you finish a drive while on duty, that drive is uploaded')
     })
 
