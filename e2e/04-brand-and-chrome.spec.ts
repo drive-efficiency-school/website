@@ -1,4 +1,11 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+
+// The site version follows the app release line (website release/v1.6.0 → 1.6.x; owner,
+// 2026-10-17) — read it, never hard-code a line like "v1.3".
+const siteVersion: string = JSON.parse(
+  readFileSync(new URL('../package.json', import.meta.url), 'utf-8')
+).version
 
 /**
  * Brand surface + page chrome — verifies Hero / Navbar / Footer /
@@ -87,9 +94,11 @@ test.describe('Footer (H7, M5, M12)', () => {
     await page.locator('footer').scrollIntoViewIfNeeded()
   })
 
-  test('version label references v1.3 (H7 — dynamic, not hardcoded v1.1.0)', async ({ page }) => {
+  test('version label shows the build version (H7 — dynamic, not hardcoded v1.1.0)', async ({
+    page
+  }) => {
     const footer = (await page.locator('footer').textContent()) ?? ''
-    expect(footer).toMatch(/v1\.3/)
+    expect(footer).toContain(`v${siteVersion} (`)
     expect(footer).not.toMatch(/v1\.1\.0\s*\(26052227\)/)
   })
 
