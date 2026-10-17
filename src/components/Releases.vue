@@ -36,12 +36,12 @@
     </div>
 
     <!-- v1.6 — every sentence comes from the owner-approved truth sheet
-         (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Undated until the stores
-         release it: set the month at the prod deploy. -->
+         (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Dated at the prod deploy. -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
           <CardTitle class="text-2xl">v1.6 — Trustworthy trips and savings</CardTitle>
+          <span class="text-sm text-muted-foreground whitespace-nowrap">October 2026</span>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">

@@ -764,16 +764,15 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
-          <!-- Undated until the stores release it (set the month at the prod deploy). -->
           <li>
-            <strong>v1.6:</strong> interrupted drives are marked and each drive records how it
-            started and ended; past savings keep the price in effect when the drive ended; savings
-            in per-gallon regions were shown too high and are now correct; route maps draw only
-            trusted GPS positions; iPhone scores react properly to mistakes and idling (they were
-            too generous before), and the score no longer assumes air-conditioning or tyre inputs;
-            on iPhone, music and podcasts return to full volume after voice prompts and the CarPlay
-            start screen no longer flickers; on-duty fleet drives interrupted mid-way now arrive
-            marked Partial
+            <strong>v1.6 (October 2026):</strong> interrupted drives are marked and each drive
+            records how it started and ended; past savings keep the price in effect when the drive
+            ended; savings in per-gallon regions were shown too high and are now correct; route maps
+            draw only trusted GPS positions; iPhone scores react properly to mistakes and idling
+            (they were too generous before), and the score no longer assumes air-conditioning or
+            tyre inputs; on iPhone, music and podcasts return to full volume after voice prompts and
+            the CarPlay start screen no longer flickers; on-duty fleet drives interrupted mid-way
+            now arrive marked Partial
           </li>
           <li>
             <strong>v1.5 (July 2026):</strong> converged Trends chart (recorded history and forecast
