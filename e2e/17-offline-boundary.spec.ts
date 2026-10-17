@@ -40,7 +40,7 @@ test.describe('Offline capability is scoped, not absolute', () => {
 
   test('Help does not claim completely offline', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/completely offline/i)
   })

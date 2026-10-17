@@ -49,7 +49,7 @@ test.describe('Calibration is described as initial and manual', () => {
 
   test('Help never calls it automatic or one-minute', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/auto[- ]calibrat/i)
     expect(body).not.toMatch(/one[- ]minute auto/i)
