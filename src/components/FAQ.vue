@@ -59,7 +59,7 @@
     {
       question: 'Which devices are compatible with Efficiver?',
       answer:
-        "Efficiver runs on iPhones with iOS 26 or later, and on iPad, with CarPlay support (v1.3) and an Apple Watch companion (v1.4). The AidOps Edge coaching insights use Apple Intelligence where it's available; every other feature works without it. Efficiver is also available on Google Play for Android 12 and later, on 64-bit devices, with a Wear OS companion for watches running Wear OS 3 or later.",
+        "Efficiver runs on iPhones with iOS 26 or later, and on iPad, with CarPlay support (v1.3) and an Apple Watch companion (v1.4). The AidOps Edge coaching insights use Apple Intelligence where it's available; every other feature works without it. Efficiver is also available on Google Play for Android 12 and later, on phones running a 64-bit version of Android, with a Wear OS companion for watches running Wear OS 3 or later.",
       value: 'item-7'
     },
     {
