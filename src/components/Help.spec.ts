@@ -188,11 +188,12 @@ describe('Help', () => {
 
     it('lists v1.6 first under Recently Shipped, with the plain gallon wording (W11, D3)', () => {
       const text = mount(Help).text()
-      expect(text).toContain('v1.6:')
+      // Dated at the prod deploy (October 2026), the same "vX (Month YYYY):" form as v1.5.
+      expect(text).toContain('v1.6 (October 2026):')
       expect(text).toContain(
         'savings in per-gallon regions were shown too high and are now correct'
       )
-      expect(text.indexOf('v1.6:')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
+      expect(text.indexOf('v1.6 (October 2026):')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
     })
 
     // D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad).
@@ -213,6 +214,27 @@ describe('Help', () => {
         "your audio returns to full volume once Efficiver's last voice prompt ends"
       )
     })
+  })
+
+  // Testers on older phones could not install: the phone app is arm64-only (2026-10-17).
+  it('explains a Google Play "not compatible" message: 32-bit Android', () => {
+    const wrapper = mount(Help)
+    const terms = wrapper.findAll('dt').map((dt) => dt.text())
+    expect(terms[0]).toBe("Google Play says the app isn't compatible with my phone")
+    expect(wrapper.text()).toContain(
+      'Efficiver for Android needs Android 12 or later, running a 64-bit version of Android'
+    )
+    expect(wrapper.text()).toContain(
+      'Many older phones run a 32-bit version of Android, even when the chip is 64-bit'
+    )
+  })
+
+  it('states the Android requirement as a 64-bit version of Android, not a 64-bit device', () => {
+    const text = mount(Help).text()
+    expect(text).toContain(
+      'Android requires Android 12 or later, running a 64-bit version of Android'
+    )
+    expect(text).not.toContain('on a 64-bit device')
   })
 
   it('lists nine troubleshooting entries plus four CarPlay-specific ones', () => {

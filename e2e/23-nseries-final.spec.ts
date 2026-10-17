@@ -30,7 +30,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Motion permission rationale matches the app (N3)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
   })
 
   test('does not attribute auto-start/stop to Motion & Fitness', async ({ page }) => {
@@ -55,14 +55,14 @@ test.describe('Motion permission rationale matches the app (N3)', () => {
 test.describe('Braking sensitivity (N6)', () => {
   test('makes no blanket sensitivity comparison', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/more sensitive than\s+acceleration/i)
   })
 
   test('the note carries no safety-benefit claim either', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/smoother, safer driving/i)
   })
@@ -80,7 +80,7 @@ test.describe('Accessibility claims sit alongside their limitations (N11)', () =
 
   test('Help makes no total-coverage claim either', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/full support across every screen/i)
     expect(body).not.toMatch(/Full screen-reader support/i)

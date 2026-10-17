@@ -25,7 +25,10 @@
           <tr>
             <th scope="row" class="p-4 sm:p-5 font-medium">Phone requirements</th>
             <td class="p-4 sm:p-5">iOS 26 or later</td>
-            <td class="p-4 sm:p-5">Android 12 or later, 64-bit</td>
+            <!-- The phone app ships arm64-v8a native code only (app/build.gradle.kts abiFilters):
+                 it needs a 64-bit version of ANDROID, not just a 64-bit chip — many older
+                 phones run 32-bit Android on 64-bit hardware and cannot install it. -->
+            <td class="p-4 sm:p-5">Android 12 or later, 64-bit version of Android</td>
           </tr>
           <tr>
             <th scope="row" class="p-4 sm:p-5 font-medium">Offline recording &amp; scoring</th>
@@ -40,6 +43,8 @@
           <tr>
             <th scope="row" class="p-4 sm:p-5 font-medium">Watch companion</th>
             <td class="p-4 sm:p-5">Apple Watch (iPhone)</td>
+            <!-- Wear OS is live on Play since 2026-09-12 (wear 10054), from the phone listing. -->
+
             <td class="p-4 sm:p-5">Wear OS (Android)</td>
           </tr>
           <tr>
