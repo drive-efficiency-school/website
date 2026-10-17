@@ -31,6 +31,20 @@ describe('FleetCallout', () => {
     expect(wrapper.findAll('button')).toHaveLength(1)
   })
 
+  it('tells drivers the on-duty rule and what happens to an interrupted drive (W5, v1.6 ADR-199)', () => {
+    const text = mount(FleetCallout).text()
+    expect(text).toContain(
+      'Only drives that are on duty from start to end are shared with your fleet'
+    )
+    expect(text).toContain(
+      'A drive you start off duty stays on your phone, even if you go on duty mid-way'
+    )
+    expect(text).toContain(
+      'the drive is sent the next time you open the app, marked Partial, as long as your duty status has not changed since'
+    )
+    expect(text).not.toContain('Only the drives you record while you are')
+  })
+
   it('marks the operator offer as not yet available', () => {
     const wrapper = mount(FleetCallout)
     expect(wrapper.get('[data-testid="fleet-coming-soon"]').text()).toBe('Coming soon')

@@ -143,34 +143,36 @@ test.describe('WhatsNew section (H1, H2)', () => {
   })
 
   // WhatsNew always advertises the CURRENT release. These assertions moved
-  // from v1.3 → v1.5 (2026-07-27); they had already gone stale through v1.4,
-  // so the block now pins the badge/heading version alongside the features to
-  // make the next drift fail loudly instead of silently.
-  test('badge and heading announce v1.5', async ({ page }) => {
+  // from v1.3 → v1.5 (2026-07-27) and v1.5 → v1.6 (2026-09-29, WP3 truth
+  // sheet — docs/Efficiver_v1.6_Release_Tracker.md); the block pins the
+  // badge/heading version alongside the features so the next drift fails
+  // loudly instead of silently. The v1.5 cards now live on #releases.
+  test('badge and heading announce v1.6', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/NEW\s*—\s*v1\.5/i)
-    expect(txt).toMatch(/What's New in Efficiver 1\.5/i)
+    expect(txt).toMatch(/NEW\s*—\s*v1\.6/i)
+    expect(txt).toMatch(/What's New in Efficiver 1\.6/i)
     // Never advertise a version that isn't the current one.
-    expect(txt).not.toMatch(/v1\.[0-4]\b/)
+    expect(txt).not.toMatch(/v1\.[0-5]\b/)
   })
 
-  test('lists the v1.5 converged Trends chart', async ({ page }) => {
+  test('lists v1.6 interrupted drives and how each drive ended', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/one chart/i)
-    expect(txt).toMatch(/forecast/i)
+    expect(txt).toMatch(/marked Interrupted/i)
+    expect(txt).toMatch(/how it started and ended/i)
   })
 
-  test('lists v1.5 AidOps Edge on-device insights', async ({ page }) => {
+  test('lists v1.6 savings history, with the plain per-gallon correction (D3)', async ({
+    page
+  }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/AidOps Edge/i)
-    expect(txt).toMatch(/Year Recap/i)
-    // The privacy promise must ride along with any AI claim (M-series intent).
-    expect(txt).toMatch(/nothing leaves your device/i)
+    expect(txt).toMatch(/keeps the fuel price and typical consumption/i)
+    expect(txt).toMatch(/per-gallon regions, such as the US, were shown too high/i)
   })
 
-  test('lists v1.5 Insights destination labels', async ({ page }) => {
+  test('lists the v1.6 fleet duty rule and Partial drives', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/Savings and Efficiency cards/i)
+    expect(txt).toMatch(/on duty from start to end/i)
+    expect(txt).toMatch(/marked Partial/i)
   })
 
   test('WhatsNew has no stale "Eco Route" copy (H2 closure)', async ({ page }) => {

@@ -13,7 +13,9 @@ describe('Releases', () => {
   it('lists every version, current one first, each dated', () => {
     const wrapper = mount(Releases)
     const titles = wrapper.findAll('h4, .text-2xl, .text-xl').map((el) => el.text())
+    expect(wrapper.text()).toContain('v1.6 — Trustworthy trips and savings')
     expect(wrapper.text()).toContain('v1.5 — Converged Trends, AidOps Edge')
+    expect(wrapper.text().indexOf('v1.6 — ')).toBeLessThan(wrapper.text().indexOf('v1.5 — '))
     expect(wrapper.text()).toContain('v1.4 (iPhone)')
     expect(wrapper.text()).toContain('v1.3 (iPhone)')
     expect(wrapper.text()).toContain('v1.2 (iPhone)')
@@ -23,21 +25,21 @@ describe('Releases', () => {
     expect(titles.length).toBeGreaterThan(0)
   })
 
-  it('badges v1.5 as CURRENT, always expanded (no <details> wrapper)', () => {
+  it('badges v1.6 as CURRENT, always expanded (no <details> wrapper)', () => {
     const wrapper = mount(Releases)
-    expect(wrapper.text()).toContain('CURRENT — v1.5')
-    // v1.5's own card content must not sit inside a <details>: it should be
+    expect(wrapper.text()).toContain('CURRENT — v1.6')
+    // v1.6's own card content must not sit inside a <details>: it should be
     // visible without any interaction, unlike every older version.
-    const v15 = wrapper
+    const v16 = wrapper
       .findAll('.container > *')
-      .find((el) => el.text().includes('Converged Trends'))
-    expect(v15?.element.tagName).not.toBe('DETAILS')
+      .find((el) => el.text().includes('Trustworthy trips and savings'))
+    expect(v16?.element.tagName).not.toBe('DETAILS')
   })
 
   it('collapses every older version by default', () => {
     const wrapper = mount(Releases)
     const detailsEls = wrapper.findAll('details')
-    expect(detailsEls).toHaveLength(6) // v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
+    expect(detailsEls).toHaveLength(7) // v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
     detailsEls.forEach((d) => expect(d.attributes('open')).toBeUndefined())
   })
 
@@ -52,6 +54,49 @@ describe('Releases', () => {
   })
 
   describe('claims that must stay accurate', () => {
+    it('states the v1.6 truths — interrupted drives, savings history, gallon fix, fleet rule', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('marked Interrupted')
+      expect(text).toContain('Session Details now shows Start Reason and Stop Reason')
+      expect(text).toContain(
+        'Each finished drive keeps the fuel price and typical consumption that were set when it ended'
+      )
+      expect(text).toContain(
+        'Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
+      )
+      expect(text).toContain('A drive reaches your fleet only if it was on duty from start to end')
+    })
+
+    // D4 (owner 2026-10-17): replaces the D2/D3-only "under one point, saved scores unchanged".
+    it('says plainly that iPhone scores were too generous before v1.6 (D4)', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'iPhone scores were too generous before 1.6: they barely reacted to driving mistakes'
+      )
+      expect(text).toContain('Past drives keep their saved score.')
+      expect(text).toContain('That change alone moves a score by under one point.')
+      expect(text).not.toContain('saved scores are unchanged')
+    })
+
+    // Truth sheet line 7 (owner-approved 2026-10-17).
+    it('states the v1.6 in-car iPhone changes and the card without Stop', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'your music or podcast returns to full volume after Efficiver’s last voice prompt'
+      )
+      expect(text).toContain('the CarPlay start screen no longer flickers')
+      expect(text).toContain('because Live Activity buttons don’t work in CarPlay')
+    })
+
+    it('keeps the v1.4 history but states the current card behaviour', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('the same live score and a Stop button, wherever you glance')
+      expect(text).toContain(
+        'since v1.6 the card on CarPlay and the Smart Stack shows your driving status and score without a Stop button'
+      )
+      expect(text).toContain('The Lock Screen card keeps its Stop button.')
+    })
+
     it('states AidOps Edge computation happens on-device (v1.5)', () => {
       const wrapper = mount(Releases)
       expect(wrapper.text()).toContain('Nothing leaves your device')

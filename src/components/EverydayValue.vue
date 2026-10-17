@@ -68,9 +68,13 @@
               reference used for comparison, not a measurement from the car.
             </li>
           </ol>
+          <!-- v1.6 (ADR-198): a finished drive keeps the price + baseline in effect when it
+               ended; before 1.6 a price edit re-priced every past drive. -->
           <p class="mt-6 text-sm text-muted-foreground">
-            A changed price or baseline changes the estimate. Use it to understand the model, not as
-            proof of money saved.
+            Each finished drive keeps the price and baseline that were set when it ended, so
+            changing them later changes only your new drives’ estimates. After a currency change,
+            older drives use today’s price. Use it to understand the model, not as proof of money
+            saved.
           </p>
         </div>
       </div>

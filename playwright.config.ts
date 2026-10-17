@@ -14,14 +14,30 @@ export default defineConfig({
     baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    // Off: failure video needs Playwright's own downloaded ffmpeg, which the house rule
+    // forbids (no `npx playwright install`). Failure screenshots + traces stay on.
+    video: 'off',
     actionTimeout: 15_000,
     navigationTimeout: 30_000
   },
   projects: [
     {
+      // House rule: run on the Mac's installed Google Chrome — never download Playwright's
+      // bundled browsers (`npx playwright install`). The bundled headless shell went missing
+      // on every Playwright update and failed the whole suite at launch.
+      //
+      // Headed, with the windows placed off-screen. On this Mac, macOS (loginwindow) force-quits
+      // a HEADLESS Chrome ~31 s after launch — every worker lost its browser mid-test, so random
+      // tests failed with "Target page, context or browser has been closed". Reproduced with a
+      // bare launch (headless: killed at 31.2 s; headed: survives). Known since 2026-09-27; the
+      // same workaround as the Assure suite. Headless can return once the sender is found.
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        headless: false,
+        launchOptions: { args: ['--window-position=-3000,-3000'] }
+      }
     }
   ],
   webServer: isExternalTarget

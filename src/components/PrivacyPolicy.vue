@@ -23,11 +23,11 @@
           </li>
           <li>
             <strong>Fleet mode is the one exception, and it is opt-in.</strong> If your employer
-            runs Efficiver Fleet and gives you an invite code, the drives you record
-            <em>while you are on duty</em> are uploaded and shared with that employer. You are shown
-            what will be shared and must agree before joining. Your fleet may let you change duty
-            status or keep you on duty by policy. You can leave at any time. Off-duty drives are
-            never uploaded to or shared with your fleet — though depending on your platform
+            runs Efficiver Fleet and gives you an invite code, drives that are
+            <em>on duty from start to end</em> are uploaded and shared with that employer. You are
+            shown what will be shared and must agree before joining. Your fleet may let you change
+            duty status or keep you on duty by policy. You can leave at any time. Off-duty drives
+            are never uploaded to or shared with your fleet — though depending on your platform
             settings, they may still synchronize or back up through your own Apple or Google
             account, same as any other session. See section 3.
           </li>
@@ -234,11 +234,11 @@
       <div class="opacity-80">
         <p>
           Some drivers use Efficiver for work, for an employer that runs
-          <strong>Efficiver Fleet</strong>. This is the only situation in which completed drive
-          records are uploaded to Efficiver Fleet and made visible to your employer — maps, weather,
-          platform synchronization and backup are separate connected-service data flows, described
-          in sections 1 and 2. Fleet is off unless you deliberately turn it on, and it works the
-          same way on iPhone and Android.
+          <strong>Efficiver Fleet</strong>. This is the only situation in which drive records are
+          uploaded to Efficiver Fleet and made visible to your employer — maps, weather, platform
+          synchronization and backup are separate connected-service data flows, described in
+          sections 1 and 2. Fleet is off unless you deliberately turn it on, and it works the same
+          way on iPhone and Android.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">How it is switched on</h3>
@@ -254,14 +254,21 @@
           <li>
             Once joined, your fleet may allow an <strong>on-duty / off-duty</strong> switch or keep
             you on duty by policy. Check your organisation’s rules before joining. Nothing is
-            uploaded while you are off duty.
+            uploaded while you are off duty, and only a drive that is on duty from start to end is
+            uploaded — a drive you start off duty stays on your phone, even if you go on duty
+            mid-way.
           </li>
         </ul>
 
         <h3 class="text-xl font-semibold mt-6 mb-2">What is shared, and when</h3>
+        <!-- v1.6 (ADR-199): verified against SessionFleetEncoder.swift:106/:121 and
+             SessionFleetEncoder.kt:141/:157 — complete drives now carry how they ended, and an
+             interrupted drive is sent at the next launch with the partial flag. -->
         <p>
-          When you finish a drive <em>while on duty</em>, that drive is uploaded to your fleet. It
-          contains:
+          When you finish a drive that was <em>on duty from start to end</em>, it is uploaded to
+          your fleet. If the app is closed before an on-duty drive ends, the part that was recorded
+          is uploaded the next time you open the app, marked as partial — as long as your duty
+          status has not changed since. An upload contains:
         </p>
         <ul class="list-disc pl-6 space-y-2 mt-2">
           <li>
@@ -274,7 +281,8 @@
           </li>
           <li>
             A <strong>summary</strong> — Efficiency Score, distance, idle time, start and end time,
-            and whether the drive started automatically or manually.
+            the proficiency level you set in the app, whether the drive started and ended
+            automatically or manually, and whether it was interrupted (partial).
           </li>
           <li>
             Identifiers that tie the drive to you as a driver in that fleet, and to the device that
@@ -358,10 +366,10 @@
         <p>We don't sell, rent, or trade your personal information. The only times it is shared:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>
-            <strong>Your employer, if you join a fleet.</strong> On-duty drives are uploaded and
-            shared with the fleet you joined, which is the whole purpose of that feature. This only
-            happens after you enter their invite code and accept the consent screen. Full detail in
-            section 3.
+            <strong>Your employer, if you join a fleet.</strong> Drives that are on duty from start
+            to end are uploaded and shared with the fleet you joined, which is the whole purpose of
+            that feature. This only happens after you enter their invite code and accept the consent
+            screen. Full detail in section 3.
           </li>
           <li>
             <strong>Service providers for weather and maps.</strong> To deliver the weather and

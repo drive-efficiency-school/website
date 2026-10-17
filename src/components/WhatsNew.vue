@@ -2,36 +2,38 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, BarChart3, Sparkles, Compass } from 'lucide-vue-next'
+  import { ArrowRight, CircleStop, Banknote, Users } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
 
   interface Flagship {
-    icon: typeof BarChart3
+    icon: typeof CircleStop
     color: string
     title: string
     body: string
   }
 
+  // v1.6 — every sentence comes from the owner-approved truth sheet
+  // (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). The v1.5 cards live on Releases.
   const flagships: Flagship[] = [
     {
-      icon: BarChart3,
+      icon: CircleStop,
       color: 'text-blue-600 dark:text-blue-400',
-      title: 'One chart, your whole story',
-      body: 'Your recorded days and your forecast now live in a single interactive chart. Drag across it to scrub any day and read that exact score — past or predicted — with your average, your patterns, and the idle lever right below it.'
+      title: 'Every drive tells the truth',
+      body: 'If your phone closes the app before a drive ends, the drive is kept up to its last automatic save and marked Interrupted — it is never shown as a normal finished drive. Each drive also records how it started and ended.'
     },
     {
-      icon: Sparkles,
-      color: 'text-purple-600 dark:text-purple-400',
-      title: 'AidOps Edge, on your phone',
-      body: 'The on-device intelligence that narrates your Year Recap and Your Patterns now has a name and an honest status wherever it appears — plus a new Assistance page in Settings. On iPhone it runs on Apple Intelligence; on Android it uses a small model you download once (about 248 MB). Efficiver always computes the numbers; the model only phrases them, and it runs entirely on your phone — nothing leaves your device to generate them.'
+      icon: Banknote,
+      color: 'text-orange-600 dark:text-orange-400',
+      title: 'Savings that stay put',
+      body: 'Each finished drive keeps the fuel price and typical consumption that were set when it ended, so editing today’s price no longer changes past savings. Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
     },
     {
-      icon: Compass,
+      icon: Users,
       color: 'text-green-600 dark:text-green-400',
-      title: 'Insights that say where they go',
-      body: 'The Savings and Efficiency cards now show their destination — Recap, Trends, or Set Up — so a tap is never a surprise. Deeper pages share one consistent title style throughout the app.'
+      title: 'Fleet: on duty from start to end',
+      body: 'A drive reaches your fleet only if it was on duty from start to end. An on-duty drive interrupted mid-way is now sent the next time you open the app, marked Partial, and a short stop while on duty starts a new drive — so every leg reaches the fleet.'
     }
   ]
 </script>
@@ -39,13 +41,13 @@
 <template>
   <section id="whats-new" class="container py-16 sm:py-20">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.5</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.5</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        A single scrubbable chart for your history and forecast, on-device AidOps Edge insights, and
-        Insights cards that tell you where they lead.
+        Drives that say how they ended, savings that keep the price set when each drive ended, and
+        fleet drives that arrive complete — or honestly marked Partial.
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
@@ -102,20 +104,40 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in v1.5</span>
+        <span>More improvements in v1.6</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
+        <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad): the live score's session
+             clock barely advanced, so iPhone scores barely reacted to mistakes. No migration —
+             saved scores stay as they were. -->
         <li>
-          Refreshing your forecast keeps the chart on screen — your recorded history stays visible
-          while the new projection is calculated.
+          iPhone scores were too generous before 1.6: they barely reacted to driving mistakes, and
+          idling pushed them up. Drives with mistakes now score lower and idling no longer raises
+          the score, the same as on Android. Past drives keep their saved score.
         </li>
         <li>
-          Your Patterns tells you when it's being rewritten, instead of silently swapping the text
-          once it lands.
+          Route maps draw only trusted GPS positions — a gap between dots means GPS couldn't be
+          trusted there.
         </li>
         <li>
-          Joining a fleet now explains clearly when the fleet's subscription is what's blocking you.
+          The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the phone
+          can't measure. That change alone moves a score by under one point.
+        </li>
+        <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
+        <li>
+          On iPhone, your music or podcast returns to full volume after Efficiver's last voice
+          prompt — also when prompts overlap or a phone call interrupts one.
+        </li>
+        <li>
+          On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
+          CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and score;
+          it has no Stop button, because Live Activity buttons don't work in CarPlay. Stop from the
+          Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
+        </li>
+        <li>
+          The live idle count now adds up every 30-second idle period across the whole drive,
+          instead of restarting at each stop.
         </li>
       </ul>
     </details>

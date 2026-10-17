@@ -93,10 +93,15 @@
             Efficiver Fleet is invite-based. Your employer gives you a code — enter it in the app
             under <strong class="text-foreground">Settings → Join a fleet</strong>.
           </p>
+          <!-- v1.6 (ADR-199 D10 + partial drives): the start-to-end rule, and what happens to
+               an on-duty drive the app was closed during. -->
           <p>
-            Only the drives you record while you are
-            <strong class="text-foreground">on duty</strong> are shared with your fleet. Off-duty
-            drives stay on your phone, and you can leave the fleet at any time.
+            Only drives that are
+            <strong class="text-foreground">on duty from start to end</strong> are shared with your
+            fleet. A drive you start off duty stays on your phone, even if you go on duty mid-way.
+            If the app closes during an on-duty drive, the drive is sent the next time you open the
+            app, marked Partial, as long as your duty status has not changed since. Off-duty drives
+            stay on your phone, and you can leave the fleet at any time.
           </p>
           <p class="text-sm">
             Your fleet may allow a duty switch or keep you on duty by policy. Check your

@@ -17,6 +17,8 @@
     Layers,
     Sparkles,
     Compass,
+    CircleStop,
+    Users,
     Plus,
     Minus
   } from 'lucide-vue-next'
@@ -26,74 +28,73 @@
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16 max-w-4xl">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4">CURRENT — v1.5</Badge>
+      <Badge variant="default" class="mb-4">CURRENT — v1.6</Badge>
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Release notes</h1>
       <p class="text-lg text-muted-foreground">
         Every Efficiver release, in one place. Older entries are collapsed — tap to expand.
       </p>
     </div>
 
-    <!-- v1.5 -->
+    <!-- v1.6 — every sentence comes from the owner-approved truth sheet
+         (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Undated until the stores
+         release it: set the month at the prod deploy. -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
-          <CardTitle class="text-2xl">v1.5 — Converged Trends, AidOps Edge</CardTitle>
-          <span class="text-sm text-muted-foreground whitespace-nowrap">July 2026</span>
+          <CardTitle class="text-2xl">v1.6 — Trustworthy trips and savings</CardTitle>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.5 converges your recorded history and forecast into one interactive chart you can scrub
-          day by day, gives the on-device intelligence behind your insights a name and an honest
-          status — AidOps Edge — and makes every Insights card say where it leads. Trends, the
-          forecast and AidOps Edge insights ship in v1.5's code and are part of Efficiver Pro, which
-          is coming — the subscription that unlocks them hasn't rolled out yet.
+          v1.6 makes every drive say honestly how it went: drives cut short are marked, past savings
+          stop moving when you edit today’s price, and fleet drives arrive complete — or marked
+          Partial.
         </p>
 
         <div class="flex gap-4 items-start">
           <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
-            <BarChart3 class="size-5 text-blue-600 dark:text-blue-400" />
+            <CircleStop class="size-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">One chart, your whole story</h4>
+            <h4 class="font-semibold text-lg mb-1">Every drive tells the truth</h4>
             <p class="text-muted-foreground">
-              Trends used to show your recorded days and your forecast as separate cards. They're
-              now a single continuous chart: your observed daily scores flow into your projection,
-              split by a "Today" divider. Drag across it to scrub — the headline swaps to that exact
-              day's score, labelled Observed or Predicted, with the likely range for forecast days.
-              Your average, your patterns, and the idle lever sit right below.
+              If your phone closes the app before a drive ends — a force-quit, a restart, or the
+              system stepping in — the drive is kept up to its last automatic save and marked
+              Interrupted, in your Sessions list and in its details. It isn’t continued; your next
+              drive starts fresh. Each new drive also records how it started and ended: Session
+              Details now shows Start Reason and Stop Reason.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
-          <div class="bg-purple-500/10 p-2 rounded-full ring-4 ring-purple-500/5 shrink-0">
-            <Sparkles class="size-5 text-purple-600 dark:text-purple-400" />
+          <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
+            <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">AidOps Edge, on your phone</h4>
+            <h4 class="font-semibold text-lg mb-1">Savings that stay put</h4>
             <p class="text-muted-foreground">
-              The on-device intelligence that narrates your Year Recap and Your Patterns is now
-              called AidOps Edge, and it tells you its state wherever it appears — active, off, or
-              unavailable — instead of quietly falling back. A new Assistance page in Settings shows
-              whether Apple Intelligence is switched on, and how to enable it if it isn't. The
-              numbers are always computed by Efficiver; AidOps Edge only phrases them, on your
-              phone. Nothing leaves your device. Year Recap and Your Patterns are part of Efficiver
-              Pro, coming soon.
+              Each finished drive keeps the fuel price and typical consumption that were set when it
+              ended, so editing today’s price no longer changes past savings. After a currency
+              change, older drives use today’s price, since there are no exchange rates. Savings in
+              per-gallon regions, such as the US, were shown too high before this release; they are
+              now correct.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
-            <Compass class="size-5 text-green-600 dark:text-green-400" />
+            <Users class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">Insights that say where they go</h4>
+            <h4 class="font-semibold text-lg mb-1">Fleet: on duty from start to end</h4>
             <p class="text-muted-foreground">
-              The Savings and Efficiency cards on Insights now name their destination — Recap,
-              Trends, or Set Up — so tapping one is never a surprise. Deeper pages across the app
-              share one consistent branded title style.
+              A drive reaches your fleet only if it was on duty from start to end — start a drive
+              off duty and it stays on your phone, even if you go on duty mid-way. An on-duty drive
+              interrupted mid-way is now sent the next time you open the app, marked Partial, as
+              long as your duty status hasn’t changed since. While you’re on duty, a short stop
+              starts a new drive, so every leg reaches the fleet.
             </p>
           </div>
         </div>
@@ -101,22 +102,134 @@
         <div>
           <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+            <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
             <li>
-              Refreshing your forecast keeps the chart on screen — your recorded history stays
-              visible while the new projection is calculated.
+              iPhone scores were too generous before 1.6: they barely reacted to driving mistakes,
+              and idling pushed them up. Drives with mistakes now score lower and idling no longer
+              raises the score, the same as on Android. Past drives keep their saved score.
             </li>
             <li>
-              Your Patterns shows when it's being rewritten, instead of silently swapping the text
-              once the new coaching lands.
+              Route maps draw only trusted GPS positions — a gap between dots means GPS couldn’t be
+              trusted there.
             </li>
             <li>
-              Joining a fleet now explains clearly when the fleet's subscription is what's blocking
-              you, rather than failing generically.
+              The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the
+              phone can’t measure. That change alone moves a score by under one point.
+            </li>
+            <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
+            <li>
+              On iPhone, your music or podcast returns to full volume after Efficiver’s last voice
+              prompt — also when prompts overlap or a phone call interrupts one.
+            </li>
+            <li>
+              On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
+              CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and
+              score; it has no Stop button, because Live Activity buttons don’t work in CarPlay.
+              Stop from the Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
+            </li>
+            <li>
+              The live idle count now adds up every 30-second idle period across the whole drive,
+              instead of restarting at each stop.
             </li>
           </ul>
         </div>
       </CardContent>
     </Card>
+
+    <!-- v1.5 -->
+    <details class="mb-4 group">
+      <summary class="cursor-pointer">
+        <Card class="hover:border-primary/40 transition-colors">
+          <CardHeader>
+            <div class="flex justify-between items-center gap-4">
+              <CardTitle class="text-xl">v1.5 — Converged Trends, AidOps Edge</CardTitle>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-muted-foreground whitespace-nowrap">July 2026</span>
+                <Plus class="size-5 text-muted-foreground group-open:hidden" />
+                <Minus class="size-5 text-primary hidden group-open:inline" />
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+      </summary>
+      <Card class="mt-2 ml-2 border-l-2 border-l-primary/30">
+        <CardContent class="pt-6 space-y-6 text-base">
+          <p class="text-muted-foreground">
+            v1.5 converges your recorded history and forecast into one interactive chart you can
+            scrub day by day, gives the on-device intelligence behind your insights a name and an
+            honest status — AidOps Edge — and makes every Insights card say where it leads. Trends,
+            the forecast and AidOps Edge insights ship in v1.5's code and are part of Efficiver Pro,
+            which is coming — the subscription that unlocks them hasn't rolled out yet.
+          </p>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
+              <BarChart3 class="size-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">One chart, your whole story</h4>
+              <p class="text-muted-foreground">
+                Trends used to show your recorded days and your forecast as separate cards. They're
+                now a single continuous chart: your observed daily scores flow into your projection,
+                split by a "Today" divider. Drag across it to scrub — the headline swaps to that
+                exact day's score, labelled Observed or Predicted, with the likely range for
+                forecast days. Your average, your patterns, and the idle lever sit right below.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-purple-500/10 p-2 rounded-full ring-4 ring-purple-500/5 shrink-0">
+              <Sparkles class="size-5 text-purple-600 dark:text-purple-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">AidOps Edge, on your phone</h4>
+              <p class="text-muted-foreground">
+                The on-device intelligence that narrates your Year Recap and Your Patterns is now
+                called AidOps Edge, and it tells you its state wherever it appears — active, off, or
+                unavailable — instead of quietly falling back. A new Assistance page in Settings
+                shows whether Apple Intelligence is switched on, and how to enable it if it isn't.
+                The numbers are always computed by Efficiver; AidOps Edge only phrases them, on your
+                phone. Nothing leaves your device. Year Recap and Your Patterns are part of
+                Efficiver Pro, coming soon.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+              <Compass class="size-5 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Insights that say where they go</h4>
+              <p class="text-muted-foreground">
+                The Savings and Efficiency cards on Insights now name their destination — Recap,
+                Trends, or Set Up — so tapping one is never a surprise. Deeper pages across the app
+                share one consistent branded title style.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
+            <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+              <li>
+                Refreshing your forecast keeps the chart on screen — your recorded history stays
+                visible while the new projection is calculated.
+              </li>
+              <li>
+                Your Patterns shows when it's being rewritten, instead of silently swapping the text
+                once the new coaching lands.
+              </li>
+              <li>
+                Joining a fleet now explains clearly when the fleet's subscription is what's
+                blocking you, rather than failing generically.
+              </li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    </details>
 
     <!-- v1.4 -->
     <details class="mb-4 group">
@@ -187,6 +300,14 @@
                 On iPhone, the Live Activity card that shows your drive on the Lock Screen now also
                 appears on your car's CarPlay screen and your Apple Watch's Smart Stack — the same
                 live score and a Stop button, wherever you glance.
+              </p>
+              <!-- Same "Current behaviour" pattern as the v1.2 iCloud note: history stays, the
+                   present is stated. Live Activity buttons don't perform actions in CarPlay
+                   (Apple), and the CarPlay + Watch card is one .small layout (iOS 1484736). -->
+              <p class="text-muted-foreground mt-2 text-sm">
+                <strong>Current behaviour:</strong> since v1.6 the card on CarPlay and the Smart
+                Stack shows your driving status and score without a Stop button — Live Activity
+                buttons don't work in CarPlay. The Lock Screen card keeps its Stop button.
               </p>
             </div>
           </div>

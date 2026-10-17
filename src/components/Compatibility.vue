@@ -40,7 +40,7 @@
           <tr>
             <th scope="row" class="p-4 sm:p-5 font-medium">Watch companion</th>
             <td class="p-4 sm:p-5">Apple Watch (iPhone)</td>
-            <td class="p-4 sm:p-5">Planned</td>
+            <td class="p-4 sm:p-5">Wear OS (Android)</td>
           </tr>
           <tr>
             <th scope="row" class="p-4 sm:p-5 font-medium">Personal data</th>

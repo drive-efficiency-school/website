@@ -72,6 +72,13 @@ describe('Features', () => {
     )
   })
 
+  it('says what happens to a drive the phone closes mid-way (W2, v1.6 ADR-196)', () => {
+    const wrapper = mount(Features)
+    expect(wrapper.text()).toContain(
+      'If your phone closes the app mid-drive, the drive is kept up to its last automatic save and marked Interrupted.'
+    )
+  })
+
   it('scopes fuel/CO2 figures as estimates that vary, not a fixed number', () => {
     const wrapper = mount(Features)
     expect(wrapper.text()).toContain('Estimated fuel, cost and CO₂ impact')

@@ -3,8 +3,8 @@ export const config = {
   // truth — bump the relevant entry when that page's CONTENT changes
   // (these are content-change dates, not build/deploy dates).
   lastUpdated: {
-    help: 'August 23, 2026',
-    privacy: 'August 23, 2026',
+    help: 'October 17, 2026',
+    privacy: 'September 29, 2026',
     terms: 'August 23, 2026',
     accessibility: 'August 23, 2026'
   },
