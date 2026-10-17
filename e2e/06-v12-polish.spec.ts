@@ -30,7 +30,7 @@ test.describe('GPS accuracy disclosure (commit 01dee8e)', () => {
 
   test('Help page discloses GPS as required + low-signal labels', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/GPS Required/i)
     expect(body).toMatch(/GPS Warming Up|Low GPS/)
@@ -55,7 +55,7 @@ test.describe('Auto-Start / Auto-Stop / Auto-Track hyphenation (commit bfca4aa)'
   test('Help page uses hyphenated forms', async ({ page }) => {
     await page.goto('/#help')
     // Mount barrier — see the note on the Terms test above. Lazy view.
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/Auto-Start/)
     expect(body).toMatch(/Auto-Stop/)
@@ -73,7 +73,7 @@ test.describe('Auto-Start / Auto-Stop / Auto-Track hyphenation (commit bfca4aa)'
 test.describe('Settings rename to Savings (commits 4c51c27, 7341afa)', () => {
   test('Help page shows Savings parent heading with Wallet Watch sub-section', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).toMatch(/\bSavings\b/)
     expect(body).toMatch(/Wallet Watch/)

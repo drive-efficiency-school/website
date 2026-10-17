@@ -22,7 +22,7 @@ import { test, expect } from '@playwright/test'
 test.describe('No surface claims every feature is free', () => {
   test('Help does not contradict its own Pro notes', async ({ page }) => {
     await page.goto('/#help')
-    await expect(page.getByText('Help', { exact: false }).first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Help & Support for Efficiver' })).toBeVisible()
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toMatch(/All features are free/i)
     expect(body).not.toMatch(/no in-app purchases/i)
