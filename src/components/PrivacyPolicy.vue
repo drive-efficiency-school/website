@@ -255,8 +255,8 @@
             Once joined, your fleet may allow an <strong>on-duty / off-duty</strong> switch or keep
             you on duty by policy. Check your organisation’s rules before joining. Nothing is
             uploaded while you are off duty, and only a drive that is on duty from start to end is
-            uploaded — a drive you start off duty stays on your phone, even if you go on duty
-            mid-way.
+            uploaded — a drive where you change duty part-way, going on or off duty, is not
+            uploaded.
           </li>
         </ul>
 
@@ -296,6 +296,11 @@
             <strong>Drives recorded while you are off duty</strong> — never uploaded to your fleet,
             though depending on your platform settings they may still synchronize or back up through
             your own Apple or Google account.
+          </li>
+          <!-- v1.7 (ADR-199 D10, both ways): a part-way duty change keeps the WHOLE drive local. -->
+          <li>
+            <strong>A drive where you change duty part-way</strong> — going on or off duty during a
+            drive means none of that drive is uploaded to your fleet.
           </li>
           <li>Any drive at all if you have not joined a fleet.</li>
           <li>

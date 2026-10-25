@@ -36,9 +36,13 @@ describe('FleetCallout', () => {
     expect(text).toContain(
       'Only drives that are on duty from start to end are shared with your fleet'
     )
+    // ADR-199 Decision 10 cuts BOTH ways — going on duty mid-way AND going off duty
+    // mid-way keep the drive private. Same wording as the app's Join-a-fleet consent
+    // (iOS JoinFleetView.consentDetail / Android JoinFleetCopy.CONSENT_DETAIL).
     expect(text).toContain(
-      'A drive you start off duty stays on your phone, even if you go on duty mid-way'
+      'Off-duty drives, and any drive where you change duty part-way, stay on your phone'
     )
+    expect(text).not.toContain('A drive you start off duty stays on your phone')
     expect(text).toContain(
       'the drive is sent the next time you open the app, marked Partial, as long as your duty status has not changed since'
     )

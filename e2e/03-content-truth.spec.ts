@@ -346,6 +346,10 @@ test.describe('Fleet callout (v1.5)', () => {
     await section.scrollIntoViewIfNeeded()
     const text = (await section.textContent()) ?? ''
     expect(text).toMatch(/on duty/i)
-    expect(text).toMatch(/off-duty drives stay on your phone/i)
+    // v1.7 (ADR-199 D10, both ways): the boundary now names part-way duty changes too —
+    // the same wording as the app's Join-a-fleet consent.
+    expect(text).toMatch(
+      /off-duty drives, and any drive where you change duty part-way, stay on your phone/i
+    )
   })
 })
