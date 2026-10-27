@@ -2,7 +2,7 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, CircleStop, Banknote, Users } from 'lucide-vue-next'
+  import { ArrowRight, Gauge, CircleStop, Banknote } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
@@ -14,9 +14,16 @@
     body: string
   }
 
-  // v1.6 — every sentence comes from the owner-approved truth sheet
-  // (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). The v1.5 cards live on Releases.
+  // v1.6.1 leads with the score (ADR-200, decision D7); the two v1.6 cards come from the
+  // owner-approved truth sheet (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). The
+  // fleet card moved into "More improvements" unchanged. The v1.5 cards live on Releases.
   const flagships: Flagship[] = [
+    {
+      icon: Gauge,
+      color: 'text-green-600 dark:text-green-400',
+      title: 'A fairer Efficiency Score',
+      body: 'Your score is now the fuel your driving mistakes waste — hard braking, hard acceleration, idling and driving above a moderate speed — judged by your car, and the same at every proficiency level. Driving on cleanly brings it back up. Past drives keep their saved score.'
+    },
     {
       icon: CircleStop,
       color: 'text-blue-600 dark:text-blue-400',
@@ -28,12 +35,6 @@
       color: 'text-orange-600 dark:text-orange-400',
       title: 'Savings that stay put',
       body: 'Each finished drive keeps the fuel price and typical consumption that were set when it ended, so editing today’s price no longer changes past savings. Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
-    },
-    {
-      icon: Users,
-      color: 'text-green-600 dark:text-green-400',
-      title: 'Fleet: on duty from start to end',
-      body: 'A drive reaches your fleet only if it was on duty from start to end. An on-duty drive interrupted mid-way is now sent the next time you open the app, marked Partial, and a short stop while on duty starts a new drive — so every leg reaches the fleet.'
     }
   ]
 </script>
@@ -41,13 +42,13 @@
 <template>
   <section id="whats-new" class="container py-16 sm:py-20">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6.1</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6.1</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        Drives that say how they ended, savings that keep the price set when each drive ended, and
-        fleet drives that arrive complete — or honestly marked Partial.
+        A fairer Efficiency Score that measures the fuel your driving mistakes waste, drives that
+        say how they ended, and savings that keep the price set when each drive ended.
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
@@ -104,17 +105,22 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in v1.6</span>
+        <span>More improvements in 1.6 and 1.6.1</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
-        <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad): the live score's session
-             clock barely advanced, so iPhone scores barely reacted to mistakes. No migration —
-             saved scores stay as they were. -->
+        <!-- The v1.6 fleet flagship, moved here unchanged when the v1.6.1 score took the lead
+             (D7). The D4 iPhone-score line was dropped: 1.6.1 supersedes it, and it stays on the
+             Releases page's v1.6 entry as history. -->
         <li>
-          iPhone scores were too generous before 1.6: they barely reacted to driving mistakes, and
-          idling pushed them up. Drives with mistakes now score lower and idling no longer raises
-          the score, the same as on Android. Past drives keep their saved score.
+          A drive reaches your fleet only if it was on duty from start to end. An on-duty drive
+          interrupted mid-way is now sent the next time you open the app, marked Partial, and a
+          short stop while on duty starts a new drive — so every leg reaches the fleet.
+        </li>
+        <!-- v1.6.1, Android only (bb6f48b, 15f1b3f). -->
+        <li>
+          On Android, the screen stays on for the whole drive, and tablets and foldables rotate
+          freely.
         </li>
         <li>
           Route maps draw only trusted GPS positions — a gap between dots means GPS couldn't be
