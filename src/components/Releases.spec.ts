@@ -13,8 +13,10 @@ describe('Releases', () => {
   it('lists every version, current one first, each dated', () => {
     const wrapper = mount(Releases)
     const titles = wrapper.findAll('h4, .text-2xl, .text-xl').map((el) => el.text())
+    expect(wrapper.text()).toContain('v1.6.1 — A fairer Efficiency Score')
     expect(wrapper.text()).toContain('v1.6 — Trustworthy trips and savings')
     expect(wrapper.text()).toContain('v1.5 — Converged Trends, AidOps Edge')
+    expect(wrapper.text().indexOf('v1.6.1 — ')).toBeLessThan(wrapper.text().indexOf('v1.6 — '))
     expect(wrapper.text().indexOf('v1.6 — ')).toBeLessThan(wrapper.text().indexOf('v1.5 — '))
     expect(wrapper.text()).toContain('v1.4 (iPhone)')
     expect(wrapper.text()).toContain('v1.3 (iPhone)')
@@ -25,21 +27,27 @@ describe('Releases', () => {
     expect(titles.length).toBeGreaterThan(0)
   })
 
-  it('badges v1.6 as CURRENT, always expanded (no <details> wrapper)', () => {
+  it('badges v1.6.1 as CURRENT, always expanded (no <details> wrapper)', () => {
     const wrapper = mount(Releases)
-    expect(wrapper.text()).toContain('CURRENT — v1.6')
-    // v1.6's own card content must not sit inside a <details>: it should be
-    // visible without any interaction, unlike every older version.
+    expect(wrapper.text()).toContain('CURRENT — v1.6.1')
+    // The current card must not sit inside a <details>: it should be visible
+    // without any interaction, unlike every older version.
+    const current = wrapper
+      .findAll('.container > *')
+      .find((el) => el.text().includes('A fairer Efficiency Score'))
+    expect(current).toBeDefined()
+    expect(current?.element.tagName).not.toBe('DETAILS')
+    // v1.6 is history now, collapsed like every older version.
     const v16 = wrapper
       .findAll('.container > *')
       .find((el) => el.text().includes('Trustworthy trips and savings'))
-    expect(v16?.element.tagName).not.toBe('DETAILS')
+    expect(v16?.element.tagName).toBe('DETAILS')
   })
 
   it('collapses every older version by default', () => {
     const wrapper = mount(Releases)
     const detailsEls = wrapper.findAll('details')
-    expect(detailsEls).toHaveLength(7) // v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
+    expect(detailsEls).toHaveLength(8) // v1.6, v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
     detailsEls.forEach((d) => expect(d.attributes('open')).toBeUndefined())
   })
 
@@ -54,6 +62,35 @@ describe('Releases', () => {
   })
 
   describe('claims that must stay accurate', () => {
+    // v1.6.1 truth sheet (ADR-200 revision 6).
+    it('states the v1.6.1 score truths — fuel wasted, judged by the car, same at every level', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('goes down only when a mistake wastes fuel')
+      expect(text).toContain('driving on cleanly brings the score back up')
+      expect(text).toContain(
+        'On an electric car, only hard braking and driving above a moderate speed count'
+      )
+      expect(text).toContain('never your speed, gear or proficiency level')
+      expect(text).toContain(
+        '70 km/h below 1,000 cc, 80 below 1,400 cc, 90 below 1,800 cc, otherwise 105'
+      )
+      expect(text).toContain('The score is the same at every level')
+      expect(text).toContain('A false jump in GPS speed counts as neither a mistake nor waste')
+    })
+
+    it('says plainly how 1.6.1 scores compare with 1.6.0, and that saved scores stay (D5)', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('In 1.6.0, every mistake took points off for good')
+      expect(text).toContain('Most drives with mistakes now score higher')
+      expect(text).toContain('Past drives keep their saved score, so Trends may show a step')
+    })
+
+    it('lists the Android-only 1.6.1 changes, each labelled Android', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('On Android, the screen stays on for the whole drive')
+      expect(text).toContain('On Android tablets and foldables, the app rotates freely')
+    })
+
     it('states the v1.6 truths — interrupted drives, savings history, gallon fix, fleet rule', () => {
       const text = mount(Releases).text()
       expect(text).toContain('marked Interrupted')

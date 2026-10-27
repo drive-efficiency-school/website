@@ -47,6 +47,13 @@ describe('FAQ', () => {
     )
   })
 
+  it('says a false jump in GPS speed costs nothing (v1.6.1, ADR-200 R5)', async () => {
+    const text = await openAnswer(mount(FAQ), 'Does Efficiver need a clear GPS signal')
+    expect(text).toContain(
+      'A false jump in GPS speed counts as neither a mistake nor a cost to your score.'
+    )
+  })
+
   it('states the fleet exception as on duty from start to end (W4, v1.6 ADR-199 D10)', async () => {
     const text = await openAnswer(mount(FAQ), 'Is my data safe with Efficiver?')
     expect(text).toContain('drives that are on duty from start to end are shared with them')
