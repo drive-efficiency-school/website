@@ -29,7 +29,7 @@
             engine size, and transmission settings
           </li>
           <li>
-            <strong>Driving Experience:</strong> Set your proficiency level (1-5) for personalized
+            <strong>Driving Experience:</strong> Set your proficiency level (0-5) for personalized
             tips
           </li>
           <li><strong>Hands-Free Driving:</strong> Learn about automatic drive detection</li>
@@ -487,8 +487,8 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Driving</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Proficiency Level:</strong> 1-5 scale (1=Beginner, 5=Expert) — sets how strict
-            the mistake rings and voice are; the score is the same at every level
+            <strong>Proficiency Level:</strong> 0-5 scale (0 = Beginner, 5 = Expert) — sets how
+            strict the mistake rings and voice are; the score is the same at every level
           </li>
           <li>
             <strong>Auto-Start Drive:</strong> Automatically begin tracking when vehicle moves
