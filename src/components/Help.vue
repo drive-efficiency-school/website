@@ -64,8 +64,8 @@
             <em>Settings → Vehicle</em> if your phone's position in the car changes.
           </li>
           <li>
-            <strong>Real-time Efficiency Score:</strong> Live percentage score showing your driving
-            efficiency, updated every second.
+            <strong>Real-time Efficiency Score:</strong> Live score of the fuel your driving
+            mistakes waste, updated every second.
           </li>
           <li>
             <strong>CarPlay support (v1.3, iPhone):</strong> Efficiver appears as a Driving Task on
@@ -158,8 +158,8 @@
             start/stop moving.
           </li>
           <li>
-            <strong>Mistake Detection:</strong> Tracks harsh acceleration, braking, and excessive
-            idling.
+            <strong>Mistake Detection:</strong> Tracks hard acceleration, hard braking and idling;
+            the score also counts driving above a moderate speed.
           </li>
           <li>
             <strong>Gear Recommendations:</strong> Suggests optimal gear changes for manual
@@ -246,7 +246,7 @@
       <div class="opacity-80">
         <h3 class="text-xl font-semibold mt-4 mb-2">General Efficiency Tips</h3>
         <ul class="list-disc pl-6">
-          <li>Maintain steady speeds and avoid rapid acceleration</li>
+          <li>Keep to a moderate speed and avoid rapid acceleration</li>
           <li>
             Anticipate traffic flow and brake gently. Coasting towards a stoplight rather than
             braking abruptly will boost your efficiency score.
@@ -265,24 +265,33 @@
           <li>Plan routes to avoid heavy traffic when possible</li>
         </ul>
         <h3 class="text-xl font-semibold mt-4 mb-2">Understanding Your Score</h3>
-        <ul class="list-disc pl-6">
-          <li><strong>80-100%:</strong> Excellent driving</li>
-          <li><strong>60-79%:</strong> Good performance with room for improvement</li>
-          <li><strong>40-59%:</strong> Moderate efficiency, focus on reducing mistakes</li>
-          <li><strong>0-39%:</strong> Significant improvement needed</li>
-        </ul>
-        <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
-        <p class="mt-4">
-          <strong>Scores from v1.6 (iPhone):</strong> before 1.6, iPhone scores were too generous —
-          they barely reacted to driving mistakes, and idling pushed them up. Drives with mistakes
-          now score lower and idling no longer raises the score, the same as on Android. Past drives
-          keep their saved score, so an older drive may score higher than a similar new one.
+        <!-- v1.6.1 (ADR-200 §2, D6): the score is 100 × (1 − waste ÷ fuel needed), so the old
+             80-100 / 60-79 / 40-59 / 0-39 bands no longer described it — real drives land
+             between 95 and 100, and 80 would mean a fifth of the fuel wasted. -->
+        <p>
+          Your score is the share of your drive's fuel that mistakes did not waste: a score of 97
+          means your mistakes wasted fuel equal to 3% of what the drive needed. A smooth drive stays
+          close to 100.
         </p>
         <p class="mt-4">
-          <strong>Note:</strong> The thresholds for a harsh event adapt to your speed and gear, so
-          the same change in speed can register in town and pass unremarked on a motorway. In town
-          Efficiver flags sharp acceleration a little sooner than sharp braking; at higher speeds
-          that reverses.
+          <strong>How your score works (v1.6.1):</strong> your score starts at 100 and goes down
+          only when a mistake wastes fuel — hard braking, hard acceleration, idling with the engine
+          on for 30 seconds or more, or driving above a moderate speed for your car. It compares
+          that waste with the fuel your drive needs, so driving on cleanly brings it back up. The
+          moderate-speed line is set by engine size: 70 km/h below 1,000 cc, 80 below 1,400 cc, 90
+          below 1,800 cc, otherwise 105. Hills don't count against you. On an electric car, only
+          hard braking and driving above a moderate speed count. Past drives keep their saved score,
+          so Trends may show a step at 1.6.1.
+        </p>
+        <!-- v1.6.1 (ADR-200 R8, R9, §3): one detector; the lines follow the car; the level
+             scales only the rings (1.0 at the lowest level = the score's own seconds). -->
+        <p class="mt-4">
+          <strong>Note:</strong> what counts as a hard brake or a hard acceleration follows your car
+          — its engine size and fuel type, the Turbocharged setting for a petrol car, or an electric
+          car's power — never your speed, gear or proficiency level. Your proficiency level sets how
+          strict the mistake rings and voice are: at the lowest level they count exactly the moments
+          the score counts, and higher levels also flag slightly gentler ones. A false jump in GPS
+          speed counts as neither.
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Vehicle-Specific Tips</h3>
         <ul class="list-disc pl-6">
@@ -381,7 +390,8 @@
           <dt class="font-semibold">Incorrect vehicle parameters</dt>
           <dd>
             Go to <em>Settings → Vehicle</em> and update fuel type, engine size, and transmission to
-            match your actual vehicle.
+            match your actual vehicle. Since v1.6.1 these settings also decide what counts as a hard
+            brake or a hard acceleration, so turn on Turbocharged for a turbo petrol car.
           </dd>
 
           <dt class="font-semibold">App not responding or crashing</dt>
@@ -477,8 +487,8 @@
         <h3 class="text-xl font-semibold mt-4 mb-2">Driving</h3>
         <ul class="list-disc pl-6">
           <li>
-            <strong>Proficiency Level:</strong> 1-5 scale (1=Beginner, 5=Expert) — adjusts feedback
-            sensitivity
+            <strong>Proficiency Level:</strong> 1-5 scale (1=Beginner, 5=Expert) — sets how strict
+            the mistake rings and voice are; the score is the same at every level
           </li>
           <li>
             <strong>Auto-Start Drive:</strong> Automatically begin tracking when vehicle moves
@@ -737,10 +747,10 @@
 
           <dt class="font-semibold">How accurate is the efficiency scoring?</dt>
           <dd>
-            Scoring is based on driving physics — how smoothly you accelerate and brake, how
-            steadily you hold a speed and how long you idle. It has not been validated against
-            measured fuel use, so treat it as a consistent way to compare your own drives rather
-            than an absolute measurement.
+            The score estimates the fuel your mistakes waste — hard braking, hard acceleration,
+            idling and driving above a moderate speed — with the same fuel model as Wallet Watch and
+            your car's settings. It has not been validated against measured fuel use, so treat it as
+            a consistent way to compare your own drives rather than an absolute measurement.
           </dd>
 
           <dt class="font-semibold">Can I use Efficiver while driving?</dt>
@@ -764,6 +774,13 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
+          <!-- v1.6.1 (ADR-200). Month set at the prod deploy, like v1.6. -->
+          <li>
+            <strong>v1.6.1 (October 2026):</strong> the Efficiency Score is now the fuel your
+            driving mistakes waste, judged by your car and the same at every proficiency level; GPS
+            glitches no longer count; on Android the screen stays on for the whole drive and tablets
+            can rotate
+          </li>
           <li>
             <strong>v1.6 (October 2026):</strong> interrupted drives are marked and each drive
             records how it started and ended; past savings keep the price in effect when the drive

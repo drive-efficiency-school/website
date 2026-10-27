@@ -61,14 +61,22 @@ describe('Help', () => {
     })
   })
 
-  describe('braking sensitivity (N6) - adapts to speed and gear, not a blanket claim', () => {
-    it('states the thresholds adapt, and describes the reversal at speed', () => {
-      const wrapper = mount(Help)
-      expect(wrapper.text()).toContain('adapt to your speed and gear')
-      expect(wrapper.text()).toContain(
-        'flags sharp acceleration a little sooner than sharp braking'
-      )
-      expect(wrapper.text()).toContain('at higher speeds that reverses')
+  // v1.6.1 (ADR-200 R8, R9): the hard-brake and hard-acceleration lines follow the car, and
+  // the rings and the score read one detector. The N6 sentence (thresholds adapting to speed
+  // and gear, acceleration flagged sooner in town) described the retired 2-second check.
+  describe('hard-event lines (N6, ADR-200) - follow the car, not speed, gear or level', () => {
+    it('states the lines follow the car and the level sets only the rings and voice', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('what counts as a hard brake or a hard acceleration follows your car')
+      expect(text).toContain('never your speed, gear or proficiency level')
+      expect(text).toContain('at the lowest level they count exactly the moments the score counts')
+      expect(text).toContain('A false jump in GPS speed counts as neither')
+    })
+
+    it('no longer says the thresholds adapt to speed and gear', () => {
+      const text = mount(Help).text()
+      expect(text).not.toContain('adapt to your speed and gear')
+      expect(text).not.toContain('flags sharp acceleration a little sooner than sharp braking')
     })
 
     it('carries no safety-benefit claim alongside it', () => {
@@ -84,10 +92,10 @@ describe('Help', () => {
     })
 
     it('never states the removed 8-22% fuel-saving figure', () => {
-      // Not a blanket "no N-N%" check - the page legitimately shows score
-      // bands (80-100%, 60-79%, ...) in "Understanding Your Score", which are
-      // not a savings claim and must stay. This targets the specific figure
-      // N9 removed as a product-level guarantee.
+      // Not a blanket "no N-N%" check - "Understanding Your Score" legitimately
+      // states a percentage (a score of 97 = mistakes wasted 3% of the fuel),
+      // which is not a savings claim. This targets the specific figure N9
+      // removed as a product-level guarantee.
       const wrapper = mount(Help)
       expect(wrapper.text()).not.toContain('8-22%')
       expect(wrapper.text()).not.toContain('8–22%')
@@ -186,23 +194,16 @@ describe('Help', () => {
       expect(text).toContain('Stop only closes the Live Activity')
     })
 
-    it('lists v1.6 first under Recently Shipped, with the plain gallon wording (W11, D3)', () => {
+    it('lists v1.6 under Recently Shipped, with the plain gallon wording (W11, D3)', () => {
       const text = mount(Help).text()
       // Dated at the prod deploy (October 2026), the same "vX (Month YYYY):" form as v1.5.
       expect(text).toContain('v1.6 (October 2026):')
       expect(text).toContain(
         'savings in per-gallon regions were shown too high and are now correct'
       )
-      expect(text.indexOf('v1.6 (October 2026):')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
-    })
-
-    // D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad).
-    it('says plainly that iPhone scores were too generous before v1.6 (D4)', () => {
-      const text = mount(Help).text()
-      expect(text).toContain('Scores from v1.6 (iPhone):')
-      expect(text).toContain('before 1.6, iPhone scores were too generous')
-      expect(text).toContain('Past drives keep their saved score')
+      // History stays: the v1.6 line keeps the D4 iPhone-score wording.
       expect(text).toContain('iPhone scores react properly to mistakes and idling')
+      expect(text.indexOf('v1.6 (October 2026):')).toBeLessThan(text.indexOf('v1.5 (July 2026)'))
     })
 
     // Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9).
@@ -212,6 +213,58 @@ describe('Help', () => {
       expect(terms).toContain('Music or a podcast stays quiet after a voice prompt')
       expect(wrapper.text()).toContain(
         "your audio returns to full volume once Efficiver's last voice prompt ends"
+      )
+    })
+  })
+
+  // v1.6.1 truth sheet (ADR-200 revision 6; draft approved for step 1, 2026-10-27).
+  describe('v1.6.1 truths — the score is the fuel wasted by mistakes', () => {
+    it('explains what the score means, with a worked example instead of bands (D6)', () => {
+      const text = mount(Help).text()
+      expect(text).toContain(
+        'a score of 97 means your mistakes wasted fuel equal to 3% of what the drive needed'
+      )
+      expect(text).not.toContain('80-100%')
+      expect(text).not.toContain('Excellent driving')
+    })
+
+    it('explains how the score works, replacing the v1.6 iPhone paragraph', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('How your score works (v1.6.1):')
+      expect(text).toContain('goes down only when a mistake wastes fuel')
+      expect(text).toContain('driving on cleanly brings it back up')
+      expect(text).toContain(
+        '70 km/h below 1,000 cc, 80 below 1,400 cc, 90 below 1,800 cc, otherwise 105'
+      )
+      expect(text).toContain("Hills don't count against you")
+      expect(text).toContain(
+        'On an electric car, only hard braking and driving above a moderate speed count'
+      )
+      expect(text).toContain('Past drives keep their saved score, so Trends may show a step')
+      expect(text).not.toContain('Scores from v1.6 (iPhone):')
+    })
+
+    it('states the score inputs where the page lists features, tips and settings', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('Live score of the fuel your driving mistakes waste')
+      expect(text).toContain('the score also counts driving above a moderate speed')
+      expect(text).toContain('Keep to a moderate speed and avoid rapid acceleration')
+      expect(text).not.toContain('Maintain steady speeds and avoid rapid acceleration')
+      expect(text).toContain('sets how strict the mistake rings and voice are')
+      expect(text).toContain('turn on Turbocharged for a turbo petrol car')
+    })
+
+    it('answers the accuracy question with the fuel model, keeping the validation caveat', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('The score estimates the fuel your mistakes waste')
+      expect(text).not.toContain('how steadily you hold a speed')
+    })
+
+    it('lists v1.6.1 first under Recently Shipped', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('v1.6.1 (October 2026):')
+      expect(text.indexOf('v1.6.1 (October 2026):')).toBeLessThan(
+        text.indexOf('v1.6 (October 2026):')
       )
     })
   })

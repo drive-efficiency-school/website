@@ -19,6 +19,8 @@
     Compass,
     CircleStop,
     Users,
+    Gauge,
+    SlidersHorizontal,
     Plus,
     Minus
   } from 'lucide-vue-next'
@@ -28,73 +30,72 @@
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16 max-w-4xl">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4">CURRENT — v1.6</Badge>
+      <Badge variant="default" class="mb-4">CURRENT — v1.6.1</Badge>
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Release notes</h1>
       <p class="text-lg text-muted-foreground">
         Every Efficiver release, in one place. Older entries are collapsed — tap to expand.
       </p>
     </div>
 
-    <!-- v1.6 — every sentence comes from the owner-approved truth sheet
-         (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Dated at the prod deploy. -->
+    <!-- v1.6.1 — every sentence comes from the 1.6.1 truth sheet (ADR-200 revision 6), the
+         same text as the App Store and Play notes. Dated at the prod deploy. -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
-          <CardTitle class="text-2xl">v1.6 — Trustworthy trips and savings</CardTitle>
+          <CardTitle class="text-2xl">v1.6.1 — A fairer Efficiency Score</CardTitle>
           <span class="text-sm text-muted-foreground whitespace-nowrap">October 2026</span>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.6 makes every drive say honestly how it went: drives cut short are marked, past savings
-          stop moving when you edit today’s price, and fleet drives arrive complete — or marked
-          Partial.
+          v1.6.1 makes the Efficiency Score measure what it promises: the fuel your driving mistakes
+          waste. It works the same way on iPhone and Android.
         </p>
 
         <div class="flex gap-4 items-start">
-          <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
-            <CircleStop class="size-5 text-blue-600 dark:text-blue-400" />
+          <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+            <Gauge class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">Every drive tells the truth</h4>
+            <h4 class="font-semibold text-lg mb-1">The score is the fuel your mistakes waste</h4>
             <p class="text-muted-foreground">
-              If your phone closes the app before a drive ends — a force-quit, a restart, or the
-              system stepping in — the drive is kept up to its last automatic save and marked
-              Interrupted, in your Sessions list and in its details. It isn’t continued; your next
-              drive starts fresh. Each new drive also records how it started and ended: Session
-              Details now shows Start Reason and Stop Reason.
+              Your score starts at 100 and goes down only when a mistake wastes fuel: hard braking,
+              hard acceleration, idling with the engine on for 30 seconds or more, or driving above
+              a moderate speed for your car. A bigger or longer mistake costs more, and driving on
+              cleanly brings the score back up, because the same waste is shared over more distance.
+              Hills don't count against you. On an electric car, only hard braking and driving above
+              a moderate speed count.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
+            <Car class="size-5 text-blue-600 dark:text-blue-400" />
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg mb-1">Judged by your car</h4>
+            <p class="text-muted-foreground">
+              What counts as a hard brake or a hard acceleration now follows your car's engine size
+              and fuel type, the Turbocharged setting for a petrol car, or an electric car's power —
+              never your speed, gear or proficiency level. The moderate-speed line is set by engine
+              size: 70 km/h below 1,000 cc, 80 below 1,400 cc, 90 below 1,800 cc, otherwise 105.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
-            <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
+            <SlidersHorizontal class="size-5 text-orange-600 dark:text-orange-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">Savings that stay put</h4>
+            <h4 class="font-semibold text-lg mb-1">The same score at every level</h4>
             <p class="text-muted-foreground">
-              Each finished drive keeps the fuel price and typical consumption that were set when it
-              ended, so editing today’s price no longer changes past savings. After a currency
-              change, older drives use today’s price, since there are no exchange rates. Savings in
-              per-gallon regions, such as the US, were shown too high before this release; they are
-              now correct.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4 items-start">
-          <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
-            <Users class="size-5 text-green-600 dark:text-green-400" />
-          </div>
-          <div>
-            <h4 class="font-semibold text-lg mb-1">Fleet: on duty from start to end</h4>
-            <p class="text-muted-foreground">
-              A drive reaches your fleet only if it was on duty from start to end — start a drive
-              off duty and it stays on your phone, even if you go on duty mid-way. An on-duty drive
-              interrupted mid-way is now sent the next time you open the app, marked Partial, as
-              long as your duty status hasn’t changed since. While you’re on duty, a short stop
-              starts a new drive, so every leg reaches the fleet.
+              Your proficiency level now changes only how strict the mistake rings and voice are —
+              and, on iPhone, the vibration. The score is the same at every level. At the lowest
+              level the rings count exactly the moments the score counts; higher levels also flag
+              slightly gentler ones. A false jump in GPS speed counts as neither a mistake nor
+              waste.
             </p>
           </div>
         </div>
@@ -102,39 +103,136 @@
         <div>
           <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
-            <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
             <li>
-              iPhone scores were too generous before 1.6: they barely reacted to driving mistakes,
-              and idling pushed them up. Drives with mistakes now score lower and idling no longer
-              raises the score, the same as on Android. Past drives keep their saved score.
+              In 1.6.0, every mistake took points off for good, however far you drove, and a higher
+              proficiency level gave a lower score for the same drive. Most drives with mistakes now
+              score higher. Past drives keep their saved score, so Trends may show a step at 1.6.1.
+            </li>
+            <!-- Android only: bb6f48b, 15f1b3f, 7636d89, 2881197. -->
+            <li>On Android, the screen stays on for the whole drive.</li>
+            <li>
+              On Android tablets and foldables, the app rotates freely; phones stay in portrait.
             </li>
             <li>
-              Route maps draw only trusted GPS positions — a gap between dots means GPS couldn’t be
-              trusted there.
-            </li>
-            <li>
-              The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the
-              phone can’t measure. That change alone moves a score by under one point.
-            </li>
-            <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
-            <li>
-              On iPhone, your music or podcast returns to full volume after Efficiver’s last voice
-              prompt — also when prompts overlap or a phone call interrupts one.
-            </li>
-            <li>
-              On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
-              CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and
-              score; it has no Stop button, because Live Activity buttons don’t work in CarPlay.
-              Stop from the Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
-            </li>
-            <li>
-              The live idle count now adds up every 30-second idle period across the whole drive,
-              instead of restarting at each stop.
+              On Android, pages use more of the screen's width, and the keyboard no longer covers
+              buttons or the Notes counter.
             </li>
           </ul>
         </div>
       </CardContent>
     </Card>
+
+    <!-- v1.6 — every sentence comes from the owner-approved truth sheet
+         (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Collapsed since v1.6.1. -->
+    <details class="mb-4 group">
+      <summary class="cursor-pointer">
+        <Card class="hover:border-primary/40 transition-colors">
+          <CardHeader>
+            <div class="flex justify-between items-center gap-4">
+              <CardTitle class="text-xl">v1.6 — Trustworthy trips and savings</CardTitle>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-muted-foreground whitespace-nowrap">October 2026</span>
+                <Plus class="size-5 text-muted-foreground group-open:hidden" />
+                <Minus class="size-5 text-primary hidden group-open:inline" />
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+      </summary>
+      <Card class="mt-2 ml-2 border-l-2 border-l-primary/30">
+        <CardContent class="pt-6 space-y-6 text-base">
+          <p class="text-muted-foreground">
+            v1.6 makes every drive say honestly how it went: drives cut short are marked, past
+            savings stop moving when you edit today’s price, and fleet drives arrive complete — or
+            marked Partial.
+          </p>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
+              <CircleStop class="size-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Every drive tells the truth</h4>
+              <p class="text-muted-foreground">
+                If your phone closes the app before a drive ends — a force-quit, a restart, or the
+                system stepping in — the drive is kept up to its last automatic save and marked
+                Interrupted, in your Sessions list and in its details. It isn’t continued; your next
+                drive starts fresh. Each new drive also records how it started and ended: Session
+                Details now shows Start Reason and Stop Reason.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
+              <Banknote class="size-5 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Savings that stay put</h4>
+              <p class="text-muted-foreground">
+                Each finished drive keeps the fuel price and typical consumption that were set when
+                it ended, so editing today’s price no longer changes past savings. After a currency
+                change, older drives use today’s price, since there are no exchange rates. Savings
+                in per-gallon regions, such as the US, were shown too high before this release; they
+                are now correct.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+              <Users class="size-5 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Fleet: on duty from start to end</h4>
+              <p class="text-muted-foreground">
+                A drive reaches your fleet only if it was on duty from start to end — start a drive
+                off duty and it stays on your phone, even if you go on duty mid-way. An on-duty
+                drive interrupted mid-way is now sent the next time you open the app, marked
+                Partial, as long as your duty status hasn’t changed since. While you’re on duty, a
+                short stop starts a new drive, so every leg reaches the fleet.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
+            <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+              <!-- D4 (owner 2026-10-17, truth sheet line 4; iOS b32c1ad). -->
+              <li>
+                iPhone scores were too generous before 1.6: they barely reacted to driving mistakes,
+                and idling pushed them up. Drives with mistakes now score lower and idling no longer
+                raises the score, the same as on Android. Past drives keep their saved score.
+              </li>
+              <li>
+                Route maps draw only trusted GPS positions — a gap between dots means GPS couldn’t
+                be trusted there.
+              </li>
+              <li>
+                The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the
+                phone can’t measure. That change alone moves a score by under one point.
+              </li>
+              <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
+              <li>
+                On iPhone, your music or podcast returns to full volume after Efficiver’s last voice
+                prompt — also when prompts overlap or a phone call interrupts one.
+              </li>
+              <li>
+                On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on
+                the CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status
+                and score; it has no Stop button, because Live Activity buttons don’t work in
+                CarPlay. Stop from the Efficiver CarPlay screen, the Lock Screen, the Dynamic Island
+                or Siri.
+              </li>
+              <li>
+                The live idle count now adds up every 30-second idle period across the whole drive,
+                instead of restarting at each stop.
+              </li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    </details>
 
     <!-- v1.5 -->
     <details class="mb-4 group">

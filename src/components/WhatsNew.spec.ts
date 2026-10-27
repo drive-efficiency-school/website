@@ -8,7 +8,7 @@ vi.mock('@/lib/config', async (importOriginal) => {
 
 import WhatsNew from './WhatsNew.vue'
 import { config } from '@/lib/config'
-import { CircleStop, Banknote, Users } from 'lucide-vue-next'
+import { Gauge, CircleStop, Banknote } from 'lucide-vue-next'
 
 describe('WhatsNew', () => {
   it('links the App Store button to the configured iOS URL', () => {
@@ -40,22 +40,39 @@ describe('WhatsNew', () => {
     expect(wrapper.emitted('navigate')).toEqual([['releases']])
   })
 
-  // v1.6 WP3 (W11) — the truth sheet in docs/Efficiver_v1.6_Release_Tracker.md, owner-approved
-  // 2026-09-29. The v1.5 cards moved to the Releases page.
-  it('announces v1.6 in the badge and heading', () => {
+  // v1.6.1 (ADR-200, D7): the score leads; the two v1.6 flagships stay; the fleet card moved
+  // into the disclosure with its text unchanged. The v1.5 cards live on the Releases page.
+  it('announces v1.6.1 in the badge and heading', () => {
     const wrapper = mount(WhatsNew)
-    expect(wrapper.text()).toContain('NEW — v1.6')
-    expect(wrapper.text()).toContain("What's New in Efficiver 1.6")
+    expect(wrapper.text()).toContain('NEW — v1.6.1')
+    expect(wrapper.text()).toContain("What's New in Efficiver 1.6.1")
   })
 
-  it('renders all three v1.6 flagship cards with distinct icons', () => {
+  it('renders the three flagship cards with distinct icons, the score first', () => {
     const wrapper = mount(WhatsNew)
-    expect(wrapper.text()).toContain('Every drive tells the truth')
-    expect(wrapper.text()).toContain('Savings that stay put')
-    expect(wrapper.text()).toContain('Fleet: on duty from start to end')
+    const titles = wrapper.findAll('h3').map((h) => h.text())
+    expect(titles).toContain('A fairer Efficiency Score')
+    expect(titles).toContain('Every drive tells the truth')
+    expect(titles).toContain('Savings that stay put')
+    expect(titles.indexOf('A fairer Efficiency Score')).toBeLessThan(
+      titles.indexOf('Every drive tells the truth')
+    )
+    expect(wrapper.findComponent(Gauge).exists()).toBe(true)
     expect(wrapper.findComponent(CircleStop).exists()).toBe(true)
     expect(wrapper.findComponent(Banknote).exists()).toBe(true)
-    expect(wrapper.findComponent(Users).exists()).toBe(true)
+  })
+
+  it('states the v1.6.1 score in its card (ADR-200)', () => {
+    const text = mount(WhatsNew).text()
+    expect(text).toContain('Your score is now the fuel your driving mistakes waste')
+    expect(text).toContain('judged by your car, and the same at every proficiency level')
+    expect(text).toContain('Driving on cleanly brings it back up.')
+  })
+
+  it('keeps the fleet duty rule, now inside the disclosure', () => {
+    const text = mount(WhatsNew).text()
+    expect(text).toContain('A drive reaches your fleet only if it was on duty from start to end')
+    expect(text).toContain('marked Partial')
   })
 
   it('says plainly that per-gallon savings were too high before (D3)', () => {
@@ -64,13 +81,12 @@ describe('WhatsNew', () => {
     )
   })
 
-  // D4 (owner 2026-10-17): the iPhone session-clock fix (iOS b32c1ad) moves scores by far more
-  // than D2/D3's "under one point", so the old "saved scores are unchanged" line was replaced.
-  it('says plainly that iPhone scores were too generous before (D4)', () => {
+  // D4's "iPhone scores were too generous before 1.6" line is superseded on the home page by
+  // the 1.6.1 score (it stays on the Releases page's v1.6 entry, as history). The AC/tyre line
+  // stays: ADR-200 R10 keeps both as zero-value inputs.
+  it('drops the superseded D4 line and keeps the AC/tyre line', () => {
     const text = mount(WhatsNew).text()
-    expect(text).toContain(
-      'iPhone scores were too generous before 1.6: they barely reacted to driving mistakes, and idling pushed them up.'
-    )
+    expect(text).not.toContain('iPhone scores were too generous before 1.6')
     expect(text).toContain('Past drives keep their saved score.')
     expect(text).toContain('That change alone moves a score by under one point.')
     expect(text).not.toContain('saved scores are unchanged')
@@ -91,8 +107,11 @@ describe('WhatsNew', () => {
   it('lists the additional v1.6 improvements inside the disclosure', () => {
     const wrapper = mount(WhatsNew)
     // Native <details> keeps its content in textContent even while collapsed.
-    expect(wrapper.text()).toContain('More improvements in v1.6')
+    expect(wrapper.text()).toContain('More improvements in 1.6 and 1.6.1')
     expect(wrapper.text()).toContain('Route maps draw only trusted GPS positions')
     expect(wrapper.text()).toContain('The live idle count now adds up every 30-second idle period')
+    expect(wrapper.text()).toContain(
+      'On Android, the screen stays on for the whole drive, and tablets and foldables rotate freely.'
+    )
   })
 })

@@ -143,16 +143,24 @@ test.describe('WhatsNew section (H1, H2)', () => {
   })
 
   // WhatsNew always advertises the CURRENT release. These assertions moved
-  // from v1.3 → v1.5 (2026-07-27) and v1.5 → v1.6 (2026-09-29, WP3 truth
-  // sheet — docs/Efficiver_v1.6_Release_Tracker.md); the block pins the
-  // badge/heading version alongside the features so the next drift fails
-  // loudly instead of silently. The v1.5 cards now live on #releases.
-  test('badge and heading announce v1.6', async ({ page }) => {
+  // from v1.3 → v1.5 (2026-07-27), v1.5 → v1.6 (2026-09-29, WP3 truth
+  // sheet — docs/Efficiver_v1.6_Release_Tracker.md) and v1.6 → v1.6.1
+  // (2026-10-27, ADR-200); the block pins the badge/heading version alongside
+  // the features so the next drift fails loudly instead of silently. The v1.5
+  // cards now live on #releases.
+  test('badge and heading announce v1.6.1', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/NEW\s*—\s*v1\.6/i)
-    expect(txt).toMatch(/What's New in Efficiver 1\.6/i)
+    expect(txt).toMatch(/NEW\s*—\s*v1\.6\.1/i)
+    expect(txt).toMatch(/What's New in Efficiver 1\.6\.1/i)
     // Never advertise a version that isn't the current one.
     expect(txt).not.toMatch(/v1\.[0-5]\b/)
+  })
+
+  test('leads with the v1.6.1 score: the fuel your driving mistakes waste', async ({ page }) => {
+    const txt = (await page.locator('section#whats-new').textContent()) ?? ''
+    expect(txt).toMatch(/A fairer Efficiency Score/)
+    expect(txt).toMatch(/fuel your driving mistakes waste/i)
+    expect(txt).not.toMatch(/iPhone scores were too generous/i)
   })
 
   test('lists v1.6 interrupted drives and how each drive ended', async ({ page }) => {
