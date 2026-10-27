@@ -260,6 +260,15 @@ describe('Help', () => {
       expect(text).not.toContain('how steadily you hold a speed')
     })
 
+    // The apps' level runs 0-5 (Settings → Driving: "0 = Beginner, 5 = Expert"), never 1-5.
+    it('states the proficiency range as the apps do, 0 to 5', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('Set your proficiency level (0-5) for personalized')
+      expect(text).toContain('0-5 scale (0 = Beginner, 5 = Expert)')
+      expect(text).not.toContain('1-5')
+      expect(text).not.toContain('1=Beginner')
+    })
+
     it('lists v1.6.1 first under Recently Shipped', () => {
       const text = mount(Help).text()
       expect(text).toContain('v1.6.1 (October 2026):')
