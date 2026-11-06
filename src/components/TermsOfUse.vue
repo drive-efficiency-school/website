@@ -28,11 +28,11 @@
       <div class="opacity-80">
         <p>
           Efficiver grants you a limited, non-exclusive, non-transferable, revocable license to
-          download and use the App on your iPhone or Android device. Personal use is free. Using
-          Efficiver for work — where an employer receives the drives you record while on duty — is
-          provided through <strong>Efficiver Fleet</strong>, under that fleet's agreement with
-          Efficiver; see section 3 of our <a href="#privacy" class="underline">Privacy Policy</a>.
-          You may not:
+          download and use the App on your iPhone or Android device. Personal use is free. Efficiver
+          Pro is an optional paid subscription; see section 10. Using Efficiver for work — where an
+          employer receives the drives you record while on duty — is provided through
+          <strong>Efficiver Fleet</strong>, under that fleet's agreement with Efficiver; see section
+          3 of our <a href="#privacy" class="underline">Privacy Policy</a>. You may not:
         </p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>Modify, adapt, translate, decompile, reverse-engineer, or disassemble the App</li>
@@ -173,9 +173,85 @@
       </div>
     </section>
 
-    <!-- Section 10: Contact -->
+    <!-- Section 10: Efficiver Pro Subscriptions (1.7.0, plan item H). App Review needs the
+         subscription terms here — both apps' paywalls link to this page. Wording owner-approved
+         2026-11-06, from Apple's Media Services Terms, Google Play's subscription and price-change
+         pages, and what both apps do (ProStoreCopy, ProEntitlementStore / PlayBillingEntitlementSource). -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">10. Contact</h2>
+      <h2 class="text-2xl font-semibold mb-4">10. Efficiver Pro Subscriptions</h2>
+      <div class="opacity-80 space-y-4">
+        <p>
+          <strong>10.1 What Pro is.</strong> Efficiver Pro is an optional, automatically renewing
+          subscription. It adds score forecasts, driving patterns, idle-time insights, an annual
+          savings projection and your full Year in Driving. Drives, scores and voice coaching stay
+          free without Pro.
+        </p>
+        <p>
+          <strong>10.2 Fees and payment.</strong> Pro is offered as a monthly or an annual plan. You
+          buy it in the App through the Apple App Store or Google Play. The store shows the price in
+          your local currency before you confirm, and prices vary by country. Payment is charged to
+          your Apple Account or Google Account when you confirm the purchase. Your purchase is
+          subject to Apple's or Google's payment terms, and Efficiver never receives your payment
+          details.
+        </p>
+        <p>
+          <strong>10.3 Automatic renewal.</strong> Your subscription renews automatically at the end
+          of each monthly or annual period, and the price of the next period is charged to your
+          Apple Account or Google Account, until you cancel. Apple charges no more than 24 hours
+          before the next period starts. Google Play may authorise the payment up to 48 hours
+          before, or up to 5 days in India and Brazil.
+        </p>
+        <div>
+          <p>
+            <strong>10.4 Cancellation.</strong> You can cancel at any time. To avoid being charged
+            for the next period, cancel at least 24 hours before the current period ends, or earlier
+            on Google Play as described in 10.3.
+          </p>
+          <ul class="list-disc pl-6 mt-2 space-y-2">
+            <li>
+              iPhone or iPad: Settings → your name → Subscriptions → Efficiver Pro → Cancel
+              Subscription.
+            </li>
+            <li>
+              Android: Google Play → Payments &amp; subscriptions → Subscriptions → Efficiver Pro →
+              Cancel subscription.
+            </li>
+            <li>In the App: Settings → Efficiver Pro → Manage Subscription.</li>
+          </ul>
+          <p class="mt-2">
+            Deleting the App does not cancel your subscription. When you cancel, Pro stays on until
+            the end of the period you have already paid for, and you are not charged again.
+          </p>
+        </div>
+        <p>
+          <strong>10.5 Refunds.</strong> Refunds for purchases made through the App Store are
+          handled by Apple under Apple's policies. Refunds for purchases made through Google Play
+          are handled under Google Play's policies. You can request one in the App under Settings →
+          Efficiver Pro → Request a Refund. Except where the law requires otherwise, Efficiver does
+          not give refunds or credits for a partly used period. If a refund is granted, Pro ends.
+        </p>
+        <p>
+          <strong>10.6 Price changes.</strong> Efficiver may change the price of Pro. A new price
+          applies to an existing subscription only from a later renewal, and only after Apple or
+          Google has told you about it. Where their rules or the law require it, it also applies
+          only after you have agreed to it. If you do not agree, your subscription ends when the
+          current period ends.
+        </p>
+        <p>
+          <strong>10.7 Your devices.</strong> A subscription bought through the App Store works only
+          in the iPhone and iPad App, and one bought through Google Play works only in the Android
+          App. On a new device, use Restore Purchases.
+        </p>
+        <p>
+          <strong>10.8 Your rights.</strong> Nothing in this section limits any rights you have
+          under the consumer laws of your country.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 11: Contact -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">11. Contact</h2>
       <div class="opacity-80">
         <p>
           For questions about these Terms, email
