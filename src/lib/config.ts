@@ -64,6 +64,9 @@ export const config = {
     native: import.meta.env.VITE_SHARE_NATIVE !== 'false'
   },
   pricing: {
-    launchOffer: import.meta.env.VITE_LAUNCH_OFFER_ECO_MASTER !== 'false' // Default to true
+    // The Efficiver Pro card's pre-billing state. Default OFF since 1.7.0 (plan item H,
+    // owner-approved 2026-11-06): only the exact value 'true' brings back "Coming soon", so a
+    // missing or stale local .env can never hide Pro once billing is live.
+    launchOffer: import.meta.env.VITE_LAUNCH_OFFER_ECO_MASTER === 'true'
   }
 }

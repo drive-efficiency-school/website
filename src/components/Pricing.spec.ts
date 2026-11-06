@@ -51,12 +51,29 @@ describe('Pricing', () => {
     expect(pro.text()).toContain('pricing being finalised')
   })
 
-  it('shows Pro as an in-app purchase once the launch-offer flag is off', () => {
+  it('shows Pro as an in-app purchase, monthly or annual, once the launch-offer flag is off', () => {
     config.pricing.launchOffer = false
     const wrapper = mount(Pricing)
     const pro = cards(wrapper)[1]
     expect(pro.text()).toContain('In-App Purchase')
+    expect(pro.text()).toContain('monthly or annual')
     expect(pro.text()).not.toContain('Coming soon')
+    expect(pro.text()).not.toContain('pricing being finalised')
+  })
+
+  it('never quotes a Pro price - the stores price 175 storefronts (Brief §10 step 2)', () => {
+    for (const launchOffer of [true, false]) {
+      config.pricing.launchOffer = launchOffer
+      const pro = cards(mount(Pricing))[1]
+      expect(pro.text(), `launchOffer=${launchOffer}`).not.toMatch(/[$£€₹¥]\s?\d|\d+[.,]\d{2}/)
+    }
+  })
+
+  it('says Pro is available now in the intro, not "will add"', () => {
+    const wrapper = mount(Pricing)
+    const intro = wrapper.get('h3').text()
+    expect(intro).toContain('Efficiver is free to use. Efficiver Pro adds deeper insights')
+    expect(intro).not.toMatch(/will add|today/)
   })
 
   it('never sells idle detection or Auto-Start as a Pro-only benefit', () => {
@@ -102,12 +119,14 @@ describe('Pricing', () => {
       expect(free.text()).not.toContain('Google Play')
     })
 
-    it("disables Pro's button - it must never claim to be purchasable today", () => {
+    it("disables Pro's button before billing - it must never claim to be purchasable", () => {
       // "Get Started" sitting under a "Coming soon" price was the exact
-      // contradiction the review flagged. The button now echoes the SAME
-      // price-label function the card's price line uses, so the two can
+      // contradiction the review flagged. Pre-billing, the button echoes the
+      // SAME price-label function the card's price line uses, so the two can
       // never say different things.
       config.pricing.launchOffer = true
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = 'https://play.google.com/test-app'
       const wrapper = mount(Pricing)
       const pro = cards(wrapper)[1]
       const button = pro.get('button')
@@ -116,11 +135,30 @@ describe('Pricing', () => {
       expect(pro.find('a').exists()).toBe(false)
     })
 
-    it("keeps Pro's button in lockstep with its own price label when the launch flag flips", () => {
+    it('links Pro to both stores once billing is live (Brief §10 step 4)', () => {
+      // Pro is bought inside the app, so its buttons lead to the download.
       config.pricing.launchOffer = false
-      const wrapper = mount(Pricing)
-      const pro = cards(wrapper)[1]
-      expect(pro.get('button').text()).toBe('In-App Purchase')
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = 'https://play.google.com/test-app'
+      const pro = cards(mount(Pricing))[1]
+      expect(pro.get('a[href="https://apps.apple.com/test-app"]').text()).toBe(
+        'Get Pro — App Store'
+      )
+      expect(pro.get('a[href="https://play.google.com/test-app"]').text()).toBe(
+        'Get Pro — Google Play'
+      )
+      expect(pro.findAll('a')).toHaveLength(2)
+      // No dead "In-App Purchase" button left behind.
+      expect(pro.find('button').exists()).toBe(false)
+    })
+
+    it("omits Pro's Play link with no Android link configured", () => {
+      config.pricing.launchOffer = false
+      config.app.ios = 'https://apps.apple.com/test-app'
+      config.app.android = ''
+      const pro = cards(mount(Pricing))[1]
+      expect(pro.findAll('a')).toHaveLength(1)
+      expect(pro.text()).not.toContain('Google Play')
     })
 
     it('sends Fleet to the enquiry form on the same page, not a dead button', () => {

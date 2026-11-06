@@ -119,15 +119,16 @@ test.describe('§3.6 Pricing and hero reconciliation', () => {
     expect(hero).toMatch(/Free for personal use/i)
   })
 
-  test('Pricing tagline no longer implies Pro is already deeper, only that it will be', async ({
-    page
-  }) => {
+  // 1.7.0 (plan item H, owner-approved 2026-11-06): Pro is on sale in both apps, so the tagline
+  // moved from "will add" to "adds". The review's original ban ("adds depth") still holds.
+  test('Pricing tagline says Pro is available now', async ({ page }) => {
     await page.goto('/')
     await page.getByText('Fleet enquiries and joining information', { exact: true }).click()
     await page.locator('section#pricing').scrollIntoViewIfNeeded()
     const p = (await page.locator('section#pricing').textContent()) ?? ''
     expect(p).not.toMatch(/Efficiver Pro adds depth/i)
-    expect(p).toMatch(/Efficiver Pro will add deeper insights and history/i)
+    expect(p).toMatch(/Efficiver Pro adds deeper insights and history/i)
+    expect(p).not.toMatch(/Efficiver Pro will add/i)
   })
 
   test("Efficiver's button is a real store link, not dead", async ({ page }) => {
@@ -139,18 +140,26 @@ test.describe('§3.6 Pricing and hero reconciliation', () => {
     expect(href).toMatch(/apps\.apple\.com|play\.google\.com/)
   })
 
-  test('Pro\'s button is disabled, not a live "Get Started" next to a Coming-soon price', async ({
-    page
-  }) => {
+  // The review's point: never a live purchase button next to a "Coming soon" price. Since 1.7.0
+  // (plan item H, Brief §10 step 4) Pro is on sale, so its buttons are real store links; the
+  // pre-billing disabled button is still covered in Pricing.spec.ts (launch-offer switch on).
+  test("Pro's buttons are real store links, not a dead button", async ({ page }) => {
     await page.goto('/')
     await page.getByText('Fleet enquiries and joining information', { exact: true }).click()
     await page.locator('section#pricing').scrollIntoViewIfNeeded()
     const cards = page.locator('section#pricing .grid > *')
     const pro = cards.nth(1)
     await expect(pro).toContainText('Efficiver Pro')
-    const button = pro.locator('button')
-    await expect(button).toBeDisabled()
-    expect(await pro.locator('a').count()).toBe(0)
+    await expect(pro.locator('button')).toHaveCount(0)
+    await expect(pro.locator('a')).toHaveCount(2)
+    await expect(pro.getByRole('link', { name: 'Get Pro — App Store' })).toHaveAttribute(
+      'href',
+      /apps\.apple\.com/
+    )
+    await expect(pro.getByRole('link', { name: 'Get Pro — Google Play' })).toHaveAttribute(
+      'href',
+      /play\.google\.com/
+    )
   })
 
   test("Fleet's button scrolls to the real enquiry form, not a dead button", async ({ page }) => {

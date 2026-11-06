@@ -92,11 +92,12 @@
    * Price label. `config.pricing.launchOffer` is the flip switch Brief §10
    * step 2 describes: TRUE = pre-billing, FALSE = post-billing.
    *
-   * Pre-billing is where we are today — no purchase flow exists on ANY surface
-   * (both apps show a "Coming Soon" alert; `isSubscriptionActive` is a
-   * placeholder), so the card must not imply a purchase is possible. Flipping
-   * to "In-App Purchase" happens WITH billing, and Brief §10 step 8 gates the
-   * prod deploy on both v1.5 store approvals.
+   * Post-billing is the 1.7.0 default (plan item H, owner-approved 2026-11-06):
+   * both apps sell Pro in-app (StoreKit 2 / Play Billing), so the card says
+   * "In-App Purchase" and links to both stores. Pre-billing ("Coming soon", no
+   * purchase path) returns only when the switch is set to exactly 'true'. The
+   * prod deploy still waits for both store approvals (Brief §10 step 8, plan
+   * K step 6).
    */
   function getPriceLabel(id: string): string {
     if (id === 'efficiver') return 'Free'
@@ -106,7 +107,10 @@
 
   function getPriceSubtext(id: string): string {
     if (id === 'efficiver') return 'forever'
-    if (id === 'pro') return config.pricing.launchOffer ? 'pricing being finalised' : ''
+    // No prices on the site (Brief §10 step 2): 175 storefront currencies must
+    // not drift against store truth. Both apps sell exactly these two plans.
+    if (id === 'pro')
+      return config.pricing.launchOffer ? 'pricing being finalised' : 'monthly or annual'
     // Tier 3/4 bill through RazorPay — Brief §2: "no IAP anywhere in this tier".
     // A per-seat price here misrepresented the channel.
     return 'for teams of any size'
@@ -122,8 +126,8 @@
     </h2>
 
     <h3 class="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
-      Efficiver is free to use today. Efficiver Pro will add deeper insights and history, and
-      Efficiver Fleet covers driving for work.
+      Efficiver is free to use. Efficiver Pro adds deeper insights and history, and Efficiver Fleet
+      covers driving for work.
     </h3>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
@@ -160,11 +164,11 @@
 
         <CardFooter>
           <!-- Efficiver: a real store link, the same dual-platform pattern Hero/
-               WhatsNew/Releases use. Pro: disabled - "Get Started" next to a
-               "Coming soon" price implied Pro was already buyable; the button
-               now just echoes the price label above it, so the two can never
-               say different things. Fleet: an in-page anchor to the enquiry
-               form, not a dead button. -->
+               WhatsNew/Releases use. Pro, post-billing (Brief §10 step 4): the
+               same two store links — Pro is bought inside the app, so they lead
+               to the download. Pro, pre-billing: disabled, echoing the price
+               label, so "Coming soon" never sits over a purchase path. Fleet: an
+               in-page anchor to the enquiry form, not a dead button. -->
           <div v-if="id === 'efficiver'" class="flex flex-col gap-2 w-full">
             <Button as-child class="w-full">
               <a :href="config.app.ios" target="_blank" rel="noopener">Get Started — App Store</a>
@@ -175,9 +179,22 @@
               >
             </Button>
           </div>
-          <Button v-else-if="id === 'pro'" variant="secondary" class="w-full" disabled>
+          <Button
+            v-else-if="id === 'pro' && config.pricing.launchOffer"
+            variant="secondary"
+            class="w-full"
+            disabled
+          >
             {{ getPriceLabel(id) }}
           </Button>
+          <div v-else-if="id === 'pro'" class="flex flex-col gap-2 w-full">
+            <Button as-child class="w-full">
+              <a :href="config.app.ios" target="_blank" rel="noopener">Get Pro — App Store</a>
+            </Button>
+            <Button v-if="config.app.android" as-child variant="secondary" class="w-full">
+              <a :href="config.app.android" target="_blank" rel="noopener">Get Pro — Google Play</a>
+            </Button>
+          </div>
           <Button v-else as-child class="w-full">
             <a href="#fleet">{{ buttonText }}</a>
           </Button>

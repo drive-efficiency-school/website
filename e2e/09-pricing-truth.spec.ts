@@ -15,11 +15,11 @@ import { test, expect } from '@playwright/test'
  *   docs/Pricing/Efficiver_Pricing_Matrix_v3.0.csv
  *           trial_enabled=false on all 175 rows (approved_on 2026-07-14).
  *
- * DELIBERATELY NOT ASSERTED HERE (Brief §10 step 8 — "deploy prod only after both
- * v1.5 store approvals"): the launch-offer flip to "In-App Purchase". No purchase
- * flow exists on any surface yet — both apps show a "Coming Soon" alert — so
- * flipping that copy now would substitute one false claim for another. That is a
- * separate change that ships WITH billing.
+ * THE FLIP (1.7.0, plan item H, owner-approved 2026-11-06): both apps now sell Pro
+ * in-app (StoreKit 2 / Play Billing), so the built site defaults to the post-billing
+ * card — "In-App Purchase", "monthly or annual", links to both stores (Brief §10
+ * steps 2 and 4) and no price. Prod still deploys only after both store approvals
+ * (Brief §10 step 8, plan K step 6).
  */
 
 test.describe('Pricing tier naming (Brief §2 / §2.2)', () => {
@@ -51,6 +51,40 @@ test.describe('Pricing tier naming (Brief §2 / §2.2)', () => {
     const pricing = (await page.locator('section#pricing').textContent()) ?? ''
     expect(pricing).not.toMatch(/Basic/)
     expect(pricing).not.toMatch(/Full Access/)
+  })
+})
+
+test.describe('Efficiver Pro is on sale in the apps (1.7, Brief §10 steps 2 and 4)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+    await page.getByText('Fleet enquiries and joining information', { exact: true }).click()
+    await page.locator('section#pricing').scrollIntoViewIfNeeded()
+    await expect(page.locator('section#pricing')).toBeVisible()
+  })
+
+  test('the built site shows the post-billing Pro card by default', async ({ page }) => {
+    const pro = page.locator('section#pricing .grid > *').nth(1)
+    await expect(pro).toContainText('Efficiver Pro')
+    await expect(pro).toContainText('In-App Purchase')
+    await expect(pro).toContainText('monthly or annual')
+    await expect(pro).not.toContainText('Coming soon')
+    await expect(pro).not.toContainText('pricing being finalised')
+  })
+
+  test('Pro links to both stores and has no dead button', async ({ page }) => {
+    const pro = page.locator('section#pricing .grid > *').nth(1)
+    const appStore = pro.getByRole('link', { name: 'Get Pro — App Store' })
+    const play = pro.getByRole('link', { name: 'Get Pro — Google Play' })
+    await expect(appStore).toHaveAttribute('href', /^https:\/\/apps\.apple\.com\//)
+    await expect(play).toHaveAttribute('href', /^https:\/\/play\.google\.com\/store\/apps\//)
+    await expect(pro.locator('button')).toHaveCount(0)
+  })
+
+  test('Pro quotes no price — 175 storefronts price it in the stores', async ({ page }) => {
+    const pro = (await page.locator('section#pricing .grid > *').nth(1).textContent()) ?? ''
+    expect(pro).not.toMatch(/[$£€₹¥]\s?\d/)
+    expect(pro).not.toMatch(/\d+[.,]\d{2}/)
+    expect(pro).not.toMatch(/\/mo\b|\/month|\/year|per month|per year/i)
   })
 })
 
