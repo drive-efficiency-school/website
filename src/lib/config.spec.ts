@@ -89,7 +89,6 @@ describe('boolean flags use `!== "false"` semantics', () => {
     expect(c.share.linkedin).toBe(true)
     expect(c.share.reddit).toBe(true)
     expect(c.share.native).toBe(true)
-    expect(c.pricing.launchOffer).toBe(true)
   })
 
   it('are OFF only for the literal string "false"', async () => {
@@ -99,8 +98,7 @@ describe('boolean flags use `!== "false"` semantics', () => {
       VITE_SHARE_ON_X: 'false',
       VITE_SHARE_ON_LINKEDIN: 'false',
       VITE_SHARE_ON_REDDIT: 'false',
-      VITE_SHARE_NATIVE: 'false',
-      VITE_LAUNCH_OFFER_ECO_MASTER: 'false'
+      VITE_SHARE_NATIVE: 'false'
     })
     expect(c.features.newsletter).toBe(false)
     expect(c.features.contact).toBe(false)
@@ -108,13 +106,34 @@ describe('boolean flags use `!== "false"` semantics', () => {
     expect(c.share.linkedin).toBe(false)
     expect(c.share.reddit).toBe(false)
     expect(c.share.native).toBe(false)
-    expect(c.pricing.launchOffer).toBe(false)
   })
 
   it('stays ON for any other value, including "0" and "off"', async () => {
     const c = await loadConfig({ VITE_SHOW_CONTACT: '0', VITE_SHARE_ON_X: 'off' })
     expect(c.features.contact).toBe(true)
     expect(c.share.x).toBe(true)
+  })
+})
+
+// The opposite default on purpose (1.7.0, plan item H, owner-approved 2026-11-06): once billing
+// is live, a missing, empty or stale value must never bring back the pre-billing "Coming soon"
+// Pro card — only the exact string "true" does.
+describe('the Pro launch-offer switch uses `=== "true"` semantics', () => {
+  it('is OFF when empty', async () => {
+    const c = await loadConfig({ VITE_LAUNCH_OFFER_ECO_MASTER: '' })
+    expect(c.pricing.launchOffer).toBe(false)
+  })
+
+  it('is OFF for "false" and for near-misses like "TRUE", "1" and "yes"', async () => {
+    for (const value of ['false', 'TRUE', 'True', '1', 'yes', ' true']) {
+      const c = await loadConfig({ VITE_LAUNCH_OFFER_ECO_MASTER: value })
+      expect(c.pricing.launchOffer, JSON.stringify(value)).toBe(false)
+    }
+  })
+
+  it('is ON only for the literal string "true"', async () => {
+    const c = await loadConfig({ VITE_LAUNCH_OFFER_ECO_MASTER: 'true' })
+    expect(c.pricing.launchOffer).toBe(true)
   })
 })
 
