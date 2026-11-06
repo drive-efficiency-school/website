@@ -5,7 +5,7 @@ export const config = {
   lastUpdated: {
     help: 'October 27, 2026',
     privacy: 'October 17, 2026',
-    terms: 'August 23, 2026',
+    terms: 'November 6, 2026',
     accessibility: 'August 23, 2026'
   },
   contact: {
