@@ -74,6 +74,23 @@ describe('FAQ', () => {
     expect(wrapper.text()).not.toContain('on 64-bit devices')
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): free first, Pro optional,
+  // priced by the stores — the same answer as Help's "Is Efficiver free?" without its "Yes.".
+  it('answers pricing free-first, with Pro as an optional in-app subscription', async () => {
+    const text = await openAnswer(mount(FAQ), 'What are the pricing plans for Efficiver?')
+    expect(text).toContain(
+      'Efficiver is free to download and use, with no ads: drives, scores, voice coaching and fuel, cost and CO₂ estimates are all free.'
+    )
+    expect(text).toContain(
+      'If you want more, optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving.'
+    )
+    expect(text).toContain(
+      "It's a monthly or annual subscription in the app, priced in your local currency by the App Store or Google Play."
+    )
+    expect(text).not.toMatch(/nothing to buy|still being finalised|which is coming/i)
+    expect(text).not.toContain('Yes. Efficiver')
+  })
+
   it('expands an answer when its question is clicked', async () => {
     const wrapper = mount(FAQ)
     expect(wrapper.text()).not.toContain('An initial calibration')

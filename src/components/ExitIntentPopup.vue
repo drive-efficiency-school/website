@@ -67,8 +67,8 @@
         </div>
         <SheetTitle class="text-center text-2xl">Wait — before you go 🚗</SheetTitle>
         <SheetDescription class="text-center text-base pt-2">
-          Efficiver is free, works offline, and respects your privacy. Real-time driving feedback
-          helps you build the techniques that support smoother, more efficient driving.
+          Efficiver is free to download, works offline, and respects your privacy. Real-time driving
+          feedback helps you build the techniques that support smoother, more efficient driving.
         </SheetDescription>
       </SheetHeader>
 

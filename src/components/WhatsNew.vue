@@ -79,9 +79,9 @@
     </div>
 
     <p class="max-w-3xl mx-auto mb-8 rounded-xl border p-5 text-sm text-muted-foreground">
-      <strong class="text-foreground">Availability:</strong> recorded scores and core coaching are
-      free. Forecasts, deeper patterns and savings projections are planned for Efficiver Pro, which
-      is coming soon. Screens and release notes may include these future Pro features.
+      <strong class="text-foreground">Availability:</strong> drives, scores, voice coaching and
+      fuel, cost and CO₂ estimates are free. Optional Efficiver Pro adds forecasts, patterns and
+      savings projections in the app.
     </p>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
       <Card

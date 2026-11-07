@@ -36,7 +36,7 @@
           >
         </div>
         <p class="mt-4 text-sm text-muted-foreground">
-          Free for personal use. Deeper Pro insights are coming soon.
+          Free for personal use. Optional Efficiver Pro adds deeper insights.
         </p>
         <!-- Next to the Play button, where people decide: the phone app is arm64-only. -->
         <p v-if="config.app.android" class="mt-1 text-sm text-muted-foreground">
@@ -86,8 +86,7 @@
           class="w-56 sm:w-60 rounded-[2rem] border shadow-xl"
         />
         <figcaption class="text-xs text-muted-foreground text-center mt-5">
-          iPhone trip review shown. Figures are illustrative estimates, not measured savings. Full
-          estimates are planned for Pro.
+          iPhone trip review shown. Figures are illustrative estimates, not measured savings.
         </figcaption>
       </figure>
     </div>

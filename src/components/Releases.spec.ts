@@ -150,6 +150,22 @@ describe('Releases', () => {
       expect(wrapper.text()).toContain('are part of Efficiver Pro — coming soon')
     })
 
+    // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): the v1.5 and v1.3 history
+    // keeps its "coming" wording, and each gains the page's "Current behaviour" note.
+    it('states, under the v1.5 and v1.3 history, that Pro is now available', () => {
+      const text = mount(Releases).text()
+      const note =
+        'Current behaviour: since v1.7, these are part of optional Efficiver Pro, available in the app.'
+      expect(text.split(note)).toHaveLength(3)
+      // Each note sits inside its own release, after that release's history text.
+      expect(text.indexOf(note)).toBeGreaterThan(text.indexOf('v1.5 — Converged Trends'))
+      expect(text.indexOf(note)).toBeLessThan(text.indexOf('v1.4 (iPhone)'))
+      expect(text.lastIndexOf(note)).toBeGreaterThan(
+        text.indexOf('The year-end forecast is coming with Efficiver Pro.')
+      )
+      expect(text.lastIndexOf(note)).toBeLessThan(text.indexOf('v1.2 (iPhone)'))
+    })
+
     it('notes that v1.2 and earlier predate the Android app', () => {
       const wrapper = mount(Releases)
       expect(wrapper.text()).toContain('This release predates the Android app')

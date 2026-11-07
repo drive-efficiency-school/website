@@ -91,7 +91,7 @@
             <strong>Pattern Insights + Year Recap (v1.3):</strong> AI-generated coaching on what's
             driving your scores, plus a shareable Year Recap. The AI copy uses Apple Intelligence
             where available; the full Year Recap, Smart Forecast, and idle lever are part of
-            Efficiver Pro (coming soon).
+            optional Efficiver Pro.
           </li>
           <li>
             <strong>Watch companions:</strong> Live score, mistakes and elapsed time on your wrist,
@@ -621,8 +621,8 @@
           </li>
           <li>
             <strong>Trends:</strong> Efficiency forecast with a "cut idle by X%" lever and a
-            Patterns card. The full Year Recap, Smart Forecast, and idle lever are part of Efficiver
-            Pro (coming soon); the AI coaching uses Apple Intelligence where available.
+            Patterns card. The full Year Recap, Smart Forecast, and idle lever are part of optional
+            Efficiver Pro; the AI coaching uses Apple Intelligence where available.
           </li>
           <li>
             <strong>Anomaly flags:</strong> Drives outside your usual pattern are marked on the
@@ -730,10 +730,12 @@
 
           <dt class="font-semibold">Is Efficiver free?</dt>
           <dd>
-            Efficiver is free to download and use, and there is nothing to buy today. Some deeper
-            features — score forecasts, driving patterns, idle-time insights and your annual savings
-            projection — are reserved for <strong>Efficiver Pro</strong>, which is coming; pricing
-            is still being finalised.
+            Yes. Efficiver is free to download and use, with no ads: drives, scores, voice coaching
+            and fuel, cost and CO₂ estimates are all free. If you want more, optional
+            <strong>Efficiver Pro</strong> adds score forecasts, driving patterns, idle-time
+            insights, an annual savings projection and your full Year in Driving. It's a monthly or
+            annual subscription in the app, priced in your local currency by the App Store or Google
+            Play.
           </dd>
 
           <dt class="font-semibold">Does Efficiver require internet?</dt>
@@ -822,10 +824,8 @@
             detection, voice feedback in multiple languages, biometric lock, weather integration
           </li>
         </ul>
-        <h3 class="text-xl font-semibold mt-4 mb-2">On the Roadmap</h3>
-        <ul class="list-disc pl-6">
-          <li>Efficiver Pro — the full Year Recap, Smart Forecast, and idle lever (coming soon)</li>
-        </ul>
+        <!-- "On the Roadmap" removed in 1.7.0 (plan item H, owner-approved 2026-11-07): its only
+             item was Efficiver Pro, which ships in 1.7.0. -->
         <p class="mt-4 text-sm">
           Efficiver ships today on iOS (iPhone, iPad, CarPlay, Apple Watch) and on Android via
           Google Play, with a Wear OS companion. Android requires Android 12 or later, running a

@@ -23,12 +23,17 @@ describe('Flagship journey', () => {
       expect(wrapper.get('figcaption').text()).toContain('not a safety rating')
     }
   )
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): what is free comes first,
+  // and Pro is "optional" and on sale — no longer "planned".
   it.each(['light', 'dark'])(
-    'separates estimates and upcoming Pro insights from core benefits in %s mode',
+    'puts the free core first and Pro as optional, keeping estimates separate, in %s mode',
     (mode) => {
       localStorage.setItem('vueuse-color-scheme', mode)
       const wrapper = mount(EverydayValue)
-      expect(wrapper.text()).toContain('planned for Pro')
+      expect(wrapper.text()).toContain(
+        'Your trip score and coaching are free. Optional Efficiver Pro adds driving patterns and score forecasts.'
+      )
+      expect(wrapper.text()).not.toContain('planned for Pro')
       expect(wrapper.text()).toContain('not a fuel-meter reading')
     }
   )

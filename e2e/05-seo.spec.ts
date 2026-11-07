@@ -48,9 +48,18 @@ test.describe('index.html meta + structured data', () => {
     expect(ogDesc).not.toMatch(/no data leaves your phone unless you join a fleet/i)
     expect(ogDesc).toMatch(/drive records are not sent to Efficiver unless you opt into fleet/i)
     expect(ogDesc).toMatch(/no ads or third-party analytics/i)
-    // §3.7: Year Recap and the full forecast are Pro-gated ("coming soon") -
-    // the metadata must not present them as unconditionally available today.
+    // §3.7: Year Recap and the full forecast are Pro-gated - the metadata must not present
+    // them as free. Since 1.7.0 Pro is on sale (free-first sweep, owner-approved 2026-11-07),
+    // so they "come with optional Efficiver Pro" rather than "are coming".
     expect(ogDesc).not.toMatch(/\bYear Recap\b/i)
+    expect(ogDesc).toMatch(/come with optional Efficiver Pro/)
+    expect(ogDesc).not.toMatch(/coming with Efficiver Pro/i)
+  })
+
+  test('twitter:description names Pro as optional, not coming', async ({ page }) => {
+    const twDesc = await page.locator('meta[name="twitter:description"]').getAttribute('content')
+    expect(twDesc).toMatch(/Trends and forecast come with optional Efficiver Pro/)
+    expect(twDesc).not.toMatch(/coming with Efficiver Pro/i)
   })
 
   test('twitter:title carries NO version number', async ({ page }) => {

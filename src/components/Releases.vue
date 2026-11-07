@@ -259,6 +259,12 @@
             the forecast and AidOps Edge insights ship in v1.5's code and are part of Efficiver Pro,
             which is coming — the subscription that unlocks them hasn't rolled out yet.
           </p>
+          <!-- Same "Current behaviour" pattern as v1.2 iCloud and the v1.4 card: the history
+               stays, the present is stated (1.7.0, plan item H, owner-approved 2026-11-07). -->
+          <p class="text-muted-foreground mt-2 text-sm">
+            <strong>Current behaviour:</strong> since v1.7, these are part of optional Efficiver
+            Pro, available in the app.
+          </p>
 
           <div class="flex gap-4 items-start">
             <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
@@ -474,6 +480,10 @@
                 efficiency front and centre — your estimated fuel, cost and CO₂ impact so far this
                 year, and your average efficiency score, all free. Flip to a searchable list of
                 every drive whenever you want. The year-end forecast is coming with Efficiver Pro.
+              </p>
+              <p class="text-muted-foreground mt-2 text-sm">
+                <strong>Current behaviour:</strong> since v1.7, these are part of optional Efficiver
+                Pro, available in the app.
               </p>
             </div>
           </div>

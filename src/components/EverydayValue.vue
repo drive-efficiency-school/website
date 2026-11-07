@@ -20,8 +20,8 @@
             periods, then choose one practical change.
           </p>
           <p class="border-t pt-4 mt-6 text-sm text-muted-foreground">
-            Start with your trip score and coaching. Deeper patterns and forecasts are planned for
-            Pro.
+            Your trip score and coaching are free. Optional Efficiver Pro adds driving patterns and
+            score forecasts.
           </p>
         </article>
         <article class="border rounded-2xl bg-background p-7">
