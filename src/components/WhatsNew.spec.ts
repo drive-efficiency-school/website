@@ -8,7 +8,7 @@ vi.mock('@/lib/config', async (importOriginal) => {
 
 import WhatsNew from './WhatsNew.vue'
 import { config } from '@/lib/config'
-import { Gauge, CircleStop, Banknote } from 'lucide-vue-next'
+import { Crown, Settings, Users } from 'lucide-vue-next'
 
 describe('WhatsNew', () => {
   it('links the App Store button to the configured iOS URL', () => {
@@ -40,68 +40,52 @@ describe('WhatsNew', () => {
     expect(wrapper.emitted('navigate')).toEqual([['releases']])
   })
 
-  // v1.6.1 (ADR-200, D7): the score leads; the two v1.6 flagships stay; the fleet card moved
-  // into the disclosure with its text unchanged. The v1.5 cards live on the Releases page.
-  it('announces v1.6.1 in the badge and heading', () => {
-    const wrapper = mount(WhatsNew)
-    expect(wrapper.text()).toContain('NEW — v1.6.1')
-    expect(wrapper.text()).toContain("What's New in Efficiver 1.6.1")
+  // v1.7 (truth sheet T1–T8, owner-approved 2026-11-07). The 1.6 and 1.6.1 content moved to
+  // the Releases page, where Releases.spec pins every one of its claims.
+  it('announces v1.7 in the badge and heading, and no older version', () => {
+    const text = mount(WhatsNew).text()
+    expect(text).toContain('NEW — v1.7')
+    expect(text).toContain("What's New in Efficiver 1.7")
+    expect(text).not.toMatch(/1\.6/)
   })
 
-  it('renders the three flagship cards with distinct icons, the score first', () => {
+  it('renders the three v1.7 cards with distinct icons, Pro first', () => {
     const wrapper = mount(WhatsNew)
     const titles = wrapper.findAll('h3').map((h) => h.text())
-    expect(titles).toContain('A fairer Efficiency Score')
-    expect(titles).toContain('Every drive tells the truth')
-    expect(titles).toContain('Savings that stay put')
-    expect(titles.indexOf('A fairer Efficiency Score')).toBeLessThan(
-      titles.indexOf('Every drive tells the truth')
-    )
-    expect(wrapper.findComponent(Gauge).exists()).toBe(true)
-    expect(wrapper.findComponent(CircleStop).exists()).toBe(true)
-    expect(wrapper.findComponent(Banknote).exists()).toBe(true)
+    const cards = [
+      'Efficiver Pro (optional)',
+      'Efficiver Pro in Settings',
+      'Joining a fleet, made clear'
+    ]
+    for (const title of cards) expect(titles).toContain(title)
+    const positions = cards.map((t) => titles.indexOf(t))
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions)
+    expect(wrapper.findComponent(Crown).exists()).toBe(true)
+    expect(wrapper.findComponent(Settings).exists()).toBe(true)
+    expect(wrapper.findComponent(Users).exists()).toBe(true)
   })
 
-  it('states the v1.6.1 score in its card (ADR-200)', () => {
-    const text = mount(WhatsNew).text()
-    expect(text).toContain('Your score is now the fuel your driving mistakes waste')
-    expect(text).toContain('judged by your car, and the same at every proficiency level')
-    expect(text).toContain('Driving on cleanly brings it back up.')
-  })
-
-  it('keeps the fleet duty rule, now inside the disclosure', () => {
-    const text = mount(WhatsNew).text()
-    expect(text).toContain('A drive reaches your fleet only if it was on duty from start to end')
-    expect(text).toContain('marked Partial')
-  })
-
-  it('says plainly that per-gallon savings were too high before (D3)', () => {
+  it('states Pro as optional, its five features, and what stays free (T1, T4)', () => {
     expect(mount(WhatsNew).text()).toContain(
-      'Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
+      'Optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving. Choose a monthly or annual subscription in the app. Drives, scores and voice coaching stay free.'
     )
   })
 
-  // D4's "iPhone scores were too generous before 1.6" line is superseded on the home page by
-  // the 1.6.1 score (it stays on the Releases page's v1.6 entry, as history). The AC/tyre line
-  // stays: ADR-200 R10 keeps both as zero-value inputs.
-  it('drops the superseded D4 line and keeps the AC/tyre line', () => {
+  it('names what Settings → Efficiver Pro offers on both platforms (T2, T3)', () => {
     const text = mount(WhatsNew).text()
-    expect(text).not.toContain('iPhone scores were too generous before 1.6')
-    expect(text).toContain('Past drives keep their saved score.')
-    expect(text).toContain('That change alone moves a score by under one point.')
-    expect(text).not.toContain('saved scores are unchanged')
+    expect(text).toContain(
+      'Settings → Efficiver Pro shows your subscription and lets you manage it, request a refund or restore your purchases.'
+    )
+    expect(text).toContain('If a renewal payment fails, it tells you there too.')
+    // A renewal date is iPhone-only (Play's client gives none) — never claimed here.
+    expect(text).not.toMatch(/when it renews/)
   })
 
-  // Truth sheet line 7 (owner-approved 2026-10-17).
-  it('states the in-car iPhone changes — audio returns, no flicker, no Stop on the card', () => {
+  it('states the fleet start-to-end rule and Partial, as in the consent (T5)', () => {
     const text = mount(WhatsNew).text()
-    expect(text).toContain(
-      "your music or podcast returns to full volume after Efficiver's last voice prompt"
-    )
-    expect(text).toContain('the CarPlay start screen no longer flickers')
-    expect(text).toContain(
-      "it has no Stop button, because Live Activity buttons don't work in CarPlay"
-    )
+    expect(text).toContain('Only drives on duty from start to end are shared with your fleet.')
+    expect(text).toContain('Change duty part-way and that drive stays on your phone.')
+    expect(text).toContain('marked Partial')
   })
 
   // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07).
@@ -113,14 +97,15 @@ describe('WhatsNew', () => {
     expect(text).not.toMatch(/coming soon|planned for Efficiver Pro|future Pro features/i)
   })
 
-  it('lists the additional v1.6 improvements inside the disclosure', () => {
+  it('lists the v1.7 improvements inside the disclosure, the Android ones labelled (T6–T8)', () => {
     const wrapper = mount(WhatsNew)
     // Native <details> keeps its content in textContent even while collapsed.
-    expect(wrapper.text()).toContain('More improvements in 1.6 and 1.6.1')
-    expect(wrapper.text()).toContain('Route maps draw only trusted GPS positions')
-    expect(wrapper.text()).toContain('The live idle count now adds up every 30-second idle period')
-    expect(wrapper.text()).toContain(
-      'On Android, the screen stays on for the whole drive, and tablets and foldables rotate freely.'
-    )
+    const items = wrapper.findAll('details li').map((li) => li.text())
+    expect(wrapper.text()).toContain('More improvements in 1.7')
+    expect(items).toEqual([
+      'Changes you make in Settings → Savings → Trends now apply when you go back to Trends, with no Refresh needed.',
+      'On Android, Minimum drive distance now applies to Trends and the savings projection.',
+      'On Android, Trends settings are now part of Efficiver Pro, as on iPhone.'
+    ])
   })
 })

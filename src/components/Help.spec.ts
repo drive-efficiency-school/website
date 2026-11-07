@@ -296,11 +296,29 @@ describe('Help', () => {
       expect(text).not.toContain('1=Beginner')
     })
 
-    it('lists v1.6.1 first under Recently Shipped', () => {
+    it('lists v1.6.1 under Recently Shipped, after v1.7 and before v1.6', () => {
       const text = mount(Help).text()
       expect(text).toContain('v1.6.1 (October 2026):')
+      expect(text.indexOf('v1.7 (November 2026):')).toBeLessThan(
+        text.indexOf('v1.6.1 (October 2026):')
+      )
       expect(text.indexOf('v1.6.1 (October 2026):')).toBeLessThan(
         text.indexOf('v1.6 (October 2026):')
+      )
+    })
+
+    // v1.7 truth sheet (T1–T8, owner-approved 2026-11-07); the month is provisional until
+    // the prod deploy (plan K step 6).
+    it('lists v1.7 first under Recently Shipped, with its truths', () => {
+      const text = mount(Help).text()
+      expect(text).toContain(
+        'v1.7 (November 2026): optional Efficiver Pro, a monthly or annual subscription in the app'
+      )
+      expect(text).toContain(
+        'only drives on duty from start to end are shared; Trends settings apply when you go back to Trends'
+      )
+      expect(text).toContain(
+        'on Android, Minimum drive distance applies to Trends and the savings projection, and Trends settings are part of Efficiver Pro'
       )
     })
   })

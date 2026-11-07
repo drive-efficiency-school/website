@@ -144,40 +144,41 @@ test.describe('WhatsNew section (H1, H2)', () => {
 
   // WhatsNew always advertises the CURRENT release. These assertions moved
   // from v1.3 → v1.5 (2026-07-27), v1.5 → v1.6 (2026-09-29, WP3 truth
-  // sheet — docs/Efficiver_v1.6_Release_Tracker.md) and v1.6 → v1.6.1
-  // (2026-10-27, ADR-200); the block pins the badge/heading version alongside
-  // the features so the next drift fails loudly instead of silently. The v1.5
-  // cards now live on #releases.
-  test('badge and heading announce v1.6.1', async ({ page }) => {
+  // sheet — docs/Efficiver_v1.6_Release_Tracker.md), v1.6 → v1.6.1
+  // (2026-10-27, ADR-200) and v1.6.1 → v1.7 (2026-11-07, truth sheet T1–T8,
+  // release plan item I); the block pins the badge/heading version alongside
+  // the features so the next drift fails loudly instead of silently. The
+  // v1.6.1 cards now live on #releases.
+  test('badge and heading announce v1.7', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/NEW\s*—\s*v1\.6\.1/i)
-    expect(txt).toMatch(/What's New in Efficiver 1\.6\.1/i)
+    // textContent runs the badge into the heading ("v1.7What's"), so a \b never matches here:
+    // "not followed by a digit or another version part" is the same check without that trap.
+    expect(txt).toMatch(/NEW\s*—\s*v1\.7(?![.\d])/i)
+    expect(txt).toMatch(/What's New in Efficiver 1\.7(?![.\d])/i)
     // Never advertise a version that isn't the current one.
-    expect(txt).not.toMatch(/v1\.[0-5]\b/)
+    expect(txt).not.toMatch(/v1\.[0-6]\b/)
   })
 
-  test('leads with the v1.6.1 score: the fuel your driving mistakes waste', async ({ page }) => {
+  test('leads with optional Efficiver Pro and what stays free (T1, T4)', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/A fairer Efficiency Score/)
-    expect(txt).toMatch(/fuel your driving mistakes waste/i)
-    expect(txt).not.toMatch(/iPhone scores were too generous/i)
+    expect(txt).toMatch(/Efficiver Pro \(optional\)/)
+    expect(txt).toMatch(/Choose a monthly or annual subscription in the app/)
+    expect(txt).toMatch(/Drives, scores and voice coaching stay free/)
   })
 
-  test('lists v1.6 interrupted drives and how each drive ended', async ({ page }) => {
+  test('names the Settings → Efficiver Pro page (T2, T3)', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/marked Interrupted/i)
-    expect(txt).toMatch(/how it started and ended/i)
+    expect(txt).toMatch(/Settings → Efficiver Pro shows your subscription/)
+    expect(txt).toMatch(/request a refund or restore your purchases/)
   })
 
-  test('lists v1.6 savings history, with the plain per-gallon correction (D3)', async ({
-    page
-  }) => {
+  test('lists the Android-labelled v1.7 improvements (T7, T8)', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
-    expect(txt).toMatch(/keeps the fuel price and typical consumption/i)
-    expect(txt).toMatch(/per-gallon regions, such as the US, were shown too high/i)
+    expect(txt).toMatch(/On Android, Minimum drive distance now applies to Trends/)
+    expect(txt).toMatch(/On Android, Trends settings are now part of Efficiver Pro, as on iPhone/)
   })
 
-  test('lists the v1.6 fleet duty rule and Partial drives', async ({ page }) => {
+  test('states the fleet start-to-end rule and Partial drives (T5)', async ({ page }) => {
     const txt = (await page.locator('section#whats-new').textContent()) ?? ''
     expect(txt).toMatch(/on duty from start to end/i)
     expect(txt).toMatch(/marked Partial/i)
