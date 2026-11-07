@@ -104,6 +104,15 @@ describe('WhatsNew', () => {
     )
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07).
+  it('states what is free first, then Pro as optional and in the app', () => {
+    const text = mount(WhatsNew).text()
+    expect(text).toContain(
+      'Availability: drives, scores, voice coaching and fuel, cost and CO₂ estimates are free. Optional Efficiver Pro adds forecasts, patterns and savings projections in the app.'
+    )
+    expect(text).not.toMatch(/coming soon|planned for Efficiver Pro|future Pro features/i)
+  })
+
   it('lists the additional v1.6 improvements inside the disclosure', () => {
     const wrapper = mount(WhatsNew)
     // Native <details> keeps its content in textContent even while collapsed.

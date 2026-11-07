@@ -115,8 +115,10 @@ test.describe('§3.6 Pricing and hero reconciliation', () => {
     await page.getByText('Fleet enquiries and joining information', { exact: true }).click()
     const hero = (await page.locator('section').first().textContent()) ?? ''
     expect(hero).not.toMatch(/Limited Time Offer/i)
-    expect(hero).toMatch(/Pro insights are coming soon/i)
-    expect(hero).toMatch(/Free for personal use/i)
+    // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): Pro is on sale, so it is
+    // "optional", never "coming soon"; free still leads.
+    expect(hero).toMatch(/Free for personal use\.\s*Optional Efficiver Pro adds deeper insights\./)
+    expect(hero).not.toMatch(/coming soon/i)
   })
 
   // 1.7.0 (plan item H, owner-approved 2026-11-06): Pro is on sale in both apps, so the tagline

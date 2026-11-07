@@ -53,7 +53,7 @@
     {
       question: 'What are the pricing plans for Efficiver?',
       answer:
-        'Efficiver is free to download and use, and there is nothing to buy today. Some deeper features — score forecasts, driving patterns, idle-time insights and your annual savings projection — are reserved for Efficiver Pro, which is coming; pricing is still being finalised.',
+        "Efficiver is free to download and use, with no ads: drives, scores, voice coaching and fuel, cost and CO₂ estimates are all free. If you want more, optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving. It's a monthly or annual subscription in the app, priced in your local currency by the App Store or Google Play.",
       value: 'item-6'
     },
     {

@@ -148,10 +148,37 @@ describe('Help', () => {
     })
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): Pro is on sale in both
+  // apps, so the answer leads with what is free and names Pro as optional, matching the FAQ.
   describe('pricing language', () => {
-    it('states Efficiver Pro pricing is still being finalised, matching the FAQ/Pricing SOT', () => {
+    it('answers "Is Efficiver free?" free-first, with Pro as an optional in-app subscription', () => {
+      const text = mount(Help).text()
+      expect(text).toContain(
+        'Yes. Efficiver is free to download and use, with no ads: drives, scores, voice coaching and fuel, cost and CO₂ estimates are all free.'
+      )
+      expect(text).toContain(
+        'If you want more, optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving.'
+      )
+      expect(text).toContain(
+        "It's a monthly or annual subscription in the app, priced in your local currency by the App Store or Google Play."
+      )
+      expect(text).not.toMatch(/nothing to buy|still being finalised|which is coming/i)
+    })
+
+    it('calls the Pro features part of optional Efficiver Pro, never "coming soon"', () => {
+      const text = mount(Help).text()
+      expect(text).toContain(
+        'the full Year Recap, Smart Forecast, and idle lever are part of optional Efficiver Pro.'
+      )
+      expect(text).toContain(
+        'The full Year Recap, Smart Forecast, and idle lever are part of optional Efficiver Pro; the AI coaching uses Apple Intelligence where available.'
+      )
+      expect(text).not.toMatch(/coming soon/i)
+    })
+
+    it('drops the roadmap whose only item was Pro', () => {
       const wrapper = mount(Help)
-      expect(wrapper.text()).toContain('which is coming; pricing is still being finalised')
+      expect(wrapper.findAll('h3').map((h) => h.text())).not.toContain('On the Roadmap')
     })
   })
 

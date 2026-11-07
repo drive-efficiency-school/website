@@ -127,6 +127,18 @@ test.describe('§2.3 Releases — Pro-gating and outcome language', () => {
     expect(body).toMatch(/year-end forecast is coming with Efficiver Pro/i)
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): the v1.5 and v1.3 history
+  // above keeps its "coming" wording; each now carries the page's "Current behaviour" note.
+  test('v1.5 and v1.3 carry a "Current behaviour" note that Pro is now available', async ({
+    page
+  }) => {
+    const body = (await page.locator('body').textContent()) ?? ''
+    const notes = body.match(
+      /Current behaviour:\s*since v1\.7, these are part of optional Efficiver\s*Pro, available in the app\./g
+    )
+    expect(notes).toHaveLength(2)
+  })
+
   test('v1.2 carries a "Current behaviour" addendum about automatic iCloud sync', async ({
     page
   }) => {

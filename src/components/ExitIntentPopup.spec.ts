@@ -201,6 +201,20 @@ describe('ExitIntentPopup', () => {
     wrapper.unmount()
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07): Pro is on sale, so the
+  // pitch says the app is free to download rather than that everything is free.
+  it('says Efficiver is free to download, not that everything is free', async () => {
+    const wrapper = mount(ExitIntentPopup, { attachTo: document.body })
+    leaveThroughTop()
+    await wrapper.vm.$nextTick()
+
+    expect(document.body.textContent).toContain(
+      'Efficiver is free to download, works offline, and respects your privacy.'
+    )
+    expect(document.body.textContent).not.toContain('Efficiver is free, works offline')
+    wrapper.unmount()
+  })
+
   it('detaches its document listener on unmount', () => {
     const add = vi.spyOn(document, 'addEventListener')
     const remove = vi.spyOn(document, 'removeEventListener')

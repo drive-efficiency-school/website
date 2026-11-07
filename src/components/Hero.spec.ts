@@ -79,6 +79,21 @@ describe('Hero', () => {
     expect(alts).toEqual([expect.stringContaining('trip review')])
   })
 
+  // 1.7.0 free-first sweep (plan item H, owner-approved 2026-11-07).
+  it('leads with free and names Pro as optional, not coming', () => {
+    const text = mount(Hero).text()
+    expect(text).toContain('Free for personal use. Optional Efficiver Pro adds deeper insights.')
+    expect(text).not.toMatch(/coming soon/i)
+  })
+
+  it('keeps the estimate caveat in the screenshot caption without a Pro promise', () => {
+    const caption = mount(Hero).get('figcaption').text()
+    expect(caption).toBe(
+      'iPhone trip review shown. Figures are illustrative estimates, not measured savings.'
+    )
+    expect(caption).not.toMatch(/Pro/)
+  })
+
   it('keeps the first impression focused on installation', () => {
     const wrapper = mount(Hero)
     expect(wrapper.text()).not.toContain('Share:')
