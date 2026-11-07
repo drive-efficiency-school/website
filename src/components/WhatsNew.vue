@@ -2,39 +2,42 @@
   import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
   import { Badge } from '@/components/ui/badge'
   import { Button } from '@/components/ui/button'
-  import { ArrowRight, Gauge, CircleStop, Banknote } from 'lucide-vue-next'
+  import { ArrowRight, Crown, Settings, Users } from 'lucide-vue-next'
   import { config } from '@/lib/config'
 
   const emit = defineEmits(['navigate'])
 
   interface Flagship {
-    icon: typeof CircleStop
+    icon: typeof Crown
     color: string
     title: string
     body: string
   }
 
-  // v1.6.1 leads with the score (ADR-200, decision D7); the two v1.6 cards come from the
-  // owner-approved truth sheet (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). The
-  // fleet card moved into "More improvements" unchanged. The v1.5 cards live on Releases.
+  // v1.7 — every sentence comes from the owner-approved 1.7 truth sheet (T1–T8, release plan
+  // item I, 2026-11-07), the same text as the store notes (iOS Distribution_v1.7.0_WhatsNew.md,
+  // Android PLAY_WHATS_NEW_v1.7.0.md). The 1.6.1 cards live on Releases.
   const flagships: Flagship[] = [
     {
-      icon: Gauge,
-      color: 'text-green-600 dark:text-green-400',
-      title: 'A fairer Efficiency Score',
-      body: 'Your score is now the fuel your driving mistakes waste — hard braking, hard acceleration, idling and driving above a moderate speed — judged by your car, and the same at every proficiency level. Driving on cleanly brings it back up. Past drives keep their saved score.'
-    },
-    {
-      icon: CircleStop,
-      color: 'text-blue-600 dark:text-blue-400',
-      title: 'Every drive tells the truth',
-      body: 'If your phone closes the app before a drive ends, the drive is kept up to its last automatic save and marked Interrupted — it is never shown as a normal finished drive. Each drive also records how it started and ended.'
-    },
-    {
-      icon: Banknote,
+      // T1, T4 — iOS 063c501/65d5a60, Android 2ce6a73/efa80c8; the five ProStoreCopy features.
+      icon: Crown,
       color: 'text-orange-600 dark:text-orange-400',
-      title: 'Savings that stay put',
-      body: 'Each finished drive keeps the fuel price and typical consumption that were set when it ended, so editing today’s price no longer changes past savings. Savings in per-gallon regions, such as the US, were shown too high before this release; they are now correct.'
+      title: 'Efficiver Pro (optional)',
+      body: 'Optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving. Choose a monthly or annual subscription in the app. Drives, scores and voice coaching stay free.'
+    },
+    {
+      // T2, T3 — ProSubscriptionView / ProSubscriptionScreen ("Payment Problem" / "On Hold").
+      icon: Settings,
+      color: 'text-blue-600 dark:text-blue-400',
+      title: 'Efficiver Pro in Settings',
+      body: 'Settings → Efficiver Pro shows your subscription and lets you manage it, request a refund or restore your purchases. If a renewal payment fails, it tells you there too.'
+    },
+    {
+      // T5 — iOS b3f32d6, Android 8544f41 (ADR-199 D10, the Join-a-fleet consent).
+      icon: Users,
+      color: 'text-green-600 dark:text-green-400',
+      title: 'Joining a fleet, made clear',
+      body: 'Only drives on duty from start to end are shared with your fleet. Change duty part-way and that drive stays on your phone. If the app closes during an on-duty drive, the drive is sent the next time you open Efficiver, marked Partial.'
     }
   ]
 </script>
@@ -42,13 +45,13 @@
 <template>
   <section id="whats-new" class="container py-16 sm:py-20">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6.1</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.7</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6.1</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.7</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
-        A fairer Efficiency Score that measures the fuel your driving mistakes waste, drives that
-        say how they ended, and savings that keep the price set when each drive ended.
+        Optional Efficiver Pro, a clear subscription page in Settings, and a fleet consent that says
+        exactly which drives are shared.
       </h3>
 
       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
@@ -105,46 +108,21 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in 1.6 and 1.6.1</span>
+        <span>More improvements in 1.7</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
+      <!-- The 1.6 and 1.6.1 improvements live on the Releases page's entries for those
+           versions. T6 — iOS a14a7dd (B4), Android fa7df54 (C4); T7 — Android fa7df54 (C4);
+           T8 — Android 6547768 (C3), said plainly per the owner (2026-11-07). -->
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
-        <!-- The v1.6 fleet flagship, moved here unchanged when the v1.6.1 score took the lead
-             (D7). The D4 iPhone-score line was dropped: 1.6.1 supersedes it, and it stays on the
-             Releases page's v1.6 entry as history. -->
         <li>
-          A drive reaches your fleet only if it was on duty from start to end. An on-duty drive
-          interrupted mid-way is now sent the next time you open the app, marked Partial, and a
-          short stop while on duty starts a new drive — so every leg reaches the fleet.
-        </li>
-        <!-- v1.6.1, Android only (bb6f48b, 15f1b3f). -->
-        <li>
-          On Android, the screen stays on for the whole drive, and tablets and foldables rotate
-          freely.
+          Changes you make in Settings → Savings → Trends now apply when you go back to Trends, with
+          no Refresh needed.
         </li>
         <li>
-          Route maps draw only trusted GPS positions — a gap between dots means GPS couldn't be
-          trusted there.
+          On Android, Minimum drive distance now applies to Trends and the savings projection.
         </li>
-        <li>
-          The Efficiency Score no longer counts air-conditioning or tyre-pressure inputs the phone
-          can't measure. That change alone moves a score by under one point.
-        </li>
-        <!-- Truth sheet line 7 (owner-approved 2026-10-17; iOS 745fbf9, 1484736). -->
-        <li>
-          On iPhone, your music or podcast returns to full volume after Efficiver's last voice
-          prompt — also when prompts overlap or a phone call interrupts one.
-        </li>
-        <li>
-          On iPhone, the CarPlay start screen no longer flickers. The Live Activity card on the
-          CarPlay Home Screen and the Apple Watch Smart Stack shows your driving status and score;
-          it has no Stop button, because Live Activity buttons don't work in CarPlay. Stop from the
-          Efficiver CarPlay screen, the Lock Screen, the Dynamic Island or Siri.
-        </li>
-        <li>
-          The live idle count now adds up every 30-second idle period across the whole drive,
-          instead of restarting at each stop.
-        </li>
+        <li>On Android, Trends settings are now part of Efficiver Pro, as on iPhone.</li>
       </ul>
     </details>
   </section>

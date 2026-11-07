@@ -21,6 +21,8 @@
     Users,
     Gauge,
     SlidersHorizontal,
+    Crown,
+    Settings,
     Plus,
     Minus
   } from 'lucide-vue-next'
@@ -30,72 +32,67 @@
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16 max-w-4xl">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4">CURRENT — v1.6.1</Badge>
+      <Badge variant="default" class="mb-4">CURRENT — v1.7</Badge>
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Release notes</h1>
       <p class="text-lg text-muted-foreground">
         Every Efficiver release, in one place. Older entries are collapsed — tap to expand.
       </p>
     </div>
 
-    <!-- v1.6.1 — every sentence comes from the 1.6.1 truth sheet (ADR-200 revision 6), the
-         same text as the App Store and Play notes. Dated at the prod deploy. -->
+    <!-- v1.7 — every sentence comes from the owner-approved 1.7 truth sheet (T1–T8, release
+         plan item I, 2026-11-07), the same text as the App Store and Play notes. "November 2026"
+         is provisional: plan K step 6 rechecks the month at the prod deploy. -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
-          <CardTitle class="text-2xl">v1.6.1 — A fairer Efficiency Score</CardTitle>
-          <span class="text-sm text-muted-foreground whitespace-nowrap">October 2026</span>
+          <CardTitle class="text-2xl">v1.7 — Efficiver Pro</CardTitle>
+          <span class="text-sm text-muted-foreground whitespace-nowrap">November 2026</span>
         </div>
       </CardHeader>
       <CardContent class="space-y-6 text-base">
         <p class="text-muted-foreground">
-          v1.6.1 makes the Efficiency Score measure what it promises: the fuel your driving mistakes
-          waste. It works the same way on iPhone and Android.
+          v1.7 adds optional Efficiver Pro, a clear subscription page in Settings, and a fleet
+          consent that says exactly which drives are shared. Drives, scores and voice coaching stay
+          free.
         </p>
 
         <div class="flex gap-4 items-start">
-          <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
-            <Gauge class="size-5 text-green-600 dark:text-green-400" />
+          <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
+            <Crown class="size-5 text-orange-600 dark:text-orange-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">The score is the fuel your mistakes waste</h4>
+            <h4 class="font-semibold text-lg mb-1">Efficiver Pro (optional)</h4>
             <p class="text-muted-foreground">
-              Your score starts at 100 and goes down only when a mistake wastes fuel: hard braking,
-              hard acceleration, idling with the engine on for 30 seconds or more, or driving above
-              a moderate speed for your car. A bigger or longer mistake costs more, and driving on
-              cleanly brings the score back up, because the same waste is shared over more distance.
-              Hills don't count against you. On an electric car, only hard braking and driving above
-              a moderate speed count.
+              Optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an
+              annual savings projection and your full Year in Driving. Choose a monthly or annual
+              subscription in the app. Drives, scores and voice coaching stay free.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
           <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
-            <Car class="size-5 text-blue-600 dark:text-blue-400" />
+            <Settings class="size-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">Judged by your car</h4>
+            <h4 class="font-semibold text-lg mb-1">Efficiver Pro in Settings</h4>
             <p class="text-muted-foreground">
-              What counts as a hard brake or a hard acceleration now follows your car's engine size
-              and fuel type, the Turbocharged setting for a petrol car, or an electric car's power —
-              never your speed, gear or proficiency level. The moderate-speed line is set by engine
-              size: 70 km/h below 1,000 cc, 80 below 1,400 cc, 90 below 1,800 cc, otherwise 105.
+              Settings → Efficiver Pro shows your subscription and lets you manage it, request a
+              refund or restore your purchases. If a renewal payment fails, it tells you there too.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4 items-start">
-          <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
-            <SlidersHorizontal class="size-5 text-orange-600 dark:text-orange-400" />
+          <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+            <Users class="size-5 text-green-600 dark:text-green-400" />
           </div>
           <div>
-            <h4 class="font-semibold text-lg mb-1">The same score at every level</h4>
+            <h4 class="font-semibold text-lg mb-1">Joining a fleet, made clear</h4>
             <p class="text-muted-foreground">
-              Your proficiency level now changes only how strict the mistake rings and voice are —
-              and, on iPhone, the vibration. The score is the same at every level. At the lowest
-              level the rings count exactly the moments the score counts; higher levels also flag
-              slightly gentler ones. A false jump in GPS speed counts as neither a mistake nor
-              waste.
+              Only drives on duty from start to end are shared with your fleet. Change duty part-way
+              and that drive stays on your phone. If the app closes during an on-duty drive, the
+              drive is sent the next time you open Efficiver, marked Partial.
             </p>
           </div>
         </div>
@@ -104,23 +101,114 @@
           <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
           <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
             <li>
-              In 1.6.0, every mistake took points off for good, however far you drove, and a higher
-              proficiency level gave a lower score for the same drive. Most drives with mistakes now
-              score higher. Past drives keep their saved score, so Trends may show a step at 1.6.1.
-            </li>
-            <!-- Android only: bb6f48b, 15f1b3f, 7636d89, 2881197. -->
-            <li>On Android, the screen stays on for the whole drive.</li>
-            <li>
-              On Android tablets and foldables, the app rotates freely; phones stay in portrait.
+              Changes you make in Settings → Savings → Trends now apply when you go back to Trends,
+              with no Refresh needed.
             </li>
             <li>
-              On Android, pages use more of the screen's width, and the keyboard no longer covers
-              buttons or the Notes counter.
+              On Android, Minimum drive distance now applies to Trends and the savings projection.
             </li>
+            <li>On Android, Trends settings are now part of Efficiver Pro, as on iPhone.</li>
           </ul>
         </div>
       </CardContent>
     </Card>
+
+    <!-- v1.6.1 — every sentence comes from the 1.6.1 truth sheet (ADR-200 revision 6), the
+         same text as the App Store and Play notes. Collapsed since v1.7. -->
+    <details class="mb-4 group">
+      <summary class="cursor-pointer">
+        <Card class="hover:border-primary/40 transition-colors">
+          <CardHeader>
+            <div class="flex justify-between items-center gap-4">
+              <CardTitle class="text-xl">v1.6.1 — A fairer Efficiency Score</CardTitle>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-muted-foreground whitespace-nowrap">October 2026</span>
+                <Plus class="size-5 text-muted-foreground group-open:hidden" />
+                <Minus class="size-5 text-primary hidden group-open:inline" />
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+      </summary>
+      <Card class="mt-2 ml-2 border-l-2 border-l-primary/30">
+        <CardContent class="pt-6 space-y-6 text-base">
+          <p class="text-muted-foreground">
+            v1.6.1 makes the Efficiency Score measure what it promises: the fuel your driving
+            mistakes waste. It works the same way on iPhone and Android.
+          </p>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-green-500/10 p-2 rounded-full ring-4 ring-green-500/5 shrink-0">
+              <Gauge class="size-5 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">The score is the fuel your mistakes waste</h4>
+              <p class="text-muted-foreground">
+                Your score starts at 100 and goes down only when a mistake wastes fuel: hard
+                braking, hard acceleration, idling with the engine on for 30 seconds or more, or
+                driving above a moderate speed for your car. A bigger or longer mistake costs more,
+                and driving on cleanly brings the score back up, because the same waste is shared
+                over more distance. Hills don't count against you. On an electric car, only hard
+                braking and driving above a moderate speed count.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-blue-500/10 p-2 rounded-full ring-4 ring-blue-500/5 shrink-0">
+              <Car class="size-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Judged by your car</h4>
+              <p class="text-muted-foreground">
+                What counts as a hard brake or a hard acceleration now follows your car's engine
+                size and fuel type, the Turbocharged setting for a petrol car, or an electric car's
+                power — never your speed, gear or proficiency level. The moderate-speed line is set
+                by engine size: 70 km/h below 1,000 cc, 80 below 1,400 cc, 90 below 1,800 cc,
+                otherwise 105.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="bg-orange-500/10 p-2 rounded-full ring-4 ring-orange-500/5 shrink-0">
+              <SlidersHorizontal class="size-5 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">The same score at every level</h4>
+              <p class="text-muted-foreground">
+                Your proficiency level now changes only how strict the mistake rings and voice are —
+                and, on iPhone, the vibration. The score is the same at every level. At the lowest
+                level the rings count exactly the moments the score counts; higher levels also flag
+                slightly gentler ones. A false jump in GPS speed counts as neither a mistake nor
+                waste.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-lg mb-2">Smaller improvements</h4>
+            <ul class="list-disc pl-6 space-y-1 text-muted-foreground">
+              <li>
+                In 1.6.0, every mistake took points off for good, however far you drove, and a
+                higher proficiency level gave a lower score for the same drive. Most drives with
+                mistakes now score higher. Past drives keep their saved score, so Trends may show a
+                step at 1.6.1.
+              </li>
+              <!-- Android only: bb6f48b, 15f1b3f, 7636d89, 2881197. -->
+              <li>On Android, the screen stays on for the whole drive.</li>
+              <li>
+                On Android tablets and foldables, the app rotates freely; phones stay in portrait.
+              </li>
+              <li>
+                On Android, pages use more of the screen's width, and the keyboard no longer covers
+                buttons or the Notes counter.
+              </li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    </details>
 
     <!-- v1.6 — every sentence comes from the owner-approved truth sheet
          (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). Collapsed since v1.6.1. -->

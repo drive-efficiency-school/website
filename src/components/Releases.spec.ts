@@ -13,6 +13,8 @@ describe('Releases', () => {
   it('lists every version, current one first, each dated', () => {
     const wrapper = mount(Releases)
     const titles = wrapper.findAll('h4, .text-2xl, .text-xl').map((el) => el.text())
+    expect(wrapper.text()).toContain('v1.7 — Efficiver Pro')
+    expect(wrapper.text().indexOf('v1.7 — ')).toBeLessThan(wrapper.text().indexOf('v1.6.1 — '))
     expect(wrapper.text()).toContain('v1.6.1 — A fairer Efficiency Score')
     expect(wrapper.text()).toContain('v1.6 — Trustworthy trips and savings')
     expect(wrapper.text()).toContain('v1.5 — Converged Trends, AidOps Edge')
@@ -27,27 +29,28 @@ describe('Releases', () => {
     expect(titles.length).toBeGreaterThan(0)
   })
 
-  it('badges v1.6.1 as CURRENT, always expanded (no <details> wrapper)', () => {
+  it('badges v1.7 as CURRENT, always expanded (no <details> wrapper)', () => {
     const wrapper = mount(Releases)
-    expect(wrapper.text()).toContain('CURRENT — v1.6.1')
+    expect(wrapper.text()).toContain('CURRENT — v1.7')
+    expect(wrapper.text()).not.toContain('CURRENT — v1.6.1')
     // The current card must not sit inside a <details>: it should be visible
     // without any interaction, unlike every older version.
     const current = wrapper
       .findAll('.container > *')
-      .find((el) => el.text().includes('A fairer Efficiency Score'))
+      .find((el) => el.text().includes('v1.7 — Efficiver Pro'))
     expect(current).toBeDefined()
     expect(current?.element.tagName).not.toBe('DETAILS')
-    // v1.6 is history now, collapsed like every older version.
-    const v16 = wrapper
+    // v1.6.1 is history now, collapsed like every older version.
+    const v161 = wrapper
       .findAll('.container > *')
-      .find((el) => el.text().includes('Trustworthy trips and savings'))
-    expect(v16?.element.tagName).toBe('DETAILS')
+      .find((el) => el.text().includes('v1.6.1 — A fairer Efficiency Score'))
+    expect(v161?.element.tagName).toBe('DETAILS')
   })
 
   it('collapses every older version by default', () => {
     const wrapper = mount(Releases)
     const detailsEls = wrapper.findAll('details')
-    expect(detailsEls).toHaveLength(8) // v1.6, v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
+    expect(detailsEls).toHaveLength(9) // v1.6.1, v1.6, v1.5, v1.4, v1.3, v1.2, v1.1, v1.0.1, v1.0
     detailsEls.forEach((d) => expect(d.attributes('open')).toBeUndefined())
   })
 
@@ -62,6 +65,40 @@ describe('Releases', () => {
   })
 
   describe('claims that must stay accurate', () => {
+    // v1.7 truth sheet (T1–T8, owner-approved 2026-11-07), the same text as the store notes.
+    it('states the v1.7 truths — optional Pro, the Settings page, the fleet rule, T6–T8', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'Optional Efficiver Pro adds score forecasts, driving patterns, idle-time insights, an annual savings projection and your full Year in Driving.'
+      )
+      expect(text).toContain(
+        'Choose a monthly or annual subscription in the app. Drives, scores and voice coaching stay free.'
+      )
+      expect(text).toContain(
+        'Settings → Efficiver Pro shows your subscription and lets you manage it, request a refund or restore your purchases. If a renewal payment fails, it tells you there too.'
+      )
+      // A renewal date is iPhone-only (Play's client gives none) — the shared card never claims it.
+      expect(text).not.toMatch(/when it renews/)
+      expect(text).toContain('Only drives on duty from start to end are shared with your fleet.')
+      expect(text).toContain(
+        'Changes you make in Settings → Savings → Trends now apply when you go back to Trends'
+      )
+      expect(text).toContain(
+        'On Android, Minimum drive distance now applies to Trends and the savings projection.'
+      )
+      expect(text).toContain(
+        'On Android, Trends settings are now part of Efficiver Pro, as on iPhone.'
+      )
+    })
+
+    // Moved from WhatsNew.spec when the home page moved to v1.7: these v1.6 lines now live only
+    // here, in the v1.6 entry.
+    it('keeps the v1.6 route-map and idle-count lines', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain('Route maps draw only trusted GPS positions')
+      expect(text).toContain('The live idle count now adds up every 30-second idle period')
+    })
+
     // v1.6.1 truth sheet (ADR-200 revision 6).
     it('states the v1.6.1 score truths — fuel wasted, judged by the car, same at every level', () => {
       const text = mount(Releases).text()

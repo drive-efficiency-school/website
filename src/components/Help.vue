@@ -776,6 +776,16 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
+          <!-- v1.7 (truth sheet T1–T8, owner-approved 2026-11-07). "November 2026" is
+               provisional: plan K step 6 rechecks the month at the prod deploy. -->
+          <li>
+            <strong>v1.7 (November 2026):</strong> optional Efficiver Pro, a monthly or annual
+            subscription in the app; Settings → Efficiver Pro to manage it, request a refund or
+            restore purchases; the Join-a-fleet consent states that only drives on duty from start
+            to end are shared; Trends settings apply when you go back to Trends; on Android, Minimum
+            drive distance applies to Trends and the savings projection, and Trends settings are
+            part of Efficiver Pro
+          </li>
           <!-- v1.6.1 (ADR-200). Month set at the prod deploy, like v1.6. -->
           <li>
             <strong>v1.6.1 (October 2026):</strong> the Efficiency Score is now the fuel your
