@@ -9,7 +9,7 @@ describe('PrivacyPolicy', () => {
     expect(wrapper.text()).toContain(`Last updated: ${config.lastUpdated.privacy}`)
   })
 
-  it('renders all eleven sections (Summary + 1-10) in order', () => {
+  it('renders all twelve sections (Summary + 1-11) in order', () => {
     const wrapper = mount(PrivacyPolicy)
     const headings = wrapper.findAll('h2').map((h) => h.text())
     expect(headings).toEqual([
@@ -18,13 +18,73 @@ describe('PrivacyPolicy', () => {
       '2. The Efficiver Android app',
       '3. Fleet mode (opt-in, both apps)',
       '4. The Efficiver website (efficiver.com)',
-      '5. How we share data',
-      '6. Data retention',
-      '7. Your rights',
-      "8. Children's privacy",
-      '9. Changes to this policy',
-      '10. Contact'
+      '5. Purchases (Efficiver Pro)',
+      '6. How we share data',
+      '7. Data retention',
+      '8. Your rights',
+      "9. Children's privacy",
+      '10. Changes to this policy',
+      '11. Contact'
     ])
+  })
+
+  // 1.7.0 (release plan item I, owner-approved 2026-11-07, D3). Efficiver Pro is sold through
+  // the stores; once Store Front's notifications are live (E2) Apple and Google send Efficiver
+  // the subscription's status. What is kept is exactly store_events + entitlements
+  // (store-fullstack face-backend); the apps send nothing about purchases.
+  describe('purchases (§5, Efficiver Pro)', () => {
+    function section5(wrapper: ReturnType<typeof mount>): string {
+      return wrapper
+        .findAll('section')
+        .find((s) => s.get('h2').text() === '5. Purchases (Efficiver Pro)')!
+        .text()
+    }
+
+    it('says the stores take payment and Efficiver never gets name, email or payment details', () => {
+      const text = section5(mount(PrivacyPolicy))
+      expect(text).toContain('Apple or Google takes the payment')
+      expect(text).toContain('Efficiver never receives your name, email address or payment details')
+    })
+
+    it('lists exactly what the store notifications give us, and that it identifies the subscription', () => {
+      const text = section5(mount(PrivacyPolicy))
+      expect(text).toContain(
+        'We keep the product and plan, the status, the purchase, renewal or expiry dates, the storefront country, whether it was a test purchase, the price and currency (from Apple), and a transaction or purchase reference that identifies the subscription, not you.'
+      )
+    })
+
+    it('limits the use, rules out selling and advertising, and keeps it apart from drives and fleets', () => {
+      const text = section5(mount(PrivacyPolicy))
+      expect(text).toContain('We use this only to support subscribers')
+      expect(text).toContain('It is never sold or used for advertising')
+      expect(text).toContain('it is not linked to your drives, your device or a fleet')
+    })
+
+    it('says the app sends nothing about a purchase to Efficiver', () => {
+      expect(section5(mount(PrivacyPolicy))).toContain(
+        'it sends nothing about your purchase to Efficiver'
+      )
+    })
+
+    it('points to §5 from the Summary', () => {
+      expect(mount(PrivacyPolicy).text()).toContain(
+        "If you buy Efficiver Pro, Apple or Google tells us your subscription's status — never your name, email or card details (section 5)."
+      )
+    })
+
+    it('keeps purchase notifications only as long as needed, then deletes them (§7)', () => {
+      expect(mount(PrivacyPolicy).text()).toMatch(
+        /Purchase notifications from Apple and Google\s*\(section 5\) are kept for as long as we need them to manage and support the subscription, for example refund or restore questions, and to meet our legal obligations\. Then they are deleted\./
+      )
+    })
+
+    it('keeps the cross-references pointing at the renumbered sections', () => {
+      const text = mount(PrivacyPolicy).text()
+      expect(text).toContain('see section 7, Data retention')
+      expect(text).toContain('See section 7 for how long this data is kept')
+      expect(text).toContain('until you delete them yourself (section 8)')
+      expect(text).not.toContain('section 6, Data retention')
+    })
   })
 
   // Google Play rejected the app 2026-08-30/31 for "Data retention policy
@@ -204,7 +264,7 @@ describe('PrivacyPolicy', () => {
   it('carries a working contact mailto link in every section that offers one', () => {
     const wrapper = mount(PrivacyPolicy)
     const links = wrapper.findAll('a[href="mailto:contact@efficiver.com"]')
-    expect(links.length).toBeGreaterThanOrEqual(3) // §3, §6, §9
+    expect(links.length).toBeGreaterThanOrEqual(3) // §3, §7, §8
   })
 
   it('states the 17+ store rating separately from the under-13 collection statement', () => {

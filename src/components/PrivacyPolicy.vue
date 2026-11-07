@@ -48,6 +48,10 @@
             you submitted them.
           </li>
           <li>
+            If you buy Efficiver Pro, Apple or Google tells us your subscription's status — never
+            your name, email or card details (section 5).
+          </li>
+          <li>
             We never sell, rent, or trade your personal information. Beyond your own fleet if you
             choose to join one, and the weather and maps providers above who only see a location
             request, we don't share it with anyone.
@@ -55,7 +59,7 @@
           <li>No advertising identifiers, no third-party analytics, no ad tracking.</li>
           <li>
             Your data is kept until you (or, for uploaded fleet drives, your employer) choose to
-            delete it — see <strong>section 6, Data retention</strong> for what applies to each type
+            delete it — see <strong>section 7, Data retention</strong> for what applies to each type
             of data.
           </li>
         </ul>
@@ -358,15 +362,41 @@
 
         <p class="mt-4">
           Both forms submit to <code>{{ config.api.baseUrl }}</code
-          >, an Efficiver-operated email API, with no third-party processors. See section 6 for how
+          >, an Efficiver-operated email API, with no third-party processors. See section 7 for how
           long this data is kept.
         </p>
       </div>
     </section>
 
-    <!-- Section 5: How we share data -->
+    <!-- Section 5: Purchases (1.7.0, plan item I, owner-approved 2026-11-07, D3). What Store Front
+         keeps is exactly store_events + entitlements (store-fullstack face-backend): price and
+         currency come only from Apple's notification; the apps send nothing about purchases. -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">5. How we share data</h2>
+      <h2 class="text-2xl font-semibold mb-4">5. Purchases (Efficiver Pro)</h2>
+      <div class="opacity-80">
+        <p>
+          Efficiver Pro is sold through the Apple App Store and Google Play. Apple or Google takes
+          the payment; Efficiver never receives your name, email address or payment details.
+        </p>
+        <p class="mt-2">
+          When you subscribe, renew, cancel or get a refund, Apple or Google sends Efficiver a
+          notification of the subscription's status. We keep the product and plan, the status, the
+          purchase, renewal or expiry dates, the storefront country, whether it was a test purchase,
+          the price and currency (from Apple), and a transaction or purchase reference that
+          identifies the subscription, not you. We use this only to support subscribers, for example
+          with refund or restore questions, and to report on Efficiver Pro. It is never sold or used
+          for advertising, and it is not linked to your drives, your device or a fleet.
+        </p>
+        <p class="mt-2">
+          The app decides whether Pro is on by asking the App Store or Google Play on your phone; it
+          sends nothing about your purchase to Efficiver.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 6: How we share data -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">6. How we share data</h2>
       <div class="opacity-80">
         <p>We don't sell, rent, or trade your personal information. The only times it is shared:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
@@ -395,16 +425,16 @@
       </div>
     </section>
 
-    <!-- Section 6: Data retention -->
+    <!-- Section 7: Data retention -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">6. Data retention</h2>
+      <h2 class="text-2xl font-semibold mb-4">7. Data retention</h2>
       <div class="opacity-80">
         <p>How long we keep each type of data, and what decides when it goes:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>
             <strong>Driving sessions, vehicle settings and your Smart Detection model</strong> are
             kept on your device for as long as you keep the app installed, or until you delete them
-            yourself (section 7). None of this data is ever stored on our servers, so we don't set a
+            yourself (section 8). None of this data is ever stored on our servers, so we don't set a
             retention period for it — deletion is entirely under your control.
           </li>
           <li>
@@ -424,13 +454,20 @@
             Unsubscribing from the newsletter stops future emails immediately, but does not by
             itself delete your subscriber record — email us if you want that removed too.
           </li>
+          <!-- Purpose-based, the industry form (owner-approved 2026-11-07). Store Front's purge
+               must be live before E2 switches notifications on (release plan v1.7). -->
+          <li>
+            <strong>Purchase notifications from Apple and Google</strong> (section 5) are kept for
+            as long as we need them to manage and support the subscription, for example refund or
+            restore questions, and to meet our legal obligations. Then they are deleted.
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- Section 7: Your rights -->
+    <!-- Section 8: Your rights -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">7. Your rights</h2>
+      <h2 class="text-2xl font-semibold mb-4">8. Your rights</h2>
       <div class="opacity-80">
         <p>You can:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
@@ -465,9 +502,9 @@
       </div>
     </section>
 
-    <!-- Section 8: Children's privacy -->
+    <!-- Section 9: Children's privacy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">8. Children's privacy</h2>
+      <h2 class="text-2xl font-semibold mb-4">9. Children's privacy</h2>
       <div class="opacity-80">
         <p>
           Efficiver carries a 17+ age rating on the app stores, which reflects the app's content and
@@ -478,9 +515,9 @@
       </div>
     </section>
 
-    <!-- Section 9: Changes to this policy -->
+    <!-- Section 10: Changes to this policy -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">9. Changes to this policy</h2>
+      <h2 class="text-2xl font-semibold mb-4">10. Changes to this policy</h2>
       <div class="opacity-80">
         <p>
           We may update this Privacy Policy as the app and website evolve. The "Last updated" date
@@ -490,9 +527,9 @@
       </div>
     </section>
 
-    <!-- Section 10: Contact -->
+    <!-- Section 11: Contact -->
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">10. Contact</h2>
+      <h2 class="text-2xl font-semibold mb-4">11. Contact</h2>
       <div class="opacity-80">
         <p>
           For privacy questions, email

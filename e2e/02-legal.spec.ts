@@ -52,6 +52,18 @@ test.describe('Privacy Policy (C1, I4, I5)', () => {
     const body = (await page.locator('body').textContent()) ?? ''
     expect(body).not.toContain('support@efficiver.com')
   })
+
+  // 1.7.0 (release plan item I, owner-approved 2026-11-07): Efficiver Pro purchases, and how
+  // long the store notifications are kept (purpose-based; Store Front's purge is plan E1b).
+  test('covers Efficiver Pro purchases and their retention', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: '5. Purchases (Efficiver Pro)' })).toBeVisible()
+    const body = (await page.locator('body').textContent()) ?? ''
+    expect(body).toMatch(/Efficiver never receives your name, email address or payment details/)
+    expect(body).toMatch(/sends nothing about your purchase to Efficiver/)
+    expect(body).toMatch(
+      /Purchase notifications from Apple and Google[\s\S]{0,40}are kept for as long as we need them/
+    )
+  })
 })
 
 test.describe('Terms of Use (C2)', () => {
