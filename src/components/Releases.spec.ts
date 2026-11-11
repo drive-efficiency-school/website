@@ -13,9 +13,11 @@ describe('Releases', () => {
   it('lists every version, current one first, each dated', () => {
     const wrapper = mount(Releases)
     const titles = wrapper.findAll('h4, .text-2xl, .text-xl').map((el) => el.text())
+    expect(wrapper.text()).toContain('v1.6.2 — Auto-Start fixes')
     expect(wrapper.text()).toContain('v1.6.1 — A fairer Efficiency Score')
     expect(wrapper.text()).toContain('v1.6 — Trustworthy trips and savings')
     expect(wrapper.text()).toContain('v1.5 — Converged Trends, AidOps Edge')
+    expect(wrapper.text().indexOf('v1.6.2 — ')).toBeLessThan(wrapper.text().indexOf('v1.6.1 — '))
     expect(wrapper.text().indexOf('v1.6.1 — ')).toBeLessThan(wrapper.text().indexOf('v1.6 — '))
     expect(wrapper.text().indexOf('v1.6 — ')).toBeLessThan(wrapper.text().indexOf('v1.5 — '))
     expect(wrapper.text()).toContain('v1.4 (iPhone)')
@@ -27,16 +29,24 @@ describe('Releases', () => {
     expect(titles.length).toBeGreaterThan(0)
   })
 
-  it('badges v1.6.1 as CURRENT, always expanded (no <details> wrapper)', () => {
+  it('badges v1.6.2 as CURRENT, always expanded (no <details> wrapper)', () => {
     const wrapper = mount(Releases)
-    expect(wrapper.text()).toContain('CURRENT — v1.6.1')
+    expect(wrapper.text()).toContain('CURRENT — v1.6.2')
+    expect(wrapper.text()).not.toContain('CURRENT — v1.6.1')
     // The current card must not sit inside a <details>: it should be visible
     // without any interaction, unlike every older version.
     const current = wrapper
       .findAll('.container > *')
-      .find((el) => el.text().includes('A fairer Efficiency Score'))
+      .find((el) => el.text().includes('v1.6.2 — Auto-Start fixes'))
     expect(current).toBeDefined()
     expect(current?.element.tagName).not.toBe('DETAILS')
+    // v1.6.2 is a fix release: the v1.6.1 card, which explains the score every 1.6.x app
+    // uses, stays open below it.
+    const v161 = wrapper
+      .findAll('.container > *')
+      .find((el) => el.text().includes('A fairer Efficiency Score'))
+    expect(v161).toBeDefined()
+    expect(v161?.element.tagName).not.toBe('DETAILS')
     // v1.6 is history now, collapsed like every older version.
     const v16 = wrapper
       .findAll('.container > *')
@@ -62,6 +72,32 @@ describe('Releases', () => {
   })
 
   describe('claims that must stay accurate', () => {
+    // v1.6.2 (docs analysis/Efficiver_AutoStart_RCA_1.6.2_v1.3.md): what the code change does,
+    // in plain words. The iPhone "location paused while parked" change is deliberately not
+    // claimed: it has only ever met an injected pause.
+    it('states the v1.6.2 Auto-Start fixes, and that the score is unchanged', () => {
+      const card = mount(Releases)
+        .findAll('.container > *')
+        .find((el) => el.text().includes('v1.6.2 — Auto-Start fixes'))
+      const text = card?.text() ?? ''
+      expect(text).toContain('November 2026')
+      expect(text).toContain('fixes Auto-Start missing journeys after the first one')
+      expect(text).toContain('The Efficiency Score is unchanged')
+      expect(text).toContain('Auto-Start now stays ready whichever screen you leave the app on')
+      expect(text).toContain('switched Auto-Start off until you opened the app again')
+      expect(text).toContain('gets ready for your next journey straight away')
+      expect(text).toContain('no longer waits for a very precise GPS position')
+      expect(text).not.toMatch(/paused/i)
+    })
+
+    it('labels the iPhone-only v1.6.2 changes as iPhone', () => {
+      const text = mount(Releases).text()
+      expect(text).toContain(
+        'On iPhone, Auto-Start comes back by itself when Location is set to Always again'
+      )
+      expect(text).toContain('a drive you have minimized now stops automatically when you park')
+    })
+
     // v1.6.1 truth sheet (ADR-200 revision 6).
     it('states the v1.6.1 score truths — fuel wasted, judged by the car, same at every level', () => {
       const text = mount(Releases).text()

@@ -269,11 +269,22 @@ describe('Help', () => {
       expect(text).not.toContain('1=Beginner')
     })
 
-    it('lists v1.6.1 first under Recently Shipped', () => {
+    it('lists v1.6.1 above v1.6 under Recently Shipped', () => {
       const text = mount(Help).text()
       expect(text).toContain('v1.6.1 (October 2026):')
       expect(text.indexOf('v1.6.1 (October 2026):')).toBeLessThan(
         text.indexOf('v1.6 (October 2026):')
+      )
+    })
+
+    it('lists v1.6.2 first under Recently Shipped, with the Auto-Start fix', () => {
+      const text = mount(Help).text()
+      expect(text).toContain('v1.6.2 (November 2026):')
+      expect(text.indexOf('v1.6.2 (November 2026):')).toBeLessThan(
+        text.indexOf('v1.6.1 (October 2026):')
+      )
+      expect(text).toContain(
+        'Auto-Start stays ready for the next journey whichever screen you leave the app on'
       )
     })
   })
