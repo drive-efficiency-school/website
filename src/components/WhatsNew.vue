@@ -17,6 +17,8 @@
   // v1.6.1 leads with the score (ADR-200, decision D7); the two v1.6 cards come from the
   // owner-approved truth sheet (docs/Efficiver_v1.6_Release_Tracker.md, ADR-194..199). The
   // fleet card moved into "More improvements" unchanged. The v1.5 cards live on Releases.
+  // v1.6.2 is a fix release (Auto-Start): the badge and heading carry the current version, the
+  // cards stay, and its one line leads "More improvements".
   const flagships: Flagship[] = [
     {
       icon: Gauge,
@@ -42,9 +44,9 @@
 <template>
   <section id="whats-new" class="container py-16 sm:py-20">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6.1</Badge>
+      <Badge variant="default" class="mb-4 text-sm py-1.5 px-4">NEW — v1.6.2</Badge>
 
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6.1</h2>
+      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">What's New in Efficiver 1.6.2</h2>
 
       <h3 class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground mb-6">
         A fairer Efficiency Score that measures the fuel your driving mistakes waste, drives that
@@ -105,10 +107,15 @@
       <summary
         class="cursor-pointer font-semibold text-base list-none flex justify-between items-center"
       >
-        <span>More improvements in 1.6 and 1.6.1</span>
+        <span>More improvements in 1.6, 1.6.1 and 1.6.2</span>
         <ArrowRight class="size-4 transition-transform group-open:rotate-90" />
       </summary>
       <ul class="mt-4 space-y-2 text-muted-foreground list-disc list-inside">
+        <!-- v1.6.2 (docs analysis/Efficiver_AutoStart_RCA_1.6.2_v1.3.md, causes 1, 2, 4). -->
+        <li>
+          New in 1.6.2: Auto-Start stays ready for your next journey whichever screen you leave the
+          app on, and gets ready again as soon as a drive ends.
+        </li>
         <!-- The v1.6 fleet flagship, moved here unchanged when the v1.6.1 score took the lead
              (D7). The D4 iPhone-score line was dropped: 1.6.1 supersedes it, and it stays on the
              Releases page's v1.6 entry as history. -->

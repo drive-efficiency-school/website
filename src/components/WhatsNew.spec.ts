@@ -42,10 +42,22 @@ describe('WhatsNew', () => {
 
   // v1.6.1 (ADR-200, D7): the score leads; the two v1.6 flagships stay; the fleet card moved
   // into the disclosure with its text unchanged. The v1.5 cards live on the Releases page.
-  it('announces v1.6.1 in the badge and heading', () => {
+  // v1.6.2 is a fix release: the badge and heading carry the current version, the three
+  // cards stay, and the Auto-Start fix leads the disclosure.
+  it('announces v1.6.2 in the badge and heading', () => {
     const wrapper = mount(WhatsNew)
-    expect(wrapper.text()).toContain('NEW — v1.6.1')
-    expect(wrapper.text()).toContain("What's New in Efficiver 1.6.1")
+    expect(wrapper.text()).toContain('NEW — v1.6.2')
+    expect(wrapper.text()).toContain("What's New in Efficiver 1.6.2")
+    expect(wrapper.text()).not.toContain('NEW — v1.6.1')
+  })
+
+  it('leads the disclosure with the v1.6.2 Auto-Start fix', () => {
+    const wrapper = mount(WhatsNew)
+    const items = wrapper.findAll('details li').map((li) => li.text())
+    expect(items[0]).toContain(
+      'New in 1.6.2: Auto-Start stays ready for your next journey whichever screen you leave the app on'
+    )
+    expect(items[0]).toContain('gets ready again as soon as a drive ends')
   })
 
   it('renders the three flagship cards with distinct icons, the score first', () => {
@@ -107,7 +119,7 @@ describe('WhatsNew', () => {
   it('lists the additional v1.6 improvements inside the disclosure', () => {
     const wrapper = mount(WhatsNew)
     // Native <details> keeps its content in textContent even while collapsed.
-    expect(wrapper.text()).toContain('More improvements in 1.6 and 1.6.1')
+    expect(wrapper.text()).toContain('More improvements in 1.6, 1.6.1 and 1.6.2')
     expect(wrapper.text()).toContain('Route maps draw only trusted GPS positions')
     expect(wrapper.text()).toContain('The live idle count now adds up every 30-second idle period')
     expect(wrapper.text()).toContain(

@@ -774,6 +774,12 @@
         </p>
         <h3 class="text-xl font-semibold mt-4 mb-2">Recently Shipped</h3>
         <ul class="list-disc pl-6">
+          <!-- v1.6.2 (the Auto-Start fix release). Month set at the prod deploy. -->
+          <li>
+            <strong>v1.6.2 (November 2026):</strong> Auto-Start stays ready for the next journey
+            whichever screen you leave the app on, and gets ready again as soon as a drive ends; it
+            no longer waits for a very precise GPS position
+          </li>
           <!-- v1.6.1 (ADR-200). Month set at the prod deploy, like v1.6. -->
           <li>
             <strong>v1.6.1 (October 2026):</strong> the Efficiency Score is now the fuel your

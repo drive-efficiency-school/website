@@ -30,15 +30,54 @@
 <template>
   <div class="container mx-auto px-6 sm:px-8 py-12 sm:py-16 max-w-4xl">
     <div class="text-center mb-12">
-      <Badge variant="default" class="mb-4">CURRENT — v1.6.1</Badge>
+      <Badge variant="default" class="mb-4">CURRENT — v1.6.2</Badge>
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Release notes</h1>
       <p class="text-lg text-muted-foreground">
         Every Efficiver release, in one place. Older entries are collapsed — tap to expand.
       </p>
     </div>
 
+    <!-- v1.6.2 — the Auto-Start fix release. Every sentence states what the code change does
+         (docs analysis/Efficiver_AutoStart_RCA_1.6.2_v1.3.md, causes 1, 2, 3, 4, 7, 8). The
+         iPhone "location paused while parked" change is NOT claimed: it has only ever met an
+         injected pause. Month set at the prod deploy. -->
+    <Card class="mb-6 border-2 border-primary/30 shadow-md">
+      <CardHeader>
+        <div class="flex justify-between items-baseline gap-4">
+          <CardTitle class="text-2xl">v1.6.2 — Auto-Start fixes</CardTitle>
+          <span class="text-sm text-muted-foreground whitespace-nowrap">November 2026</span>
+        </div>
+      </CardHeader>
+      <CardContent class="space-y-4 text-base">
+        <p class="text-muted-foreground">
+          v1.6.2 fixes Auto-Start missing journeys after the first one. The Efficiency Score is
+          unchanged.
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-muted-foreground">
+          <li>
+            Auto-Start now stays ready whichever screen you leave the app on. Before, leaving the
+            app from Settings or Insights switched Auto-Start off until you opened the app again.
+          </li>
+          <li>
+            When a drive ends, Efficiver gets ready for your next journey straight away — however
+            the drive was stopped, and also when the app is in the background.
+          </li>
+          <li>
+            Auto-Start no longer waits for a very precise GPS position before it counts your speed,
+            so a phone in a pocket or a bag is less likely to hold the start back.
+          </li>
+          <!-- iPhone only: RCA causes 3 and 8. -->
+          <li>
+            On iPhone, Auto-Start comes back by itself when Location is set to Always again, and a
+            drive you have minimized now stops automatically when you park.
+          </li>
+        </ul>
+      </CardContent>
+    </Card>
+
     <!-- v1.6.1 — every sentence comes from the 1.6.1 truth sheet (ADR-200 revision 6), the
-         same text as the App Store and Play notes. Dated at the prod deploy. -->
+         same text as the App Store and Play notes. Dated at the prod deploy. Stays open under
+         v1.6.2: it explains the score every 1.6.x app uses. -->
     <Card class="mb-6 border-2 border-primary/30 shadow-md">
       <CardHeader>
         <div class="flex justify-between items-baseline gap-4">
